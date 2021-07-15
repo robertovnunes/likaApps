@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>SIGN UP</title>
+</h:head>
+<h:body>
+	<h1>SIGN UP</h1>
+	<hr/>
+	<h:form>
+<h:messages/>
+<h:inputHidden value="#{userBean.user.iduser}"/>
+<h:inputHidden value="#{userBean.user.status}"/>
+<h:inputHidden value="#{userBean.user.date_reg}">
+	<c:convertDateTime dateStyle="full"/>
+</h:inputHidden> 
+
+
+<h:panelGrid columns="2" bgcolor="#EBEBD6" styleClass="centered" width="400" cellpadding="5">
+	<h:outputLabel value="Name:" for="name" />
+    <h:inputText id="name" label="Name" value="#{userBean.user.name}" size="40" maxlength="40" required="true" requiredMessage="Type your name.">
+    	<c:validateLength minimum="1" maximum="40"/>
+    </h:inputText>	
+    
+    <h:outputLabel value="Occupation:" for="occupation"/>
+    <h:selectOneMenu id="occupation" value="#{userBean.user.occupation}" title="Select any one in this menu" required="true">
+	  <c:selectItem itemLabel="Doctor" itemValue="Doctor" />
+	  <c:selectItem itemLabel="Researcher" itemValue="Researcher" />
+	  
+	</h:selectOneMenu>
+    
+    <h:outputLabel value="Institute:" for="institute" />
+    <h:inputText id="institute" label="Institute" value="#{userBean.user.institute}" size="40" required="true"/>
+    
+    <h:outputLabel value="Document:" for="document" />
+    <h:inputText id="document" label="Document" value="#{userBean.user.document}" size="40" required="true"/>
+    
+    <h:outputLabel value="Gender:" for="gender"/>
+    <h:selectOneRadio id="gender" value="#{userBean.user.gender}" required="true">
+        <c:selectItem  itemLabel="Male" itemValue="Male" />
+        <c:selectItem  itemLabel="Female" itemValue="Female" />
+    </h:selectOneRadio>
+
+	<h:outputLabel value="Direction:" for="direction" />
+    <h:inputText id="direction" label="direction" value="#{userBean.user.direction}" size="40" required="true"/>
+
+	<h:outputLabel value="Coutry:" for="country" />
+    <h:inputText id="country" label="country" value="#{userBean.user.country}" size="40" required="true"/>
+    
+    <h:outputLabel value="Phone:" for="phone"/>
+    <h:inputText id="phone" label="phone" value="#{userBean.user.phone}" size="40" required="true"/>
+    
+    <h:outputLabel value="Email:" for="email" />
+    <h:panelGroup>
+    	<h:inputText id="email" label="email" value="#{userBean.user.email}" size="40"
+    		maxlength="40" required="true" validatorMessage="Invalid email." >
+    		<c:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+"/>	
+    	</h:inputText>
+    	<h:message for="email"/>
+    </h:panelGroup>
+    
+    
+    <h:outputLabel value="Password:" for="password" />
+    <h:inputSecret id="password" label="password" value="#{userBean.user.password}" required="true" maxlength="10" redisplay="true"/>
+    
+    <h:outputLabel value="Confirm password:" for="confirmPassword" />
+    <h:inputSecret id="confirmPassword" label="confirmPassword" value="#{userBean.confirmPassword}" required="true" maxlength="10"
+    redisplay="true"/>
+    
+    <h:outputText/>
+    <h:commandButton action="#{userBean.save}" value="Sign Up"/>
+    
+</h:panelGrid>
+
+
+</h:form>
+
+</h:body>
+</html>

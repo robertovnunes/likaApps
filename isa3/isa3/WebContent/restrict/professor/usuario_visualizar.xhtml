@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout_professor.xhtml">
+	
+			<ui:define name="content"> 
+				<div style="padding:30px; padding-top:10px;">
+					<div class='page-header page-header-intro'>
+						<h2>Visualizar Usuario</h2>
+					</div>
+				<h:form>
+					    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				</h:form>
+				<br />
+				<div class='panel panel-default'>
+						<div class='panel-heading'>
+							<span class='ico-br-gov-mps'></span>
+							Detalhes da Usuario
+						</div>
+						<div class='panel-body'>
+							<div class='row'>
+								<div class='col-md-3'>
+									 <div class="form-group">
+									      <h:form prependId="false">
+												<h:outputLabel for="Nome" value="Nome:" />
+												<h:outputText value="#{usuarioPersistirController.usuario.nome}"></h:outputText>
+						          				<br /><br />
+						          				<h:outputLabel for="CPF" value="CPF:" />
+												<h:outputText value="#{usuarioPersistirController.usuario.cpf}"></h:outputText>
+						            			<br /><br />
+						            			<h:outputLabel for="Email" value="Email:" />
+												<h:outputText value="#{usuarioPersistirController.usuario.email}"></h:outputText>
+										        <br /><br />
+						            			<h:outputLabel for="Login" value="Login:" />
+												<h:outputText value="#{usuarioPersistirController.usuario.login}"></h:outputText>
+										        <br /><br />
+										        <h:outputLabel for="Telefone" value="Telefone:" />
+												<h:outputText value="#{usuarioPersistirController.usuario.telefone}"></h:outputText>
+										        <br /><br />
+						            			<h:outputLabel for="Tipo usuario" value="Tipo Usuário:" />
+												<h:outputText value="#{usuarioPersistirController.usuario.tipoUsuarioFormatado}"></h:outputText>
+						            			<br /><br />
+										</h:form>
+								    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				
+				</div>
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

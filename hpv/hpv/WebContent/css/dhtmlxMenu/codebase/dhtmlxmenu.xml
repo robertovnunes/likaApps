@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<menu>
+	<!-- file -->
+	<item id="m1" text="Questinario">
+		<item id="m11" text="New" img="new.gif" imgdis="new_dis.gif"><hotkey>Ctrl+N</hotkey></item>
+		<item id="ms4" type="separator"/>
+		<item id="m19" text="Close"><hotkey>Ctrl+Q</hotkey></item>
+	</item>
+	<!-- edit -->
+	<item id="m2" text="Relatorios">
+		<item id="m21" text="Undo" img="undo.gif" imgdis="undo_dis.gif"><hotkey>Ctrl+Z</hotkey></item>
+		<item id="m22" text="Redo" img="redo.gif" imgdis="redo_dis.gif"><hotkey>Ctrl+Y</hotkey></item>
+		<item id="ma1" type="separator"/>
+		<item id="m23" text="Select All" img="select_all.gif" imgdis="select_all_dis.gif"><hotkey>Ctrl+A</hotkey></item>
+		<item id="ma2" type="separator"/>
+		<item id="m24" text="Cut" img="cut.gif" imgdis="cut_dis.gif"><hotkey>Ctrl+X</hotkey></item>
+		<item id="m25" text="Copy" img="copy.gif" imgdis="copy_dis.gif"><hotkey>Ctrl+C</hotkey></item>
+		<item id="m26" text="Paste" img="paste.gif" imgdis="paste_dis.gif"><hotkey>Ctrl+V</hotkey></item>
+		<item id="ma3" type="separator"/>
+		<item id="m29" text="Features">
+			<item id="m27" text="Ignore Case" type="checkbox" checked="true"/>
+			<item id="m28" text="Multiselect Support" type="checkbox"/>
+		</item>
+	</item>
+	<!-- about -->
+	<item id="m3" text="Help">
+		<item id="m31" text="About..."><hotkey>Ctrl+I</hotkey></item>
+		<item id="m32" text="Help"><hotkey>F1</hotkey></item>
+		<item id="m33" text="Bug Reporting"/>
+		</item>
+</menu>

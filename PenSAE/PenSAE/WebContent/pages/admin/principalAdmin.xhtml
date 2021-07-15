@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>PenSAE</title>
+</h:head>
+<h:body>
+	<f:event listener="#{logon.verificaLogon}"
+		type="javax.faces.event.PostAddToViewEvent" />
+	<h:form id="form_Principal">
+		<rich:toolbar id="toolbar_Principal" itemSeparator="line">
+			<rich:menuItem id="menuItem_cadastrarCipe"
+				label="Cadastrar elementos da Cipe"
+				actionListener="#{principalAdmin.mostrarCadastrarCipe()}" />
+			<rich:menuItem id="menuItem_lerFeedbacks" label="Ler Feedbacks"
+				actionListener="#{principalAdmin.mostrarLerFeedbacks()}" />
+			<rich:menuItem id="menuItem_Sair" label="Sair"
+				action="#{logon.logOut()}"
+				actionListener="#{principalAdmin.apagarConteudo()}"
+				style="float:right;" />
+			<!-- Esse DropDownMenu foi adicionado so para aplicar o css no toolbar -->
+			<rich:dropDownMenu id="dropDownMenu_Administrar" rendered="false">
+			</rich:dropDownMenu>
+		</rich:toolbar>
+		<h:panelGroup id="panelGroup_Target">
+			<rich:panel rendered="#{principalAdmin.mostrar}"
+				styleClass="panel_invisivel">
+				<ui:include src="#{principalAdmin.page}" />
+			</rich:panel>
+		</h:panelGroup>
+	</h:form>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:body>
+</html>

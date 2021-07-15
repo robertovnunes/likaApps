@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/util
+END
+HibernateUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/util/HibernateUtil.java
+END
+DAOException.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/util/DAOException.java
+END
+DAOFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/util/DAOFactory.java
+END
+UtilException.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/util/UtilException.java
+END
+RNException.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/util/RNException.java
+END

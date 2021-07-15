@@ -1,0 +1,97 @@
+package logic;
+
+import interceptor.AutorizadorAlunoInterceptor;
+import interceptor.DaoInterceptor;
+
+import java.util.List;
+
+import model.Aluno;
+import model.Equipe;
+import model.Periodo;
+import model.Usuario;
+
+import org.vraptor.annotations.Component;
+import org.vraptor.annotations.In;
+import org.vraptor.annotations.InterceptedBy;
+import org.vraptor.annotations.Out;
+import org.vraptor.scope.ScopeType;
+
+import dao.DaoFactory;
+
+@Component("aluno")
+@InterceptedBy({DaoInterceptor.class, AutorizadorAlunoInterceptor.class})
+public class AlunoLogic {
+
+	private final DaoFactory factory;
+	
+	@In(scope = ScopeType.SESSION, required = true)
+	private Usuario usuario;
+	
+	private Aluno aluno;
+	
+	private List<Equipe> equipes;
+	
+	@In(scope = ScopeType.SESSION, required = false)
+	@Out(scope = ScopeType.SESSION)
+	private Periodo periodo;
+	
+	public AlunoLogic(DaoFactory daoFactory) {
+		this.factory = daoFactory;
+	}
+	
+	public void inicio() {
+		this.aluno = this.factory.getDaoAluno().procura(this.usuario.getId());
+		this.equipes = this.aluno.getEquipe();
+	}
+	
+	public void formularioAlterarSenha() {
+		
+	}
+
+	public void mudarSenha(Aluno aluno) {
+		Aluno alunoTemporario = (Aluno) this.usuario;
+		alunoTemporario.setSenha(aluno.getSenha());
+		this.factory.beginTransaction();
+		this.factory.getDaoAluno().adiciona(alunoTemporario);
+		this.factory.commit();
+	}
+	
+	//------- GETTERS E SETTERS ----------
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	public DaoFactory getFactory() {
+		return factory;
+	}
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+	public List<Equipe> getEquipes() {
+		return equipes;
+	}
+
+	public void setEquipes(List<Equipe> equipes) {
+		this.equipes = equipes;
+	}
+
+	public Periodo getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(Periodo periodo) {
+		this.periodo = periodo;
+	}
+		
+}

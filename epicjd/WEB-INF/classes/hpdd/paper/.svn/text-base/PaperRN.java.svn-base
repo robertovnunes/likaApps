@@ -1,0 +1,41 @@
+package hpdd.paper;
+
+import hpdd.notification.Notification;
+import hpdd.paper.Paper;
+import hpdd.paper.PaperDAO;
+import hpdd.util.DAOFactory;
+
+import java.util.List;
+
+public class PaperRN {
+	private PaperDAO paperDAO;
+	public PaperRN() {
+		this.paperDAO = DAOFactory.createPaperDAO();
+	}
+	public List<Paper> list(Integer id){
+		return this.paperDAO.list(id);
+	}
+	public Paper load(Integer paper){
+		return this.paperDAO.load(paper);
+	}
+	public void save(Paper paper){
+		this.paperDAO.save(paper);
+	}
+	public void delete(Paper paper){
+		this.paperDAO.delete(paper);
+	}
+	public Notification getNotification(Integer iduser) {
+		return this.paperDAO.getNotification(iduser);
+	}
+	public Notification getNotificationToUPDATE(Integer iduser) {
+		return this.paperDAO.getNotificationToUPDATE(iduser);
+	}
+	public List<Paper> listaPaperNotif(Integer id) {
+		return this.paperDAO.listaPaperNotif(id);
+	}
+	public void update(Paper selected) {
+		this.paperDAO.update(selected);
+		
+	}	
+
+}

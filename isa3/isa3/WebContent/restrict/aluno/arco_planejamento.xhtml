@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<body>
+	<ui:composition>
+		<c:if test="#{arcoMagueresController.arcoMaguerez.faseDoArco > 1}"><div class="desabilitar-form"  id="desabilitar-form" style="z-index: 9999 !important; height: 100%;"></div></c:if>
+		
+		<f:facet name="title">
+			<p:graphicImage
+				value="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Disabled-icon.png"
+				rendered="#{arcoMagueresController.arcoMaguerez.faseDoArco lt 1}" />
+			<p:graphicImage
+				value="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Normal-Red-icon.png"
+				rendered="#{arcoMagueresController.arcoMaguerez.faseDoArco == 1}" />
+			<p:graphicImage
+				value="#{pageContext.request.contextPath}/resources/imagens/icons/Actions-dialog-ok-apply-icon.png"
+				rendered="#{arcoMagueresController.arcoMaguerez.faseDoArco > 1}" />
+			<h:outputText value="Planejamento"
+				style="margin-left: 5px; margin-top:2px; float: right;" />
+		</f:facet>
+		
+		
+		<p:panel id="panelPlanejamento" widgetVar="panelPlanejamento" >
+			
+			<p:outputPanel rendered="#{arcoMagueresController.arcoMaguerez.faseDoArco > 1}">
+				<div class="desabilitar-form"  id="desabilitar-form" style="z-index: 9999 !important; height: 100%;"></div>
+			</p:outputPanel>
+			<div class="help">
+				<h3 class="arco pontos">Planejamento</h3>
+				A partir das informações presentes no estudo de caso, formule
+				diagnósticos de Enfermagem, a fim de prestar a melhor assistência
+				possível.
+			</div>
+			<h:form>
+				<p:commandButton value="Adicionar Diagnóstico" icon="ui-icon-plus"
+					onclick="PF('dialogDiagnostico').show();" />
+			</h:form>
+			<br />
+			<br />
+			<h:form id="formTabelaDiagnosticos">
+				<p:dataTable emptyMessage="Nenhum Registro Encontrado"
+					id="tabelaDiagnosticos" var="diagnostico" paginator="true"
+					value="#{arcoMagueresController.listarDiagnosticosSelecionadosAluno}">
+
+					<p:column style="text-align: center;"
+						sortBy="#{diagnostico.nomenclatura.codigo}">
+						<f:facet name="header">
+							<h:outputText value="Código" />
+						</f:facet>
+						<h:outputText value="#{diagnostico.nomenclatura.codigo}" />
+					</p:column>
+					<p:column style="text-align: center;"
+						sortBy="#{diagnostico.nomenclatura.termo}">
+						<f:facet name="header">
+							<h:outputText value="Termo" />
+						</f:facet>
+						<h:outputText value="#{diagnostico.nomenclatura.termo}" />
+					</p:column>
+					<p:column style="text-align: center;"
+						sortBy="#{diagnostico.nomenclatura.descricao}">
+						<f:facet name="header">
+							<h:outputText value="Descrição" />
+						</f:facet>
+						<h:outputText value="#{diagnostico.nomenclatura.descricao}" />
+					</p:column>
+					<p:column style="text-align: center;"
+						sortBy="#{diagnostico.etiologia}">
+						<f:facet name="header">
+							<h:outputText value="Etiologia" />
+						</f:facet>
+						<h:outputText value="#{diagnostico.etiologia}" />
+					</p:column>
+					<p:column style="text-align: center;"
+						sortBy="#{diagnostico.sinaisESintomas}">
+						<f:facet name="header">
+							<h:outputText value="Sinais e Sintomas" />
+						</f:facet>
+						<h:outputText value="#{diagnostico.sinaisESintomas}" />
+					</p:column>
+					<p:column style="text-align: center;">
+						<f:facet name="header">
+							<h:outputText value="Ações" />
+						</f:facet>
+						<p:commandButton
+							action="#{arcoMagueresController.removerDiagnostico}"
+							update="tabelaDiagnosticos" value="Remover"
+							icon="ui-icon ui-icon-close">
+							<p:confirm header="Confirmação"
+								message="Você deseja realmente remover?" icon="ui-icon-alert" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<h:form id="formDiagnosticosPlanejamento">
+				<p:dialog header="Diagnósticos Disponíveis"
+					widgetVar="dialogDiagnostico" modal="true" width="800"
+					id="dialogDiagnostico">
+					<p:outputLabel value="Nomemclatura:" for="Nomemclatura" />
+					<p:autoComplete id="Nomemclatura" style="top: auto; left: auto;" size="80"
+						dropdown="true"
+						value="#{arcoMagueresController.diagnosticoAlunoPlanejamento.nomenclatura.termo}"
+						required="true"
+						completeMethod="#{arcoMagueresController.completeText}" />
+					<br />
+					<br />
+					<h:outputLabel for="Nomemclatura" value="Etiologia: *" />
+					<h:inputText id="Etiologia" styleClass="form-control text"
+						style="width: 400px;"
+						value="#{arcoMagueresController.diagnosticoAlunoPlanejamento.etiologia}"
+						required="true" label="Etiologia" />
+					<br />
+					<br />
+					<h:outputLabel for="SinaisESintomas" value="Sinais e Sintomas: *" />
+					<h:inputText id="SinaisESintomas" styleClass="form-control text"
+						style="width: 400px;"
+						value="#{arcoMagueresController.diagnosticoAlunoPlanejamento.sinaisESintomas}"
+						required="true" label="SinaisESintomas" />
+					<br />
+					<br />
+					<p:commandButton
+						action="#{arcoMagueresController.adicionarDiagnostico}"
+						onerror="PF('dialogDiagnostico').show();"
+						onsuccess="PF('dialogDiagnostico').hide();" 
+						update=":tabView:formTabelaDiagnosticos:tabelaDiagnosticos, formDiagnosticosPlanejamento"
+						value="Adicionar" icon="ui-icon-plus">
+					</p:commandButton>
+				</p:dialog>
+			</h:form>
+			<br />
+			<br />
+			<table class="navegacao" style="position: relative; z-index: 2;">
+				<tr>
+					<td style="vertical-align: top;"><p:commandButton
+							value="Voltar" type="button" onclick="PF('tabView').select(0);"
+							icon="ui-icon-triangle-1-w" /></td>
+					<td class="space"></td>
+					<td class="left"><p:commandButton value="Limpar" type="button"
+							icon="ui-icon-close" /></td>
+					<td class="right"><p:commandButton value="Salvar"
+							type="button" oncomplete="PF('dlg').show()" icon="ui-icon-disk"
+							validateClient="true">
+							<p:confirm header="Confirmação"
+								message="Você deseja realmente salvar?" icon="ui-icon-alert" />
+						</p:commandButton></td>
+					<td class="space"></td>
+					<td style="vertical-align: top;">
+					<p:commandButton value="Avançar" id="avancarPlanejamento" update="tabView, panelPlanejamento" actionListener="#{arcoMagueresController.avancarFase(2)}"   icon="ui-icon-triangle-1-e" validateClient="true">
+			        	<p:confirm header="Confirmação" message="Você deseja realmente avançar a fase?" icon="ui-icon-alert" />
+			        </p:commandButton>
+					</td>
+				</tr>
+			</table>
+		</p:panel>
+	</ui:composition>
+</body>
+</html>
+
+

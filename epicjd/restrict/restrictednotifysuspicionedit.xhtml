@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../resources/css/style_rest.css" rel="stylesheet"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+}
+</style>
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>Report case</h1>
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="restricted_notify.html"> Report case</a> >> Primary
+					diagnostic
+				</h4>
+				<br />
+				<!-- CSS Tabs -->
+				<ul id="nav">
+					<li><a href="restrictednotifygeneraledit.jsf">General</a></li>
+					<li><a href="restrictednotifyindividualedit.jsf"><span>Individual</span></a></li>
+					<!--<li><a href="restrictednotifyresidentialedit.jsf"><span>Residential</span></a></li>-->
+					<!-- <li><a href="restrictednotifysuspicionedit.jsf"><span>Primary
+								diagnostic</span></a></li> -->
+					<li><a href="restrictednotifydataedit.jsf"><span>Clinical
+								info</span></a></li>
+					<li><a href="restrictednotifyaspectsedit.jsf"><span>Epidemiological
+								aspects</span></a></li>
+					<li><a href="restrictednotifyresultsedit.jsf"><span>Exams</span></a></li>
+					<li><a href="restrictednotifyconclusionedit.jsf"><span>Conclusion</span></a></li>
+					<li><a href="restrictednotifysourceedit.jsf"><span>Source</span></a></li>
+					<li><a href="restrictednotifyresumeedit.jsf"><span>Clinical
+								History</span></a></li>
+					<li><a href="restrictednotifyimagesedit.jsf"><span>Images</span></a></li>
+				</ul>
+
+
+				<h:form id="texto">
+					<h:messages />
+					<h:panelGrid width="795" height="30" valign="top" align="left"
+						colspan="2"
+						style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+						<h:outputLabel value="Primary diagnostic"></h:outputLabel>
+					</h:panelGrid>
+					<h:panelGrid columns="6" width="795" height="30" valign="top"
+						align="left" bgcolor="#EBEBD6">
+						<h:outputLabel value="Primary diagnostic:" for="primDiag" />
+						<p:selectOneMenu id="primDiag"
+							value="#{suspicionBean.selected.suspect}">
+							<c:selectItem itemValue="" itemLabel="Select primary diagnostic" />
+							<c:selectItem itemValue="CJD" itemLabel="CJD" />
+							<c:selectItem itemValue="GSS" itemLabel="GSS" />
+							<c:selectItem itemValue="IFF" itemLabel="IFF" />
+							<c:selectItem itemValue="other"
+								itemLabel="Discarded Case (another diagnostic)" />
+						</p:selectOneMenu>
+						<h:outputLabel value="Criteria:" for="criteria" />
+						<p:selectOneMenu id="criteria"
+							value="#{suspicionBean.selected.criteria}">
+							<c:selectItem itemValue="" itemLabel="Select criteria" />
+							<c:selectItem itemValue="Definitive" itemLabel="Definitive" />
+							<c:selectItem itemValue="Possible" itemLabel="Possible" />
+							<c:selectItem itemValue="Probable" itemLabel="Probable" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+					<!-- <h:commandLink action="/restrict/restrictednotifyindividual" title="Back">
+				<h:commandButton value="Back" action="individual" />
+			</h:commandLink> -->
+						<h:dataTable value="#{suspicionBean.list}" var="sus"
+							rendered="#{not empty individualBean.list}" cellpadding="0"
+							rules="rows">
+							<p:column>
+								<p:commandButton value="Complete with existing data"
+									ajax="false">
+									<c:ajax execute="@this" render=":texto" />
+									<c:setPropertyActionListener target="#{suspicionBean.selected}"
+										value="#{sus}" />
+								</p:commandButton>
+							</p:column>
+						</h:dataTable>
+						<p:commandButton styleClass="botao" value="Save"
+						action="#{suspicionBean.edit}" ajax="false" />
+					<p:commandButton action="restrictednotifydataedit"
+						value="Next" ajax="false">
+					</p:commandButton>
+					<p:commandButton styleClass="botao" value="Finish"
+						action="imagesCreated" ajax="false" />
+					
+				</h:form>
+
+
+				<br />
+				<!-- <img src="../resources/imagens/seq_res.gif"/> -->
+
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+
+</html>

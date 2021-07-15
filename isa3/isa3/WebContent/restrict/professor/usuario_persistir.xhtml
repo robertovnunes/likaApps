@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout_professor.xhtml">
+	
+			<ui:define name="content"> 
+			<div id="container">
+			    <div id="middle">    
+					<div id="middle_align">
+			            <div id="wrapper" class="logado professor">
+			            <h3 class="bread">Perfil Usuário</h3>
+			            
+				<div style="padding:30px; padding-top:10px;">
+					<div class='page-header page-header-intro'>
+					</div>
+				<h:form id="formMessages">
+					    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				</h:form>
+				<br />
+				<div class='panel panel-default'>
+						<div class='panel-heading'>
+							<span class='ico-br-gov-mps'></span>
+							Informe os dados do formulário abaixo
+							<br /><br />
+						</div>
+						<div class='panel-body'>
+							<div class='row'>
+								<div class='col-md-10'>
+									 <div class="form-group">
+							          		<p:fieldset legend="Perfil Usuário" style="margin-bottom:20px">
+								                <h:form prependId="false">
+													<h:outputLabel for="tipoUsuario" value="Perfil: *"  />
+													<p:selectOneMenu id="tipoUsuario" disabled="#{usuarioPersistirController.usuario.id	!= 0}" required="true" value="#{usuarioPersistirController.usuario.tipoUsuario}" label="tipoUsuario" style="width:200px">
+										                <f:selectItem itemLabel="Aluno" itemValue="ALUNO"></f:selectItem>
+														<f:selectItem itemLabel="Professor" itemValue="PROFESSOR"></f:selectItem>
+														<f:selectItem itemLabel="Administrador" itemValue="ADMINISTRADOR"></f:selectItem>
+										            </p:selectOneMenu>
+										            <br />
+													<h:outputLabel for="Nome" value="Nome: *"  />
+													<h:inputText id="titulo" value="#{usuarioPersistirController.usuario.nome}" required="true"  label="Nome"  />
+													<br />
+													<h:outputLabel for="CPF" value="CPF: *"  />
+													<p:inputMask id="CPF" value="#{usuarioPersistirController.usuario.cpf}" style="width: 200px;"  required="true"  label="CPF" mask="999.999.999-99"/>
+													<br />
+													<h:outputLabel for="Celular" value="Celular: *"  />
+													<p:inputMask id="Celular" value="#{usuarioPersistirController.usuario.telefone}" style="width: 200px;"  required="true"  label="Celular" mask="(999) 99999-9999"/>
+													<br />
+													<h:outputLabel for="Email" value="Email: *"  />
+													<h:inputText id="Email" value="#{usuarioPersistirController.usuario.email}" style="width: 400px;" required="true"  label="Email"  />
+													<br />
+													<h:outputLabel for="sexo" value="Sexo: *"  />
+													<p:selectOneMenu id="sexo" required="true" value="#{usuarioPersistirController.usuario.sexo}" label="sexo" style="width:200px">
+										                <f:selectItem itemLabel="masculino" itemValue="masculino"  />
+											            <f:selectItem itemLabel="feminino" itemValue="feminino" />
+										            </p:selectOneMenu>
+										            <br />
+													<h:outputLabel for="Origem" value="Instituição de Origem: *"  />
+													<h:inputText id="Origem" value="#{usuarioPersistirController.usuario.instituicaoOrigem}" style="width: 200px;" required="true"  label="Origem"  />
+													<p:watermark for="Origem" value="Exemplos: UFPE, UFPB" />
+													<br />
+													<h:outputLabel for="Login" value="Login: *"  />
+													<h:inputText id="Login" disabled="#{usuarioPersistirController.usuario.id != 0}" value="#{usuarioPersistirController.usuario.login}"  style="width: 200px;" required="true"  label="Login"  />
+													<br />
+													<h:outputLabel for="pwd1" value="Senha: *" />
+											        <p:password id="pwd1" value="#{usuarioPersistirController.usuario.senha}" redisplay="true" match="pwd2" label="Senha" required="true" />
+											 		<br />
+											        <h:outputLabel for="pwd2" value="Confirmar Senha: *" />
+											        <p:password id="pwd2" value="#{usuarioPersistirController.usuario.senha}" redisplay="true" label="Confirmar Senha" required="true" />
+											        <br />
+													<h:outputLabel for="CEP" value="CEP: *"  />
+													<p:inputMask id="CEP" value="#{usuarioPersistirController.usuario.endereco.cep}" style="width: 200px;" required="true"  label="CEP" mask="99.999-999">
+													</p:inputMask>
+													<br />
+													<h:outputLabel for="estado" value="Estado: *"  />
+													<p:selectOneMenu id="estado" required="true" value="#{usuarioPersistirController.usuario.endereco.estado}" label="estado" style="width:100px">
+										                <f:selectItem itemLabel="AC" itemValue="AC"></f:selectItem>
+														<f:selectItem itemLabel="AL" itemValue="AL"></f:selectItem>
+														<f:selectItem itemLabel="AM" itemValue="AM"></f:selectItem>
+														<f:selectItem itemLabel="AP" itemValue="AP"></f:selectItem>
+														<f:selectItem itemLabel="BA" itemValue="BA"></f:selectItem>
+														<f:selectItem itemLabel="CE" itemValue="CE"></f:selectItem>
+														<f:selectItem itemLabel="DF" itemValue="DF"></f:selectItem>
+														<f:selectItem itemLabel="ES" itemValue="ES"></f:selectItem>
+														<f:selectItem itemLabel="GO" itemValue="GO"></f:selectItem>
+														<f:selectItem itemLabel="MA" itemValue="MA"></f:selectItem>
+														<f:selectItem itemLabel="MG" itemValue="MG"></f:selectItem>
+														<f:selectItem itemLabel="MS" itemValue="MS"></f:selectItem>
+														<f:selectItem itemLabel="MT" itemValue="MT"></f:selectItem>
+														<f:selectItem itemLabel="PA" itemValue="PA"></f:selectItem>
+														<f:selectItem itemLabel="PB" itemValue="PB"></f:selectItem>
+														<f:selectItem itemLabel="PE" itemValue="PE"></f:selectItem>
+														<f:selectItem itemLabel="PI" itemValue="PI"></f:selectItem>
+														<f:selectItem itemLabel="PR" itemValue="PR"></f:selectItem>
+														<f:selectItem itemLabel="RJ" itemValue="RJ"></f:selectItem>
+														<f:selectItem itemLabel="RN" itemValue="RN"></f:selectItem>
+														<f:selectItem itemLabel="RO" itemValue="RO"></f:selectItem>
+														<f:selectItem itemLabel="RR" itemValue="RR"></f:selectItem>
+														<f:selectItem itemLabel="RS" itemValue="RS"></f:selectItem>
+														<f:selectItem itemLabel="SC" itemValue="SC"></f:selectItem>
+														<f:selectItem itemLabel="SE" itemValue="SE"></f:selectItem>
+														<f:selectItem itemLabel="SP" itemValue="SP"></f:selectItem>
+														<f:selectItem itemLabel="TO" itemValue="TO"></f:selectItem>
+										            </p:selectOneMenu>
+													<br />
+													<h:outputLabel for="cidade" value="Cidade: *"  />
+													<h:inputText id="cidade" value="#{usuarioPersistirController.usuario.endereco.cidade}" style="width: 400px;" required="true"  label="Cidade"  />
+													<br />
+													<h:outputLabel for="bairro" value="Bairro: *"  />
+													<h:inputText id="bairro" value="#{usuarioPersistirController.usuario.endereco.bairro}" style="width: 400px;" required="true"  label="Bairro"  />
+													<br />
+													<h:outputLabel for="numero" value="Número: *"  />
+													<h:inputText id="numero" value="#{usuarioPersistirController.usuario.endereco.numero}" style="width: 100px;" required="true"  label="Número"  />
+													<br />
+													<h:outputLabel for="descricao" value="Logradouro: *"  />
+													<h:inputText id="descricao" value="#{usuarioPersistirController.usuario.endereco.descricao}" style="width: 400px;" required="true"  label="Logradouro"  />
+													<br />
+													<h:outputLabel for="referencia" value="Referência: *"  />
+													<h:inputText id="referencia" value="#{usuarioPersistirController.usuario.endereco.referencia}" style="width: 400px;" required="true"  label="Referência"  />
+													<br /><br /><br />
+													<c:if test="#{usuarioPersistirController.usuario.id == 0}">
+														<p:commandButton actionListener="#{usuarioPersistirController.adicionarUsuario}" value="Salvar" validateClient="true" >
+															<p:confirm header="Confirmação" message="Você deseja realmente salvar?" icon="ui-icon-alert" />
+														</p:commandButton>
+													</c:if>
+													<c:if test="#{usuarioPersistirController.usuario.id != 0}">
+														<p:commandButton actionListener="#{usuarioPersistirController.alterarUsuario}" value="Salvar" validateClient="true" >
+															<p:confirm header="Confirmação" message="Você deseja realmente alterar?" icon="ui-icon-alert" />
+														</p:commandButton>
+													</c:if>
+													<br />
+													<p:confirmDialog global="true" styleClass="confirmDialog" showEffect="fade" hideEffect="fade">
+												        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+												        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+												    </p:confirmDialog>
+									                <br />
+												</h:form>
+			    							</p:fieldset>
+									      
+								    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

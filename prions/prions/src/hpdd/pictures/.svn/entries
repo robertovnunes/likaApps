@@ -1,0 +1,63 @@
+10
+
+dir
+0
+http://www.ideias.ufpe.br/svn/prion/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/pictures
+http://www.ideias.ufpe.br/svn/prion
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5a444620-2f94-4d67-930d-69cb9ac741b4
+
+PicturesDAO.java
+file
+
+
+
+add
+
+PicturesDAOHibernate.java
+file
+
+
+
+add
+
+PicturesPaper.java
+file
+
+
+
+add
+
+Pictures.java
+file
+
+
+
+add
+
+PicturesRN.java
+file
+
+
+
+add
+

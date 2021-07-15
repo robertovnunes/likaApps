@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../resources/css/style_rest.css" rel="stylesheet"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+}
+</style>
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>Report case</h1>
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="restricted_notify.html"> Report case</a> >> Clinical exames
+				</h4>
+				<br />
+				<ul id="nav">
+					<li><a href="restrictednotifygeneral.jsf">General</a></li>
+					<li><a href="restrictednotifyindividual.jsf"><span>Individual</span></a></li>
+					<!--<li><a href="restrictednotifyresidential.jsf"><span>Residential</span></a></li>-->
+					<!-- <li><a href="restrictednotifysuspicion.jsf"><span>Primary diagnostic</span></a></li>-->
+					<li><a href="restrictednotifydata.jsf"><span>Clinical
+								info</span></a></li>
+					<li><a href="restrictednotifyaspects.jsf"><span>Epidemiological
+								aspects</span></a></li>
+					<li><a class="active" href="restrictednotifyresults.jsf"><span>Exames</span></a></li>
+					<li><a href="restrictednotifyconclusion.jsf"><span>Conclusion</span></a></li>
+					<li><a href="restrictednotifysource.jsf"><span>Source</span></a></li>
+					<li><a href="restrictednotifyresume.jsf"><span>Clinical
+								History</span></a></li>
+					<li><a href="restrictednotifyimages.jsf"><span>Images</span></a></li>
+				</ul>
+
+
+				<h:form id="texto">
+					<h:messages />
+					<div style="width: 810px; height: 350px; overflow: auto;">
+						<h:panelGrid width="793" height="30" valign="top" align="left"
+							colspan="2"
+							style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+							<h:outputLabel value="Clinical exames"></h:outputLabel>
+						</h:panelGrid>
+						<h:panelGrid columns="4" width="793" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+							<h:outputLabel value="EEG:" for="eeg" />
+							<p:selectOneRadio layout="lineDirection" id="eeg"
+								value="#{resultsBean.selected.EEG}">
+								<c:selectItem itemValue="Performed" itemLabel="Performed" />
+								<c:selectItem itemValue="Not performed"
+									itemLabel="Not performed" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</p:selectOneRadio>
+							<h:outputLabel value="Result:" for="res_eeg" />
+							<p:inputText id="res_eeg" value="#{resultsBean.selected.res_EEG}"
+								required="false" maxlength="30" />
+							<h:outputLabel value="MRI - Magnetic Resonance Imaging: "
+								for="mri" />
+							<p:selectOneRadio layout="lineDirection" id="mri"
+								value="#{resultsBean.selected.MRI}">
+								<c:selectItem itemValue="Performed" itemLabel="Performed" />
+								<c:selectItem itemValue="Not performed"
+									itemLabel="Not performed" />
+								<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+							</p:selectOneRadio>
+							<h:outputLabel value="Result:" for="res_mri" />
+							<p:inputText id="res_mri" value="#{resultsBean.selected.res_MRI}"
+								required="false" maxlength="30" />
+							<h:outputLabel value="14-3-3 protein in CSF: " for="protein14" />
+							<p:selectOneRadio layout="lineDirection" id="protein14"
+								value="#{resultsBean.selected.prot14_3}">
+								<c:selectItem itemValue="Performed" itemLabel="Performed" />
+								<c:selectItem itemValue="Not performed"
+									itemLabel="Not performed" />
+								<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+							</p:selectOneRadio>
+							<h:outputLabel value="Result:" for="res_prot14" />
+							<p:inputText id="res_prot14"
+								value="#{resultsBean.selected.res_prot14_3}" required="false"
+								maxlength="30" />
+							<h:outputLabel value="TAU protein in CSF: " for="tau" />
+							<p:selectOneRadio layout="lineDirection" id="tau"
+								value="#{resultsBean.selected.tauProtein}">
+								<c:selectItem itemValue="Performed" itemLabel="Performed" />
+								<c:selectItem itemValue="Not performed"
+									itemLabel="Not performed" />
+								<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+							</p:selectOneRadio>
+							<h:outputLabel value="Result:" for="res_tau" />
+							<p:inputText id="res_tau" value="#{resultsBean.selected.res_tau}"
+								required="false" maxlength="30" />
+							<h:outputLabel
+								value="Brain Biopsy with spongiform encephalopathy: "
+								for="biopsy" />
+							<p:selectOneRadio layout="lineDirection" id="biopsy"
+								value="#{resultsBean.selected.biopsy}">
+								<c:selectItem itemValue="Performed" itemLabel="Performed" />
+								<c:selectItem itemValue="Not performed"
+									itemLabel="Not performed" />
+								<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+							</p:selectOneRadio>
+							<h:outputLabel value="Result:" for="res_bio" />
+							<p:inputText id="res_bio"
+								value="#{resultsBean.selected.resBiopsy}" required="false"
+								maxlength="30" />
+							<h:outputLabel value="Necropsy with spongiform encephalopathy: "
+								for="necropsy" />
+							<p:selectOneRadio layout="lineDirection" id="necropsy"
+								value="#{resultsBean.selected.necropsy}">
+								<c:selectItem itemValue="Performed" itemLabel="Performed" />
+								<c:selectItem itemValue="Not performed"
+									itemLabel="Not performed" />
+								<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+							</p:selectOneRadio>
+							<h:outputLabel value="Result:" for="res_nec" />
+							<p:inputText id="res_nec"
+								value="#{resultsBean.selected.resNecropsy}" required="false"
+								maxlength="30" />
+							<h:outputLabel
+								value="Immunohistochemistry for prion protein pathological: "
+								for="immunohistochemistry" />
+							<p:selectOneRadio layout="lineDirection"
+								id="immunohistochemistry"
+								value="#{resultsBean.selected.immunohistochemistry}">
+								<c:selectItem itemValue="Performed" itemLabel="Performed" />
+								<c:selectItem itemValue="Not performed"
+									itemLabel="Not performed" />
+								<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+							</p:selectOneRadio>
+							<h:outputLabel value="Result:" for="res_im" />
+							<p:inputText id="res_im"
+								value="#{resultsBean.selected.immunohistochemistry}"
+								required="false" maxlength="30" />
+							<h:outputLabel value="Genetic analysis (PRNP): " for="prnp" />
+							<p:selectOneRadio layout="pageDirection" id="prnp"
+								value="#{resultsBean.selected.genetic}">
+								<c:selectItem itemValue="Presencemutation"
+									itemLabel="Presence of mutation" />
+								<c:selectItem itemValue="Absencemutation"
+									itemLabel="Absence of mutation" />
+								<c:selectItem itemValue="Inprogress" itemLabel="In progress" />
+								<c:selectItem itemValue="NotDone" itemLabel="Not done" />
+							</p:selectOneRadio>
+							<h:outputLabel value="Mutation: " for="mutation" />
+							<p:inputText id="mutation"
+								value="#{resultsBean.selected.resGenetic}" required="false"
+								maxlength="30" />
+
+
+							<h:outputLabel></h:outputLabel>
+						</h:panelGrid>
+						<h:outputLabel>
+							<!--<h:commandLink action="/restrict/restrictednotifygeneral" title="Back">
+				<h:commandButton value="Back" action="general" />
+			</h:commandLink>-->
+							<p:commandButton styleClass="botao" value="Save"
+								action="#{resultsBean.save}" ajax="false" />
+							<!-- <h:commandLink action="/restrict/restrictednotifyresidential" title="Next">
+				<h:commandButton value="Next" action="residential" />
+			</h:commandLink> -->
+						</h:outputLabel>
+						<h:outputLabel></h:outputLabel>
+						<h:outputLabel></h:outputLabel>
+						<h:outputLabel></h:outputLabel>
+						<h:outputLabel>
+							<p:commandButton styleClass="botao" value="Finish"
+								action="imagesCreated" ajax="false" />
+						</h:outputLabel>
+
+					</div>
+				</h:form>
+
+
+
+				<br />
+				<!-- <img src="../resources/imagens/seq_asp.gif"/> -->
+
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="../resources/css/style.css" media="screen"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="login">
+			<div id="formlogin">
+				<table>
+
+
+					<form method="post"
+						action="#{request.contextPath}/j_spring_security_check">
+						<br /> Email<br /> <input type="text" name='j_username'
+							id="textfield" /><br /> Password<br /> <input type="password"
+							name='j_password' id="textfield" /><br /> <input
+							type="checkbox" name="_spring_security_remember_me" />Remember
+						me<br /> <input type="submit" value="Login" />
+
+
+
+						<!-- <table>
+		<br/>
+			<tr><td>Email</td></tr>
+				<tr><td><input type='text' name='j_username' size="15" id="textfield"/></td></tr>
+			<tr><td>Password</td></tr>
+				<tr><td><input type='password' name='j_password' size="15" id="textfield"/></td></tr>
+			<tr><td align="left"><input type="checkbox" name="_spring_security_remember_me"/>Remember me
+				<input type="submit" value="Login"/></td>
+			</tr>
+			
+		</table> -->
+						<script>
+							document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
+						</script>
+					</form>
+					<h:form>
+						<h:commandButton action="#{userBean.newUser}" value="Sign Up" />
+
+					</h:form>
+
+				</table>
+			</div>
+		</div>
+		<div id="corpo">
+			<div id="texto" style="overflow: auto;">
+				<h1>News</h1>
+				<h4>
+					<a href="login.jsf">Home</a> >><a href="news.jsf"> News</a>
+				</h4>
+
+				<p></p>
+
+				<h2>
+					<h:outputLink style="font-color:blue" value="primePaises.jsf">
+						<h:outputText value="Graphic of cases by country" />
+					</h:outputLink>
+					<br />
+					<h:outputLink value="primeIdade.jsf">
+						<h:outputText value="Graphic of cases by age" />
+					</h:outputLink>
+					<br />
+					<h:outputLink value="primeGenero.jsf">
+						<h:outputText value="Graphic of cases by gender" />
+					</h:outputLink>
+
+				</h2>
+
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+</html>

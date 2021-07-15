@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/hpv/!svn/ver/5/trunk/hpv/src/br/com/lika/hpv/util
+END
+ClientInput.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/util/ClientInput.java
+END
+GeraBanco.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/util/GeraBanco.java
+END
+ClientOutput.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/util/ClientOutput.java
+END
+Html2Pdf.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/util/Html2Pdf.java
+END
+HibernateUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/hpv/!svn/ver/5/trunk/hpv/src/br/com/lika/hpv/util/HibernateUtil.java
+END
+BufferedImageConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/util/BufferedImageConverter.java
+END
+Barcodes.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/util/Barcodes.java
+END
+TagLibrary.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/util/TagLibrary.java
+END
+Maintestador.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/util/Maintestador.java
+END

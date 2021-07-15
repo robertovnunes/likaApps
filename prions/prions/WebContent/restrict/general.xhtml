@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>General Notification</title>
+</h:head>
+<h:body>
+	<h1>General Notification</h1>
+	Usuário logado #{request.remoteUser}
+	<br/>
+	Nome do Usuário Logado #{contextoBean.loggedUser.name}
+	<h:form id="edicao">
+		<h:messages/>
+		<h:inputHidden value="#{generalBean.selected.codGeneral}"/>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Notification Date: " for="notifDate"/>
+			<h:inputText id="notifDate" value="#{generalBean.selected.notifDate}" required="true" maxlength="10">
+				<c:convertDateTime dateStyle="medium"/>
+			</h:inputText>
+			<h:outputLabel value="State: " for="state"/>
+			<h:inputText id="state" value="#{generalBean.selected.state}" required="true" maxlength="30"/>
+			<h:outputLabel value="City of notification: " for="city"/>
+			<h:inputText id="city" value="#{generalBean.selected.city}" required="true" maxlength="30"/>
+			<h:outputLabel value="Health unit: " for="healthUnit"/>
+			<h:inputText id="healthUnit" value="#{generalBean.selected.healthUnit}" required="true" maxlength="30"/>
+			<h:outputLabel value="Zone: " for="zone"/>
+			<!-- <h:inputText id="zone" value="#{generalBean.selected.zone}" required="true" maxlength="30"/> -->
+			<h:selectOneMenu id="zone" value="#{generalBean.selected.zone}">
+				<c:selectItem itemValue="" itemLabel="Select zone"/>
+				<c:selectItem itemValue="Urban" itemLabel="Urban"/>
+				<c:selectItem itemValue="Rural" itemLabel="Rural"/>
+				<c:selectItem itemValue="Peri" itemLabel="Peri"/>
+			</h:selectOneMenu>	
+			<h:outputLabel value="Country: " for="country"/>
+			<h:inputText id="country" value="#{generalBean.selected.country}" required="true" maxlength="30"/>
+			
+			<h:commandButton value="Save" action="#{generalBean.save}" />
+		</h:panelGrid>
+	</h:form>
+	
+</h:body>
+</html>

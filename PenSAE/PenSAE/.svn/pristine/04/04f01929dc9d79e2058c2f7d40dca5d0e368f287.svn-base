@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:head>
+<h:body>
+	<f:event
+		listener="#{listaCursos.carregarCursos(principalProfessor.professor)}"
+		type="javax.faces.event.PreRenderComponentEvent" />
+	<rich:panel styleClass="panel_invisivel">
+		<h:outputLabel id="outputLabel_TituloPagina"
+			value="Seus cursos cadastrados" styleClass="titulo_principal_pagina" />
+		<rich:dataTable id="dataTable_Cursos" value="#{listaCursos.cursos}"
+			var="curso" style="text-align:left; width : 650px;">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nome" />
+				</f:facet>
+				<h:outputText value="#{curso.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Período" />
+				</f:facet>
+				<h:outputText value="De " />
+				<h:outputText value="#{curso.dataInicio}">
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+				</h:outputText>
+				<h:outputText value=" até " />
+				<h:outputText value="#{curso.dataFim}">
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column id="column_Trabalhar">
+				<f:facet name="header">
+				</f:facet>
+				<a4j:commandButton id="commandButton_SelecionarCurso"
+					value="Trabalhar neste curso" title="Trabalhar neste curso"
+					actionListener="#{principalProfessor.setCursoSelecionado(curso)}"
+					disabled="#{principalProfessor.isButtonSelecionarDisabled(curso)}"
+					render="dataTabel_Cursos form_Principal" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+				</f:facet>
+				<h:commandButton id="commandButton_Editar"
+					image="/resources/icones/edit-icon.png" title="editar"
+					actionListener="#{principalProfessor.mostrarCriarEditarCurso}">
+					<f:actionListener
+						binding="#{criarEditarCurso.carregarCurso(curso)}" />
+				</h:commandButton>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+				</f:facet>
+				<h:commandButton id="commandButton_Excluir"
+					image="/resources/icones/remove-icon.png" title="excluir"
+					onclick="if(#{listaCursos.confirmacaoDelecao(curso.id)}){alert('#{listaCursos.mensagemConfirmacao(curso.id)}'); return false;}else{return confirm('Deseja excluir ' + '#{curso.nome}');}"
+					actionListener="#{listaCursos.excluirCurso(curso.id)}">
+					<f:actionListener
+						binding="#{principalProfessor.mostrarListaCursos()}" />
+				</h:commandButton>
+			</h:column>
+		</rich:dataTable>
+		<br />
+		<h:commandButton id="commandButton_Criar" value="Incluir novo curso"
+			actionListener="#{principalProfessor.mostrarCriarEditarCurso}"
+			render="document.getelementbyid(panelGroup_Target)" />
+		<h:commandButton value="Voltar"
+			actionListener="#{principalProfessor.apagarConteudo}"
+			render="document.getelementbyid(panelGroup_Target)" />
+	</rich:panel>
+</h:body>
+</html>

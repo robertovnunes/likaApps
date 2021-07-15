@@ -1,0 +1,134 @@
+table.displaytag{
+	border: 1px solid #666;
+	width: 100%;
+	margin: 10px 0 10px 0;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 7pt;
+}
+
+thead tr {
+	padding: 5px 5px 5px 5px;
+	marging: 5px 5px 5px 5px;
+	background-color: #CB274C;
+	color:white;
+}
+
+th.sorted {
+	background-color: rgb(176,34,66);
+	color:black;
+}
+
+th {
+	color: white;
+	text-align: center;
+}
+
+th a,th a:visited {
+	color: white;
+}
+
+th a:hover {
+	text-decoration: underline;
+	color:white;
+}
+
+th.sorted a{
+	background-repeat: no-repeat;
+	display: block;
+	width: 100%;
+	color: gray;
+}
+th.sortable a {
+	background-repeat: no-repeat;
+	display: block;
+	width: 100%;
+	color: white;
+}
+
+
+
+th.sortable a {
+	background-image: url(../img/arrow_off.png);
+}
+
+th.order1 a {
+	background-image: url(../img/arrow_down.png);
+}
+
+th.order2 a {
+	background-image: url(../img/arrow_up.png);
+}
+
+tr.tableRowEven,tr.even {
+	background-color: #ffc
+}
+
+div.exportlinks {
+	background-color: #eee;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	margin: 10px 0 10px 0;
+	Height: 20px;
+}
+
+div.exportlinks :HOVER {
+	background-color: white;
+}
+
+span.export {
+	padding: 30px 4px 0px 20px;
+	cursor: pointer;
+	width: 100%;
+	padding-bottom: 10px;
+	height: 10px;
+}
+
+span.excel {
+	background-repeat: no-repeat;
+	background-image: url(../images/excel.bmp);
+	padding-left: 20px;
+	padding-top: 0px;
+	height: 50px;
+}
+
+span.csv {
+	background-image: url(../img/ico_file_csv.png);
+}
+
+span.xml {
+	background-repeat: no-repeat;
+	background-image: url(../images/xml.bmp);
+	padding-left: 40px;
+	padding-top: 0px;
+	height: 30px;
+}
+
+span.pdf {
+	background-repeat: no-repeat;
+	background-image: url(../images/pdf.png);
+	padding-left: 30px;
+	padding-top: 0px;
+	height: 50px;
+}
+
+span.pagebanner {
+	background-color: #eee;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	margin-top: 10px;
+	display: block;
+	border-bottom: none
+}
+
+span.pagelinks {
+	background-color: #eee;
+	border: 1px dotted #999;
+	padding: 10px 4px 2px 4px;
+	display: block;
+	border-top: none;
+}
+
+table.simple td.textRed {
+	color: #b11;
+}

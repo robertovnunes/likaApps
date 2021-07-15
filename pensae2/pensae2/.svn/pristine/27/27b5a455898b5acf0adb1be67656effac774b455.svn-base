@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="h"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+  <jsp:include page="../inc_header.jsp"  flush="true"/>
+    
+    
+</head>
+<body>
+
+<div id="container">
+
+	  <jsp:include page="../inc_topo.jsp"  flush="true"/>
+    
+    <div id="middle">    
+		<div id="middle_align">
+
+            <div id="wrapper" class="logado aluno">
+            
+            <div class="col w90 p0_5">
+                <h3>Seja bem-vindo ao seu espaço PROFESSOR!</h3>
+                <p>Veja os cursos que temos para você:</p>
+                <p>&nbsp;</p>          
+            </div>
+			<br clear="all" />
+
+			<table >
+            	<tr>
+                	<th>Cód</th>
+                    <th>Curso</th>
+                    <th>Período</th>
+                    <th>Status</th>
+                    <th>Resumo</th>
+                    <th>Ações</th>
+                </tr>
+            	<tr>
+                	<td><a href="curso.php">0001</a></td>
+                    <td><a href="curso.php">Nome do curso selecionado com texto longo em duas linhas</a></td>
+                    <td><a href="curso.php">De 03/10/2013 ate 17/10/2013</a></td>
+                    <td><a href="curso.php"><img src="imagens/icons/Play-1-Normal-Red-icon.png" title="Curso em andamento" /></a></td>
+                    <td><a href="curso.php">Texto resumido sobre o curso e sua abordagem...</a></td>
+                    <td><a href="curso.php"><img src="imagens/icons/Pen-2-icon.png" title="Editar" /></a></td>
+             	</tr>
+            	<tr>
+                	<td><a href="curso.php">0002</a></td>
+                    <td><a href="curso.php">Nome do curso selecionado com texto longo em duas linhas</a></td>
+                    <td><a href="curso.php">De 03/10/2013 ate 17/10/2013</a></td>
+                    <td><a href="curso.php"><img src="imagens/icons/Pause-Normal-Red-icon.png" title="Curso em pausa ou suspenso" /></a></td>
+                    <td><a href="curso.php">Texto resumido sobre o curso e sua abordagem...</a></td>
+                    <td><a href="curso.php"><img src="imagens/icons/Pen-2-icon.png" title="Editar" /></a></td>
+             	</tr>
+                <tr>
+                	<td><a href="curso.php">0003</a></td>
+                    <td><a href="curso.php">Nome do curso selecionado com texto longo em duas linhas</a></td>
+                    <td><a href="curso.php">De 03/10/2013 ate 17/10/2013</a></td>
+                    <td><a href="curso.php"><img src="imagens/icons/Play-1-Disabled-icon.png" title="Curso disponível" /></a></td>
+                    <td><a href="curso.php">Texto resumido sobre o curso e sua abordagem...</a></td>
+                    <td><a href="curso.php"><img src="imagens/icons/Pen-2-icon.png" title="Editar" /></a></td>
+             	</tr>
+                <tr>
+                	<td><a href="curso.php">0004</a></td>
+                    <td><a href="curso.php">Nome do curso selecionado com texto longo em duas linhas</a></td>
+                    <td><a href="curso.php">De 03/10/2013 ate 17/10/2013</a></td>
+                    <td><a href="curso.php"><img src="imagens/icons/restrict.gif" title="Curso bloqueado" /></a></td>
+                    <td><a href="curso.php">Texto resumido sobre o curso e sua abordagem...</a></td>
+                    <td><a href="curso.php"><img src="imagens/icons/Pen-2-icon.png" title="Editar" /></a></td>
+             	</tr>
+                <tr>
+                	<td><a href="curso.php">0005</a></td>
+                    <td><a href="curso.php">Nome do curso selecionado com texto longo em duas linhas</a></td>
+                    <td><a href="curso.php">De 03/10/2013 ate 17/10/2013</a></td>
+                    <td><a href="curso.php"><img src="imagens/icons/Actions-dialog-ok-apply-icon.png" title="Curso concluído" /></a></td>
+                    <td><a href="curso.php">Texto resumido sobre o curso e sua abordagem...</a></td>
+                    <td><a href="curso.php"><img src="imagens/icons/Pen-2-icon.png" title="Editar" /></a></td>
+             	</tr>
+                
+
+
+            </table>
+                
+            </div><!-- /#wrapper -->
+
+    	</div><!-- /#middle_align -->
+    </div><!-- /#middle -->    
+    
+	<jsp:include page="../inc_rodape.jsp"  flush="true"/>
+  
+    
+</div><!-- /#container -->
+
+</body>
+</html>    

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>PenSAE</title>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:head>
+<h:body>
+	<f:event
+		listener="#{perfilAluno.getAluno(principalAluno.usuarioLogado)}"
+		type="javax.faces.event.PreRenderViewEvent" />
+	<h:form id="form_principal">
+		<h:outputLabel value="Perfil" styleClass="titulo_principal_pagina" />
+		<br />
+		<h:outputLabel value="Alterar senha" styleClass="campo_titulo" />
+		<rich:panel style=" width : 230px;" styleClass="panel_invisivel">
+			<h:panelGrid columns="2" cellspacing="5">
+				<h:panelGroup>
+					<div style="text-align: right">
+						<h:outputLabel value="Senha atual: " styleClass="campo_subtitulo" />
+					</div>
+				</h:panelGroup>
+				<h:inputSecret id="inputSecret_senhaAntiga"
+					value="#{perfilAluno.senhaAntiga}" />
+				<h:panelGroup>
+					<div style="text-align: right">
+						<h:outputLabel value="Nova senha: " styleClass="campo_subtitulo" />
+					</div>
+				</h:panelGroup>
+				<h:inputSecret id="inputSecret_senha" value="#{perfilAluno.senha}" />
+				<h:panelGroup>
+					<div style="text-align: right">
+						<h:outputLabel value="Nova senha novamente: "
+							styleClass="campo_subtitulo" />
+					</div>
+				</h:panelGroup>
+				<h:inputSecret id="inputSecret_SenhaNovamente"
+					value="#{perfilAluno.senhaNovamente}" />
+			</h:panelGrid>
+		</rich:panel>
+		<h:outputLabel value="Informações Sociodemográficas"
+			styleClass="campo_titulo" />
+		<rich:panel style="width: 280px" styleClass="panel_invisivel">
+			<h:panelGrid columns="2" cellspacing="5">
+				<h:panelGroup>
+					<div style="text-align: right">
+						<h:outputLabel value="Data de nascimento:"
+							styleClass="campo_subtitulo" />
+					</div>
+				</h:panelGroup>
+				<rich:calendar id="calendar_Nascimento" popup="true"
+					showWeeksBar="false" datePattern="dd/MM/yyyy"
+					value="#{perfilAluno.dataNascimento}" />
+				<h:panelGroup>
+					<div style="text-align: right">
+						<h:outputLabel value="Estado Civil: " styleClass="campo_subtitulo" />
+					</div>
+				</h:panelGroup>
+				<h:selectOneMenu id="selectOneMenu_EstadoCivil"
+					value="#{perfilAluno.estadoCivil}">
+					<f:selectItems value="#{perfilAluno.opcoesEstadoCivil}" />
+				</h:selectOneMenu>
+				<h:panelGroup>
+					<div style="text-align: right">
+						<h:outputLabel value="Número de filhos: "
+							styleClass="campo_subtitulo" />
+					</div>
+				</h:panelGroup>
+				<h:panelGroup>
+					<rich:inputNumberSpinner id="inputNumberSpinner_NumeroFilhos"
+						value="#{perfilAluno.numeroFilhos}" />
+				</h:panelGroup>
+				<h:panelGroup>
+					<div style="text-align: right">
+						<h:outputLabel value="Renda Familiar: "
+							styleClass="campo_subtitulo" />
+					</div>
+				</h:panelGroup>
+				<h:selectOneMenu id="selectOneMenu_Renda"
+					value="#{perfilAluno.rendaFamiliar}">
+					<f:selectItems value="#{perfilAluno.opcoesRendaFamiliar}" />
+				</h:selectOneMenu>
+				<h:panelGroup>
+					<div style="text-align: right">
+						<h:outputLabel value="Sexo: " styleClass="campo_subtitulo" />
+					</div>
+				</h:panelGroup>
+				<h:selectOneMenu id="selectOneMenu_Sexo" value="#{perfilAluno.sexo}">
+					<f:selectItems value="#{perfilAluno.opcoesSexo}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
+		</rich:panel>
+		<br />
+		<h:outputLabel value="Idiomas" styleClass="campo_titulo" />
+		<rich:panel id="panel_Idiomas" style="width: 220px"
+			styleClass="panel_invisivel">
+			<h:panelGrid columns="2" cellspacing="5">
+				<h:outputLabel value="Idioma: " styleClass="campo_subtitulo" />
+				<h:selectOneMenu id="selectOneMenu_Idioma"
+					value="#{perfilAluno.nomeIdioma}">
+					<f:selectItem itemLabel="Selecione" itemValue="Selecione" />
+					<f:selectItems value="#{perfilAluno.idiomasDisponiveis}"
+						var="idioma" itemLabel="#{idioma.idioma}"
+						itemValue="#{idioma.idioma}" />
+				</h:selectOneMenu>
+				<h:outputLabel value="Percentual de proeficiência:  "
+					styleClass="campo_subtitulo" />
+				<rich:inputNumberSpinner id="inputNumberSpinner_ScoreIdioma"
+					maxValue="100" value="#{perfilAluno.idioma.score}" />
+			</h:panelGrid>
+			<a4j:commandButton id="commandButton_AdicionarIdioma"
+				value="Adicionar idioma"
+				actionListener="#{perfilAluno.adicionarIdioma()}" limitRender="true"
+				render="panel_Idiomas" />
+			<div align="left">
+				<rich:dataTable id="dataTable_Idiomas" style="width: 200px"
+					value="#{perfilAluno.idiomasAluno}" var="phiRow">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Idioma" />
+						</f:facet>
+						<h:outputText value="#{phiRow.idioma.idioma}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Percentual de" />
+							<br />
+							<h:outputText value="Proeficiência" />
+						</f:facet>
+						<rich:panel styleClass="panel_invisivel"
+							style="text-align:center;">
+							<h:outputText value="#{phiRow.score}" />
+						</rich:panel>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Ações" />
+						</f:facet>
+						<a4j:commandButton id="commandButton_Editar"
+							image="/resources/icones/edit-icon.png"
+							style="width : 20px; height : 20px;" title="Editar"
+							actionListener="#{perfilAluno.editarIdioma(phiRow)}"
+							limitRender="true" render="panel_Idiomas" />
+						<h:outputText value=" " />
+						<a4j:commandButton id="commandButton_Excluir"
+							image="/resources/icones/remove-icon.png"
+							style=" width : 20px; height : 20px;" title="Excluir"
+							onclick="return confirm('Deseja realmente excluir este idioma?')"
+							actionListener="#{perfilAluno.excuirIdioma(phiRow)}"
+							limitRender="true" render="panel_Idiomas" />
+					</h:column>
+				</rich:dataTable>
+			</div>
+		</rich:panel>
+		<h:outputLabel value="Informações Acadêmicas"
+			styleClass="campo_titulo" />
+		<rich:panel style="width: 600px" styleClass="panel_invisivel">
+			<h:outputLabel value="Experiência prévia na área de enfermagem:"
+				styleClass="campo_subtitulo" />
+			<br />
+			<h:selectOneMenu id="selectOneMenu_Experiencia"
+				value="#{perfilAluno.experienciaEnfermagem}">
+				<f:selectItems value="#{perfilAluno.opcoesExperienciaEnfermagem}" />
+			</h:selectOneMenu>
+			<br />
+			<h:outputLabel
+				value="Presença de reprovação em alguma disciplina/ módulo do curso"
+				styleClass="campo_subtitulo" />
+			<br />
+			<h:selectOneMenu id="selectOneMenu_Reprovacao"
+				value="#{perfilAluno.existeReprovacao}">
+				<f:selectItems value="#{perfilAluno.opcoesexisteReprovacao}" />
+				<f:ajax event="change"
+					listener="#{perfilAluno.listenerReprovacao()}"
+					render="selectOneMenu_Reprovacao" />
+			</h:selectOneMenu>
+			<br />
+			<h:outputLabel
+				value="Se sim, especifique qual(is) disciplina(s)/módulo(s)"
+				styleClass="campo_subtitulo_outro" />
+			<br />
+			<h:inputTextarea id="inputTextarea_QualReprovacao" cols="50" rows="3"
+				value="#{perfilAluno.aluno.qualReprovacao}"
+				readonly="#{perfilAluno.ocultarReprovacao}" />
+			<br />
+			<h:outputLabel
+				value="Atividades acadêmicas extra-curriculares realizadas:"
+				styleClass="campo_subtitulo" />
+			<br />
+			<h:selectManyCheckbox id="selectManyCheckbox_CheckboxAtividades"
+				layout="pageDirection"
+				value="#{perfilAluno.respostasAtividadesExtra}">
+				<f:selectItems value="#{perfilAluno.opcoesAtividadesExtra}" />
+				<f:ajax event="change"
+					listener="#{perfilAluno.listenerAtividadesExtra()}"
+					render="selectManyCheckbox_CheckboxAtividades" />
+				<f:ajax event="change" listener="#{perfilAluno.limparAtividades()}"
+					render="selectManyCheckbox_CheckboxAtividades" />
+			</h:selectManyCheckbox>
+			<br />
+			<h:outputLabel value="Se optou por outros, especifique"
+				styleClass="campo_subtitulo_outro" />
+			<br />
+			<h:inputTextarea id="inputTextarea_QualAtividades" cols="50" rows="3"
+				value="#{perfilAluno.qualAtividadeExtra}"
+				readonly="#{perfilAluno.ocultarAtividadesExtra}" />
+			<br />
+			<h:outputLabel
+				value="Quais comportamentos e estratégias você emprega para estudar? "
+				styleClass="campo_subtitulo" />
+			<br />
+			<h:selectManyCheckbox id="selectManyCheckbox_Estrategia"
+				layout="pageDirection"
+				value="#{perfilAluno.respostasEstrategiaEstudo}">
+				<f:selectItems value="#{perfilAluno.opcoesEstrategiaEstudo}" />
+				<f:ajax event="change"
+					listener="#{perfilAluno.listenerEstrategiaEstudo()}"
+					render="selectManyCheckbox_Estrategia" />
+			</h:selectManyCheckbox>
+			<br />
+			<h:outputLabel value="Se optou por outros, especifique"
+				styleClass="campo_subtitulo_outro" />
+			<br />
+			<h:inputTextarea cols="50" rows="3" id="inputTextarea_Estrategia"
+				value="#{perfilAluno.qualEstrategiaEstudar}"
+				readonly="#{perfilAluno.ocultarEstrategiaEstudo}" />
+			<br />
+			<h:outputLabel
+				value="Quando não está em sala de aula, qual o local que você passa maior tempo estudando?"
+				styleClass="campo_subtitulo" />
+			<br />
+			<h:selectOneRadio id="selectOneRadio_LocalEstudo"
+				layout="pageDirection" value="#{perfilAluno.respostasLocalEstudo}">
+				<f:selectItems value="#{perfilAluno.opcoesLocalEstudo}" />
+				<f:ajax event="change"
+					listener="#{perfilAluno.listenerLocalEstudo()}"
+					render="selectOneRadio_LocalEstudo" />
+			</h:selectOneRadio>
+			<br />
+			<h:outputLabel value="Se optou por outro, especifique"
+				styleClass="campo_subtitulo_outro" />
+			<br />
+			<h:inputTextarea id="inputTextarea_Local" cols="50" rows="3"
+				value="#{perfilAluno.qualLocalEstudar}"
+				readonly="#{perfilAluno.ocultarLocalEstudo}" />
+			<br />
+			<h:outputLabel
+				value="Quantas horas por semana você se dedica estudando (não contar  com o tempo gasto nas aulas do curso)?"
+				styleClass="campo_subtitulo" />
+			<br />
+			<h:panelGroup>
+				<rich:inputNumberSpinner id="inputNumberSpinner_horas"
+					value="#{perfilAluno.quantasHorasEstudar}" />
+			</h:panelGroup>
+			<br />
+			<h:outputLabel
+				value="Você se sente motivado para estudar o processo de enfermagem? por quê?"
+				styleClass="campo_subtitulo" />
+			<br />
+			<h:inputTextarea cols="50" rows="3" id="inputTextarea_Motivado"
+				value="#{perfilAluno.aluno.motivado}" />
+		</rich:panel>
+		<br />
+		<h:outputLabel value="Estilos de Aprendizagem"
+			styleClass="campo_titulo" />
+		<rich:panel style=" width : 450px;" styleClass="panel_invisivel">
+			<h:outputLabel value="Tipo de estilo de aprendizagem: "
+				styleClass="campo_subtitulo" />
+			<br />
+			<h:selectOneMenu id="selectOneMenu_TipoEstiloAprendizagem"
+				value="#{perfilAluno.tipoEstiloAprendizagem}">
+				<f:selectItems value="#{perfilAluno.opcoesTipoEstilosAprendizagem}" />
+				<f:ajax event="change"
+					listener="#{perfilAluno.listenerTipoEstiloAprendizagem()}"
+					render="selectOneMenu_TipoEstiloAprendizagem" />
+			</h:selectOneMenu>
+			<br />
+			<h:outputLabel
+				value="Indique o(s) estilo(s) que melhor represente(m) seu perfil de aprendizagem: "
+				styleClass="campo_subtitulo" />
+			<br />
+			<h:selectManyCheckbox id="selectManyCheckbox_EstilosAprendizagem"
+				layout="pageDirection"
+				value="#{perfilAluno.respostasEstilosAprendizagem}">
+				<f:selectItems value="#{perfilAluno.opcoesEstilosAprendizagem}" />
+				<f:ajax event="change"
+					listener="#{perfilAluno.listenerEstiloAprendizagem()}"
+					render="selectManyCheckbox_EstilosAprendizagem" />
+			</h:selectManyCheckbox>
+		</rich:panel>
+		<a4j:commandButton value="Salvar"
+			actionListener="#{perfilAluno.salvar()}"
+			oncomplete="#{principalAluno.mostrarListaCursosAluno()}"
+			render="form_Principal" />
+		<a4j:commandButton value="Voltar"
+			actionListener="#{perfilAluno.limparCampos()}"
+			oncomplete="#{principalAluno.apagarConteudo()}"
+			render="form_Principal">
+		</a4j:commandButton>
+	</h:form>
+</h:body>
+</html>

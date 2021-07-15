@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+	version="1.2">
+	<application>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+	</application>
+
+	
+
+
+	<managed-bean>
+		<managed-bean-name>pacienteHandler</managed-bean-name>
+		<managed-bean-class>clin.handler.PacienteHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>pacienteDao</property-name>
+			<value>#{pacienteDao}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>usuario</property-name>
+			<value>#{usuarioHandler.usuario}</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>usuarioHandler</managed-bean-name>
+		<managed-bean-class>clin.handler.UsuarioHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>usuarioDao</property-name>
+			<value>#{usuarioDao}</value>
+		</managed-property>
+
+	</managed-bean>
+
+<navigation-rule>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/Login.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<display-name>Login</display-name>
+		<from-view-id>/Login.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>sucesso</from-outcome>
+			<to-view-id>/InicioPaciente.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>ControleMenu</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pacientes</from-outcome>
+			<to-view-id>/InicioPaciente.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>usuarios</from-outcome>
+			<to-view-id>/InicioUsuario.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>buscarPaciente</from-outcome>
+			<to-view-id>/InicioPaciente.jsp</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadastrar</from-outcome>
+			<to-view-id>/CadastroPaciente.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>AtendimentoPaciente</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>atendimentos</from-outcome>
+			<to-view-id>/AtendimentosPaciente.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+</faces-config>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:t="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Arco</title>
+</h:head>
+<h:body>
+	<f:view>
+		<f:event
+			listener="#{arcoPrincipal.setAlunoEstudoCaso(logon.usuarioLogado, principalAluno.estudoSelecionado)}"
+			type="javax.faces.event.PostAddToViewEvent" />
+		<rich:tabPanel id="tabPanel_Principal"
+			activeItem="#{arcoPrincipal.selectedTab}">
+			<rich:tab header="Observação da Realidade e Pontos Chave"
+				name="observacao"
+				actionListener="#{arcoPrincipal.setSelectedTab('observacao')}"
+				render="document.getelementbyid(panelGroup_Target)"
+				disabled="#{arcoPrincipal.desabilitarFaseObservacao()}">
+				<rich:panel styleClass="panel_titulo_arco">
+					<h:outputLabel styleClass="titulo_fase_arco"
+						value="#{principalAluno.estudoSelecionado.curso.nome} > #{principalAluno.estudoSelecionado.nome} > Observação da Realidade" />
+					<t:graphicImage value="/resources/imagens/ArcoObservacao.png"
+						styleClass="imagem_arco" />
+				</rich:panel>
+				<ui:include src="#{arcoPrincipal.paginaObservacao}" />
+			</rich:tab>
+			<rich:tab header="Teorização" name="teorizacao"
+				disabled="#{arcoPrincipal.desabilitarFaseTeorizacao()}">
+				<rich:panel styleClass="panel_titulo_arco">
+					<h:outputLabel styleClass="titulo_fase_arco"
+						value="#{principalAluno.estudoSelecionado.curso.nome} > #{principalAluno.estudoSelecionado.nome} > Teorização" />
+					<t:graphicImage value="/resources/imagens/ArcoTeorizacao.png"
+						styleClass="imagem_arco" />
+				</rich:panel>
+				<ui:include src="#{arcoPrincipal.paginaTeorizacao}" />
+			</rich:tab>
+			<rich:tab header="Hipóteses de Solução" name="plano"
+				disabled="#{arcoPrincipal.desabilitarFasePlano()}">
+				<rich:panel styleClass="panel_titulo_arco">
+					<h:outputLabel styleClass="titulo_fase_arco"
+						value="#{principalAluno.estudoSelecionado.curso.nome} > #{principalAluno.estudoSelecionado.nome} > Hipóteses de Solução" />
+					<t:graphicImage value="/resources/imagens/ArcoHipoteses.png"
+						styleClass="imagem_arco" />
+					<br />
+				</rich:panel>
+				<ui:include src="#{arcoPrincipal.paginaPlanoCuidados}" />
+			</rich:tab>
+		</rich:tabPanel>
+		<rich:panel styleClass="panel_invisivel">
+			<h:commandButton value="Voltar"
+				actionListener="#{arcoPrincipal.tabAnterior()}"
+				render="document.getelementbyid(tabPanel_Principal)"
+				rendered="#{arcoPrincipal.isRenderedVoltar()}" />
+			<h:commandButton value="Avançar"
+				actionListener="#{arcoPrincipal.tabProxima()}"
+				render="document.getelementbyid(tabPanel_Principal)"
+				rendered="#{arcoPrincipal.isRenderedAvancar()}"
+				disabled="#{arcoPrincipal.habilitarBotaoAvancar()}" />
+			<h:commandButton value="Finalizar fase do arco"
+				actionListener="#{arcoPrincipal.finalizarFaseAtual()}"
+				render="document.getelementbyid(tabPanel_Principal)"
+				disabled="#{arcoPrincipal.habilitarBotaoFinalizarFase()}" />
+			<h:commandButton value="Sair"
+				actionListener="#{principalAluno.apagarConteudo(arcoPrincipal.apagarConteudo())}"
+				render="document.getelementbyid(panelGroup_Target)" />
+		</rich:panel>
+	</f:view>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:body>
+</html>

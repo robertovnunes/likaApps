@@ -1,0 +1,40 @@
+<!doctype html>
+ 
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>jQuery UI Dialog - Default functionality</title>
+  <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.1.custom.css" />
+  <script src="js/jquery-1.9.1.js"></script>
+  <script src="js/jquery-ui-1.10.1.custom.js"></script>
+<script>
+  $(function() {
+    $( "#dialog-message" ).dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+  });
+  </script>
+</head>
+<body>
+ 
+<div id="dialog-message" title="Download complete">
+  <p>
+    <span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>
+    Your files have downloaded successfully into the My Downloads folder.
+  </p>
+ 
+</div>
+ 
+
+ 
+</body>
+</html>
+ 
+ 
+</body>
+</html>

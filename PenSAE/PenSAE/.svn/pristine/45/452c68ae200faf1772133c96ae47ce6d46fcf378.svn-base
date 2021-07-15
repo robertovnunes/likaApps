@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Acompanhamento por Estudo Caso</title>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:head>
+<h:body>
+	<f:view>
+		<f:event
+			listener="#{acompanhamentoEstudoCaso.setUsuarioLogado(logon.usuarioLogado)}"
+			type="javax.faces.event.PostAddToViewEvent" />
+		<f:event listener="#{acompanhamentoEstudoCaso.carregarListaEstudo}"
+			type="javax.faces.event.PreRenderComponentEvent" />
+		<rich:panel id="panel_Titulo" styleClass="panel_invisivel">
+			<h:outputLabel id="outputLabel_TituloPagina"
+				value="Acompanhamento por Estudo de Caso"
+				styleClass="titulo_principal_pagina" />
+			<br />
+			<h:selectOneMenu id="selectOneMenu_EstudoCaso"
+				value="#{acompanhamentoEstudoCaso.estudoSelecionado}"
+				render="dataTable_Acompanhamento" converter="estudoCasoConverter">
+				<f:selectItems value="#{acompanhamentoEstudoCaso.listaEstudoCaso}"
+					var="caso" itemLabel="#{caso.nome}" itemValue="#{caso}" />
+			</h:selectOneMenu>
+			<h:commandButton id="commandButton_SelecionarCaso"
+				value="Selecionar Estudo de Caso"
+				actionListener="#{acompanhamentoEstudoCaso.carregarListaAlunoEstudoCaso()}"
+				render="dataTable_Acompanhamento" />
+			<br />
+			<br />
+			<rich:dataTable id="dataTable_Acompanhamento"
+				value="#{acompanhamentoEstudoCaso.listaAlunoEstudoCaso}" var="aec">
+				<rich:column label="Aluno">
+					<f:facet name="header">
+						<h:outputText value="Aluno" />
+					</f:facet>
+					<h:outputText value="#{aec.aluno.usuario.nome}" />
+				</rich:column>
+				<rich:column label="EstudoCaso">
+					<f:facet name="header">
+						<h:outputText value="Caso" />
+					</f:facet>
+					<h:outputText value="#{aec.estudocaso.nome}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Observação da Realidade e Pontos chave" />
+					</f:facet>
+					<t:graphicImage
+						title="#{acompanhamentoEstudoCaso.StatusFase(acompanhamentoEstudoCaso.getFaseObservacao(), aec.faseAtual)}"
+						value="#{acompanhamentoEstudoCaso.imgFinalizado(acompanhamentoEstudoCaso.getFaseObservacao(), aec.faseAtual)}"
+						style="width:24px; height:24px;" />
+					<a4j:commandButton title="Realizar avaliação desta fase"
+						image="/resources/icones/search-icon.png"
+						onbeforedomupdate="#{acompanhamentoEstudoCaso.setPopupPanelObservacao()}"
+						actionListener="#{acompanhamentoEstudoCaso.setAtualFaseObservacao(aec)}"
+						oncomplete="#{rich:component('popup_AvaliacaoObservacao')}.show(); return false;"
+						render="popup_AvaliacaoObservacao popup_AvaliacaoTeorizacao popup_AvaliacaoHipoteses" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Teorização" />
+					</f:facet>
+					<t:graphicImage
+						title="#{acompanhamentoEstudoCaso.StatusFase(acompanhamentoEstudoCaso.getFaseTeorizacao(), aec.faseAtual)}"
+						value="#{acompanhamentoEstudoCaso.imgFinalizado(acompanhamentoEstudoCaso.getFaseTeorizacao(), aec.faseAtual)}"
+						style="width:24px; height:24px;" />
+					<a4j:commandButton title="Realizar Avaliação desta fase"
+						image="/resources/icones/search-icon.png"
+						onbeforedomupdate="#{acompanhamentoEstudoCaso.setPopupPanelTeorizacao()}"
+						actionListener="#{acompanhamentoEstudoCaso.setAtualFaseTeorizacao(aec)}"
+						oncomplete="#{rich:component('popup_AvaliacaoTeorizacao')}.show(); return false;"
+						render="popup_AvaliacaoObservacao popup_AvaliacaoTeorizacao popup_AvaliacaoHipoteses" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Hipóteses de Solução" />
+					</f:facet>
+					<t:graphicImage
+						title="#{acompanhamentoEstudoCaso.StatusFase(acompanhamentoEstudoCaso.getFasePlano(), aec.faseAtual)}"
+						value="#{acompanhamentoEstudoCaso.imgFinalizado(acompanhamentoEstudoCaso.getFasePlano(), aec.faseAtual)}"
+						style="width:24px; height:24px;" />
+					<a4j:commandButton title="Realizar Avaliação desta fase"
+						image="/resources/icones/search-icon.png"
+						onbeforedomupdate="#{acompanhamentoEstudoCaso.setPopupPanelHipoteses()}"
+						actionListener="#{acompanhamentoEstudoCaso.setAtualFaseHipotese(aec)}"
+						oncomplete="#{rich:component('popup_AvaliacaoHipoteses')}.show(); return false;"
+						render="popup_AvaliacaoObservacao popup_AvaliacaoTeorizacao popup_AvaliacaoHipoteses" />
+				</rich:column>
+				<rich:column label="Situação">
+					<f:facet name="header">
+						<h:outputText value="Situação" />
+					</f:facet>
+					<h:outputText
+						value="#{acompanhamentoEstudoCaso.getSituacaoEtapaDoArco(aec.faseAtual)}" />
+				</rich:column>
+				<rich:column label="VisualizacaoGrafica">
+					<f:facet name="header">
+						<h:outputText value="Visualização Gráfica" />
+					</f:facet>
+				</rich:column>
+			</rich:dataTable>
+			<br />
+			<a4j:commandButton value="Mediar Pontos Chave"
+				oncomplete="#{rich:component('popup_Mediacao')}.show(); return false;" />
+			<h:commandButton value="Voltar"
+				actionListener="#{principalProfessor.apagarConteudo}"
+				render="document.getelementbyid(panelGroup_Target)" />
+
+			<rich:popupPanel id="popup_AvaliacaoObservacao" modal="true"
+				autosized="true" resizeable="false">
+				<f:facet name="header">
+					<h:outputText value="Avaliação do estudante" />
+				</f:facet>
+				        <f:facet name="controls">
+					<h:outputLink value="#"
+						onclick="#{rich:component('popup_AvaliacaoObservacao')}.hide(); return false;"
+						style="COLOR: #ffffff;">
+								X
+					</h:outputLink>
+				</f:facet>
+				<rich:panel styleClass="panel_invisivel">
+					<h:outputLabel
+						value="Fase de #{acompanhamentoEstudoCaso.getStringFasePopup()}"
+						styleClass="campo_titulo" />
+					<br />
+					<br />
+					<rich:dataTable
+						value="#{acompanhamentoEstudoCaso.listaPontosChaveAluno}"
+						var='pca'>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+							</f:facet>
+							<h:outputText value="#{pca.nome}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Justificativa" />
+							</f:facet>
+							<h:outputText value="#{pca.justificativa}" />
+						</rich:column>
+					</rich:dataTable>
+					<br />
+					<h:outputText value="Comentário" />
+					<br />
+					<h:inputTextarea value="#{acompanhamentoEstudoCaso.avaliacaoaInserir.comentarioObservacao}"
+						cols="200" rows="5" />
+					<br />
+					<h:outputText value="Nota" />
+					<br />
+					<h:selectOneMenu id="selectOneListbox_notaObservacao"
+						value="#{acompanhamentoEstudoCaso.avaliacaoaInserir.notaObservacao}">
+						<f:selectItem itemLabel="Selecione" />
+						<f:selectItem itemLabel="A" itemValue="5" />
+						<f:selectItem itemLabel="B" itemValue="4" />
+						<f:selectItem itemLabel="C" itemValue="3" />
+						<f:selectItem itemLabel="D" itemValue="2" />
+						<f:selectItem itemLabel="E" itemValue="1" />
+					</h:selectOneMenu>
+				</rich:panel>
+				<a4j:commandButton value="Salvar"
+					onclick="#{rich:component('popup_AvaliacaoObservacao')}.hide();"
+					actionListener="#{acompanhamentoEstudoCaso.atualizarAvaliacao()}"
+					render="panel_Titulo" />
+				<a4j:commandButton value="Cancelar"
+					onclick="#{rich:component('popup_AvaliacaoObservacao')}.hide();"
+					actionListener="#{acompanhamentoEstudoCaso.limparCampos()}"
+					render="panel_Titulo" />
+			</rich:popupPanel>
+
+			<rich:popupPanel id="popup_AvaliacaoTeorizacao" modal="true"
+				autosized="true" resizeable="false">
+				<f:facet name="header">
+					<h:outputText value="Avaliação do estudante" />
+				</f:facet>
+				        <f:facet name="controls">
+					<h:outputLink value="#"
+						onclick="#{rich:component('popup_AvaliacaoTeorizacao')}.hide(); return false;"
+						style="COLOR: #ffffff;">
+								X
+					</h:outputLink>
+				</f:facet>
+				<rich:panel styleClass="panel_invisivel">
+					<h:outputLabel
+						value="Fase de #{acompanhamentoEstudoCaso.getStringFasePopup()}"
+						styleClass="campo_titulo" />
+					<br />
+					<h:commandLink
+						value="#{acompanhamentoEstudoCaso.arquivo.nomeArquivo}"
+						actionListener="#{acompanhamentoEstudoCaso.downloadArquivo()}"
+						styleClass="link" />
+					<br />
+					<h:outputText value="Comentário" />
+					<br />
+					<h:inputTextarea value="#{acompanhamentoEstudoCaso.avaliacaoaInserir.comentarioTeorizacao}"
+						cols="200" rows="5" />
+					<br />
+					<h:outputText value="Nota" />
+					<br />
+					<h:selectOneMenu id="selectOneListbox_notaTeorizacao"
+						value="#{acompanhamentoEstudoCaso.avaliacaoaInserir.notaTeorizacao}">
+						<f:selectItem itemLabel="Selecione" />
+						<f:selectItem itemLabel="A" itemValue="5" />
+						<f:selectItem itemLabel="B" itemValue="4" />
+						<f:selectItem itemLabel="C" itemValue="3" />
+						<f:selectItem itemLabel="D" itemValue="2" />
+						<f:selectItem itemLabel="E" itemValue="1" />
+					</h:selectOneMenu>
+				</rich:panel>
+				<a4j:commandButton value="Salvar"
+					onclick="#{rich:component('popup_AvaliacaoTeorizacao')}.hide();"
+					actionListener="#{acompanhamentoEstudoCaso.atualizarAvaliacao()}"
+					render="panel_Titulo" />
+				<a4j:commandButton value="Cancelar"
+					onclick="#{rich:component('popup_AvaliacaoTeorizacao')}.hide();"
+					actionListener="#{acompanhamentoEstudoCaso.limparCampos()}"
+					render="panel_Titulo" />
+			</rich:popupPanel>
+
+			<rich:popupPanel id="popup_AvaliacaoHipoteses" modal="true"
+				autosized="true" resizeable="false">
+				<f:facet name="header">
+					<h:outputText value="Avaliação do estudante" />
+				</f:facet>
+				        <f:facet name="controls">
+					<h:outputLink value="#"
+						onclick="#{rich:component('popup_AvaliacaoHipoteses')}.hide(); return false;"
+						style="COLOR: #ffffff;">
+								X
+					</h:outputLink>
+				</f:facet>
+				<rich:panel styleClass="panel_invisivel">
+					<h:outputLabel
+						value="Fase de #{acompanhamentoEstudoCaso.getStringFasePopup()}"
+						styleClass="campo_titulo" />
+					<br />
+					<rich:dataTable id="dataTable_PlanoCuidados"
+						value="#{acompanhamentoEstudoCaso.listaDiagnosticoAtual}"
+						var="diagnostico">
+						<rich:column label="Diagnósticos" width="300">
+							<f:facet name="header">
+								<h:outputText value="Diagnósticos" />
+							</f:facet>
+							<h:outputText value="#{diagnostico.cipe.termo} " />
+							<h:outputText value="#{diagnostico.descricao}" />
+						</rich:column>
+						<rich:column id="column_Metas" width="300">
+							<f:facet name="header">
+								<h:outputText value="Metas / Intervenções" />
+							</f:facet>
+							<a4j:repeat value="#{diagnostico.metaalunos.toArray()}"
+								var="meta">
+								<t:panelGrid columns="3">
+									<rich:panel styleClass="panel_invisivel">
+										<h:outputText value="#{meta.descricao}" />
+									</rich:panel>
+									<h:outputText value=" / " />
+									<rich:panel styleClass="panel_invisivel">
+										<a4j:repeat value="#{meta.intervencaoalunos.toArray()}"
+											var="intervencao">
+											<h:outputText value="#{intervencao.cipe.termo} " />
+											<h:outputText value="#{intervencao.descricao}" />
+											<br />
+										</a4j:repeat>
+									</rich:panel>
+								</t:panelGrid>
+								<br />
+							</a4j:repeat>
+						</rich:column>
+					</rich:dataTable>
+					<br />
+					<br />
+					<h:outputText value="Comentário" />
+					<br />
+					<h:inputTextarea value="#{acompanhamentoEstudoCaso.avaliacaoaInserir.comentarioPlanoCuidados}"
+						cols="200" rows="5" />
+					<br />
+					<h:outputText value="Nota" />
+					<br />
+					<h:selectOneMenu id="selectOneListbox_notaHipoteses"
+						value="#{acompanhamentoEstudoCaso.avaliacaoaInserir.notaPlanoCuidados}">
+						<f:selectItem itemLabel="Selecione" />
+						<f:selectItem itemLabel="A" itemValue="5" />
+						<f:selectItem itemLabel="B" itemValue="4" />
+						<f:selectItem itemLabel="C" itemValue="3" />
+						<f:selectItem itemLabel="D" itemValue="2" />
+						<f:selectItem itemLabel="E" itemValue="1" />
+					</h:selectOneMenu>
+				</rich:panel>
+				<a4j:commandButton value="Salvar"
+					onclick="#{rich:component('popup_AvaliacaoHipoteses')}.hide();"
+					actionListener="#{acompanhamentoEstudoCaso.atualizarAvaliacao()}"
+					render="panel_Titulo" />
+				<a4j:commandButton value="Cancelar"
+					onclick="#{rich:component('popup_AvaliacaoHipoteses')}.hide();"
+					actionListener="#{acompanhamentoEstudoCaso.limparCampos()}"
+					render="panel_Titulo" />
+			</rich:popupPanel>
+
+			<rich:popupPanel id="popup_Mediacao" modal="true" autosized="true"
+				resizeable="false" domElementAttachment="form"
+				onmaskclick="#{rich:component('popup_Mediacao')}.hide()">
+				       <f:facet name="header">
+					<h:outputText value="Mediação dos Pontos Chave" />
+				</f:facet>
+				<f:facet name="controls">
+					<h:outputLink value="#"
+						onclick="#{rich:component('popup_Mediacao')}.hide(); return true;">
+                X
+                
+            </h:outputLink>
+				</f:facet>
+				<rich:panel id="panel_PrincipalPopup" styleClass="panel_invisivel">
+					<rich:tabPanel id="tabPanel_mediacao"
+						activeItem="#{acompanhamentoEstudoCaso.activeTab}">
+						<rich:tab header="Seleção de pontos chave dos alunos"
+							name="selecao"
+							actionListener="#{acompanhamentoEstudoCaso.setActiveTab('selecao')}"
+							render="panel_PrincipalPopup" execute="@form">
+							<rich:panel id="panel_PontosChaveAluno"
+								styleClass="panel_invisivel">
+								<rich:dataTable id="dataTable_PontoChaveAluno"
+									value="#{acompanhamentoEstudoCaso.listaPontosChaveAluno}"
+									var="pontoChaveAluno"
+									disabled="#{acompanhamentoEstudoCaso.desabilitarFuncionalidadePontoChaveAluno()}">
+									<rich:column>
+										<f:facet name="header">
+											<h:outputLabel value="Aluno" />
+										</f:facet>
+										<h:outputLabel
+											value="#{pontoChaveAluno.alunoestudocaso.aluno.usuario.nome}" />
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">
+											<h:outputLabel value="Determinante" />
+										</f:facet>
+										<h:outputLabel value="#{pontoChaveAluno.nome}" />
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">
+											<h:outputLabel value="Justificativa" />
+										</f:facet>
+										<h:outputLabel value="#{pontoChaveAluno.justificativa}" />
+									</rich:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Incluso?" />
+										</f:facet>
+										<a4j:commandButton id="commandButton_Habilitar"
+											value="Incluir/Remover"
+											actionListener="#{acompanhamentoEstudoCaso.incluirRemoverPontoChaveAluno(pontoChaveAluno)}"
+											style="display:inline-block;"
+											image="#{acompanhamentoEstudoCaso.imgIncluso(pontoChaveAluno)}"
+											disabled="#{acompanhamentoEstudoCaso.desabilitarFuncionalidadePontoChaveAluno()}"
+											render="panel_PrincipalPopup dataTable_PontosChaveDefinitivos" />
+									</h:column>
+								</rich:dataTable>
+								<a4j:commandButton value="Finalizar seleção"
+									onclick="return confirm('Deseja finalizar a seleção de pontos chave dos aluno?');"
+									actionListener="#{acompanhamentoEstudoCaso.finalizarSelecao()}"
+									disabled="#{acompanhamentoEstudoCaso.desabilitarFuncionalidadePontoChaveAluno()}"
+									render="panel_PrincipalPopup" />
+							</rich:panel>
+						</rich:tab>
+						<rich:tab header="Pontos Chaves Definitivos" name="edicao"
+							actionListener="#{acompanhamentoEstudoCaso.setActiveTab('edicao')}"
+							render="panel_PrincipalPopup" execute="@form">
+							<rich:panel id="panel_PontosChaveDefinitivos"
+								styleClass="panel_invisivel">
+								<rich:dataTable id="dataTable_PontosChaveDefinitivos"
+									value="#{acompanhamentoEstudoCaso.listaPontosChaveProfessor}"
+									var="pcp">
+									<rich:column>
+										<f:facet name="header">
+											<h:outputLabel value="Ponto Chave" />
+										</f:facet>
+										<h:outputLabel value="#{pcp.nome}" />
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">
+											<h:outputLabel value="Justificativa" />
+										</f:facet>
+										<h:outputLabel value="#{pcp.justificativa}" />
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">
+										</f:facet>
+										<a4j:commandButton title="Editar"
+											oncomplete="#{rich:component('popup_EdicaoPontoChave')}.show(); return true;"
+											actionListener="#{acompanhamentoEstudoCaso.setPontoChaveSelecionado(pcp)}"
+											style="display:inline-block;"
+											image="/resources/icones/edit-icon.png"
+											render="panel_EdicaoPontosChaveProfessor" />
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">
+										</f:facet>
+										<a4j:commandButton title="Excluir"
+											onclick="return confirm('Tem certeza que deseja deletar esse ponto chave?');"
+											actionListener="#{acompanhamentoEstudoCaso.excluirPontoChave(pcp)}"
+											style="display:inline-block;"
+											image="/resources/icones/remove-icon.png"
+											render="panel_PontosChaveDefinitivos" />
+									</rich:column>
+									<f:facet name="footer">
+										<a4j:commandButton image="/resources/icones/add-icon.png"
+											title="Adicionar Ponto Chave"
+											onclick="#{rich:component('popup_EdicaoPontoChave')}.show(); return true;"
+											render="panel_EdicaoPontosChaveProfessor" />
+									</f:facet>
+								</rich:dataTable>
+							</rich:panel>
+
+							<rich:popupPanel id="popup_EdicaoPontoChave" modal="true"
+								autosized="true" resizeable="false" domElementAttachment="form"
+								onmaskclick="#{rich:component('popup_EdicaoPontoChave')}.hide()">
+				       <f:facet name="header">
+									<h:outputText value="Criação/Edição dos Pontos Chave" />
+								</f:facet>
+								<f:facet name="controls">
+									<h:outputLink value="#"
+										onclick="#{rich:component('popup_EdicaoPontoChave')}.hide(); return true;">
+                X
+            </h:outputLink>
+								</f:facet>
+								<rich:panel id="panel_EdicaoPontosChaveProfessor"
+									styleClass="panel_invisivel">
+									<h:outputText value="Nome" />
+									<br />
+									<h:inputText
+										value="#{acompanhamentoEstudoCaso.pontoChaveSelecionado.nome}" />
+									<br />
+									<h:outputText value="Justificativa" />
+									<br />
+									<h:inputTextarea
+										value="#{acompanhamentoEstudoCaso.pontoChaveSelecionado.justificativa}" />
+								</rich:panel>
+								<a4j:commandButton value="Salvar"
+									onclick="#{rich:component('popup_EdicaoPontoChave')}.hide(); return true;"
+									actionListener="#{acompanhamentoEstudoCaso.salvarPontoChaveProfessor()}"
+									render="panel_PontosChaveDefinitivos" />
+								<a4j:commandButton value="Cancelar"
+									onclick="#{rich:component('popup_EdicaoPontoChave')}.hide(); return true;"
+									actionListener="#{acompanhamentoEstudoCaso.limparCampos()}"
+									render="panel_PontosChaveDefinitivos" />
+							</rich:popupPanel>
+						</rich:tab>
+					</rich:tabPanel>
+					<a4j:commandButton value="Voltar"
+						actionListener="#{acompanhamentoEstudoCaso.recuarTab()}"
+						render="panel_PrincipalPopup"
+						rendered="#{acompanhamentoEstudoCaso.renderVoltar()}" />
+					<a4j:commandButton value="Avançar"
+						actionListener="#{acompanhamentoEstudoCaso.avancarTab()}"
+						render="panel_PrincipalPopup"
+						rendered="#{acompanhamentoEstudoCaso.renderAvancar()}" />
+					<a4j:commandButton value="Fechar"
+						onclick="#{rich:component('popup_Mediacao')}.hide();"
+						actionListener="#{acompanhamentoEstudoCaso.limparCampos()}"
+						render="panel_Titulo" />
+				</rich:panel>
+			</rich:popupPanel>
+		</rich:panel>
+	</f:view>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:body>
+</html>

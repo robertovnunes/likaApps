@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Home</title>
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url(../resources/imagens/modelo.png);
+	background-color: #C8C8C8;
+	background-repeat: repeat-x;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 10px;
+}
+</style>
+<link href="../resources/css/estilo.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+/*<![CDATA[*/
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}/*]]>*/
+</script>
+</h:head>
+
+<h:body onload="MM_preloadImages('../resources/imagens/button_public/home_hover.png','../resources/imagens/button_public/search_hover.png','../resources/imagens/button_public/sign_hover.png','../resources/imagens/button_public/news_hover.png','../resources/imagens/button_public/pub_hover.png','../resources/imagens/button_public/faq_hover.png','../resources/imagens/button_public/contact_hover.png')" >
+<div id="lateral_dir"><img src="../resources/imagens/barra.png" /></div>
+<div id="lateral_esq"><img src="../resources/imagens/barra.png" /></div>
+
+<div id="logo"><img src="../resources/imagens/logo4.jpg"/></div>
+
+<div id="menu"><a href="login.jsf" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('home','','../resources/imagens/button_public/home_hover.png',1)"><img src="../resources/imagens/button_public/home.png" alt="home" width="182" height="34" id="home" /></a><br/>
+  <a href="public_search.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('search','','../resources/imagens/button_public/search_hover.png',1)"><img src="../resources/imagens/button_public/search.png" alt="search" width="182" height="33" id="search" /></a><br/>
+  <!-- <a href="signup.xhtml" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('sign_up','','../resources/imagens/button_public/sign_hover.png',1)"><img src="../resources/imagens/button_public/sign.png" alt="sign up" width="182" height="32" id="sign_up" /></a><br/> -->
+  <a href="public_news.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('news','','../resources/imagens/button_public/news_hover.png',1)"><img src="../resources/imagens/button_public/news.png" alt="news" width="182" height="33" id="news" /></a><br/>
+  <a href="public_publications.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('publications','','../resources/imagens/button_public/pub_hover.png',1)"><img src="../resources/imagens/button_public/pub.png" alt="publications" width="182" height="33" id="publications" /></a><br/>
+  <a href="public_faq.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('faq','','../resources/imagens/button_public/faq_hover.png',1)"><img src="../resources/imagens/button_public/faq.png" alt="faq" width="182" height="33" id="faq" /></a><br/>
+  <a href="public_contact.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('contact','','../resources/imagens/button_public/contact_hover.png',1)"><img src="../resources/imagens/button_public/contact.png" alt="contact" width="182" height="33" id="contact" /></a><br/>
+    <table title="Login para médicos e pesquisadores" align="center" >
+    <tr>
+   	<td align="center">LOGIN</td></tr>
+		
+	
+  <h:panelGroup rendered="#{!empty param.login_error}">
+		<span style="font-color:red"> Erro ao efetuar o login. </span>
+		Motivo: #{SPRING_SECURITY_LAST_EXCEPTION.message}
+	</h:panelGroup>
+	
+	<form id="login" method="post" action="#{request.contextPath}/j_spring_security_check">
+		<table>
+			<tr><td>Email</td>
+				<td><input type='text' name='j_username' size="15"/></td></tr>
+			<tr><td>Senha</td>
+				<td><input type='password' name='j_password' size="15"/></td></tr>
+			<tr><td align="right"><input type="checkbox" name="_spring_security_remember_me"/></td>
+				<td>Entrar automaticamente</td></tr>
+			<tr>
+				<td><input type="submit" value="Login" align="bottom" /></td>
+			</tr>
+			
+		</table>
+		<script>
+			document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
+		</script>
+	</form>
+		
+			<h:form>
+				<h:commandButton action="#{userBean.newUser}" value="Sign Up" />
+			</h:form>
+		
+	
+	</table>
+</div>
+<div id="flags">
+<a href="home_public.html" ><img src="../resources/imagens/eua.jpg" width="22" height="15" title="English(USA)" /></a>
+<a href="home_publica.html" ><img src="../resources/imagens/bra.jpg" width="21" height="15" title="Português(Brasil)" /></a>
+</div>
+
+<div id="conteudo" style="position: absolute; left: 1px; top: 93px; width: 758px; height: 379px; z-index: 1; overflow: auto">
+<h1>Human Prion Disease Database</h1>
+    <p>O sistema HPDD tem como objetivo divulgar publicamente informações sobre doenças priônicas e auxiliar médicos e grupos de pesquisa no controle de casos dessas doenças. O acesso ao sistema se dará de forma online e, em seu funcionamento pleno, será possível cadastrar novos casos de doenças priônicas e acesso às informações dos mesmos. <a href="http://dcjbrasil.com.br/">http://dcjbrasil.com.br</a>.</p>
+	
+</div>    
+
+
+</h:body>
+</html>

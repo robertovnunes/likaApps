@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout_professor.xhtml">
+	
+			<ui:define name="content"> 
+				<div style="padding:30px; padding-top:10px;">
+					<div class='page-header page-header-intro'>
+						<h2>Visualizar HyperLink</h2>
+					</div>
+				<h:form>
+					    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				</h:form>
+				<br />
+				<div class='panel panel-default'>
+						<div class='panel-heading'>
+							<span class='ico-br-gov-mps'></span>
+							Detalhes da HyperLink
+						</div>
+						<div class='panel-body'>
+							<div class='row'>
+								<div class='col-md-3'>
+									 <div class="form-group">
+									 	<p:fieldset legend="HyperLink Visualizar" style="margin-bottom:20px">
+												<br clear="all" />
+											     <h:form prependId="false">
+											     			<script src="#{request.contextPath}/resources/js/clipboard.min.js"></script>
+															<script >
+																new Clipboard('.btn');
+															</script>
+															<p:outputLabel value="Link direto:" for="link" />
+									 					    <h:outputText id="link" value="#{request.contextPath}/restrict/hyperlink.xhtml?idHyperlink=#{hyperLinkPersistirController.hyperLink.id}"/>
+	   														<p:growl widgetVar="growlWV" />
+															<button class="btn" type="button" data-clipboard-text="#{request.contextPath}/restrict/hyperlink.xhtml?idHyperlink=#{hyperLinkPersistirController.hyperLink.id}" style="border: 0 none !important; background: none !important;" onclick="PF('growlWV').renderMessage({'summary':'', 'detail':'Texto Copiado para área de transferência. CTRL + C', 'severity':'warn'}); ">
+																<span class="ui-button-icon-left ui-icon ui-c ui-icon-copy"></span>
+	   														</button>
+														
+	   														<br />
+															<p:outputLabel value="ID:" for="id" />
+									 					    <h:outputText id="id" value="#{hyperLinkPersistirController.hyperLink.id}"/>
+															<br />
+												            <h:outputLabel for="titulo" value="Título:"  />
+												            <h:outputText id="titulo" escape="false" value="#{hyperLinkPersistirController.hyperLink.titulo}"/>
+															<br />
+															<h:outputLabel for="texto" value="Texto:"  />
+												            <h:outputText id="texto" escape="false" value="#{hyperLinkPersistirController.hyperLink.texto}"/>
+															<br />
+															<p:panel id="panelArquivosImagensHyperLink" style="margin: 0; padding: 0;">
+																<h:outputLabel value="Imagens do HyperLink: *"  />
+																 <c:forEach items="#{hyperLinkPersistirController.hyperLink.imagens}" var="arquivoImp" varStatus="index">
+												           				<a href="#{request.contextPath}/photos?id=#{arquivoImp.id}" target="_blank">
+												           					<img src="#{request.contextPath}/photos?id=#{arquivoImp.id}" width="30" height="30"  alt="#{arquivoImp.nomeArqv}" />
+												           					<h:outputText value="#{arquivoImp.nomeArqv}"></h:outputText>
+												           				</a>
+												           		</c:forEach>
+															</p:panel>
+															<br /><br />
+															<p:panel id="panelArquivosDocumentosHyperLink" style="margin: 0; padding: 0;">
+																<h:outputLabel value="Documentos do Hyperlink: *"  />
+																 <c:forEach items="#{hyperLinkPersistirController.hyperLink.documentos}" var="arquivo" varStatus="index">
+												           				<a href="#{request.contextPath}/baixarArquivo?idArquivo=#{arquivo.id}" target="_blank">
+												           					<h:outputText value="#{arquivo.nomeArqv}"></h:outputText>
+												           				</a>
+												           		</c:forEach>
+															</p:panel>
+												</h:form>
+									</p:fieldset>
+								    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				
+				</div>
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

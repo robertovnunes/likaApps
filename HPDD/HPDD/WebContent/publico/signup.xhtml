@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Sign Up</title>
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url(../imagens/modelo.png);
+	background-repeat: repeat-x;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 10px;
+	background-color: #C8C8C8;
+	
+}
+</style>
+<link href="../css/estilo.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+<![CDATA[
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+]]>
+</script>
+
+</h:head>
+<h:body onload="MM_preloadImages('../imagens/button_public/home_hover.png','../imagens/button_public/search_hover.png','../imagens/button_public/sign_hover.png','../imagens/button_public/news_hover.png','../imagens/button_public/pub_hover.png','../imagens/button_public/faq_hover.png','../imagens/button_public/contact_hover.png')" >
+<div id="lateral_dir"><img src="../imagens/barra.png" /></div>
+<div id="lateral_esq"><img src="../imagens/barra.png" /></div>
+
+<div id="logo"><img src="../imagens/logo4.jpg"/></div>
+<div id="menu"><a href="home_public.jsf" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('home','','../imagens/button_public/home_hover.png',1)"><img src="../imagens/button_public/home.png" alt="home" width="182" height="34" id="home" /></a><br/>
+  <a href="public_search.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('search','','../imagens/button_public/search_hover.png',1)"><img src="../imagens/button_public/search.png" alt="search" width="182" height="33" id="search" /></a><br/>
+  <a href="public_signup.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('sign_up','','../imagens/button_public/sign_hover.png',1)"><img src="../imagens/button_public/sign.png" alt="sign up" width="182" height="32" id="sign_up" /></a><br/>
+  <a href="public_news.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('news','','../imagens/button_public/news_hover.png',1)"><img src="../imagens/button_public/news.png" alt="news" width="182" height="33" id="news" /></a><br/>
+  <a href="public_publications.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('publications','','../imagens/button_public/pub_hover.png',1)"><img src="../imagens/button_public/pub.png" alt="publications" width="182" height="33" id="publications" /></a><br/>
+  <a href="public_faq.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('faq','','../imagens/button_public/faq_hover.png',1)"><img src="../imagens/button_public/faq.png" alt="faq" width="182" height="33" id="faq" /></a><br/>
+  <a href="public_contact.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('contact','','../imagens/button_public/contact_hover.png',1)"><img src="../imagens/button_public/contact.png" alt="contact" width="182" height="33" id="contact" /></a><br/>
+     <form action="login.php" >
+    <table title="Login para médicos e pesquisadores" align="center" >
+    <tr>
+    <td align="center">LOGIN</td></tr>
+  <tr>
+    <td>Email:
+    <input type="text" name="firstname" size="18" /></td></tr>
+    <tr>
+    <td>Password: <input type="password" name="senha" size="18"/></td></tr>
+	<tr>		
+    <td><input align="right" type="submit" value="Submit" /></td>
+  </tr>
+  <tr>
+  	<td>		
+    <a href="public_signup.html"> Sign Up</a></td>
+  </tr>
+  
+</table>
+</form>
+</div>
+<div id="flags">
+<a href="public_signup.html" ><img src="../imagens/eua.jpg" width="22" height="15" title="English(USA)" /></a>
+<a href="registro_publico.html" ><img src="../imagens/bra.jpg" width="21" height="15" title="Português(Brasil)" /></a>
+</div>
+<div id="conteudo" style="position: absolute; left: 1px; top: 93px; width:844px; height: 379px; z-index: 1; overflow: auto">
+<h1>Sign Up</h1>
+   <h4><a href="home_public.html">Home</a> || Sign Up</h4><br/>
+<h:form>
+<h:messages/>
+<h:inputHidden value="#{userBean.user.iduser}"/>
+<h:inputHidden value="#{userBean.user.status}"/>
+<h:inputHidden value="#{userBean.user.date_reg}">
+	<c:convertDateTime dateStyle="full"/>
+</h:inputHidden> 
+
+
+<h:panelGrid columns="2" bgcolor="#EBEBD6" styleClass="centered" width="400" cellpadding="5">
+	<h:outputLabel value="Name:" for="name" />
+    <h:inputText id="name" label="Name" value="#{userBean.user.name}" size="40" maxlength="40" required="true" requiredMessage="Type your name.">
+    	<c:validateLength minimum="1" maximum="40"/>
+    </h:inputText>	
+    
+    <h:outputLabel value="Occupation:" for="occupation"/>
+    <h:selectOneMenu id="occupation" value="#{userBean.user.occupation}" title="Select any one in this menu" required="true">
+	  <c:selectItem itemLabel="Doctor" itemValue="Doctor" />
+	  <c:selectItem itemLabel="Researcher" itemValue="Researcher" />
+	  
+	</h:selectOneMenu>
+    
+    <h:outputLabel value="Institute:" for="institute" />
+    <h:inputText id="institute" label="Institute" value="#{userBean.user.institute}" size="40" required="true"/>
+    
+    <h:outputLabel value="Document:" for="document" />
+    <h:inputText id="document" label="Document" value="#{userBean.user.document}" size="40" required="true"/>
+    
+    <h:outputLabel value="Gender:" for="gender"/>
+    <h:selectOneRadio id="gender" value="#{userBean.user.gender}" required="true">
+        <c:selectItem  itemLabel="Male" itemValue="Male" />
+        <c:selectItem  itemLabel="Female" itemValue="Female" />
+    </h:selectOneRadio>
+
+	<h:outputLabel value="Direction:" for="direction" />
+    <h:inputText id="direction" label="direction" value="#{userBean.user.direction}" size="40" required="true"/>
+
+	<h:outputLabel value="Coutry:" for="country" />
+    <h:inputText id="country" label="country" value="#{userBean.user.country}" size="40" required="true"/>
+    
+    <h:outputLabel value="Phone:" for="phone"/>
+    <h:inputText id="phone" label="phone" value="#{userBean.user.phone}" size="40" required="true"/>
+    
+    <h:outputLabel value="Email:" for="email" />
+    <h:panelGroup>
+    	<h:inputText id="email" label="email" value="#{userBean.user.email}" size="40"
+    		maxlength="40" required="true" validatorMessage="Invalid email." >
+    		<c:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+"/>	
+    	</h:inputText>
+    	<h:message for="email"/>
+    </h:panelGroup>
+    
+    
+    <h:outputLabel value="Password:" for="password" />
+    <h:inputSecret id="password" label="password" value="#{userBean.user.password}" required="true" maxlength="10" redisplay="true"/>
+    
+    <h:outputLabel value="Confirm password:" for="confirmPassword" />
+    <h:inputSecret id="confirmPassword" label="confirmPassword" value="#{userBean.confirmPassword}" required="true" maxlength="10"
+    redisplay="true"/>
+    
+    <h:outputText/>
+    <h:commandButton action="#{userBean.save}" value="Sign Up"/>
+    
+</h:panelGrid>
+
+
+</h:form>
+
+
+
+</div>    
+
+
+</h:body>
+</html>

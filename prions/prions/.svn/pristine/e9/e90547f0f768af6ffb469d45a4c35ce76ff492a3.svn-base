@@ -1,0 +1,20 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<ul id="nav">
+<li><a href="restrictednotifygeneral.jsf">General</a></li>
+<li><a href="restrictednotifyindividual.jsf"><span>Individual</span></a></li>
+<!--<li><a href="restrictednotifyresidential.jsf"><span>Residential</span></a></li>-->
+<li><a href="restrictednotifysuspicion.jsf"><span>Primary diagnostic</span></a></li>
+<li><a href="restrictednotifydata.jsf"><span>Clinical info</span></a></li>
+<li><a href="restrictednotifyaspects.jsf"><span>Epidemiological aspects</span></a></li>
+<li><a class="active" href="restrictednotifyresults.jsf"><span>Exames</span></a></li>
+<li><a href="restrictednotifyconclusion.jsf"><span>Conclusion</span></a></li>
+<li><a href="restrictednotifyresume.jsf"><span>Clinical History</span></a></li>
+<li><a href="restrictednotifyimages.jsf"><span>Images</span></a></li></ul>
+
+</ui:composition>
+
+<!-- <ui:include src="abas.xhtml" /> -->

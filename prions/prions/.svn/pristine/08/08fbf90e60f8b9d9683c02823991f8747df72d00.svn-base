@@ -1,0 +1,23 @@
+package hpdd.results;
+
+import hpdd.notification.Notification;
+
+import java.util.List;
+
+public interface ResultsDAO {
+	public void save(Results results);
+
+	public void delete(Results results);
+
+	public Results load(Integer results);
+
+	public List<Results> list(Integer id);
+
+	public Notification getNotification(Integer iduser);
+
+	public Notification getNotificationToUPDATE(Integer iduser);
+
+	public boolean find(Integer codNotification);
+
+	public void update(Results selected);
+}

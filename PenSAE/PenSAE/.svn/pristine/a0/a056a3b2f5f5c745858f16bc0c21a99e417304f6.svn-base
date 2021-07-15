@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Criar Estudo Caso</title>
+</h:head>
+<h:body>
+	<f:view>
+		<f:event
+			listener="#{criarEditarEstudo.carregarCursos(principalProfessor.professor)}"
+			type="javax.faces.event.PostAddToViewEvent" />
+		<rich:panel id="panel_Titulo" styleClass="panel_invisivel">
+			<h:outputLabel id="outputLabel_TituloPagina" value="Inserir Caso"
+				styleClass="titulo_principal_pagina" />
+			<br />
+			<h:message for="form_Principal" showDetail="true" style="color:red" />
+			<br />
+			<h:outputLabel id="outputLabel_Curso" value="Curso"
+				styleClass="campo_titulo" />
+			<br />
+			<h:selectOneMenu id="selectCurso" defaultLabel="Selecione um curso"
+				style="width:500px"
+				valueChangeListener="#{criarEditarEstudo.setCursoSelecionado}">
+				<f:selectItems value="#{criarEditarEstudo.cursos}" var="curso"
+					itemLabel="#{curso.nome}" itemValue="#{curso.id}" />
+			</h:selectOneMenu>
+			<br />
+			<h:outputLabel id="outputLabel_TituloEstudo" value="Título do Caso"
+				styleClass="campo_titulo" />
+			<br />
+			<h:inputText id="inputText_TituloEstudo"
+				value="#{criarEditarEstudo.estudo.nome}" size="150" />
+			<br />
+			<h:outputLabel id="outputLabel_Objetivos" value="Objetivos"
+				styleClass="campo_titulo" />
+			<br />
+			<h:outputLabel id="outputLabel_ObjetivoGeraisEstudo" value="Gerais"
+				styleClass="campo_subtitulo" />
+			<br />
+			<h:inputTextarea id="inputTextarea_ObjetivoGerais" cols="150"
+				rows="3" value="#{criarEditarEstudo.estudo.objetivosGerais}" />
+			<br />
+			<h:outputLabel id="outputLabel_ObjetivosEspecificosEstudo"
+				value="Especificos" styleClass="campo_subtitulo" />
+			<br />
+			<h:inputTextarea id="inputTextarea_ObjetivosEspecificos" cols="150"
+				rows="3" value="#{criarEditarEstudo.estudo.objetivosEspecificos}" />
+			<br />
+			<h:outputLabel id="outputLabel_Competencias" value="Competências"
+				styleClass="campo_titulo" />
+			<br />
+			<h:outputLabel id="outputLabel_CompetenciasGerais" value="Gerais"
+				styleClass="campo_subtitulo" />
+			<br />
+			<rich:pickList id="list_CompetenciasGerais"
+				value="#{criarEditarEstudo.competenciaHabilidadeGeralSelecionadas}"
+				addText="Adicionar" addAllText="Adicionar todos"
+				removeText="Remover" removeAllText="Remover Todos"
+				converter="#{competenciaHabilidadeGeralConverterBean}">
+				<f:selectItems
+					value="#{criarEditarEstudo.competenciaHabilidadeGeralDisponiveis}"
+					var="competenciaGeral" itemLabel="#{competenciaGeral.descricao}"
+					itemValue="#{competenciaGeral}" />
+			</rich:pickList>
+			<br />
+			<h:outputLabel id="outputLabel_CompetenciasEspecificas"
+				value="Especificas" styleClass="campo_subtitulo" />
+			<br />
+			<rich:pickList id="list_CompetenciasEspecificas"
+				value="#{criarEditarEstudo.competenciaHabilidadeEspecificaSelecionadas}"
+				addText="Adicionar" addAllText="Adicionar todos"
+				removeText="Remover" removeAllText="Remover Todos"
+				converter="#{competenciaHabilidadeEspecificaConverterBean}">
+				<f:selectItems
+					value="#{criarEditarEstudo.competenciasHabilidadeEspecificasDisponiveis}"
+					var="competenciaEspecifica"
+					itemLabel="#{competenciaEspecifica.descricao}"
+					itemValue="#{competenciaEspecifica}" />
+
+			</rich:pickList>
+			<br />
+			<h:outputLabel id="outputLabel_DecritoresSaude"
+				value="Descritores em ciência de saúde" styleClass="campo_titulo" />
+			<br />
+			<rich:pickList id="list_Descritores"
+				value="#{criarEditarEstudo.descritoresSelecionados}"
+				addText="Adicionar" addAllText="Adicionar todos"
+				removeText="Remover" removeAllText="Remover Todos"
+				converter="#{descritorConverterBean}">
+				<f:selectItems
+					value="#{criarEditarEstudo.descritoresDisponiveis}"
+					var="descritor" itemLabel="#{descritor.descritor}"
+					itemValue="#{descritor}" />
+			</rich:pickList>
+			<br />
+			<h:outputLabel id="outputLabel_GrauCaso" value="Grau de Dificuldade"
+				styleClass="campo_titulo" />
+			<br />
+			<h:selectOneMenu id="selectOneListbox_grauCaso"
+				value="#{criarEditarEstudo.estudo.grauDificuldade}">
+				<f:selectItem itemLabel="Selecione" />
+				<f:selectItem itemLabel="Baixo" itemValue="1" />
+				<f:selectItem itemLabel="Médio" itemValue="2" />
+				<f:selectItem itemLabel="Alto" itemValue="3" />
+			</h:selectOneMenu>
+			<br />
+			<h:outputLabel id="outputLabel_Descricao" value="Descrição"
+				styleClass="campo_titulo" />
+			<br />
+			<h:inputTextarea id="inputArea_Descricao" cols="150" rows="10"
+				value="#{criarEditarEstudo.estudo.descricao}" />
+			<br />
+			<h:outputLabel id="outputLabel_ImagensAuxiliares"
+				value="Imagens auxiliares complementares da descrição (Formatos: bmp, gif, jpeg, jpg, png. Tamanho máximo 16MB)"
+				styleClass="campo_titulo" />
+			<br />
+			<rich:fileUpload
+				fileUploadListener="#{criarEditarEstudo.uploadListener}"
+				id="fileUpload_ImagensAuxiliares" allowFlash="true"
+				acceptedTypes="bmp, gif, jpeg, jpg, png"
+				addLabel="Adicionar arquivo" clearAllLabel="Limpar Tudo"
+				clearLabel="Limpar" deleteLabel="Excluir" doneLabel="Concluido"
+				serverErrorLabel="Erro no servidor, contate um administrador"
+				sizeErrorLabel="Tamanho não Permitido"
+				sizeExceededLabel="Tamanho limite excedido" uploadLabel="Enviar" />
+			<br />
+			<h:outputLabel id="outputLabel_Imagem"
+				value="Imagem do Caso (Formatos: bmp, gif, jpeg, jpg, png. Tamanho máximo 16MB)"
+				styleClass="campo_titulo" />
+			<br />
+			<h:outputLabel value="Você já inseriu o arquivo de nome "
+				rendered="#{criarEditarEstudo.arquivo != null}" />
+			<h:commandLink value="#{criarEditarEstudo.arquivo.nomeArquivo}"
+				actionListener="#{criarEditarEstudo.downloadArquivo()}"
+				styleClass="link" />
+			<br />
+			<rich:fileUpload
+				fileUploadListener="#{criarEditarEstudo.uploadListener}"
+				maxFilesQuantity="1" id="fileUpload_Imagem" allowFlash="true"
+				acceptedTypes="bmp, gif, jpeg, jpg, png"
+				addLabel="Adicionar arquivo" clearAllLabel="Limpar Tudo"
+				clearLabel="Limpar" deleteLabel="Excluir" doneLabel="Concluido"
+				serverErrorLabel="Erro no servidor, contate um administrador"
+				sizeErrorLabel="Tamanho não Permitido"
+				sizeExceededLabel="Tamanho limite excedido" uploadLabel="Enviar" />
+			<br />
+			<h:outputLabel id="outputLabel_pontosChave" value="Pontos-chave"
+				styleClass="campo_titulo" />
+			<br />
+			<h:inputTextarea id="inputArea_PontosChave" cols="150" rows="10"
+				value="#{criarEditarEstudo.estudo.pontosChave}" />
+			<br />
+			<h:outputLabel id="outputLabel_PlanoCuidados"
+				value="Plano de Cuidades" styleClass="campo_titulo" />
+			<br />
+			<rich:panel id="panel_PlanoCuidados" styleClass="panel_invisivel">
+				<rich:dataTable id="dataTable_Diagnosticos"
+					value="#{criarEditarEstudo.diagnosticosSelecionados}"
+					var="diagnostico" rows="10">
+					<rich:column label="Diagnósticos" width="300">
+						<f:facet name="header">
+							<h:outputText value="Diagnósticos" />
+						</f:facet>
+						<h:outputText value="#{diagnostico.cipe.termo}" />
+						<h:inputText value="#{diagnostico.descricao}" />
+						<a4j:commandButton id="commandButton_EditarDiagnostico"
+							image="/resources/icones/edit-icon.png"
+							title="Editar diagnóstico"
+							actionListener="#{criarEditarEstudo.editarDiagnostico(diagnostico)}"
+							oncomplete="#{rich:component('popupPanel_Diagnosticos')}.show()"
+							limitRender="true"
+							render="panel_PlanoCuidados panel_CamposDiagnostico" />
+						<a4j:commandButton id="commandButton_ExcluirDiagnostico"
+							image="/resources/icones/remove-icon.png"
+							title="Excluir diagnóstico"
+							onclick="return confirm('Deseja realmente excluir este diagnóstico?')"
+							actionListener="#{criarEditarEstudo.excluirDiagnostico(diagnostico)}"
+							limitRender="true" render="panel_PlanoCuidados" />
+					</rich:column>
+					<rich:column id="column_Metas" width="300">
+						<f:facet name="header">
+							<h:outputText value="Metas" />
+						</f:facet>
+						<a4j:repeat value="#{diagnostico.metaprofessors.toArray()}"
+							var="meta">
+							<h:inputText value="#{meta.descricao}"
+								styleClass="inputText_invisivel" />
+							<a4j:commandButton id="commandButton_EditarMeta"
+								image="/resources/icones/edit-icon.png" title="Editar Meta"
+								actionListener="#{criarEditarEstudo.editarMeta(diagnostico, meta)}"
+								oncomplete="#{rich:component('popupPanel_Metas')}.show()"
+								limitRender="true" render="dataTable_Diagnosticos">
+							</a4j:commandButton>
+							<a4j:commandButton id="commandButton_ExcluirMeta"
+								image="/resources/icones/remove-icon.png" title="Excluir Meta"
+								onclick="return confirm('Deseja realmente excluir esta meta?')"
+								actionListener="#{criarEditarEstudo.excluirMeta(diagnostico, meta)}"
+								limitRender="true" render="dataTable_Diagnosticos" />
+							<br />
+						</a4j:repeat>
+						<a4j:commandButton image="/resources/icones/add-icon.png"
+							title="Adicionar Meta"
+							actionListener="#{criarEditarEstudo.prepararAdicionarMeta(diagnostico)}"
+							onclick="#{rich:component('popupPanel_Metas')}.show(); return true;" />
+						<rich:popupPanel id="popupPanel_Metas" modal="true"
+							resizeable="false"
+							onmaskclick="#{rich:component('popupPanel_Metas')}.hide()"
+							autosized="true" domElementAttachment="form">
+							<f:facet name="header">
+								<h:outputText value="Adicionar determinantes" />
+							</f:facet>
+							<f:facet name="controls">
+								<h:outputLink value="#"
+									onclick="#{rich:component('popupPanel_Metas')}.hide(); return false;">
+                X
+            </h:outputLink>
+							</f:facet>
+							<rich:panel id="panel_CamposMetas" styleClass="panel_invisivel">
+								<h:outputLabel id="outputLabel_Meta" value="Meta"
+									styleClass="campo_subtitulo" />
+								<br />
+								<h:inputTextarea id="inputTextArea_Meta" cols="60"
+									value="#{criarEditarEstudo.metaString}" immediate="true" />
+								<br />
+								<rich:dataTable id="dataTable_Intervencoes"
+									styleClass="table_comum"
+									value="#{criarEditarEstudo.meta.intervencaoprofessors.toArray()}"
+									var="intervencao">
+									<rich:column>
+										<f:facet name="header">
+											<div style="width: 300px;">
+												<h:outputText value="Intervencao" />
+											</div>
+										</f:facet>
+										<h:outputText
+											value="#{intervencao.cipe.termo} #{intervencao.descricao}" />
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">
+										</f:facet>
+										<a4j:commandButton id="commandButton_EditarIntervencao"
+											image="/resources/icones/edit-icon.png"
+											title="Editar Intervenção"
+											actionListener="#{criarEditarEstudo.editarIntervencao(intervencao)}"
+											limitRender="true" render="panel_CamposMetas">
+										</a4j:commandButton>
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">
+										</f:facet>
+										<a4j:commandButton image="/resources/icones/remove-icon.png"
+											title="Excluir Intervenção"
+											onclick="return confirm('Deseja realmente excluir este diagnóstico?')"
+											actionListener="#{criarEditarEstudo.excluirIntervencao(diagnostico, meta, intervencao)}"
+											limitRender="true" render="panel_CamposMetas" />
+									</rich:column>
+								</rich:dataTable>
+								<br />
+								<h:outputLabel id="outputLabel_CamposIntervencoes"
+									value="Inserir Intervenção" styleClass="campo_titulo" />
+								<br />
+								<h:outputLabel id="outputLabel_IntevencaoTermo"
+									value="Termo do eixo ação" styleClass="campo_subtitulo" />
+								<br />
+								<rich:autocomplete id="autocomplete_Intervencoes" mode="ajax"
+									minChars="1" autofill="false"
+									autocompleteMethod="#{criarEditarEstudo.getIntervencoesDisponiveis}"
+									value="#{criarEditarEstudo.cipeIntervencao}"
+									fetchValue="#{intervencao.termo}" var="intervencao"
+									layout="table">
+									<rich:column>
+										<h:outputLabel value="#{intervencao.termo}" />
+									</rich:column>
+									<rich:column>
+										<h:outputLabel value="#{intervencao.descricaoConceito}" />
+									</rich:column>
+								</rich:autocomplete>
+								<br />
+								<h:outputLabel id="outputLabel_IntervencaoTextoComplementar"
+									value="Texto complementar" styleClass="campo_subtitulo" />
+								<br />
+								<h:inputTextarea id="inputTextArea_IntervencaoTextoComplementar"
+									cols="60" value="#{criarEditarEstudo.intervencao.descricao}"
+									immediate="true" />
+								<a4j:commandButton id="commandButton_AdicionarIntervencao"
+									value="Adicionar Intervenção"
+									actionListener="#{criarEditarEstudo.adicionarIntervencao(diagnostico, meta)}"
+									render="panel_CamposMetas" />
+								<br />
+								<a4j:commandButton value="Adicionar Meta" type="submit"
+									title="Adicionar Meta"
+									onclick="#{rich:component('popupPanel_Metas')}.hide(); return true;"
+									actionListener="#{criarEditarEstudo.adicionarMeta()}"
+									render="panel_PlanoCuidados" />
+								<a4j:commandButton value="Cancelar"
+									onclick="#{rich:component('popupPanel_Metas')}.hide(); return true;"
+									actionListener="#{criarEditarEstudo.cancelarEditarMeta()}"
+									render="panel_PlanoCuidados" />
+							</rich:panel>
+						</rich:popupPanel>
+					</rich:column>
+					<rich:column width="300">
+						<f:facet name="header">
+							<h:outputLabel value="Intervenções" />
+						</f:facet>
+						<a4j:repeat value="#{diagnostico.metaprofessors.toArray()}"
+							var="meta">
+							<a4j:repeat value="#{meta.intervencaoprofessors.toArray()}"
+								var="intervencao">
+								<h:outputText value="#{intervencao.cipe.termo}" />
+								<h:inputText value="#{intervencao.descricao}" />
+								<a4j:commandButton image="/resources/icones/remove-icon.png"
+									title="Excluir Meta"
+									onclick="return confirm('Deseja realmente excluir esta meta?')"
+									actionListener="#{criarEditarEstudo.excluirIntervencao(diagnostico, meta, intervencao)}"
+									limitRender="true" render="dataTable_Diagnosticos" />
+								<br />
+							</a4j:repeat>
+						</a4j:repeat>
+					</rich:column>
+					<f:facet name="footer">
+						<a4j:commandButton image="/resources/icones/add-icon.png"
+							title="Adicionar Diagnóstico"
+							onclick="#{rich:component('popupPanel_Diagnosticos')}.show(); return true;" />
+					</f:facet>
+				</rich:dataTable>
+				<br />
+				<rich:popupPanel id="popupPanel_Diagnosticos" modal="true"
+					resizeable="false"
+					onmaskclick="#{rich:component('popupPanel_Diagnosticos')}.hide()"
+					autosized="true" domElementAttachment="form">
+					<f:facet name="header">
+						<h:outputText value="Adicionar diagnostico" />
+					</f:facet>
+					<f:facet name="controls">
+						<h:outputLink value="#"
+							onclick="#{rich:component('popupPanel_Diagnosticos')}.hide(); return false;">
+                X
+            </h:outputLink>
+					</f:facet>
+					<rich:panel id="panel_CamposDiagnostico">
+						<h:outputLabel id="outputLabel_CamposDiagnostico"
+							value="Inserir Diagnóstico" styleClass="campo_titulo" />
+						<br />
+						<h:outputLabel id="outputLabel_TermoDiagnostico"
+							value="Termo do eixo foco" styleClass="campo_subtitulo" />
+						<br />
+						<rich:autocomplete id="autocomplete_Diagnosticos" mode="ajax"
+							minChars="0" autofill="false"
+							autocompleteMethod="#{criarEditarEstudo.getDiagnosticosDisponiveis}"
+							value="#{criarEditarEstudo.cipeDiagnostico}"
+							fetchValue="#{diagnostico.termo}" var="diagnostico"
+							layout="table">
+							<rich:column>
+								<h:outputLabel value="#{diagnostico.termo}" />
+							</rich:column>
+							<rich:column>
+								<h:outputLabel value="#{diagnostico.descricaoConceito}" />
+							</rich:column>
+						</rich:autocomplete>
+						<br />
+						<h:outputLabel id="outputLabel_diagnosticosTextoComplementar"
+							value="Texto complementar" styleClass="campo_subtitulo" />
+						<br />
+						<h:inputTextarea id="inputTextarea_DiagnosticoTextoComplementar"
+							cols="60" value="#{criarEditarEstudo.diagnostico.descricao}" />
+						<br />
+						<a4j:commandButton id="commandButton_AdicionarDiagnostico"
+							value="Adicionar diagnóstico"
+							onclick="#{rich:component('popupPanel_Diagnosticos')}.hide(); return true;"
+							actionListener="#{criarEditarEstudo.adicionarDiagnostico()}"
+							render="panel_PlanoCuidados" />
+						<a4j:commandButton id="commandButton_CancelarDiagnostico"
+							value="Cancelar"
+							onclick="#{rich:component('popupPanel_Diagnosticos')}.hide(); return true;"
+							actionListener="#{criarEditarEstudo.cancelarEditarDiagnostico()}"
+							render="panel_PlanoCuidados" />
+					</rich:panel>
+				</rich:popupPanel>
+			</rich:panel>
+			<br />
+			<h:commandButton id="commandButton_Salvar" value="Salvar"
+				actionListener="#{principalProfessor.mostrarListaEstudo(criarEditarEstudo.salvarEstudo())}"
+				render="document.getelementbyid(panelGroup_Target)">
+			</h:commandButton>
+			<h:commandButton id="commandButton_Cancelar" value="Cancelar"
+				actionListener="#{criarEditarEstudo.limparCampos()}"
+				render="document.getelementbyid(panelGroup_Target)">
+				<f:actionListener
+					binding="#{principalProfessor.mostrarListaEstudo()}" />
+			</h:commandButton>
+		</rich:panel>
+	</f:view>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:body>
+</html>

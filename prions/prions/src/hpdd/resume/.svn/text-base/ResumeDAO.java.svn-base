@@ -1,0 +1,15 @@
+package hpdd.resume;
+
+import hpdd.resume.Resume;
+import hpdd.doctor.Doctor;
+import hpdd.notification.Notification;
+
+import java.util.List;
+
+public interface ResumeDAO {
+	public void save(Resume resume);
+	public void delete(Resume resume);
+	public Resume load(Integer resume);
+	public List<Resume> list(Doctor user);
+	public Notification getNotification(Integer iduser);
+}

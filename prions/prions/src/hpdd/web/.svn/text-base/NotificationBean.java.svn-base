@@ -1,0 +1,133 @@
+package hpdd.web;
+import java.util.List;
+
+import hpdd.notification.*;
+import hpdd.web.util.ContextoUtil;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+@ManagedBean(name = "notificationBean")
+@RequestScoped
+public class NotificationBean {
+	private Notification selected = new Notification();
+	private List<Notification> list = null;
+	public void save(){
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		this.selected.setUser(contextoBean.getLoggedUser());
+		this.selected.setCodNotification(null);
+		this.selected.setStatus("Em andamento");
+		this.selected.setType("Form");
+		this.selected.setAtivo(false);
+		NotificationRN notificationRN = new NotificationRN();
+		notificationRN.save(this.selected);
+		
+		this.selected = new Notification();
+		this.list = null;
+		//return "notifCreated";
+	}
+	
+	//public void edit(){
+		
+	//}
+	public void delete(){
+		NotificationRN notificationRN = new NotificationRN();
+		notificationRN.delete(this.selected);
+		this.selected = new Notification();
+		this.list = null;
+		
+	}
+	public Notification getSelected() {
+		return selected;
+	}
+	public void setSelected(Notification selected) {
+		this.selected = selected;
+	}
+	public List<Notification> getList() {
+		if(this.list == null) {
+			ContextoBean contextoBean = ContextoUtil.getContextoBean();
+			
+			NotificationRN notificationRN = new NotificationRN();
+			this.list = notificationRN.list(contextoBean.getLoggedUser());
+		}
+		
+		return this.list;
+	}
+	public String changeStatus() {
+		/*ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		IndividualRN individualRN = new IndividualRN();
+		this.selected = individualRN.getNotification(contextoBean.getLoggedUser().getIduser());
+		System.out.println(this.selected.getStatus());
+		System.out.println(this.selected.getUser());
+		System.out.println(this.selected.getCodNotification());
+		this.selected.setStatus("Finalizado");
+		NotificationRN notificationRN = new NotificationRN();
+		notificationRN.save(this.selected);
+		this.selected = new Notification();*/
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		System.out.println("Nome:"+contextoBean.getLoggedUser().getIduser());
+		NotificationRN notificationRN = new NotificationRN();
+		notificationRN.change(contextoBean.getLoggedUser().getIduser());
+		/*this.notif.setCodNotification(null);
+		this.notif.setStatus("Em andamento");
+		this.notif.setType("Form");
+		this.notif.setAtivo(false);
+		NotificationRN notificationRN = new NotificationRN();
+		notificationRN.save(this.notif);
+		this.list = null;*/
+		this.selected = new Notification();
+		this.list = null;
+		return null;
+	}
+	public String keepStatus() {
+	/*	ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		IndividualRN individualRN = new IndividualRN();
+		GeneralRN generalRN = new GeneralRN();
+		this.selected = generalRN.getNotification(contextoBean.getLoggedUser().getIduser());
+		System.out.println(this.selected.getCodNotification());
+		this.selected = null;
+		this.selected = individualRN.getNotification(contextoBean.getLoggedUser().getIduser());
+		
+		System.out.println(this.selected.getStatus());
+		System.out.println(this.selected.getUser());
+		System.out.println(this.selected.getCodNotification());
+		this.selected.setStatus("Em andamento");
+		NotificationRN notificationRN = new NotificationRN();
+		notificationRN.save(this.selected);
+		this.selected = new Notification();
+		this.list = null;*/
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		System.out.println("Nome:"+contextoBean.getLoggedUser().getIduser());
+		NotificationRN notificationRN = new NotificationRN();
+		notificationRN.keep(contextoBean.getLoggedUser().getIduser());
+		this.selected = new Notification();
+		this.list = null;
+		return null;
+	}
+	
+	public String activate() {
+		System.out.println("activate!");
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		NotificationRN notificationRN = new NotificationRN();
+		notificationRN.restore(contextoBean.getLoggedUser().getIduser());
+		this.selected = notificationRN.load(this.selected.getCodNotification());
+		this.selected.setAtivo(true);
+		notificationRN.save(selected);
+		System.out.println("tipo =" + this.selected.getType());
+		//To DO -- se estiver finalizado, gere pdf
+		//senão mostre para editar
+		if(this.selected.getType().equals("Paper")) {
+			System.out.println("entrou paper");
+			return "listNotifPaper";
+		}
+		else{
+			System.out.println("aee");
+			return "listnotification";
+		}
+	
+	}
+	
+
+
+	
+}

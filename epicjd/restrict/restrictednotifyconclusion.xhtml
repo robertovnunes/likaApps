@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../resources/css/style_rest.css" rel="stylesheet"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+}
+</style>
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>Report case</h1>
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="restricted_notify.html"> Report case</a> >> Conclusion
+				</h4>
+				<br />
+				<ul id="nav">
+					<!-- CSS Tabs -->
+
+					<li><a href="restrictednotifygeneral.jsf">General</a></li>
+<li><a href="restrictednotifyindividual.jsf"><span>Individual</span></a></li>
+<!--<li><a href="restrictednotifyresidential.jsf"><span>Residential</span></a></li>-->
+<!-- <li><a href="restrictednotifysuspicion.jsf"><span>Primary diagnostic</span></a></li> -->
+<li><a href="restrictednotifydata.jsf"><span>Clinical info</span></a></li>
+<li><a href="restrictednotifyaspects.jsf"><span>Epidemiological aspects</span></a></li>
+<li><a href="restrictednotifyresults.jsf"><span>Exams</span></a></li>
+<li><a class="active" href="restrictednotifyconclusion.jsf"><span>Conclusion</span></a></li>
+<li><a href="restrictednotifysource.jsf"><span>Source</span></a></li>
+<li><a href="restrictednotifyresume.jsf"><span>Clinical History</span></a></li>
+<li><a href="restrictednotifyimages.jsf"><span>Images</span></a></li>
+				</ul>
+
+				<h:form id="texto">
+					<h:messages />
+					<div style="width: 810px; height: 276px; overflow: auto;">
+						<h:panelGrid width="793" height="30" valign="top" align="left"
+							colspan="2"
+							style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+							<h:outputLabel value="Conclusion"></h:outputLabel>
+						</h:panelGrid>
+						<h:panelGrid columns="4" width="793" height="30" align="left"
+							bgcolor="#EBEBD6">
+							<h:outputLabel value="Final diagnostic:" for="finalDiag" />
+							<p:selectOneMenu id="finalDiag"
+								value="#{conclusionBean.selected.finalDiag}">
+								<c:selectItem itemValue="" itemLabel="Select final diagnostic" />
+								<c:selectItem itemValue="iCJD" itemLabel="iCJD" />
+								<c:selectItem itemValue="sCJD" itemLabel="sCJD" />
+								<c:selectItem itemValue="gCJD" itemLabel="gCJD" />
+								<c:selectItem itemValue="vCJD" itemLabel="vCJD" />
+								<c:selectItem itemValue="sFI" itemLabel="sFI" />
+								<c:selectItem itemValue="FFI" itemLabel="FFI" />
+								<c:selectItem itemValue="GSS" itemLabel="GSS" />
+								<c:selectItem itemValue="other"
+									itemLabel="Discarded Case (another diagnostic)" />
+							</p:selectOneMenu>
+							<h:outputLabel value="Criteria:" for="criteria" />
+							<p:selectOneMenu id="criteria"
+								value="#{conclusionBean.selected.criteria}">
+								<c:selectItem itemValue="" itemLabel="Select criteria" />
+								<c:selectItem itemValue="Definitive" itemLabel="Definitive" />
+								<c:selectItem itemValue="Possible" itemLabel="Possible" />
+								<c:selectItem itemValue="Probable" itemLabel="Probable" />
+							</p:selectOneMenu>
+							<h:outputLabel value="Date of death:" for="deathDate" />
+							<p:calendar pattern="yyyy/MM/dd" id="deathDate"
+								value="#{conclusionBean.selected.deathDate}" navigator="true"
+								display="inline" />
+
+							<h:outputLabel value="Date of closure:" for="closureDate" />
+							<p:calendar pattern="yyyy/MM/dd" id="closureDate"
+								value="#{conclusionBean.selected.clousureDate}" navigator="true"
+								display="inline" />
+
+
+							<h:outputLabel></h:outputLabel>
+						</h:panelGrid>
+						<h:outputLabel>
+							<!--<h:commandLink action="/restrict/restrictednotifygeneral" title="Back">
+				<h:commandButton value="Back" action="general" />
+			</h:commandLink>-->
+							<p:commandButton styleClass="botao" value="Save"
+								action="#{conclusionBean.save}" ajax="false" />
+							<!-- <h:commandLink action="/restrict/restrictednotifyresidential" title="Next">
+				<h:commandButton value="Next" action="residential" />
+			</h:commandLink> -->
+						</h:outputLabel>
+						<h:outputLabel></h:outputLabel>
+						<h:outputLabel></h:outputLabel>
+						<h:outputLabel></h:outputLabel>
+						<h:outputLabel>
+							<p:commandButton styleClass="botao" value="Finish"
+								action="imagesCreated" ajax="false" />
+						</h:outputLabel>
+
+					</div>
+				</h:form>
+
+
+
+				<br />
+				<!-- <img src="../resources/imagens/seq_result.gif"/> -->
+
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+
+</html>

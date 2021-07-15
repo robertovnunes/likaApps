@@ -1,0 +1,22 @@
+/*	Projeto Anamnesis 
+*/
+
+.debug {
+	border-style: dashed;
+	border-width: 1px;
+}
+
+.chat {
+	width: 640px;
+	padding: 5px;
+	margin: 0 auto ;
+}
+
+#entrada, #chat {
+	width: 640px; 
+	padding: 5px;
+}
+
+#chat {
+	height: 400px;
+}

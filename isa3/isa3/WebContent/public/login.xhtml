@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<body>
+	<ui:composition template="/META-INF/template/layout.xhtml">
+	
+	<ui:define name="content"> 
+		<div id="middle">
+			<div id="middle_align">
+
+				<div id="wrapper">
+
+					<div class="col w75">
+						<h3>Quem somos</h3>
+						<!--  <p>Buscamos alcançar a satisfação e o completo atendimento das necessidades e, acima de tudo, a segurança dos pacientes de nossos clientes, utilizando sempre de infra-estrutura adequada, colaboradores treinados e comprometidos com a melhoria contínua e a humanização nos serviços técnicos na área de saúde</p> -->
+						<p>Este site foi elaborado a partir de cooperação entre o Programa de Pós-Graduação em Saúde da Criança e do Adolescente da Universidade Federal de Pernambuco e do iDEIAS (Informática no Desenvolvimento da Educação e da Saúde), tendo por objetivo apoiar o processo de ensino e aprendizagem na Graduação em Enfermagem, fundamentando-se em pressupostos construtivistas e metodologias ativas. </p>
+					</div>
+					<div class="col w25 login">
+
+						<div class="form bg_shadow_left_green">
+							<h2>Área do Cadastrado</h2>
+							<h:form prependId="form_login" >
+						        <h:outputLabel for="login" value="Login:" />
+								<h:inputText id="login" styleClass="form-control text"  style="width: 200px;" value="#{loginController.login}" required="true"  label="login"  />  	
+								<p:watermark for="login" value="digite seu login" />
+		         				
+		         				<h:outputLabel for="senha" value="Senha:" />
+								<p:password id="senha" styleClass="form-control text"  style="width: 200px;" value="#{loginController.senha}" required="true"  label="senha"  />
+								<p:watermark for="senha" value="digite sua Senha" />
+			           			<br />
+			          				<p:commandButton actionListener="#{loginController.efetuarLogin}" value="Entrar" validateClient="true" >
+								</p:commandButton>
+							</h:form>
+							<a href="#" onclick="alert('Em construção!')">Esqueci a senha</a><br />
+							<p:commandLink value="Cadastrar-se"   actionListener="#{cadastrarAlunoController.prepararAdicionarAluno}"  >
+								</p:commandLink>
+
+						</div>
+					</div>
+
+
+					<div class="col w50">
+						<div class="p5 border_right">
+							<h2 class="noticias">Notícias e Eventos</h2>
+
+							<ul class="noticias">
+								<li><span> TIES - Disciplina Tecnologias da
+										Informação em Educação e Saúde. <br /> Data: 29/10/2013 
+								</span></li>
+								<li><span>TIES - Disciplina Tecnologias da
+										Informação em Educação e Saúde.  <br /> Data: 29/10/2013 
+								</span></li>
+								<li><span>TIES - Disciplina Tecnologias da
+										Informação em Educação e Saúde.  <br /> Data: 29/10/2013 
+								</span></li>
+								<li><span>TIES - Disciplina Tecnologias da
+										Informação em Educação e Saúde.  <br /> Data: 29/10/2013 
+								</span></li>
+								<li><span>TIES - Disciplina Tecnologias da
+										Informação em Educação e Saúde.  <br /> Data: 29/10/2013 
+								</span></li>
+							</ul>
+							<p class="saiba_mais">
+								<a href="#">Veja mais</a>
+							</p>
+						</div>
+					</div>
+
+					<div class="col w50 bg_shadow_left_green">
+						<div class="p5">
+							<h2 class="cursos">Cursos Disponíveis</h2>
+
+							<ul class="cursos">
+								<li><span>LIKA - Novas instalações - O Laboratório
+										de Imunopatologia Keizo Asami conta com novas instalações.  <br />Início:
+											09/10/2013 
+								</span></li>
+								<li><span>LIKA - Novas instalações - O Laboratório
+										de Imunopatologia Keizo Asami conta com novas instalações.  <br />Início:
+											09/10/2013 
+								</span></li>
+								<li><span>LIKA - Novas instalações - O Laboratório
+										de Imunopatologia Keizo Asami conta com novas instalações.  <br />Início:
+											09/10/2013 
+								</span></li>
+
+							</ul>
+							<p class="saiba_mais">
+								<a href="#">Veja mais</a>
+							</p>
+						</div>
+
+					</div>
+				</div>
+				<!-- /#wrapper -->
+				<div style="" align="right">
+					<b>Contato:</b> rosalie.belian@ufpe.br
+				</div>
+			</div>
+			<!-- /#middle_align -->
+			<br /> <br /> <br />
+		</div>
+		<!-- /#middle -->
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,165 @@
+.tabelaSemLinhaAzul caption {
+	padding: 0 0 5px 0;
+	font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+.tabelaSemLinhaAzul th {
+	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	border-style: hidden;
+	text-align: left;
+	background: #F2F5F7;
+}
+
+.tabelaSemLinhaAzul th.nobg {
+	border-top: 0;
+	border-left: 0;
+	background: none;
+	text-align: left;
+	height: 10px;
+}
+
+.tabelaSemLinhaAzul td {
+	border-style: hidden;
+	background: #F2F5F7;
+	color: #4f6b72;
+	text-align: left;
+	height: 10px;
+}
+
+.tabelaSemLinhaAzul td.alt {
+	background: #F5FAFA;
+	color: #797268;
+}
+
+.tabelaSemLinhaAzul th.spec {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #F2F5F7;
+	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+.tabelaSemLinhaAzul th.specalt {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #F2F5F7;
+	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #797268;
+}
+
+.tabelaSemLinha caption {
+	padding: 0 0 5px 0;
+	font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+.tabelaSemLinha th {
+	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	border-style: hidden;
+	text-align: left;
+	background: #fff;
+}
+
+.tabelaSemLinha th.nobg {
+	border-top: 0;
+	border-left: 0;
+	background: none;
+	text-align: left;
+	height: 10px;
+}
+
+.tabelaSemLinha td {
+	border-style: hidden;
+	background: #fff;
+	color: #4f6b72;
+	text-align: left;
+	height: 10px;
+}
+
+.tabelaSemLinha td.alt {
+	background: #F5FAFA;
+	color: #797268;
+}
+
+.tabelaSemLinha th.spec {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #fff;
+	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+.tabelaSemLinha th.specalt {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #f5fafa;
+	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #797268;
+}
+
+#lista {
+	width: 100%;
+	margin-bottom: 3px;
+	padding-bottom: 10px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #666666;
+	font-size: 11px;
+}
+
+#lista_Visualizar {
+	width: 100%;
+	margin-bottom: 3px;
+	padding-bottom: 10px;
+	font-size: 11px;
+}
+
+#lista_Visualizar ul {
+	padding-left: 23px;
+	list-style-type: circle;
+}
+
+#lista ul {
+	padding-left: 23px;
+	list-style-type: circle;
+}
+
+#conteudoForm {
+	margin-left: 15px;
+}
+
+#subTitulo {
+	font-family: helvetica, "Trebuchet MS", arial, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.teste {
+	background-color: transparent;
+}
+
+.titulo {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.erroConfirmacao {
+	font-weight: bold;
+	color: #000000;
+	background-color: #CD0000;
+}
+
+.sucessoConfirmacao {
+	font-weight: bold;
+	color: #104E8B;
+	background-color: #BBD8EC;
+}
+
+div.jGrowl div.smoke {
+	background-color: #4682B4;
+	width: 460px;
+	height: 20px;
+	overflow: hidden;
+	font-weight: bold;
+}

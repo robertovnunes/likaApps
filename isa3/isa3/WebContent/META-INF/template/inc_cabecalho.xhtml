@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<body>
+	<ui:composition>
+			<div id="header">
+    	<div id="header_width">
+            <div id="header_l">
+                <p class="logo">
+                	<a href="#{request.contextPath}/">ISA</a>
+               	</p>
+            </div><!-- /#header_l -->
+            <div id="header_r">
+            	 <c:if test="#{not empty usuarioLogado}">
+		                <div id="member">
+		                	<ul>
+		                    	<li>
+		                    		<c:if test="#{not empty usuarioLogado}">
+						            	<script src="#{request.contextPath}/resources/js/countdown.min.js"></script>
+						            	<div id="countdown-holder" style="font-size: 10px; margin-bottom: 10px;"></div>
+							          	<script>
+												  var clock = document.getElementById("countdown-holder");
+												  var hojeMillisec = new Date().getTime();
+												  var timeOut = #{session.maxInactiveInterval}*1000;
+												  var targetDate = new Date(hojeMillisec+timeOut); 
+												  
+												  setInterval(function(){
+													  var segundos = countdown(targetDate)["seconds"];
+													  var minutos = countdown(targetDate)["minutes"];
+													  var tempRestante = countdown(targetDate)["value"];
+													  if(tempRestante >= 0){
+														  clock.innerHTML = "Sessão expirada!";
+														  window.location.href = "#{request.contextPath}"+"/";
+													  }else{
+														  if(minutos &lt; 10){
+															  minutos = "0"+minutos;
+														  }
+														  if(segundos &lt; 10){
+															  segundos = "0"+segundos;
+														  }
+														  
+														  clock.innerHTML = "Sessão timeout: "+minutos+":"+segundos;
+													  }
+												  }, 1000);
+										</script>
+								    </c:if>
+		                    		<a href="#" class="logar" title="Menu do usuário">
+		                    		<h:outputText value="#{usuarioLogado.nome}" />
+		                    		</a>
+		                        	<span></span>
+		                            <ul>
+		                            	<li><a href="#{request.contextPath}">Início</a></li>
+		                            	<li>
+		                            		<p:commandLink rendered="#{usuarioLogado.tipoUsuario == 'ALUNO'}" action="#{cadastrarAlunoController.prepararAlterarAluno}" value="Meu Perfil" >
+											</p:commandLink>
+		                            	</li>
+		                            	<c:if test="#{usuarioLogado.tipoUsuario == 'PROFESSOR' }">
+			                            	<li><a href="#{request.contextPath}/restrict/professor/curso_procurar.xhtml">Cursos</a></li>
+		                            	</c:if>
+		                                <c:if test="#{usuarioLogado.tipoUsuario == 'ALUNO' }">
+			                            	<li><a href="#{request.contextPath}/restrict/aluno/curso_procurar.xhtml">Cursos</a></li>
+		                            	</c:if>
+		                                <li class="linha"></li>
+		                            	<li><a href="#">Sobre</a></li>
+		                            	<li><a href="">Tutorial</a></li>
+		                            	<li><a href="#">Mapa do Site</a></li>
+		                            	<li class="linha"></li>
+		                            	<!-- <li><a href="#">Ajuda</a></li> -->
+		                            	<li><a target="_blank" href="mailto:raulamaralaraujo@gmail.com">Contato - Email</a></li>
+		                            	<li><a target="_blank" href="tel:81-9834-4759">Contato - Tel.</a></li>
+										<li class="linha"></li>
+		                            	<li>
+		                            		<h:form prependId="false">
+				                            	<p:commandLink id="logOut" actionListener="#{loginController.efetuarLogOut}" ajax="false">
+												        <h:outputText value="Sair" />
+											    </p:commandLink>
+		                            		</h:form>
+		                            	</li>
+			
+		                            </ul>
+		                        </li>
+		                    </ul>
+		                </div>
+            	 
+            	 </c:if>
+            
+                
+            </div><!-- /#header_r -->
+    
+		</div>
+    </div><!-- /#header -->
+		
+	</ui:composition>
+</body>
+</html>

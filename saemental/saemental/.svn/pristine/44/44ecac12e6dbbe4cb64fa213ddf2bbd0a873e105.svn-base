@@ -1,0 +1,104 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+ <hibernate-configuration>
+     <session-factory>
+     
+	      <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+         <property name="hibernate.connection.url">jdbc:mysql://localhost/saemental</property>
+         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+         <property name="hibernate.connection.username">root</property>
+         <property name="hibernate.connection.password"></property>
+         <property name="show_sql">true</property>
+         
+         
+     <!-- 
+         
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+         <property name="hibernate.connection.url">jdbc:mysql://localhost/saemental</property>
+         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+         <property name="hibernate.connection.username">saemental</property>
+         <property name="hibernate.connection.password">cp0vDekv83A1ox4G</property>
+         <property name="show_sql">true</property>
+	      
+       -->    
+       
+
+          
+	      <!-- 
+            <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+         <property name="hibernate.connection.url">jdbc:mysql://150.161.67.2/saemental</property>
+         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+         <property name="hibernate.connection.username">saemental</property>
+         <property name="hibernate.connection.password">cp0vDekv83A1ox4G</property>
+         <property name="show_sql">true</property>
+         -->
+          
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property> 
+		<property name="hibernate.connection.autocommit">false</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+			
+		<property name="hibernate.c3p0.max_size">10</property>
+		<property name="hibernate.c3p0.min_size">2</property>
+		<property name="hibernate.c3p0.timeout">5000</property>
+		<property name="hibernate.c3p0.max_statements">10</property>
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
+		<property name="hibernate.c3p0.acquire_increment">2</property>
+		<property name="format_sql">true</property>
+		<property name="use_outer_join">true</property>
+		<property name="hibernate.generate_statistics">true</property>
+		<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		
+
+         <!-- Enable Hibernate's automatic session context management -->
+         <mapping class="model.sistema.Erro" />
+         <mapping class="model.Endereco" />
+         <mapping class="model.usuario.Usuario" />
+         <mapping class="model.usuario.Aluno" />
+         <mapping class="model.usuario.Professor" />
+         <mapping class="model.usuario.Enfermeiro" />
+         <mapping class="model.paciente.Paciente" />
+         
+         <mapping class="model.paciente.prontuario.atendimento.Evolucao" />
+         <mapping class="model.paciente.prontuario.atendimento.antecedentes.AntecedentesFamiliares" />
+         <mapping class="model.paciente.prontuario.atendimento.antecedentes.AntecedenteFamiliar" />
+		 <mapping class="model.paciente.prontuario.atendimento.antecedentes.AntecedentesPessoais" />
+		 <mapping class="model.paciente.prontuario.atendimento.antecedentes.Antecedentes" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExameAuditivo" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExameBoca" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExameCouroCabeludo" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExameMamas" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExameNariz" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExameOlhos" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExamePadrao" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExamePescoco" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExameSistCardiovascular" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExameSistGastroIntestinal" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExameSistGenitoUrinario" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExameSistPelesAnexos" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExameSistRespiratorio" />
+		 <mapping class="model.paciente.prontuario.atendimento.examefisico.ExameFisico" />
+		 <mapping class="model.paciente.prontuario.atendimento.examemental.ExameMentalGeral" />
+ 		 <mapping class="model.paciente.prontuario.atendimento.examemental.ExameMentalMiniMental" />
+		 <mapping class="model.paciente.prontuario.atendimento.examemental.ExameMental" />
+ 		 <mapping class="model.paciente.prontuario.atendimento.necessidades.NecessidadesBasicas" />
+ 		 
+ 		 <mapping class="model.paciente.prontuario.atendimento.queixa.Cid" />
+		 <mapping class="model.paciente.prontuario.atendimento.queixa.Queixa" />
+         <mapping class="model.paciente.prontuario.atendimento.Alta" />
+         <mapping class="model.paciente.prontuario.Prontuario" />
+         <mapping class="model.paciente.prontuario.atendimento.Atendimento" />
+         <mapping class="model.paciente.prontuario.atendimento.Admissao" />
+     	
+     	 <mapping class="model.paciente.prontuario.atendimento.diagnosticointervencoes.Cipe" />
+     	 <mapping class="model.paciente.prontuario.atendimento.diagnosticointervencoes.Diagnostico" />
+     	 <mapping class="model.paciente.prontuario.atendimento.diagnosticointervencoes.Nic" />
+     	 <mapping class="model.paciente.prontuario.atendimento.diagnosticointervencoes.Intervencoes" />
+     	 <mapping class="model.paciente.prontuario.atendimento.diagnosticointervencoes.Noc" />
+     	 <mapping class="model.paciente.prontuario.atendimento.diagnosticointervencoes.Resultados" />
+     	 
+     	  <mapping class="model.paciente.prontuario.atendimento.Adendo" />
+     	  <mapping class="model.paciente.prontuario.atendimento.AvaliacaoProfessor" />
+     
+     </session-factory></hibernate-configuration>

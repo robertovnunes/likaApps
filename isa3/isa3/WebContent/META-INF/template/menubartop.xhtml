@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="description" content="" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="content-language" content="pt-br" />
+	<meta name="robots" content="noindex, nofollow" />
+</h:head>
+<h:body>
+	<h:form>
+		<p:growl id="messages" />
+
+		<!-- inicio do header -->
+				<div class="navbar navbar-default navbar-topo navbar-fixed-top" role="navigation">
+				 		<div class="container-fluid">
+					        <div class="navbar-header">
+					            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					                <span class="sr-only">Toggle navigation</span>
+					                <span class="icon-bar"></span>
+					                <span class="icon-bar"></span>
+					                <span class="icon-bar"></span>
+					            </button>
+					            <a class="navbar-status" href="http://localhost:8080/gerdem/" alt="" title='Ir para a página inicial'>
+				                    <img class="logo" src="http://localhost:8080/gerdem/resources/imgs/CNIS.svg" alt="" />
+				                    <span class="logo-sistema"><small>Protótipo</small></span>
+					            </a>
+					        </div>
+					        <div class="navbar-collapse collapse">
+					            <ul class="nav navbar-nav navbar-right">
+				                    <li>
+					                	 <a class='letra_menor btn'><span class='ico-minus'></span></a>
+					                </li>
+					                <li>
+					                	 <a class='letra_normal btn'><span class='ico-letter'></span></a>
+					                </li>
+					                <li>
+					                	 <a class='letra_maior btn'><span class='ico-plus'></span></a>
+					                </li>
+				                	<li class="dropdown">
+									    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="ico-user"></span> 333.333.333-33 <span class="caret"></span></a>
+									    <ul class="dropdown-menu userProfile" role="menu">
+									        <li>
+									            <h3><strong class="ico-user-c"></strong> Marlon Brando da Silva</h3>
+									        </li>
+									        <li>
+									            <h5><strong>21.004.010</strong> - APS São Paulo Nossa Senhora do Sabará</h5>
+									        </li>
+									        <li>
+									            <h4><small>Perfis de Acesso:</small></h4>
+									        </li>
+									        <li>
+									            <div class="btn-group-vertical">
+									                <button class="btn btn-primary active" type="button"><span class="ico-user-tie"></span> Perfil Ativo</button>
+									                <button class="btn btn-default" type="button"><span class="ico-user-tie"></span> Perfil Inativo</button>
+									            </div>
+									        </li>
+									    </ul>
+									</li>      
+				                    <li><a href="#" class="ui-commandlink ui-widget btn navbar-btn logout"><span class="ico-door-out"></span> SAIR</a></li>
+									
+					            </ul>
+					        </div>
+					    </div>
+					</div>
+	</h:form>
+</h:body>
+</html>

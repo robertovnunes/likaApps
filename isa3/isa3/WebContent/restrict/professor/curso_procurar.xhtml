@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout_professor.xhtml">
+	
+			<ui:define name="content"> 
+				<div id="container">
+
+					    <div id="middle">    
+							<div id="middle_align">
+					
+					           <div id="wrapper" class="logado professor">
+			            		<h3 class="bread">Curso Listar</h3>
+					            
+					            <div class="col w90 p0_5">
+					               
+					                <p>&nbsp;</p>      
+					            </div>
+								<br clear="all" />
+					                <h:form prependId="false">
+										<p:dataTable emptyMessage="Nenhum Registro Encontrado" id="tabelaCursos" var="curso" paginator="true" 
+											value="#{cursoProfessorProcurarController.listarCurso}">
+											<p:column style="text-align: center;" sortBy="#{curso.id}" >
+												<f:facet name="header">
+													<h:outputText value="Código" />
+												</f:facet>
+												<h:outputText value="CR#{curso.id}" />
+											</p:column>
+											<p:column style="text-align: center;" sortBy="#{curso.titulo}" >
+												<f:facet name="header">
+													<h:outputText value="Curso" />
+												</f:facet>
+												<h:outputText value="#{curso.titulo}" />
+											</p:column>
+											<p:column style="text-align: center;" sortBy="#{curso.dataInicioFormatada}">
+												<f:facet name="header">
+													<h:outputText value="Período" />
+												</f:facet>
+												<h:outputText value="#{curso.dataInicioFormatada}" /> até <h:outputText value="#{curso.dataFimFormatada}" />
+											</p:column>
+											<p:column style="text-align: center;" sortBy="#{curso.professor.nome}">
+												<f:facet name="header">
+													<h:outputText value="Professor Responsável" />
+												</f:facet>
+												<h:outputText value="#{curso.professor.nome}" />
+											</p:column>
+											<p:column  style="text-align: center;"  sortBy="#{curso.statusDescricao}" >
+												<f:facet name="header">
+													<h:outputText value="Status" />
+												</f:facet>
+												
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Normal-Red-icon.png" rendered="#{curso.status == '0'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Pause-Normal-Red-icon.png" rendered="#{curso.status == '1'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Disabled-icon.png" rendered="#{curso.status == '2'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/restrict.gif" rendered="#{curso.status == '3'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Actions-dialog-ok-apply-icon.png" rendered="#{curso.status == '4'}"></h:graphicImage>
+												
+												<h:outputText value="#{curso.statusDescricao}" />
+												
+											</p:column>
+											<p:column style="text-align: center;">
+												<f:facet name="header">
+													<h:outputText value="Estudos de Caso" />
+												</f:facet>
+												
+												<p:commandButton  action="#{cursoProfessorProcurarController.preparaTelaVisualizarEstudosDeCaso}" value="ECs" update="dialog" oncomplete="PF('dialog').show();" icon="ui-icon ui-icon-folder-open">
+													<f:setPropertyActionListener target="#{cursoProfessorProcurarController.curso}" value="#{curso}" />
+												</p:commandButton>
+												
+											</p:column>
+											<p:column style="text-align: center;">
+												<f:facet name="header">
+													<h:outputText value="Ações" />
+												</f:facet>
+												
+												<p:commandButton action="#{cursoProfessorPersistirController.prepararAlterarCurso}"
+													update="tabelaCursos" value="" icon="ui-icon ui-icon-pencil" style="height: 15px; width: 25px; margin-left: 5px; padding: 0 !important; border: 0 none; background: none; left: 0;">
+													<f:setPropertyActionListener target="#{cursoProfessorPersistirController.curso}" value="#{curso}" />
+												</p:commandButton>
+												
+												<p:commandButton
+													action="#{cursoProfessorProcurarController.excluirCurso()}"
+													update="tabelaCursos" value=""
+													style="height: 15px; width: 25px; margin-left: 5px; padding: 0 !important; border: 0 none; background: none; left: 0;" icon="ui-icon-trash">
+													<p:confirm header="Confirmação"
+														message="Você deseja realmente remover?" icon="ui-icon-alert" />
+												</p:commandButton>
+												
+											</p:column>
+										</p:dataTable>
+									</h:form>
+									
+									<p:dialog header="Estudos de Caso do Curso" widgetVar="dialog" modal="true" width="800" id="dialog">
+									    <p:dataTable emptyMessage="Nenhum Registro Encontrado" id="tabelaEstudosDeCaso" var="estudoCaso" paginator="true" 
+											value="#{cursoProfessorProcurarController.listarEstudosDeCaso}">
+											
+											
+											<p:column style="text-align: center;" sortBy="#{estudoCaso.id}" >
+												<f:facet name="header">
+													<h:outputText value="Código" />
+												</f:facet>
+												<h:outputText value="EC#{estudoCaso.id}" />
+											</p:column>
+											<p:column style="text-align: center;" sortBy="#{estudoCaso.titulo}" >
+												<f:facet name="header">
+													<h:outputText value="Título" />
+												</f:facet>
+												<h:outputText value="#{estudoCaso.titulo}" />
+											</p:column>
+											<p:column style="text-align: center;" sortBy="#{estudoCaso.descricaoResumida}">
+												<f:facet name="header">
+													<h:outputText value="Descrição" />
+												</f:facet>
+												<h:outputText value="#{estudoCaso.descricaoResumida}" escape="false" />
+											</p:column>
+											<p:column  style="text-align: center;"  sortBy="#{estudoCaso.statusDescricao}" >
+												<f:facet name="header">
+													<h:outputText value="Status" />
+												</f:facet>
+												
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Normal-Red-icon.png" rendered="#{estudoCaso.status == '0'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Pause-Normal-Red-icon.png" rendered="#{estudoCaso.status == '1'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Disabled-icon.png" rendered="#{estudoCaso.status == '2'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/restrict.gif" rendered="#{estudoCaso.status == '3'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Actions-dialog-ok-apply-icon.png" rendered="#{estudoCaso.status == '4'}"></h:graphicImage>
+												
+												<h:outputText value="#{estudoCaso.statusDescricao}" />
+												
+											</p:column>
+											<p:column style="text-align: center;">
+												<f:facet name="header">
+													<h:outputText value="Ações" />
+												</f:facet>
+												<p:commandButton value="Abrir" icon="ui-icon-folder-open" actionListener="#{estudoDeCasoPersistirController.prepararAlterarEstudoDeCaso(estudoCaso)}"  >
+												</p:commandButton>
+											</p:column>
+										</p:dataTable>
+									</p:dialog>  
+									<p:confirmDialog global="true" styleClass="confirmDialog" showEffect="fade" hideEffect="fade">
+								        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+								    </p:confirmDialog>
+					                
+					            </div><!-- /#wrapper -->
+					
+					    	</div><!-- /#middle_align -->
+					    		<div style="width: 100%; height: 200px;"></div>
+					    </div><!-- /#middle -->    
+						</div><!-- /#container -->
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

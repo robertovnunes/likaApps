@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="../resources/css/style.css" media="screen"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="menu">
+			<ul>
+				<a href="login.jsf"><li><br /> Home</li></a>
+				<a href="search.jsf"><li><br />Search</li></a>
+				<a href="#"><li><br />News</li></a>
+				<a href="#"><li><br />Publications</li></a>
+				<a href="#"><li><br />FAQ</li></a>
+				<a href="#"><li><br />Contact</li></a>
+			</ul>
+		</div>
+		<div id="login">
+<div id="formlogin">
+<table>
+
+
+<form method="post" action="#{request.contextPath}/j_spring_security_check">
+		<br/>
+		Email<br/><input type="text" name='j_username' id="textfield" /><br/>
+		Password<br/><input type="password" name='j_password' id="textfield" /><br/>
+		<input type="checkbox" name="_spring_security_remember_me"/>Remember me<br/>
+		<input type="submit" value="Login"/>
+		
+		
+		
+		<!-- <table>
+		<br/>
+			<tr><td>Email</td></tr>
+				<tr><td><input type='text' name='j_username' size="15" id="textfield"/></td></tr>
+			<tr><td>Password</td></tr>
+				<tr><td><input type='password' name='j_password' size="15" id="textfield"/></td></tr>
+			<tr><td align="left"><input type="checkbox" name="_spring_security_remember_me"/>Remember me
+				<input type="submit" value="Login"/></td>
+			</tr>
+			
+		</table> -->
+		<script>
+			document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
+		</script>
+		</form>
+		<h:form>
+   		 	<h:commandButton action="#{userBean.newUser}" value="Sign Up"  />
+
+		</h:form> 
+	
+</table>
+</div>
+</div>
+		<div id="corpo">
+			<div id="texto">
+				<h4>
+					<a href="login.jsf">Home</a> >><a
+						href="showsearch.jsf"> Search result</a>
+				</h4>
+				<br />
+
+				<h:form id="texto" styleClass="centered">
+
+					<h:messages />
+					<div
+						style="height: 400px; width: 970px; overflow-x: auto; overflow-y: auto">
+						<h:dataTable value="#{generalBean.listSearch}"
+							rowClasses="tableOddRow, tableEvenRow" var="general" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<c:facet name="caption">
+	The following listing shows your notifications.
+	</c:facet>
+							<c:facet name="header">General data</c:facet>
+							<h:column>
+								<c:facet name="header">Notification code</c:facet>
+		#{general.notification.codNotification}
+	</h:column>
+							<h:column>
+								<c:facet name="header">Notification date</c:facet>
+		#{general.notifDate}
+	</h:column>
+							<h:column>
+								<c:facet name="header">State</c:facet>
+		#{general.state}
+	</h:column>
+							<h:column>
+								<c:facet name="header">City</c:facet>
+		#{general.city}
+	</h:column>
+							<h:column>
+								<c:facet name="header">Zone</c:facet>
+		#{general.zone}
+	</h:column>
+							<h:column>
+								<c:facet name="header">Country</c:facet>
+		#{general.country}
+	</h:column>
+						</h:dataTable>
+						<h:dataTable value="#{individualBean.listSearch}"
+							rowClasses="tableOddRow, tableEvenRow" var="individual" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<c:facet name="header">Individual data</c:facet>
+							<h:column>
+								<c:facet name="header">Notification code</c:facet>
+		#{individual.notification.codNotification}
+	</h:column>
+	
+						</h:dataTable>
+					</div> 
+				</h:form>
+
+			</div>
+		</div>
+		<div id="footer"></div>
+	</div>
+</h:body>
+</html>

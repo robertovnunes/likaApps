@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"	
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_rest.css" rel="stylesheet"
+	type="text/css" />
+<title>My Notifications</title>
+</head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="mynotifications.jsf"> My Notifications</a>
+				</h4>
+				<br />
+				<h:form id="texto">
+					<h:messages />
+					<div style="width: 774.5px; height: 276px; overflow: auto;">
+						<h:panelGrid width="758" height="30" valign="top" align="left"
+							colspan="2"
+							style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+							<h:outputLabel value="Conclusion"></h:outputLabel>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="758" height="30" align="left"
+							bgcolor="#EBEBD6">
+							<h:outputLabel value="Final diagnosis:" for="finalDiag" />
+							<h:selectOneMenu id="finalDiag"
+								value="#{conclusionBean.selected.finalDiag}">
+								<c:selectItem itemValue="" itemLabel="Select clinical form" />
+								<c:selectItem itemValue="Sporadic_CJD" itemLabel="Sporadic CJD" />
+								<c:selectItem itemValue="Familial_CJD" itemLabel="Familial CJD" />
+								<c:selectItem itemValue="Iatrogenic_CJD"
+									itemLabel="Iatrogenic CJD" />
+								<c:selectItem itemValue="Variant_CJD" itemLabel="Variant CJD" />
+								<c:selectItem itemValue="GSS" itemLabel="GSS" />
+								<c:selectItem itemValue="IFF" itemLabel="IFF" />
+								<c:selectItem itemValue="In_investigation"
+									itemLabel="In investigation" />
+								<c:selectItem itemValue="other"
+									itemLabel="Discarded Case (another diagnosis)" />
+							</h:selectOneMenu>
+							<h:outputLabel value="Evolution case:" for="evolCase" />
+							<h:selectOneMenu id="evolCase"
+								value="#{conclusionBean.selected.evolCase}">
+								<c:selectItem itemValue="" itemLabel="Select the evolution case" />
+								<c:selectItem itemValue="Cure" itemLabel="Cure" />
+								<c:selectItem itemValue="Death_botulism"
+									itemLabel="Death from botulism" />
+								<c:selectItem itemValue="Death_other"
+									itemLabel="Death from other causes" />
+								<c:selectItem itemValue="Ignored" itemLabel="Ignored" />
+							</h:selectOneMenu>
+							<h:outputLabel value="Date of death:" for="deathDate" />
+							<h:inputText id="deathDate"
+								value="#{conclusionBean.selected.deathDate}" required="false"
+								maxlength="10" title="dd/MM/yyyy">
+								<!--  <c:convertDateTime dateStyle="medium"/> -->
+								<c:convertDateTime pattern="dd/MM/yyy" locale="pt_BR"
+									timeZone="America/Sao_Paulo" />
+							</h:inputText>
+							<!-- <h:outputLabel value="Date of closure:" for="closureDate" />
+							<h:inputText id="closureDate"
+								value="#{conclusionBean.selected.clousureDate}" required="false"
+								maxlength="10" title="dd/MM/yyyy">
+								 <c:convertDateTime dateStyle="medium"/>
+								<c:convertDateTime pattern="dd/MM/yyy" locale="pt_BR"
+									timeZone="America/Sao_Paulo" />
+							</h:inputText> -->
+
+							<h:outputLabel></h:outputLabel>
+							<h:outputLabel>
+								<h:commandButton action="#{conclusionBean.edit}" value="Save">
+									<c:param name="id"
+										value="#{conclusionBean.selected.notification.codNotification}" />
+								</h:commandButton>
+								<h:commandButton action="editSource" value="Next">
+									<c:param name="id"
+										value="#{sourceBean.selected.notification.codNotification}" />
+								</h:commandButton>
+							</h:outputLabel>
+						</h:panelGrid>
+					</div>
+				</h:form>
+
+
+			</div>
+		</div>
+		<div id="footer"></div>
+	</div>
+</h:body>
+
+</html>

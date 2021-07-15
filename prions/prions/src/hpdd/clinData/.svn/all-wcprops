@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/clinData
+END
+ClinData.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/clinData/ClinData.java
+END
+ClinDataRN.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/clinData/ClinDataRN.java
+END
+ClinDataDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/clinData/ClinDataDAO.java
+END
+ClinDataDAOHibernate.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/clinData/ClinDataDAOHibernate.java
+END

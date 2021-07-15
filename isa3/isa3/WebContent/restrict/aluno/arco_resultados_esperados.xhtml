@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<body>
+	<ui:composition>
+		<c:if test="#{arcoMagueresController.arcoMaguerez.faseDoArco > 3}"><div class="desabilitar-form"  style="z-index: 9999 !important; height: 100%;"></div></c:if>
+		<f:facet name="title">
+		   <p:graphicImage value="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Disabled-icon.png" rendered="#{arcoMagueresController.arcoMaguerez.faseDoArco lt 3}" />
+	       <p:graphicImage value="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Normal-Red-icon.png" rendered="#{arcoMagueresController.arcoMaguerez.faseDoArco == 3}" />
+	       <p:graphicImage value="#{pageContext.request.contextPath}/resources/imagens/icons/Actions-dialog-ok-apply-icon.png" rendered="#{arcoMagueresController.arcoMaguerez.faseDoArco > 3}" />
+              <h:outputText value="Resultados Esperados" style="margin-left: 5px; margin-top:2px; float: right;" />
+           </f:facet>
+           <p:panel id="panelResultadosEsperados" widgetVar="panelResultadosEsperados" >
+           
+           <p:outputPanel rendered="#{arcoMagueresController.arcoMaguerez.faseDoArco > 3}">
+				<div class="desabilitar-form"  id="desabilitar-form" style="z-index: 9999 !important; height: 100%;"></div>
+			</p:outputPanel>
+			
+           <div class="help">
+              <h3 class="arco hipotese"> Resultados Esperados</h3>
+             Cite as mudanças esperadas após a implementação dos cuidados de Enfermagem.
+             </div>
+              
+              <h:form prependId="false" id="formTabelaDiagnosticosResultadoSelecionadosProfessor">
+				<p:dataTable id="tabelaDiagnosticosResultadoSelecionadosProfessor" emptyMessage="Nenhum Registro Encontrado" rowIndexVar="index" var="nanda" value="#{arcoMagueresController.listarDiagnosticosSelecionadosPeloProfessor}">
+					<p:column  sortBy="#{nanda.id}" >
+						<f:facet name="header">
+							<h:outputText value="ID" />
+						</f:facet>
+						<h:outputText value="#{index+1}" />
+					</p:column>
+					<p:column  sortBy="#{nanda.codigo}" >
+						<f:facet name="header">
+							<h:outputText value="Diagnóstico Cód" />
+						</f:facet>
+						<h:outputText value="#{nanda.codigo}" />
+					</p:column>
+					<p:column  sortBy="#{nanda.termo}" >
+						<f:facet name="header">
+							<h:outputText value="Diagnóstico Termo" />
+						</f:facet>
+						<h:outputText value="#{nanda.termo}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Resultados Esperados" />
+						</f:facet>
+						<c:forEach  items="#{arcoMagueresController.arcoMaguerez.resultadosEsperados.listaResultadosAluno}"  var="diagnosticoResultadosAluno" rowIndexVar="imp">
+							
+							<ui:fragment rendered="#{diagnosticoResultadosAluno.nandaProfessor.id == nanda.id}">
+								<c:forEach  items="#{diagnosticoResultadosAluno.nocsSelecionadosAluno}"  var="nocTemp" varStatus="nocindex">	
+									[<h:outputText value="#{nocTemp.codigo}" />]:<h:outputText value="#{nocTemp.descricao}" />
+									
+									<p:commandButton action="#{arcoMagueresController.excluirNocSelecionado}" update="tabelaDiagnosticosResultadoSelecionadosProfessor" style="height: 15px; width: 25px; margin-left: 5px; padding: 0 !important; border: 0 none; background: none; left: 0;" icon="ui-icon-trash"  value=""  >
+											<f:setPropertyActionListener target="#{arcoMagueresController.nocTemp}" value="#{nocTemp}" />
+											<f:setPropertyActionListener target="#{arcoMagueresController.diagnosticoResultadosAluno}" value="#{diagnosticoResultadosAluno}" />
+											<p:confirm header="Confirmação" message="Você deseja realmente remover?" icon="ui-icon-alert" />
+									</p:commandButton>
+									<br />
+								</c:forEach>
+							</ui:fragment>
+						</c:forEach>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Ações" />
+						</f:facet>
+						<p:commandButton  value="Adicionar Resultado Esperado" action="#{arcoMagueresController.prepararAdicionarNoc}" style="font-size: 10px;" icon="ui-icon-plus" oncomplete="PF('dialogNocs').show();" >
+							<f:setPropertyActionListener target="#{arcoMagueresController.nandaTemp}" value="#{nanda}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<h:form id="formNocsSelecionar">
+                	<p:dialog header="Selecionar Resultado Esperado" widgetVar="dialogNocs" modal="true" width="800" id="dialogNocs">
+            			<p:dataTable id="tabelaNocs" emptyMessage="Nenhum Registro Encontrado" rowIndexVar="index" var="noc" value="#{arcoMagueresController.listarNocs}" paginator="true" rows="10" rowsPerPageTemplate="5,10,15">
+							<p:column  sortBy="#{noc.id}" >
+								<f:facet name="header">
+									<h:outputText value="ID" />
+								</f:facet>
+								<h:outputText value="#{noc.id}" />
+							</p:column>
+							<p:column  sortBy="#{noc.codigo}" filterBy="#{noc.descricao}" >
+								<f:facet name="header">
+									<h:outputText value="Código" />
+								</f:facet>
+								<h:outputText value="#{noc.codigo}" />
+							</p:column>
+							<p:column  sortBy="#{noc.descricao}" filterBy="#{noc.descricao}">
+								<f:facet name="header">
+									<h:outputText value="Descrição" />
+								</f:facet>
+								<h:outputText value="#{noc.descricao}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Ações" />
+								</f:facet>
+								<p:commandButton action="#{arcoMagueresController.adicionarNoc}"  oncomplete="PF('dialogNocs').hide();"  update=":tabView:formTabelaDiagnosticosResultadoSelecionadosProfessor:tabelaDiagnosticosResultadoSelecionadosProfessor" value="Adicionar" icon="ui-icon ui-icon-plus">
+									<p:confirm header="Confirmação" message="Você deseja realmente adicionar?" icon="ui-icon-alert" />
+								</p:commandButton>
+							</p:column>
+            			</p:dataTable>
+					</p:dialog> 
+				</h:form>
+				<br /><br />
+				<table class="navegacao" style="position: relative; z-index:2;">
+	            	<tr>
+		             	<td style="vertical-align: top;">
+		               		<p:commandButton value="Voltar" type="button" onclick="PF('tabView').select(2);"  icon="ui-icon-triangle-1-w" />
+		                </td>
+		                <td class="space"></td>
+		            	<td class="left">    
+					        <p:commandButton value="Limpar" type="button"  icon="ui-icon-close" />
+		                </td>
+		               <td class="right">
+					        <p:commandButton value="Salvar" type="button" oncomplete="PF('dlg').show()" icon="ui-icon-disk" validateClient="true">
+					        	<p:confirm header="Confirmação" message="Você deseja realmente salvar?" icon="ui-icon-alert" />
+					        </p:commandButton>
+	               		 </td>
+		                <td class="space"></td>
+		                 <td style="vertical-align: top;">
+		        			<p:commandButton value="Avançar" id="avancarResultadosEsperados"  update="tabView, panelResultadosEsperados" actionListener="#{arcoMagueresController.avancarFase(4)}"   icon="ui-icon-triangle-1-e" validateClient="true">
+					        	<p:confirm header="Confirmação" message="Você deseja realmente avançar a fase?" icon="ui-icon-alert" />
+					        </p:commandButton>
+		                </td>
+	              </tr>
+	            </table>
+           </p:panel>
+	</ui:composition>
+</body>
+</html>
+
+

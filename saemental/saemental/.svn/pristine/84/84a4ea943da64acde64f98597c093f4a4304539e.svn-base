@@ -1,0 +1,100 @@
+	<%@ taglib uri="http://struts.apache.org/tags-html" prefix="h" %>
+		<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+		<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+
+ <div align="center" style="margin-left:35%;">
+                    <ul id="menu_dropdown" class="menubar">
+                        <li class="submenu">
+                            <a><span>Novo Atendimento</span></a>
+                            <ul class="menu">
+                                <li>
+                                    <a href="atendimento.do?method=novoAtendimentoPaciente&tipo=admissao&id=${paciente.id}">Admiss&atilde;o</a>
+                                </li>
+                                <li>
+                                    <a href="atendimento.do?method=novoAtendimentoPaciente&tipo=readmissao&id=${paciente.id}">Readmiss&atilde;o</a>
+                                </li>
+                                <li>
+                                    <a href="atendimento.do?method=novoAtendimentoPaciente&tipo=evolucao&id=${paciente.id}">Evolu&ccedil;&atilde;o</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="antendimento.do?method=antedimentosPaciente&id=${paciente.id}" ><span>Atendimentos</span></a>
+                        </li>
+                        <li class="submenu">
+                            <a href="paciente.do?method=mostrarTelaPacienteEditar&id=${paciente.id}"><span>Editar Cadastro</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <br/>
+                <br/>
+                <div id="menu3">
+                   	<h3>
+                   		<c:if test="${atendimento.tipo == 'ADMISSAO'}">Admissão </c:if>
+                        <c:if test="${atendimento.tipo == 'READMISSAO'}">Readmissão</c:if>
+                        <c:if test="${atendimento.tipo == 'EVOLUCAO'}">Evolução</c:if>
+                   	</h3>
+               		<br/>
+                    <ul id="nav_atendimentos" class="menu" style="z-index:2 !important;">
+                        <li>
+                           <a href="atendimento.do?method=mostrarTelaAtendimentoQueixa"  onclick="redimensionar('1100px');">Queixa da doen&ccedil;a atual</a>
+                        </li>
+                        <c:if test="${atendimento.tipo != 'EVOLUCAO'}">
+                         <li class="submenu">
+                            <a href="#">Hist&oacute;rico</a>
+                            <ul>
+                                <li>
+                                    <a href="atendimento.do?method=mostrarTelaAtendimentoAntPessoais"  onclick="redimensionar('3500px');">Antecedente Pessoais</a>
+                                </li>
+                                <li>
+                                    <a href="atendimento.do?method=mostrarTelaAtendimentoAntFamiliares"  onclick="redimensionar('700px');">Antecedentes Familiares</a>
+                                </li>
+                            </ul>
+                        </li>
+                        </c:if>
+                        <li class="submenu">
+                            <a href="atendimento.do?method=mostrarTelaAtendimentoNecessidades"  onclick="redimensionar('600px');">Necessidades B&aacute;sicas</a>
+                            
+                        </li>
+						 <li class="submenu">
+                            <a href="exameFisico.do?method=mostrarTelaExameFisicoEscolhido&exameEscolhido=fExameFisicoSinaisVitais"  onclick="redimensionar('700px');">Exame F&iacute;sico</a>
+                           
+                        </li>
+						 <li class="submenu">
+                            <a href="#">Exame Mental</a>
+                             <ul>
+                                <li>
+                                    <a href="atendimento.do?method=mostrarTelaAtendimentoExMentalGeral"  onclick="redimensionar('2000px');">Exame Geral</a>
+                                </li>
+                                <li>
+                                    <a href="atendimento.do?method=mostrarTelaAtendimentoExMentalMini"  onclick="redimensionar('1500px');">Mini-Mental</a>
+                                </li>
+                            </ul>
+                        </li>
+                         <li class="submenu">
+                            <a href="atendimento.do?method=mostrarTelaAdmissaProcEnfermagem"  onclick="redimensionar('1100px');">Diagn&oacute;sticos e Interven&ccedil;&otilde;es</a>
+                        </li>
+                        <li>
+                        	<br /><br />
+                        </li>
+                          <li class="submenu">
+                            <a href="atendimento.do?method=mostrarTelaAtendimentoAlta"  onclick="redimensionar('800px');">Orienta&ccedil;&otilde;es para Alta</a>
+                        </li>
+                        <li>
+                        	<br /><br />
+                        </li>
+                        <li class="submenu">
+                            <a href="atendimento.do?method=mostrarTelaAtendimentoAssAtendimento"  onclick="redimensionar('700px');">Assinar Atendimento</a>
+                        </li>
+                        <li>
+                        	<br /><br />
+                        </li>
+                         <li class="submenu">
+                            <a href="atendimento.do?method=mostrarTelaAtendimentoAvaliacaoProf"  onclick="redimensionar('700px');">Avalia&ccedil;&otilde;es do Professor</a>
+                        </li>
+                         <li class="submenu">
+                            <a href="atendimento.do?method=mostrarTelaAdmissaObsAtendimento"  onclick="redimensionar('700px');">Adendos</a>
+                        </li>
+						
+                    </ul>
+                </div>

@@ -1,0 +1,202 @@
+package logic;
+
+import interceptor.AutorizadorProfessorTutorInterceptor;
+import interceptor.DaoInterceptor;
+
+import model.Aluno;
+import model.Avaliacao;
+import model.Equipe;
+import model.Periodo;
+import model.Professor;
+import model.Tutor;
+import model.Usuario;
+
+import org.vraptor.annotations.Component;
+import org.vraptor.annotations.In;
+import org.vraptor.annotations.InterceptedBy;
+import org.vraptor.annotations.Out;
+import org.vraptor.i18n.FixedMessage;
+import org.vraptor.plugin.hibernate.Validate;
+import org.vraptor.scope.ScopeType;
+import org.vraptor.validator.ValidationErrors;
+
+import dao.DaoFactory;
+
+/**
+ * @author RCM
+ *
+ */
+@Component("avaliacao")
+@InterceptedBy({DaoInterceptor.class, AutorizadorProfessorTutorInterceptor.class})
+public class AvaliacaoLogic {
+
+	private final DaoFactory factory;
+	
+	@In(scope = ScopeType.SESSION, required = true) 
+	private Usuario usuario;
+
+	@In(scope = ScopeType.SESSION, required = false)
+	@Out(scope = ScopeType.SESSION)
+	private Equipe equipe;
+
+	private Aluno aluno;
+
+	private Avaliacao avaliacao;
+	
+	@In(scope = ScopeType.SESSION, required = false)
+	@Out(scope = ScopeType.SESSION)
+	private Periodo periodo;
+	
+	public AvaliacaoLogic(DaoFactory daoFactory) {
+		this.factory = daoFactory;
+	}
+	
+	//---------------- AVALIACAO ------------------
+	
+	public void avaliarEquipe(Equipe equipe) {
+		this.equipe = this.factory.getDaoEquipe().procura(equipe.getId());
+	}
+	
+	public void notasEquipe(Equipe equipe) {
+		this.equipe = this.factory.getDaoEquipe().procura(equipe.getId());
+		long i=7;
+		Aluno teste = this.factory.getDaoAluno().recuperarAlunoPorLogin("aam");
+		System.out.println(teste);
+	}
+	
+	
+	public void avaliarAluno(Aluno aluno) {
+		this.aluno = this.factory.getDaoAluno().procura(aluno.getId());
+	}
+	
+	public void formularioAvaliacaoAluno(Aluno aluno) {
+		if(aluno.getId() != null){
+			this.aluno = this.factory.getDaoAluno().procura(aluno.getId());
+		}
+		else if(this.aluno.getId() != null){
+			this.aluno = this.factory.getDaoAluno().procura(this.aluno.getId());
+		}
+	}
+	
+	@Validate(params={"avaliacao"})
+	public String cadastrarAvaliacao(Avaliacao avaliacao) {
+		if(avaliacao.getDominioAcademico().equalsIgnoreCase("F") ){
+			if(avaliacao.getDominioCognitivo().equalsIgnoreCase("F")){
+				avaliacao.setMedia((float)-1);
+			}else{
+				avaliacao.setMedia(Float.parseFloat(avaliacao.getDominioCognitivo()) );
+			}
+		}
+		else if(avaliacao.getDominioCognitivo().equalsIgnoreCase("F")){
+			if(avaliacao.getDominioAcademico().equalsIgnoreCase("F")){
+				avaliacao.setMedia((float)-1);
+			}else{
+				avaliacao.setMedia(Float.parseFloat(avaliacao.getDominioAcademico()));
+			}
+		}
+		else{
+			avaliacao.setMedia((Float.parseFloat(avaliacao.getDominioAcademico()) + Float.parseFloat(avaliacao.getDominioCognitivo())) / 2 );
+		}
+		
+		avaliacao.setAluno(this.factory.getDaoAluno().procura(avaliacao.getAluno().getId()));
+		this.factory.beginTransaction();
+		this.factory.getDaoAvaliacao().adiciona(avaliacao);
+		this.factory.commit();
+
+		if(usuario instanceof Tutor) return "tutor";
+		if(usuario instanceof Professor) return "professor";
+		return "invalid";
+	}
+	
+	public void validateCadastrarAvaliacao(ValidationErrors errors, Avaliacao avaliacao){
+		this.aluno = avaliacao.getAluno();
+		if(avaliacao.getDominioAcademico()!= "" && !avaliacao.getDominioAcademico().equalsIgnoreCase("F")){
+			Float f = Float.parseFloat(avaliacao.getDominioAcademico());
+			if(f < 0 || f > 10){
+				errors.add(new FixedMessage("","Insira valores entre 0 e 10",""));
+				return;
+			}
+		}
+		if(avaliacao.getDominioCognitivo() != "" && !avaliacao.getDominioCognitivo().equalsIgnoreCase("F")){
+			Float f = Float.parseFloat(avaliacao.getDominioCognitivo());
+			if(f < 0 || f > 10){
+				errors.add(new FixedMessage("","Insira valores entre 0 e 10",""));
+				return;
+			}
+		}
+	}
+	
+	public void editarAvaliacao(Avaliacao avaliacao) {
+		this.avaliacao = this.factory.getDaoAvaliacao().procura(avaliacao.getIdAvaliacao());
+		this.formularioAvaliacaoAluno(this.avaliacao.getAluno());
+	}
+	
+	public String removerAvaliacao(Avaliacao avaliacao) {
+		this.factory.beginTransaction();
+		this.factory.getDaoAvaliacao().remover(avaliacao.getIdAvaliacao());
+		this.factory.commit();
+		
+		if(usuario instanceof Tutor) return "tutor";
+		if(usuario instanceof Professor) return "professor";
+		return "invalid";
+	}
+	
+	
+	public void detalharEquipe(Equipe equipe) {
+		this.equipe = this.factory.getDaoEquipe().procura(equipe.getId());
+	}
+	// --------------- Tabela de Notas ------------------
+	
+	public void notas(){
+		this.equipe = this.factory.getDaoEquipe().procura(this.equipe.getId());
+	}
+	
+	
+	
+	// --------------- GETTERS e SETTERS ----------------
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public DaoFactory getFactory() {
+		return factory;
+	}
+
+	public Equipe getEquipe() {
+		return equipe;
+	}
+
+	public void setEquipe(Equipe equipe) {
+		this.equipe = equipe;
+	}
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+	public Avaliacao getAvaliacao() {
+		return avaliacao;
+	}
+
+	public void setAvaliacao(Avaliacao avaliacao) {
+		this.avaliacao = avaliacao;
+	}
+
+	public Periodo getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(Periodo periodo) {
+		this.periodo = periodo;
+	}
+	
+}

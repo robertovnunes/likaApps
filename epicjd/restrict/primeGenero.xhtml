@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_rest.css" rel="stylesheet"
+	type="text/css" />
+<title>My Notifications</title>
+</head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+<h1>News</h1>
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a href="restricted_news.jsf"> News</a> >> Graphics of cases by gender
+				</h4>
+
+				<p></p>
+
+				<h3>Graphics of cases by gender</h3>
+				<p:pieChart value="#{casosGeneroBean.modeloGenero}"
+					legendPosition="w" title="Cases by gender"
+					style="width:600px;height:350px;" />
+
+			</div>
+
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+
+</html>

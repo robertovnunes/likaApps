@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Ambulatório</title>
+</h:head>
+<h:body>
+	<f:event listener="#{ambulatorio.carregarAmbulatorio(principalAluno.usuarioLogado, principalAluno.cursoSelecionado)}"
+		type="javax.faces.event.PostAddToViewEvent">
+	</f:event>
+	<rich:panel id="panel_PrincipalAmbulatorio" styleClass="panel_invisivel">
+		<h:outputLabel value="Organizar Ambulatório" styleClass="titulo_principal_pagina"/>
+		<br />
+		<h:outputLabel value="Selecionar mobília/ equipamentos de informática e eletroeletrônico" styleClass="campo_titulo" />
+		<br />
+		<rich:pickList id="picklist_Mobilia"
+			value="#{ambulatorio.mobiliaSelecionada}" addText="Adicionar"
+			addAllText="Adicionar todos" removeText="Remover"
+			removeAllText="Remover Todos">
+			<f:selectItems value="#{ambulatorio.mobiliaDisponivel}" var="mobilia"
+				itemLabel="#{mobilia}" itemValue="#{mobilia}" />
+		</rich:pickList>
+		<br />
+		<h:outputLabel value="Selecionar materiais de uso corrente"
+			styleClass="campo_titulo" />
+		<br />
+		<rich:pickList id="picklist_Materiais"
+			value="#{ambulatorio.materialSelecionado}" addText="Adicionar"
+			addAllText="Adicionar todos" removeText="Remover"
+			removeAllText="Remover Todos">
+			<f:selectItems value="#{ambulatorio.materialDisponivel}"
+				var="material" itemLabel="#{material}"
+				itemValue="#{material}" />
+		</rich:pickList>
+		<br />
+		<h:outputLabel value="Selecionar equipamentos de uso clínico"
+			styleClass="campo_titulo" />
+		<br />
+		<rich:pickList id="picklist_Equipamentos"
+			value="#{ambulatorio.equipamentosSelecionados}" addText="Adicionar"
+			addAllText="Adicionar todos" removeText="Remover"
+			removeAllText="Remover Todos">
+			<f:selectItems value="#{ambulatorio.equipamentosDisponiveis}"
+				var="equipamento" itemLabel="#{equipamento}"
+				itemValue="#{equipamento}" />
+		</rich:pickList>
+		<br />
+		<h:commandButton value="Salvar Ambulatório"
+			actionListener="#{ambulatorio.salvarAmbulatorio()}" />
+		<h:commandButton value="Voltar"
+			actionListener="#{principalAluno.apagarConteudo}"
+			render="document.getelementbyid(panelGroup_Target)"
+			rendered="#{principalAluno.mostrarFuncionalidades}" />
+	</rich:panel>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:body>
+</html>

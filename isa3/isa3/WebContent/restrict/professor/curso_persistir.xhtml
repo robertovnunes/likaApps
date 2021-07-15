@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout_professor.xhtml">
+	
+			<ui:define name="content"> 
+			<div id="container">
+			    <div id="middle">    
+					<div id="middle_align">
+			            <div id="wrapper" class="logado professor">
+			            <h3 class="bread">Curso</h3>
+			            
+				<div style="padding:30px; padding-top:10px;">
+					<div class='page-header page-header-intro'>
+					</div>
+				<h:form id="formMessages">
+					    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				</h:form>
+				<br />
+				<div class='panel panel-default'>
+						<div class='panel-heading'>
+							<span class='ico-br-gov-mps'></span>
+							Informe os dados do formulário abaixo
+							<br /><br />
+						</div>
+						<div class='panel-body'>
+							<div class='row'>
+								<div class='col-md-10'>
+									 <div class="form-group">
+							          		<p:fieldset legend="Curso" style="margin-bottom:20px">
+								                <h:form  id="formCursoDetalhes" enctype="multipart/form-data">
+								              		<p:confirmDialog global="true" styleClass="confirmDialog" showEffect="fade" hideEffect="fade">
+												        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+												        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+												    </p:confirmDialog>
+								                	<h:outputLabel for="titulo" value="Título: *"  />
+													<h:inputText id="titulo" value="#{cursoProfessorPersistirController.curso.titulo}" required="true"  label="Título"  />
+													<br />
+								                	<p:outputLabel for="dataInicio" value="Data Início:" />
+        											<p:calendar id="dataInicio" value="#{cursoProfessorPersistirController.curso.dataInicio}" pattern="dd/MM/yyyy"  required="true" label="Data Inicial" mask="true" >
+        												 <p:ajax event="dateSelect" update="dataFim" />
+        											</p:calendar>
+ 													<br />
+ 													<p:outputLabel for="dataFim" value="Data Fim:" />
+       												<p:calendar id="dataFim" value="#{cursoProfessorPersistirController.curso.dataFim}" mindate="#{cursoProfessorPersistirController.curso.dataInicio}" pattern="dd/MM/yyyy" mask="true" required="true" label="Data Final" >
+        											</p:calendar>
+ 													<br />
+ 													<p:outputLabel for="ementa" value="Ementa:" />
+ 													<p:editor id="ementa" widgetVar="ementa" value="#{cursoProfessorPersistirController.curso.ementa}" required="true" width="600" />
+ 													<br />
+ 													<p:outputLabel for="objetivos" value="Objetivos:" />
+ 													<p:editor id="objetivos" widgetVar="objetivos" value="#{cursoProfessorPersistirController.curso.objetivos}" required="true" width="600" />
+ 													<br />
+ 													<p:outputLabel for="metodologia" value="Metodologia:" />
+ 													<p:editor id="metodologia" widgetVar="metodologia" value="#{cursoProfessorPersistirController.curso.metodologia}" required="true" width="600" />
+ 													<br />
+													<h:outputLabel for="status" value="Status: *"  />
+													<p:selectOneMenu id="status" required="true" value="#{cursoProfessorPersistirController.curso.status}" label="status" style="width:200px">
+										                <f:selectItem itemLabel="ANDAMENTO" itemValue="0"></f:selectItem>
+														<f:selectItem itemLabel="PAUSA" itemValue="1"></f:selectItem>
+														<f:selectItem itemLabel="PREVISTO" itemValue="2"></f:selectItem>
+														<f:selectItem itemLabel="BLOQUEADO" itemValue="3"></f:selectItem>
+														<f:selectItem itemLabel="CONCLUIDO" itemValue="4"></f:selectItem>
+										            </p:selectOneMenu>
+													<br />
+													<p:outputLabel value="Professor Responsável: *" for="professor" />
+							 					    <p:autoComplete id="professor" size="50" dropdown="true" value="#{cursoProfessorPersistirController.curso.professor.nome}" required="true" completeMethod="#{cursoProfessorPersistirController.completeText}" />
+													<br />
+													<p:panel id="panelArquivosCurso" style="border: none; margin: 0; padding: 0;">
+														<h:outputLabel value="Arquivos do Curso: *"  />
+														 <c:forEach items="#{cursoProfessorPersistirController.curso.arquivos}" var="arquivo" varStatus="index">
+										           				<a href="#{request.contextPath}/baixarArquivo?method=baixarArquivo&amp;idArquivo=#{arquivo.id}" target="_blank">
+										           					<img src="#{request.contextPath}/resources/imagens/icons/Status-mail-attachment-icon.png" />
+										           					<h:outputText value="#{arquivo.nomeArqv}"></h:outputText>
+										           				</a>
+										           				<p:commandButton
+																	actionListener="#{cursoProfessorPersistirController.excluirArquivo(arquivo)}" immediate="true" 
+																	update="panelArquivosCurso" value="" 
+																	style="height: 15px; width: 25px; margin-left: 5px; padding: 0 !important; border: 0 none; background: none; left: 0;" icon="ui-icon-trash">
+																	<p:confirm header="Confirmação"
+																		message="Você deseja realmente remover?" icon="ui-icon-alert" />
+																</p:commandButton>
+																<br />
+										           		</c:forEach>
+														 <p:fileUpload fileUploadListener="#{cursoProfessorPersistirController.handleFileUpload}"  immediate="true" mode="advanced" invalidFileMessage="Tipo do Arquivo inválido" 
+													 		update="panelArquivosCurso" fileSizeMessage="O tamanho do arquivo é muito grande" cancelLabel="Cancelar" label="Selecionar" 
+	                										 sizeLimit="10000000"  />
+													</p:panel>
+													<br /><br />
+													<c:if test="#{cursoProfessorPersistirController.curso.id == 0}">
+														<p:commandButton actionListener="#{cursoProfessorPersistirController.adicionarCurso}" value="Salvar" validateClient="true" >
+															<p:confirm header="Confirmação" message="Você deseja realmente salvar?" icon="ui-icon-alert" />
+														</p:commandButton>
+													</c:if>
+													<c:if test="#{cursoProfessorPersistirController.curso.id != 0}">
+														<p:commandButton actionListener="#{cursoProfessorPersistirController.alterarCurso}" value="Salvar" validateClient="true" >
+															<p:confirm header="Confirmação" message="Você deseja realmente alterar?" icon="ui-icon-alert" />
+														</p:commandButton>
+													</c:if>
+													<br />
+									                <br />
+												</h:form>
+			    							</p:fieldset>
+									      
+								    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Auto-Avaliacao</title>
+</h:head>
+<h:body>
+	<f:event listener="#{autoAvaliacao.setUsuarioCurso(logon.usuarioLogado, principalAluno.cursoSelecionado)}"
+		type="javax.faces.event.PostAddToViewEvent" />
+	<rich:panel id="panel_tituloAvaliacao" styleClass="panel_invisivel">
+		<h:outputText
+			value="Opinião de #{principalAluno.usuarioLogado.nome} sobre o curso"
+			styleClass="titulo_principal_pagina" />
+	</rich:panel>
+	<rich:panel id="panel_autoAvaliacao" styleClass="panel_invisivel">
+		<h:outputText
+			value="1ª: A partir dos três cenários educativos que voce conheceu no curso, fale sobre os pontos facilitadores
+		 e dificultadores em relação ao processo de aprendizagem da SAE"
+			styleClass="campo_titulo" />
+		<br />
+		<h:inputTextarea value="#{autoAvaliacao.respostaPerguntaUm}"
+			cols="200" rows="5" />
+		<br />
+		<h:outputText
+			value="2ª: A partir da sua experiência na utilização do software educativo durante o curso,
+		 fale sobre os pontos positivos e negativos do sistema."
+			styleClass="campo_titulo" />
+		<br />
+		<h:inputTextarea value="#{autoAvaliacao.respostaPerguntaDois}"
+			cols="200" rows="5" />
+		<br />
+		<h:commandButton value="Salvar"
+			onclick="return confirm('Atenção: O feedback pode ser enviado apenas uma vez por aluno. Tem certeza que deseja enviar?');"
+			actionListener="#{autoAvaliacao.salvarFeedback(logon.usuarioLogado, principalAluno.cursoSelecionado)}" />
+		<h:commandButton value="Sair"
+			actionListener="#{principalAluno.apagarConteudo(arcoPrincipal.apagarConteudo())}"
+			render="document.getelementbyid(panelGroup_Target)" />
+	</rich:panel>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:body>
+</html>

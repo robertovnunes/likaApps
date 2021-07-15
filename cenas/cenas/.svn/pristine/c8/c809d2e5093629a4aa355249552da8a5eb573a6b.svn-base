@@ -1,0 +1,257 @@
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- ViewVC :: http://www.viewvc.org/ -->
+<head>
+<title>[svn] Log of /External/Hibernate/junit-3.8.1.jar</title>
+<meta name="generator" content="ViewVC 1.0.1" />
+<link rel="stylesheet" href="/cgi-bin/viewvc.cgi/*docroot*/styles.css" type="text/css" />
+
+</head>
+<body>
+<div class="vc_navheader">
+
+<form method="get" action="/cgi-bin/viewvc.cgi/">
+
+<table style="padding:0.1em;">
+<tr>
+<td>
+<strong>
+
+<a href="/cgi-bin/viewvc.cgi/">
+
+[svn]</a>
+/
+
+<a href="/cgi-bin/viewvc.cgi/External/">
+
+External</a>
+/
+
+<a href="/cgi-bin/viewvc.cgi/External/Hibernate/">
+
+Hibernate</a>
+/
+
+
+
+junit-3.8.1.jar
+
+
+</strong>
+
+</td>
+<td style="text-align:right;">
+
+
+<strong>Repository:</strong>
+<select name="root" onchange="submit()">
+
+
+<option value="*viewroots*">Repository Listing</option>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<optgroup label="Subversion Repositories"><option selected="selected">svn</option></optgroup>
+
+</select>
+<input type="submit" value="Go" />
+
+</td>
+</tr>
+</table>
+
+</form>
+
+</div>
+<div style="float: right; padding: 5px;"><a href="http://www.viewvc.org/"><img src="/cgi-bin/viewvc.cgi/*docroot*/images/logo.png" alt="ViewVC logotype" width="128" height="48" /></a></div>
+<h1>Log of /External/Hibernate/junit-3.8.1.jar</h1>
+
+<p style="margin:0;">
+
+<a href="/cgi-bin/viewvc.cgi/External/Hibernate/"><img src="/cgi-bin/viewvc.cgi/*docroot*/images/back_small.png" width="16" height="16" alt="Parent Directory" /> Parent Directory</a>
+
+
+
+
+</p>
+
+<hr />
+<table class="auto">
+
+
+
+<tr>
+<td>Links to HEAD:</td>
+<td>
+(<a href="/cgi-bin/viewvc.cgi/External/Hibernate/junit-3.8.1.jar?view=markup">view</a>)
+(<a href="/cgi-bin/viewvc.cgi/External/Hibernate/junit-3.8.1.jar?view=co">download</a>)
+
+(<a href="/cgi-bin/viewvc.cgi/External/Hibernate/junit-3.8.1.jar?view=annotate">annotate</a>)
+</td>
+</tr>
+
+
+
+<tr>
+<td>Sticky Revision:</td>
+<td><form method="get" action="/cgi-bin/viewvc.cgi" style="display: inline">
+<input type="hidden" name="orig_pathtype" value="FILE" /><input type="hidden" name="orig_view" value="log" /><input type="hidden" name="orig_path" value="External/Hibernate/junit-3.8.1.jar" /><input type="hidden" name="view" value="redirect_pathrev" />
+
+<input type="text" name="pathrev" value="" size="6"/>
+
+<input type="submit" value="Set" />
+</form>
+
+</td>
+</tr>
+</table>
+ 
+
+
+
+
+
+
+
+
+<div>
+<hr />
+
+<a name="rev629"></a>
+
+
+Revision <a href="/cgi-bin/viewvc.cgi?view=rev&amp;revision=629"><strong>629</strong></a> -
+
+(<a href="/cgi-bin/viewvc.cgi/External/Hibernate/junit-3.8.1.jar?revision=629&amp;view=markup">view</a>)
+
+(<a href="/cgi-bin/viewvc.cgi/External/Hibernate/junit-3.8.1.jar?revision=629">download</a>)
+
+(<a href="/cgi-bin/viewvc.cgi/External/Hibernate/junit-3.8.1.jar?annotate=629">annotate</a>)
+
+
+
+- <a href="/cgi-bin/viewvc.cgi/External/Hibernate/junit-3.8.1.jar?r1=629&amp;view=log">[select for diffs]</a>
+
+
+
+
+<br />
+
+Added
+
+<em>Wed Dec 27 21:31:26 2006 UTC</em> (20 months, 1 week ago) by <em>erobbins</em>
+
+
+
+
+
+
+
+<br />File length: 121070 byte(s)
+
+
+
+
+
+
+
+
+
+
+<pre class="vc_log">Initial checkin
+</pre>
+</div>
+
+ 
+
+
+
+ <hr />
+<p><a name="diff"></a>
+This form allows you to request diffs between any two revisions of this file.
+For each of the two "sides" of the diff,
+
+enter a numeric revision.
+
+</p>
+<form method="get" action="/cgi-bin/viewvc.cgi/External/Hibernate/junit-3.8.1.jar" name="diff_select">
+<table cellpadding="2" cellspacing="0" class="auto">
+<tr>
+<td>&nbsp;</td>
+<td>
+<input type="hidden" name="view" value="diff" />
+Diffs between
+
+<input type="text" size="12" name="r1"
+value="629" />
+
+and
+
+<input type="text" size="12" name="r2" value="629" />
+
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>
+Type of Diff should be a
+<select name="diff_format" onchange="submit()">
+<option value="h" selected="selected">Colored Diff</option>
+<option value="l" >Long Colored Diff</option>
+<option value="u" >Unidiff</option>
+<option value="c" >Context Diff</option>
+<option value="s" >Side by Side</option>
+</select>
+<input type="submit" value=" Get Diffs " />
+</td>
+</tr>
+</table>
+</form>
+
+
+<form method="get" action="/cgi-bin/viewvc.cgi/External/Hibernate/junit-3.8.1.jar">
+<div>
+<hr />
+<a name="logsort"></a>
+<input type="hidden" name="view" value="log" />
+Sort log by:
+<select name="logsort" onchange="submit()">
+<option value="cvs" >Not sorted</option>
+<option value="date" selected="selected">Commit date</option>
+<option value="rev" >Revision</option>
+</select>
+<input type="submit" value=" Sort " />
+</div>
+</form>
+
+
+<hr />
+<table>
+<tr>
+<td><address><a href="mailto:erobbins@pactolus.com">erobbins@pactolus.com</a></address></td>
+<td style="text-align: right;"><strong><a href="/cgi-bin/viewvc.cgi/*docroot*/help_log.html">ViewVC Help</a></strong></td>
+</tr>
+<tr>
+<td>Powered by <a href="http://viewvc.tigris.org/">ViewVC 1.0.1</a></td>
+<td style="text-align: right;">&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>
+
+

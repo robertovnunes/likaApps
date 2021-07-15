@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_rest.css" rel="stylesheet" type="text/css" />
+<title>Home</title>
+</head>
+
+<h:body>
+<div id="header">
+<div id="logo">
+</div>
+<div id="flags">
+<a href="#"><img src="../resources/imagens/bra.gif"/></a>
+<a href="#"><img src="../resources/imagens/eua.gif"/></a>
+</div>
+<div id="welcome">
+<table title="User status" align="center">
+	<b>User logged: #{request.remoteUser}</b>
+	<br/>
+	Welcome, #{contextoBean.loggedUser.name}!
+
+</table>
+</div>
+<div id="menu">
+<ul>
+<a href="home_restricted.jsf"><li><br /> Home</li></a>
+<a href="restricted_update.html"><li><br />Update data</li></a>
+<a href="reportcases.jsf"><li><br />Report case</li></a>
+<a href="mynotifications.jsf"><li><br />My notifications</li></a>
+<a href="restricted_search.html"><li><br />Search</li></a>
+<a href="restricted_news.html"><li><br />News</li></a>
+<a href="restricted_publications.html"><li><br />Publications</li></a>
+<a href="restricted_faq.html"><li><br />FAQ</li></a>
+<a href="restricted_contact.html"><li><br />Contact</li></a>
+<a onclick="document.location='#{request.contextPath}/j_spring_security_logout'"><li><br />Logout</li></a>
+</ul>
+</div>
+<div id="corpo">
+<div id="texto">
+<h1>Report case</h1>
+    <h4><a href="home_restricted.jsf">Home</a> >><a href="restricted_notify.html"> Report case </a> >> Images</h4><br/>
+    <ul id="nav">
+                                        <!-- CSS Tabs -->
+<li><a href="restrictednotifygeneraledit.jsf">General</a></li>
+					<li><a href="restrictednotifyindividualedit.jsf"><span>Individual</span></a></li>
+					<!--<li><a href="restrictednotifyresidentialedit.jsf"><span>Residential</span></a></li>-->
+					<!-- <li><a href="restrictednotifysuspicionedit.jsf"><span>Primary
+								diagnostic</span></a></li> -->
+					<li><a href="restrictednotifydataedit.jsf"><span>Clinical
+								info</span></a></li>
+					<li><a href="restrictednotifyaspectsedit.jsf"><span>Epidemiological
+								aspects</span></a></li>
+					<li><a href="restrictednotifyresultsedit.jsf"><span>Exames</span></a></li>
+					<li><a href="restrictednotifyconclusionedit.jsf"><span>Conclusion</span></a></li>
+					<li><a href="restrictednotifysourceedit.jsf"><span>Source</span></a></li>
+					<li><a href="restrictednotifyresumeedit.jsf"><span>Clinical
+								History</span></a></li>
+					<li><a class="active" href="restrictednotifyimagesedit.jsf"><span>Images</span></a></li>
+					</ul>
+
+<h:form id="texto">
+		<h:messages/>
+		<div style="width: 810px; height: 350px; overflow: auto;">
+<h:panelGrid width="793" height="30" valign="top" align="left" colspan="2" style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+			<h:outputLabel value="Images"></h:outputLabel>
+		</h:panelGrid>	
+		<h:panelGrid columns="2" width="793" height="30" valign="top" align="left" bgcolor="#EBEBD6">	
+			<h:outputLabel value="Image: " for="resume" />
+			<h:inputTextarea id="images" value="#{imagesBean.selected.image}" required="false" cols="80" rows="2" />
+			
+			<h:outputLabel></h:outputLabel>
+			<h:outputLabel>
+			<h:commandButton styleClass="botao"  value="Save" action="#{imagesBean.edit}" />
+			<!-- <h:commandLink action="/restrict/restrictednotifyindividual" title="Next">
+				<h:commandButton value="Next" action="individual" />
+			</h:commandLink> -->
+			</h:outputLabel>
+			<h:outputLabel></h:outputLabel>
+			<h:outputLabel></h:outputLabel>
+			<h:outputLabel></h:outputLabel>
+			<h:outputLabel><h:commandButton styleClass="botao" value="Finish" action="imagesCreated" /></h:outputLabel>
+		</h:panelGrid>
+		</div>
+	</h:form>
+
+
+	<br/>
+	<!-- <img src="../resources/imagens/seq_clih.gif"/> -->
+
+</div>
+</div>
+<div id="footer">
+</div>
+</div>
+</h:body>
+
+</html>

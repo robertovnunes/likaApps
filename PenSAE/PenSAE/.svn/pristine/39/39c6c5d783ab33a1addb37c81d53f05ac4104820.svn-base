@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:t="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Avaliação</title>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:head>
+<h:body>
+	<f:event
+		listener="#{principalAvaliacao.setAlunosEstudoCasos(principalAluno.usuarioLogado)}"
+		type="javax.faces.event.PreRenderViewEvent" />
+	<f:view>
+		<rich:panel styleClass="panel_invisivel">
+			<h:outputLabel id="outputLabel_TituloPagina"
+				styleClass="titulo_principal_pagina" value="Estudos de Caso" />
+		</rich:panel>
+		<br />
+		<rich:dataTable value="#{principalAvaliacao.alunosEstudoCasos}"
+			var="aec">
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="Curso" />
+				</f:facet>
+				<h:outputText value="#{aec.estudocaso.curso.nome}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="Estudo de Caso" />
+				</f:facet>
+				<h:outputText value="#{aec.estudocaso.nome}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="Observação da Realidade" />
+				</f:facet>
+				<t:graphicImage
+					title="#{principalAvaliacao.StatusFase(principalAvaliacao.getFaseObservacao(), aec.faseAtual)}"
+					value="#{principalAvaliacao.imgFinalizado(principalAvaliacao.getFaseObservacao(), aec.faseAtual)}" 
+					style="width:24px; height:24px;"/>
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="Pontos Chave" />
+				</f:facet>
+				<t:graphicImage
+					title="#{principalAvaliacao.StatusFase(principalAvaliacao.getFaseObservacao(), aec.faseAtual)}"
+					value="#{principalAvaliacao.imgFinalizado(principalAvaliacao.getFaseObservacao(), aec.faseAtual)}" 
+					style="width:24px; height:24px;"/>
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="Teorização" />
+				</f:facet>
+				<t:graphicImage
+					title="#{principalAvaliacao.StatusFase(principalAvaliacao.getFaseTeorizacao(), aec.faseAtual)}"
+					value="#{principalAvaliacao.imgFinalizado(principalAvaliacao.getFaseTeorizacao(), aec.faseAtual)}" 
+					style="width:24px; height:24px;"/>
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="Hipóteses de Solução" />
+				</f:facet>
+				<t:graphicImage
+					title="#{principalAvaliacao.StatusFase(principalAvaliacao.getFasePlano(), aec.faseAtual)}"
+					value="#{principalAvaliacao.imgFinalizado(principalAvaliacao.getFasePlano(), aec.faseAtual)}" 
+					style="width:24px; height:24px;"/>
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+					<h:outputText value="Status do Estudo de Caso" />
+				</f:facet>
+				<h:outputText
+					value="#{principalAvaliacao.statusAtualEstudoCaso(aec.faseAtual)}" />
+			</rich:column>
+			<rich:column>
+				<f:facet name="header">
+				</f:facet>
+				<h:commandButton id="commandButton_popupAvaliacao"
+					image="/resources/icones/search-icon.png"
+					title="Detalhar"
+					actionListener="#{principalAvaliacao.alunoEstudoCasoAtual(aec)}">
+					<rich:componentControl target="popupPanel_Avaliacao"
+						operation="show" />
+				</h:commandButton>
+			</rich:column>
+		</rich:dataTable>
+ <rich:popupPanel id="popupPanel_Avaliacao" modal="true"
+			autosized="true" resizeable="false">
+        <f:facet name="header">
+            <h:outputText value="#{aec.estudocaso.nome}" />
+        </f:facet>
+        <f:facet name="controls">
+				<h:outputLink value="#"
+					onclick="#{rich:component('popupPanel_Avaliacao')}.hide(); return false;">
+                X
+            </h:outputLink>
+			</f:facet>
+			<rich:panel id="panel_ListarAvaliacao">
+				<h:outputText value="Avaliacao de #{principalAvaliacao.alunoEstudoCasoAtual.aluno.usuario.nome} do caso 
+					#{principalAvaliacao.alunoEstudoCasoAtual.estudocaso.nome}" styleClass="campo_titulo"/>
+				<br />
+				<br />
+				<rich:panel id="panel_AvaliacaoObservacao">
+					<h:outputText value="Comentário e nota da fase de observação da realidade" styleClass="campo_subtitulo"/>
+					<br />
+					<h:outputText value="#{principalAvaliacao.avaliacaoAtual.comentarioObservacao}" />
+					<br />
+					<h:outputText value="#{principalAvaliacao.avaliacaoAtual.notaObservacao}" />
+					<br />
+				</rich:panel>
+				<rich:panel id="panel_AvaliacaoTeorizacao">
+					<h:outputText value="Comentário e nota da fase de teorização" styleClass="campo_subtitulo"/>
+					<br />
+					<h:outputText value="#{principalAvaliacao.avaliacaoAtual.comentarioTeorizacao}" />
+					<br />
+					<h:outputText value="#{principalAvaliacao.avaliacaoAtual.notaTeorizacao}" />
+					<br />
+				</rich:panel>
+				<rich:panel id="panel_AvaliacaoPlanoCuidado">
+					<h:outputText value="Comentário e nota da fase de hipóteses de solução" styleClass="campo_subtitulo"/>
+					<br />
+					<h:outputText value="#{principalAvaliacao.avaliacaoAtual.comentarioPlanoCuidados}" />
+					<br />
+					<h:outputText value="#{principalAvaliacao.avaliacaoAtual.notaPlanoCuidados}" />
+					<br />
+				</rich:panel>
+			</rich:panel>
+			<br />
+			<h:commandButton value="Fechar"
+				onclick="#{rich:component('popupPanel_Avaliacao')}.hide(); return false;" />
+    </rich:popupPanel>
+		<br />
+		<rich:panel styleClass="panel_invisivel">
+			<h:commandButton value="Voltar"
+				actionListener="#{principalAluno.apagarConteudo}"
+				render="document.getelementbyid(panelGroup_Target)" />
+		</rich:panel>
+	</f:view>
+</h:body>
+</html>

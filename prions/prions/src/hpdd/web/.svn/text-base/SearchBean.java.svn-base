@@ -1,0 +1,99 @@
+package hpdd.web;
+
+import java.util.List;
+
+import hpdd.auxiliar.AuxiliarRN;
+import hpdd.auxiliar.ResultadoBusca;
+import hpdd.clinData.ClinData;
+import hpdd.general.General;
+import hpdd.individual.Individual;
+import hpdd.notification.Notification;
+import hpdd.residential.Residential;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+@ManagedBean(name = "searchBean")
+@SessionScoped
+public class SearchBean {
+	//private ResultadoBusca selected = new ResultadoBusca();
+	private List<ResultadoBusca> list = null;
+	
+	private General gen = new General();
+	private Individual ind = new Individual();
+	private Residential res = new Residential();
+	private ClinData cli = new ClinData();
+	private Notification notif = new Notification();
+	
+	
+	public List<ResultadoBusca> getList() {
+		AuxiliarRN auxiliarRN = new AuxiliarRN();
+		System.out.println("(SearchBean buscar())Country: " + gen.getCountry());
+		this.list = auxiliarRN.listBusca(gen.getCountry(), gen.getState(), gen.getCity(), ind.getAge(), ind.getGender(), ind.getEthnicGroup(), ind.getScholarity(), res.getZone(), cli.getProgDementia(), 
+				cli.getVisualDisorder(), cli.getMyoclonus(), cli.getCerebellarDisorders(), cli.getPersistentPainDys(), cli.getAtaxy(), cli.getPyramidalSigns(), cli.getExtrapyramidalSigns(), cli.getAkineticMutism(), cli.getPsychiatricDisorders(),
+				cli.getSleepDisorders());
+		System.out.println("(SearchBean buscar())Country: " + gen.getCountry());
+		return list;
+	}
+
+
+	public void setList(List<ResultadoBusca> list) {
+		this.list = list;
+	}
+
+
+	public General getGen() {
+		return gen;
+	}
+
+
+	public void setGen(General gen) {
+		this.gen = gen;
+	}
+
+
+	public Individual getInd() {
+		return ind;
+	}
+
+
+	public void setInd(Individual ind) {
+		this.ind = ind;
+	}
+
+
+	public Residential getRes() {
+		return res;
+	}
+
+
+	public void setRes(Residential res) {
+		this.res = res;
+	}
+
+
+	public ClinData getCli() {
+		return cli;
+	}
+
+
+	public void setCli(ClinData cli) {
+		this.cli = cli;
+	}
+
+
+	public Notification getNotif() {
+		return notif;
+	}
+
+
+	public void setNotif(Notification notif) {
+		this.notif = notif;
+	}
+
+
+	
+	
+	
+
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout_curso.xhtml">
+	
+			<ui:define name="content"> 
+				<div id="container">
+
+					    <div id="middle">    
+							<div id="middle_align">
+					
+					            <div id="wrapper" class="logado aluno">
+					            
+					            <h3 class="bread">CR<h:outputText value="#{opiniaoSobreCursoController.matricula.curso.id}"></h:outputText> > Minha Opinião  Sobre o Curso</h3>
+
+					            <p>Opinião sobre o curso</p>
+					            
+						         <h:form prependId="false" >
+									1ª: Conte-nos a respeito dos conhecimentos que você adquiriu sobre a saúde da criança e os cuidados de Enfermagem relacionados a essa população, avaliando suas experiências teóricas e práticas, além de seus interesses sobre esse tema.
+									<br /><br />       
+									<p:inputTextarea rows="7" cols="40" value="#{opiniaoSobreCursoController.matricula.pergunta1}" counter="display" maxlength="300" counterTemplate="{0} caracteres restantes." autoResize="true" />
+    								<br />
+    								<h:outputText id="display" />
+    								<br /><br />
+									2ª: Eu quero que você me conte sua vivência em relação ao ensino e à aprendizagem sobre as adaptações cardiorrespiratórias no recém-nascido, que foram mediados por um software educacional. A melhor maneira de fazer isso seria você começar por suas primeiras experiências sobre atenção à saúde da criança, e então contar todas as coisas relacionadas até o dia de hoje. Você não precisa ter pressa, e também pode dar detalhes, porque tudo que for importante para você me interessa.  
+									<br /><br />
+									<p:inputTextarea rows="7" cols="40" value="#{opiniaoSobreCursoController.matricula.pergunta2}" counter="display2" maxlength="300" counterTemplate="{0} caracteres restantes." autoResize="true" />
+    								<br />
+    								<h:outputText id="display2" />
+    								<br /><br />
+									<p:commandButton value="Salvar Opinião" id="Salvaropiniao" ajax="true" actionListener="#{opiniaoSobreCursoController.salvarOpiniao}" icon="ui-icon-disk"  validateClient="true">
+							        	<p:confirm header="Confirmação" message="Você deseja realmente salvar?" icon="ui-icon-alert" />
+							        </p:commandButton>
+									 <p:confirmDialog global="true" showEffect="fade" widgetVar="dlg" hideEffect="fade">
+								        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+								    </p:confirmDialog>
+									<br clear="all" />
+								</h:form>
+				                
+																            
+								<br clear="all" />
+									
+					            </div><!-- /#wrapper -->
+					
+					    	</div><!-- /#middle_align -->
+					    		<div style="width: 100%; height: 200px;"></div>
+					    </div><!-- /#middle -->    
+						</div><!-- /#container -->
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

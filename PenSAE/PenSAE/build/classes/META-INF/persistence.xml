@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="PenSAE" transaction-type="JTA">
+		<class>model.Aluno</class>
+		<class>model.AlunoEstudoCaso</class>
+		<class>model.Ambulatorio</class>
+		<class>model.Arquivo</class>
+		<class>model.Avaliacao</class>
+		<class>model.Cipe</class>
+		<class>model.CompetenciaHabilidadeEspecifica</class>
+		<class>model.CompetenciaHabilidadeGeral</class>
+		<class>model.Curso</class>
+		<class>model.Descritor</class>
+		<class>model.DiagnosticoAluno</class>
+		<class>model.DiagnosticoProfessor</class>
+		<class>model.EstudoCaso</class>
+		<class>model.Feedback</class>
+		<class>model.Glossario</class>
+		<class>model.IntervencaoAluno</class>
+		<class>model.IntervencaoProfessor</class>
+		<class>model.MetaAluno</class>
+		<class>model.MetaProfessor</class>
+		<class>model.PontoChaveAluno</class>
+		<class>model.PontoChaveProfessor</class>
+		<class>model.Professor</class>
+		<class>model.Referencia</class>
+		<class>model.Idioma</class>
+		<class>model.Usuario</class>
+		<class>model.UsuarioHasIdioma</class>
+		<class>model.UsuarioHasIdiomaPK</class>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhostt:3306/pensae" />
+			<!-- Esses sÃ£o o usuÃ¡rio e a senha de desenvolvimento de Jesus, Onire, 
+				e Tiago  -->
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<!-- Esses sÃ£o o usuÃ¡rio e a senha do servidor de produÃ§Ã£o 
+			<property name="javax.persistence.jdbc.user" value="pensae" /> 
+			<property name="javax.persistence.jdbc.password" value="ZyMZMGew4ymTDw3j"/> -->
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="eclipselink.logging.level.query" value="ALL" />
+			<property name="eclipselink.allow-zero-id" value="true"/> 
+		</properties>
+	</persistence-unit>
+</persistence>

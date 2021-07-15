@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<body>
+	<ui:composition>
+		<f:facet name="title" >
+               <h:outputText value="Dados Gerais"  />
+            </f:facet>
+		<h:form prependId="false" id="formEstudoDeCasoDetalhes">
+			<p:outputLabel value="Curso:" for="curso" />
+			<p:autoComplete id="curso" dropdown="true"
+				disabled="#{estudoDeCasoPersistirController.estudoDeCaso.id != 0}"
+				size="100" value="#{estudoDeCasoPersistirController.curso.titulo}"
+				required="true"
+				completeMethod="#{estudoDeCasoPersistirController.completeText}" />
+			<br />
+			<h:outputLabel for="status" value="Status: *" />
+			<p:selectOneMenu id="status" required="true"
+				value="#{estudoDeCasoPersistirController.estudoDeCaso.status}"
+				label="status" style="width:200px">
+				<f:selectItem itemLabel="ANDAMENTO" itemValue="0"></f:selectItem>
+				<f:selectItem itemLabel="PAUSA" itemValue="1"></f:selectItem>
+				<f:selectItem itemLabel="PREVISTO" itemValue="2"></f:selectItem>
+				<f:selectItem itemLabel="BLOQUEADO" itemValue="3"></f:selectItem>
+				<f:selectItem itemLabel="CONCLUIDO" itemValue="4"></f:selectItem>
+			</p:selectOneMenu>
+			<br />
+			<h:outputLabel for="grauDificuldade" value="Grau de dificuldade: *" />
+			<p:selectOneMenu id="grauDificuldade" required="true"
+				value="#{estudoDeCasoPersistirController.estudoDeCaso.grauDificuldade}"
+				label="Grau de Dificuldade" style="width:200px">
+				<f:selectItem itemLabel="BAIXO" itemValue="0"></f:selectItem>
+				<f:selectItem itemLabel="MÉDIO" itemValue="1"></f:selectItem>
+				<f:selectItem itemLabel="ALTO" itemValue="2"></f:selectItem>
+			</p:selectOneMenu>
+			<br />
+			<h:outputLabel for="Titulo" value="Título: *" />
+			<h:inputText id="Titulo"
+				value="#{estudoDeCasoPersistirController.estudoDeCaso.titulo}"
+				maxlength="200" required="true" label="Título" />
+			<br />
+			<h:outputLabel for="Descricao" value="Descrição: *" />
+			<p:editor id="Descricao" widgetVar="Descricao"
+				value="#{estudoDeCasoPersistirController.estudoDeCaso.descricao}"
+				required="true" width="600" />
+			<br />
+			<h:outputLabel for="ObjetivosGerais" value="Objetivos Gerais: *" />
+			<p:editor id="ObjetivosGerais" widgetVar="ObjetivosGerais"
+				value="#{estudoDeCasoPersistirController.estudoDeCaso.objetivosGerais}"
+				required="true" width="600" />
+			<br />
+			<h:outputLabel for="ObjetivosEsp" value="Objetivos Específicos: *" />
+			<p:editor id="ObjetivosEsp" widgetVar="ObjetivosEsp"
+				value="#{estudoDeCasoPersistirController.estudoDeCaso.objetivosEspecificos}"
+				required="true" width="600" />
+			<br />
+			<h:outputLabel for="pontosChaves" value="Pontos Chaves: *" />
+			<p:editor id="pontosChaves" widgetVar="pontosChaves"
+				value="#{estudoDeCasoPersistirController.estudoDeCaso.pontosChave}"
+				required="true" width="600" />
+			<br />
+			<br />
+			<c:if test="#{estudoDeCasoPersistirController.estudoDeCaso.id == 0}">
+				<p:commandButton
+					actionListener="#{estudoDeCasoPersistirController.adicionarEstudoDeCaso}"
+					value="Salvar" validateClient="true">
+					<p:confirm header="Confirmação"
+						message="Você deseja realmente salvar?" icon="ui-icon-alert" />
+				</p:commandButton>
+			</c:if>
+			<c:if test="#{estudoDeCasoPersistirController.estudoDeCaso.id != 0}">
+				<p:commandButton update="tabView, :tabView:imagens, :tabView:nandas"
+					actionListener="#{estudoDeCasoPersistirController.alterarEstudoDeCaso}"
+					value="Salvar" validateClient="true">
+					<p:confirm header="Confirmação"
+						message="Você deseja realmente alterar?" icon="ui-icon-alert" />
+				</p:commandButton>
+			</c:if>
+			<br />
+			<p:confirmDialog global="true" styleClass="confirmDialog"
+				showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+			<br />
+		</h:form>
+	</ui:composition>
+</body>
+</html>
+
+

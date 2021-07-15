@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:t="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Observacao da Realidade</title>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:head>
+<h:body>
+	<f:event
+		listener="#{ObservacaoEstudo.listarDeterminantes(arcoPrincipal.alunoEstudoCaso)}"
+		type="javax.faces.event.PreRenderViewEvent" />
+	<f:view>
+		<h:panelGroup >
+			<rich:panel styleClass="panel_invisivel">
+				<t:graphicImage
+					value="#{ObservacaoEstudo.getImagemURL(principalAluno.estudoSelecionado)}" 
+					style="max-width:1024px;"/>
+				<br />
+				<h:outputLabel value="Se a imagem não carregar" rendered="#{ObservacaoEstudo.mostrarLink}"/>
+				<h:commandLink value="clique aqui"
+					actionListener="#{ObservacaoEstudo.downloadImagem()}" styleClass="link"
+					rendered="#{ObservacaoEstudo.mostrarLink}"/>
+			</rich:panel>
+			<rich:panel styleClass="panel_invisivel">
+				<h:outputLabel value="Descrição" styleClass="campo_titulo"/>
+				<br />
+				<h:outputText value="#{principalAluno.estudoSelecionado.descricao}" styleClass="campo_conteudo" />
+			</rich:panel>
+			<rich:panel styleClass="panel_invisivel">
+				<h:outputLabel styleClass="titulo_fase_arco"
+					value="#{principalAluno.estudoSelecionado.curso.nome} > #{principalAluno.estudoSelecionado.nome} > Pontos-Chave" />
+			</rich:panel>
+			<rich:panel id="panel_TableDeterminantes" styleClass="panel_invisivel">
+				<rich:dataTable id="dataTable_Determinantes"
+					styleClass="table_comum"
+					value="#{ObservacaoEstudo.determinantes}" var="determinante" >
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Determinantes do problema" />
+						</f:facet>
+						<h:outputText value="#{determinante.nome}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Justificativa" />
+						</f:facet>
+						<h:outputText value="#{determinante.justificativa}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+						</f:facet>
+						<a4j:commandButton id="commandButton_Editar"
+							image="/resources/icones/edit-icon.png" title="Editar"
+							actionListener="#{ObservacaoEstudo.editarDeterminante(determinante)}"
+							oncomplete="#{rich:component('popupPanel_Determinantes')}.show()"
+							limitRender="true"
+							render="popupPanel_Determinantes panel_TableDeterminantes"
+							disabled="#{arcoPrincipal.desabilitarFuncionalidadesFaseObservacao()}">
+						</a4j:commandButton>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+						</f:facet>
+						<a4j:commandButton id="commandButton_Excluir"
+							image="/resources/icones/remove-icon.png" title="Excluir"
+							onclick="return confirm('Deseja realmente excluir este determinante?')"
+							action="#{ObservacaoEstudo.excluirDeterminante(determinante)}"
+							limitRender="true"
+							render="popupPanel_Determinantes panel_TableDeterminantes" 
+							disabled="#{arcoPrincipal.desabilitarFuncionalidadesFaseObservacao()}"/>
+					</h:column>
+				</rich:dataTable>
+				<br />
+				<h:commandButton value="Adicionar determinante" disabled="#{arcoPrincipal.desabilitarFuncionalidadesFaseObservacao()}" >
+					<rich:componentControl target="popupPanel_Determinantes"
+						operation="show" />
+				</h:commandButton>
+			</rich:panel>
+
+			<rich:popupPanel id="popupPanel_Determinantes" modal="true"
+				resizeable="false"
+				onmaskclick="#{rich:component('popupPanel_Determinantes')}.hide()"
+				autosized="true">
+				<f:facet name="header">
+					<h:outputText value="Adicionar determinantes" />
+				</f:facet>
+				<f:facet name="controls">
+					<h:outputLink value="#"
+						onclick="#{rich:component('popupPanel_Determinantes')}.hide(); return false;">
+                X
+            </h:outputLink>
+				</f:facet>
+				<rich:panel id="panel_CamposDeterminante" styleClass="panel_invisivel">
+					<h:outputLabel rendered="#{ObservacaoEstudo.mostrarMensagem}"
+						value="Preencha todos os campos do determinante" style="color:red" />
+					<br />
+					<h:outputLabel value="Determinante" styleClass="campo_titulo"/>
+					<br />
+					<h:inputTextarea id="inputTextArea_Determinante" cols="50" rows="3"
+						value="#{ObservacaoEstudo.determinante}" />
+					<br />
+					<h:outputLabel value="Justificativa" styleClass="campo_titulo"/>
+					<br />
+					<h:inputTextarea id="inputTextArea_Justificativa" cols="50"
+						rows="3" value="#{ObservacaoEstudo.justificativa}" />
+					<br />
+					<a4j:commandButton id="commandButton_IncluirDeterminante"
+						value="Incluir determinante"
+						onclick="#{rich:component('popupPanel_Determinantes')}.hide(); return true;"
+						actionListener="#{ObservacaoEstudo.inserirDeterminante(logon.usuarioLogado, principalAluno.estudoSelecionado)}"
+						limitRender="true"
+						render="popupPanel_Determinantes panel_TableDeterminantes" />
+					<a4j:commandButton id="commandButton_CancelarDeterminante"
+						value="Cancelar"
+						onclick="#{rich:component('popupPanel_Determinantes')}.hide(); return true;"
+						actionListener="#{ObservacaoEstudo.limparCampos()}"
+						limitRender="true"
+						render="popupPanel_Determinantes panel_TableDeterminantes" />
+				</rich:panel>
+			</rich:popupPanel>
+		</h:panelGroup>
+	</f:view>
+</h:body>
+</html>

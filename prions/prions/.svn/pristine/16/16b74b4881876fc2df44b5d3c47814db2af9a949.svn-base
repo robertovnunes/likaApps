@@ -1,0 +1,47 @@
+package hpdd.resume;
+
+import hpdd.resume.Resume;
+import hpdd.doctor.Doctor;
+import hpdd.notification.Notification;
+
+import java.util.Date;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+public class ResumeDAOHibernate implements ResumeDAO{
+	private Session session;
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+	public void delete(Resume resume){
+		this.session.delete(resume);
+	}
+	public void save(Resume resume){
+		this.session.saveOrUpdate(resume);
+	}
+	public Resume load(Integer resume){
+		return (Resume) this.session.get(Resume.class, resume);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Resume> list(Doctor user) {
+		Criteria criteria = this.session.createCriteria(Resume.class);
+		criteria.add(Restrictions.eq("user", user));
+		return criteria.list();
+	}
+	
+	public Notification getNotification(Integer iduser) {
+		//String hql = "select max(cod_patient), cod_user, creation_date from Patient order by creation_date";
+		//String hql = "select p from Patient p order by creation_date";
+		System.out.println(new Date()); 
+		System.out.println("iduser = " + iduser);
+		String hql = "select n from Notification n where n.creationDate = (select max(n1.creationDate) from Notification n1) and n.user=:iduser";
+		Query consult = this.session.createQuery(hql);
+		consult.setInteger("iduser", iduser);
+		return (Notification) consult.uniqueResult();
+	}
+}

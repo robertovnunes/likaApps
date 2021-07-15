@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout_curso.xhtml">
+	
+			<ui:define name="content"> 
+				<div id="container">
+
+					    <div id="middle">    
+							<div id="middle_align">
+					
+					            <div id="wrapper" class="logado aluno">
+					            
+					            <h3 class="bread">CR<h:outputText value="#{matriculaEstudosDeCasoAlunoController.matricula.curso.id}"></h:outputText> > Estudos de Casos</h3>
+
+								<br clear="all" />
+					                <h:form prependId="false">
+										<p:dataTable emptyMessage="Nenhum Registro Encontrado" id="tabelaFeedbackECs" var="arcoMagueresTemp" paginator="true" 
+											value="#{feedbackEstudosDeCasoAlunoController.listarArcoMaguerezEstudoDeCaso}">
+											<p:column style="text-align: center;" >
+												<f:facet name="header">
+													<h:outputText value="Código" />
+												</f:facet>
+												<h:outputText value="EC#{arcoMagueresTemp.estudoDeCaso.id}" />
+											</p:column>
+											<p:column style="text-align: center;" >
+												<f:facet name="header">
+													<h:outputText value="Caso" />
+												</f:facet>
+												<h:outputText value="#{arcoMagueresTemp.estudoDeCaso.titulo}" />
+											</p:column>
+											<p:column style="text-align: center;" >
+												<f:facet name="header">
+													<h:outputText value="Investigação" />
+												</f:facet>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Normal-Red-icon.png" rendered="#{arcoMagueresTemp.faseDoArco == '0'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Actions-dialog-ok-apply-icon.png" rendered="#{arcoMagueresTemp.faseDoArco gt '0'}"></h:graphicImage>
+											</p:column>
+											<p:column style="text-align: center;" >
+												<f:facet name="header">
+													<h:outputText value="Planejamento" />
+												</f:facet>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Disabled-icon.png" rendered="#{arcoMagueresTemp.faseDoArco lt '1'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Normal-Red-icon.png" rendered="#{arcoMagueresTemp.faseDoArco == '1'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Actions-dialog-ok-apply-icon.png" rendered="#{arcoMagueresTemp.faseDoArco gt '1'}"></h:graphicImage>
+											</p:column>
+											<p:column style="text-align: center;" >
+												<f:facet name="header">
+													<h:outputText value="Implementação" />
+												</f:facet>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Disabled-icon.png" rendered="#{arcoMagueresTemp.faseDoArco lt '2'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Normal-Red-icon.png" rendered="#{arcoMagueresTemp.faseDoArco == '2'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Actions-dialog-ok-apply-icon.png" rendered="#{arcoMagueresTemp.faseDoArco gt '2'}"></h:graphicImage>
+											</p:column>
+											<p:column style="text-align: center;" >
+												<f:facet name="header">
+													<h:outputText value="Resultados Esperados" />
+												</f:facet>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Disabled-icon.png" rendered="#{arcoMagueresTemp.faseDoArco lt '3'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Normal-Red-icon.png" rendered="#{arcoMagueresTemp.faseDoArco == '3'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Actions-dialog-ok-apply-icon.png" rendered="#{arcoMagueresTemp.faseDoArco gt '3'}"></h:graphicImage>
+											</p:column>
+											<p:column style="text-align: center;" >
+												<f:facet name="header">
+													<h:outputText value="Avaliação" />
+												</f:facet>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Disabled-icon.png" rendered="#{arcoMagueresTemp.faseDoArco lt '4'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Normal-Red-icon.png" rendered="#{arcoMagueresTemp.faseDoArco == '4'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Actions-dialog-ok-apply-icon.png" rendered="#{arcoMagueresTemp.faseDoArco gt '4'}"></h:graphicImage>
+											</p:column>
+											<p:column style="text-align: center;">
+												<f:facet name="header">
+													<h:outputText value="Ações" />
+												</f:facet>
+												
+												<p:commandButton  action="#{feedbackEstudosDeCasoAlunoController.visualizarNotas}" update="formFeedback" oncomplete="PF('formFeedback').show();" value="Abrir" icon="ui-icon ui-icon-folder-open">
+													<f:setPropertyActionListener target="#{feedbackEstudosDeCasoAlunoController.arcoDetalhes}" value="#{arcoMagueresTemp}" />
+												</p:commandButton>
+												
+											</p:column>
+										</p:dataTable>
+									</h:form>
+									<h:form id="formFeedback">
+										<p:dialog header="Feedback Estudo de Caso"
+											widgetVar="formFeedback" modal="true" width="800"
+											id="formFeedback">
+											<p:outputLabel value="Planejamento:" for="Planejamento" />
+											<h:outputText id="Planejamento" value="#{feedbackEstudosDeCasoAlunoController.arcoDetalhes.planejamento.avaliacaoProfessor.comentario}" />
+											<br />
+											<h:outputText value="Nota: #{feedbackEstudosDeCasoAlunoController.arcoDetalhes.planejamento.avaliacaoProfessor.nota}" />
+											<br />
+											<br />
+											<p:outputLabel value="Implementação:" for="implementacao" />
+											<h:outputText id="implementacao" value="#{feedbackEstudosDeCasoAlunoController.arcoDetalhes.implementacao.avaliacaoProfessor.comentario}" />
+											<br />
+											<h:outputText value="Nota: #{feedbackEstudosDeCasoAlunoController.arcoDetalhes.implementacao.avaliacaoProfessor.nota}" />
+											<br />
+											<br />
+											<p:outputLabel value="Resultados Esperados:" for="resultadosesperados" />
+											<h:outputText id="resultadosesperados" value="#{feedbackEstudosDeCasoAlunoController.arcoDetalhes.resultadosEsperados.avaliacaoProfessor.comentario}" />
+											<br />
+											<h:outputText value="Nota: #{feedbackEstudosDeCasoAlunoController.arcoDetalhes.resultadosEsperados.avaliacaoProfessor.nota}" />
+											<br />
+											<br />
+										</p:dialog>
+									</h:form>
+									
+					            </div><!-- /#wrapper -->
+					
+					    	</div><!-- /#middle_align -->
+					    </div><!-- /#middle -->    
+						</div><!-- /#container -->
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

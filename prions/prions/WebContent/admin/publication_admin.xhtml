@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_admin.css" rel="stylesheet"
+	type="text/css" />
+<title>Home</title>
+</head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+
+		</div>
+
+		<div id="welcome">
+
+			<table title="User status" align="center">
+
+				<b>User logged: #{request.remoteUser}</b>
+				<br />
+				<b>Welcome, #{contextoBean.loggedUser.name}!</b>
+
+			</table>
+		</div>
+		<ui:include src="menuAdmin.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>epiCJD</h1>
+				<div style="width: 927px; height: 350px; overflow: auto;">
+					<h:form id="fillfaq">
+						<h:message />
+						<h:panelGrid width="900" height="30" valign="top" align="left"
+							colspan="2"
+							style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+							<h:outputLabel value="Publication"></h:outputLabel>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="900" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+							<h:outputLabel value="Title: " for="title" />
+							<h:inputText id="title" value="#{publicationBean.selected.title}"
+								title="Type the title" required="false" maxlength="200"
+								size="100" styleClass="inputTextfaq">
+							</h:inputText>
+						</h:panelGrid>
+						<h:panelGrid columns="8" width="900" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+							<h:outputLabel value="Periodical title: " for="periodical" />
+							<h:inputText styleClass="inputTextfaq" id="periodical"
+								value="#{publicationBean.selected.periodical}"
+								title="Type the periodical title" required="false"
+								maxlength="30" size="50">
+							</h:inputText>
+							<h:outputLabel value="Volume: " for="volume" />
+							<h:inputText styleClass="inputTextfaq" id="volume"
+								value="#{publicationBean.selected.volume}" title="Volume"
+								required="false" maxlength="30" size="10">
+							</h:inputText>
+							<h:outputLabel value="Page: " for="page" />
+							<h:inputText styleClass="inputTextfaq" id="page"
+								value="#{publicationBean.selected.page}" title="Page"
+								required="false" maxlength="30" size="5">
+							</h:inputText>
+							<h:outputLabel value="Year: " for="year" />
+							<h:inputText styleClass="inputTextfaq" id="year"
+								value="#{publicationBean.selected.year}" title="yyyy"
+								required="false" maxlength="300" size="10">
+							</h:inputText>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="900" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+							<h:outputLabel value="Link: " for="link" />
+							<h:inputText styleClass="inputTextfaq" id="link"
+								value="#{publicationBean.selected.link}" title="Type the link"
+								required="false" maxlength="300" size="100">
+							</h:inputText>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="900" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+							<h:outputLabel value="Description: " for="description" />
+							<h:inputTextarea styleClass="inputTextfaq2" id="description"
+								value="#{publicationBean.selected.description}"
+								title="Type the description" required="false" maxlength="300"
+								size="100">
+							</h:inputTextarea>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="900" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+							<h:outputLabel value="Authors: " for="authors" />
+							<h:inputTextarea styleClass="inputTextfaq2" id="authors"
+								value="#{publicationBean.selected.authors}"
+								title="Type the authors" required="false" maxlength="300"
+								size="100">
+							</h:inputTextarea>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="900" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+							<h:outputLabel>
+								<h:commandButton styleClass="botao" value="Add"
+									action="#{publicationBean.save}">
+									<c:ajax execute="@form" render=":fillfaq :listfaq" />
+								</h:commandButton>
+
+							</h:outputLabel>
+						</h:panelGrid>
+					</h:form>
+					<h:form id="listfaq">
+						<h:panelGrid columns="3" width="900" valign="top" align="left"
+							bgcolor="#EBEBD6">
+							<h:dataTable value="#{publicationBean.list}" var="pub"
+								rendered="#{!empty publicationBean.list}" cellpadding="5"
+								bgcolor="#EBEBD6" rules="rows">
+								<h:column>
+									<c:facet name="header">Title</c:facet>
+							#{pub.title}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Periodical</c:facet>
+							#{pub.periodical}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Page</c:facet>
+							#{pub.page}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Volume</c:facet>
+							#{pub.volume}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Year</c:facet>
+							#{pub.year}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Link</c:facet>
+							#{pub.link}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Authors</c:facet>
+							#{pub.authors}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Description</c:facet>
+							#{pub.description}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Delete</c:facet>
+									<h:commandButton action="#{publicationBean.delete}"
+										styleClass="delete">
+										<c:setPropertyActionListener
+											target="#{publicationBean.selected}" value="#{publication}" />
+									</h:commandButton>
+								</h:column>
+							</h:dataTable>
+						</h:panelGrid>
+					</h:form>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+
+
+	</div>
+</h:body>
+</html>

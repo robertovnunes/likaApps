@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+
+   <form-beans>
+  <!-- 
+		<form-bean name="PesquisarContratoParcelamentoActionForm"
+			type="gcom.gui.cobranca.contratoparcelamento.PesquisarContratoParcelamentoActionForm" />
+   -->	
+			<!-- USUARIO -->
+		<form-bean name="fichaAcoes"
+			type="org.apache.struts.validator.DynaValidatorForm">
+		</form-bean>
+		
+		
+		<form-bean name="buscarFicha"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="tfBusca" type="java.lang.String" />
+			<form-property name="tipoDeBusca" type="java.lang.String" />
+		</form-bean>
+		
+		
+		<form-bean name="mostrarTelaDadosGeraisEdit"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="idFicha" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="removerFicha"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="idFicha" type="java.lang.String" />
+		</form-bean>
+		
+	</form-beans>
+
+	<!--******************* PÁGINAS GLOBAIS *******************-->
+	<global-forwards >
+	<!-- USUARIO -->
+		<forward name="fDadosGeraisAdd" path="/jsp/ficha/dados_gerais.jsp" />
+		<forward name="fNovaFicha" path="/jsp/ficha/dados_gerais.jsp" />
+		<forward name="fFichaBuscar" path="/jsp/ficha/ficha_buscar.jsp" />
+		
+		<forward name="fDadosClinicosConclusoes" path="/jsp/ficha/dados_clinicos_complicacoes.jsp" />
+		<forward name="fInfoComplementares" path="/jsp/ficha/informacoes_complementares.jsp" />
+		<forward name="fInvestigacaoConclusao" path="/jsp/ficha/investigacao_conclusao.jsp" />
+		<forward name="fInvestigacaoLaboratoriais" path="/jsp/ficha/investigacao_laboratoriais.jsp" />
+		<forward name="fPacienteIdent" path="/jsp/ficha/paciente/dados_identificacao.jsp" />
+		<forward name="fPacienteResidencia" path="/jsp/ficha/paciente/dados_residencia.jsp" />
+		
+	</global-forwards>
+	
+	<action-mappings>
+	
+			<!-- USUARIO -->
+		<action path="/ficha"  name="fichaAcoes"
+			type="struts.acoes.FichaInvestigacaoAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+			<action path="/buscarFicha"  name="buscarFicha"
+			type="struts.acoes.FichaInvestigacaoAcoes" input="/jsp/ficha/ficha_buscar.jsp"
+			parameter="method" scope="request" validate="false" />
+		
+			<action path="/ficha"  name="mostrarTelaDadosGeraisEdit"
+			type="struts.acoes.FichaInvestigacaoAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+			<action path="/ficha"  name="removerFicha"
+			type="struts.acoes.FichaInvestigacaoAcoes"
+			parameter="method" scope="request" validate="false" />
+		
+		
+</action-mappings>	
+
+<message-resources null="false"
+		parameter="struts.mensagens.MessageResources" />
+		
+</struts-config>

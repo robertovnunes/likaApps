@@ -1,0 +1,48 @@
+package hpdd.results;
+
+import hpdd.results.ResultsDAO;
+import hpdd.notification.Notification;
+import hpdd.util.DAOFactory;
+
+import java.util.List;
+
+public class ResultsRN {
+	private ResultsDAO resultsDAO;
+
+	public ResultsRN() {
+		this.resultsDAO = DAOFactory.createResultsDAO();
+	}
+
+	public List<Results> list(Integer id) {
+		return this.resultsDAO.list(id);
+	}
+
+	public Results load(Integer results) {
+		return this.resultsDAO.load(results);
+	}
+
+	public void save(Results results) {
+		this.resultsDAO.save(results);
+	}
+
+	public void delete(Results results) {
+		this.resultsDAO.delete(results);
+	}
+
+	public Notification getNotification(Integer iduser) {
+		return this.resultsDAO.getNotification(iduser);
+	}
+
+	public Notification getNotificationToUPDATE(Integer iduser) {
+		return this.resultsDAO.getNotificationToUPDATE(iduser);
+	}
+
+	public boolean find(Integer codNotification) {
+		return this.resultsDAO.find(codNotification);
+	}
+
+	public void update(Results selected) {
+		this.resultsDAO.update(selected);
+		
+	}
+}

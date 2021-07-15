@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout.xhtml">
+	
+			<ui:define name="content"> 
+				<div id="container">
+
+					    <div id="middle">    
+							<div id="middle_align">
+					
+					            <div id="wrapper" class="logado aluno">
+					            
+					            <div class="col w90 p0_5">
+					                <h3>Seja bem-vindo ao seu espaço!</h3>
+					                <p>Veja os cursos em que você está matriculado:</p>
+					                <p>&nbsp;</p>      
+					                <h:form>
+					                	<p:commandButton value="Matricular-se em novos cursos" update="tabelaCursoMatriculados" icon="ui-icon-plus" onclick="PF('dialog').show();" /> 
+					                </h:form>
+			        		   
+					            </div>
+								<br clear="all" />
+					                <h:form prependId="false">
+										<p:dataTable emptyMessage="Nenhum Registro Encontrado" id="tabelaCursoMatriculados" var="matricula" paginator="true" 
+											value="#{cursoAlunoProcurarController.listarMatriculaCursoAluno}">
+											<p:column style="text-align: center;" sortBy="#{matricula.curso.id}" >
+												<f:facet name="header">
+													<h:outputText value="Código" />
+												</f:facet>
+												<h:outputText value="CR#{matricula.curso.id}" />
+											</p:column>
+											<p:column style="text-align: center;" sortBy="#{matricula.curso.titulo}" >
+												<f:facet name="header">
+													<h:outputText value="Curso" />
+												</f:facet>
+												<h:outputText value="#{matricula.curso.titulo}" />
+											</p:column>
+											<p:column style="text-align: center;" sortBy="#{matricula.curso.dataInicioFormatada}">
+												<f:facet name="header">
+													<h:outputText value="Período" />
+												</f:facet>
+												<h:outputText value="#{matricula.curso.dataInicioFormatada}" />
+											</p:column>
+											<p:column style="text-align: center;" sortBy="#{matricula.curso.professor.nome}">
+												<f:facet name="header">
+													<h:outputText value="Professor Responsável" />
+												</f:facet>
+												<h:outputText value="#{matricula.curso.professor.nome}" />
+											</p:column>
+											<p:column  style="text-align: center;"  sortBy="#{matricula.curso.statusDescricao}" >
+												<f:facet name="header">
+													<h:outputText value="Status" />
+												</f:facet>
+												
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Normal-Red-icon.png" rendered="#{matricula.curso.status == '0'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Pause-Normal-Red-icon.png" rendered="#{matricula.curso.status == '1'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Disabled-icon.png" rendered="#{matricula.curso.status == '2'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/restrict.gif" rendered="#{matricula.curso.status == '3'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Actions-dialog-ok-apply-icon.png" rendered="#{matricula.curso.status == '4'}"></h:graphicImage>
+												
+												<h:outputText value="#{matricula.curso.statusDescricao}" />
+												
+											</p:column>
+											<p:column style="text-align: center;">
+												<f:facet name="header">
+													<h:outputText value="Ações" />
+												</f:facet>
+												<p:commandButton  action="#{cursoDetalhesAlunoController.preparaTelaDetalhesCurso}" value="Abrir" icon="ui-icon ui-icon-folder-open">
+													<f:setPropertyActionListener target="#{cursoDetalhesAlunoController.matricula}" value="#{matricula}" />
+												</p:commandButton>
+											</p:column>
+										</p:dataTable>
+									</h:form>
+									
+									<p:dialog header="Cursos Disponíveis" widgetVar="dialog" modal="true" width="800" id="dialog">
+									    <p:dataTable emptyMessage="Nenhum Registro Encontrado" id="tabelaDisponiveis" var="curso" paginator="true" 
+											value="#{cursoAlunoProcurarController.listarCursoDisponiveis}">
+											<p:column style="text-align: center;" sortBy="#{curso.id}" >
+												<f:facet name="header">
+													<h:outputText value="Código" />
+												</f:facet>
+												<h:outputText value="CR#{curso.id}" />
+											</p:column>
+											<p:column style="text-align: center;" sortBy="#{curso.titulo}" >
+												<f:facet name="header">
+													<h:outputText value="Curso" />
+												</f:facet>
+												<h:outputText value="#{curso.titulo}" />
+											</p:column>
+											<p:column style="text-align: center;" sortBy="#{curso.dataInicioFormatada}">
+												<f:facet name="header">
+													<h:outputText value="Período" />
+												</f:facet>
+												<h:outputText value="#{curso.dataInicioFormatada}" /> até
+												<h:outputText value="#{curso.dataFimFormatada}" />
+												
+											</p:column>
+											<p:column style="text-align: center;" sortBy="#{curso.professor.nome}">
+												<f:facet name="header">
+													<h:outputText value="Professor Responsável" />
+												</f:facet>
+												<h:outputText value="#{curso.professor.nome}" />
+											</p:column>
+											<p:column  style="text-align: center;"  sortBy="#{curso.statusDescricao}" >
+												<f:facet name="header">
+													<h:outputText value="Status" />
+												</f:facet>
+												
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Normal-Red-icon.png" rendered="#{curso.status == '0'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Pause-Normal-Red-icon.png" rendered="#{curso.status == '1'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Disabled-icon.png" rendered="#{curso.status == '2'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/restrict.gif" rendered="#{curso.status == '3'}"></h:graphicImage>
+												<h:graphicImage url="#{pageContext.request.contextPath}/resources/imagens/icons/Actions-dialog-ok-apply-icon.png" rendered="#{curso.status == '4'}"></h:graphicImage>
+												
+												<h:outputText value="#{curso.statusDescricao}" />
+											</p:column>
+											<p:column style="text-align: center;">
+												<f:facet name="header">
+													<h:outputText value="Ações" />
+												</f:facet>
+												
+												<p:commandButton  action="#{cursoAlunoProcurarController.fazerMatricula}" value="Matricular" icon="ui-icon ui-icon-circle-plus" oncomplete="PF('dialog').hide();" update="tabelaDisponiveis, tabelaCursoMatriculados" >
+													<p:confirm header="Confirmação" message="Você deseja realmente fazer a matrícula?" icon="ui-icon-alert" />
+												</p:commandButton>
+											</p:column>
+										</p:dataTable>
+									</p:dialog>  
+									<p:confirmDialog global="true" styleClass="confirmDialog" showEffect="fade" hideEffect="fade">
+								        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+								        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+								    </p:confirmDialog>
+					                
+					            </div><!-- /#wrapper -->
+					
+					    	</div><!-- /#middle_align -->
+					    		<div style="width: 100%; height: 200px;"></div>
+					    </div><!-- /#middle -->    
+						</div><!-- /#container -->
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

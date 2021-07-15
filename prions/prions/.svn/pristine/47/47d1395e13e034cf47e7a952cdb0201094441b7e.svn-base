@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_admin.css" rel="stylesheet"
+	type="text/css" />
+<title>Home</title>
+</head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+
+		</div>
+		
+		<div id="welcome">
+
+			<table title="User status" align="center">
+
+				<b>User logged: #{request.remoteUser}</b>
+				<br />
+				<b>Welcome, #{contextoBean.loggedUser.name}!</b>
+
+			</table>
+		</div>
+		<ui:include src="menuAdmin.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>epiCJD</h1>
+				<p>
+					The epiCJD database was designed to assist physicians, researchers and general population to
+recognize variability of symptoms of prion diseases which are one of the major puzzles of these
+diseases. Here, we assembled cases reported at Pubmed database and catalogue epidemiological,
+clinical and genetic data from all single cases reported. Additionally, epiCJD allowed performing
+searches based on a several criteria and enabling to overview epidemiological traits of prion
+diseases. <!-- <a href="http://dcjbrasil.com.br/">http://dcjbrasil.com.br</a>. -->
+				</p>
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+
+
+	</div>
+</h:body>
+</html>

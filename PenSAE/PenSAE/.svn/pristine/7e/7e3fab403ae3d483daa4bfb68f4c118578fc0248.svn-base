@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Glossário</title>
+</h:head>
+<h:body>
+	<f:event
+		listener="#{glossarioPrincipalAluno.carregarListaEstudo(principalAluno.usuarioLogado, principalAluno.cursoSelecionado)}"
+		type="javax.faces.event.PostAddToViewEvent">
+	</f:event>
+	<rich:panel id="panel_PrincipalGlossario"
+		styleClass="panel_invisivel">
+			<h:selectOneMenu id="selectOneMenu_EstudoCaso"
+				value="#{glossarioPrincipalAluno.estudoSelecionado}"
+				render="panel_PrincipalGlossario" converter="estudoCasoConverter">
+				<f:selectItems value="#{glossarioPrincipalAluno.listaEstudoCaso}"
+					var="caso" itemLabel="#{caso.nome}" itemValue="#{caso}" />
+			</h:selectOneMenu>
+			<h:commandButton id="commandButton_SelecionarCaso"
+				value="Selecionar Estudo de Caso"
+				actionListener="#{glossarioPrincipalAluno.carregarGlossario()}"
+				render="panel_TabelaGlossario" />
+			<br />
+		<rich:panel id="panel_TabelaGlossario" styleClass="panel_invisivel">
+			<rich:dataTable id="datable_Glossario"
+				value="#{glossarioPrincipalAluno.glossarioDisponivel}" var="glossario"
+				style="max-width:100%;">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Termo" />
+					</f:facet>
+					<h:outputText value="#{glossario.termo}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Descrição" />
+					</f:facet>
+					<h:outputText value="#{glossario.definicao}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Usuário" />
+					</f:facet>
+					<h:outputText value="#{glossario.usuario.nome}" />
+				</h:column>
+			</rich:dataTable>
+		</rich:panel>
+		<rich:popupPanel autosized="true" id="popupPanel_Inserir" modal="true"
+			moveable="false"
+			onmaskclick="#{rich:component('popupPanel_Inserir')}.hide()"
+			domElementAttachment="form">
+			<f:facet name="header">
+				<h:outputText value="Adicionar termo no glossário" />
+			</f:facet>
+			<f:facet name="controls">
+				<h:outputLink value="#"
+					onclick="#{rich:component('popupPanel_Inserir')}.hide(); return false;">
+                X
+            </h:outputLink>
+			</f:facet>
+			<rich:panel styleClass="panel_invisivel">
+				<h:outputLabel id="outputLabel_Termo" value="Termo" />
+				<br />
+				<h:inputText id="inputText_Termo"
+					value="#{glossarioPrincipalAluno.glossario.termo}" style="width:200px;" />
+				<br />
+				<h:outputLabel id="outputLabel_Descricao" value="Descrição" />
+				<br />
+				<h:inputTextarea id="inputText_DescricaoArea"
+					value="#{glossarioPrincipalAluno.glossario.definicao}" cols="50" rows="4" />
+				<br />
+				<a4j:commandButton id="commandButton_Inserir" value="Adicionar"
+					actionListener="#{glossarioPrincipalAluno.inserirGlossario()}"
+					oncomplete="#{rich:component('popupPanel_Inserir')}.hide()"
+					render="form_Principal" />
+				<a4j:commandButton id="commandButton_Cancelar" value="Cancelar"
+					oncomplete="#{rich:component('popupPanel_Inserir')}.hide()"
+					render="form_Principal" />
+			</rich:panel>
+		</rich:popupPanel>
+		<a4j:commandButton id="commandButton_InserirGlossario"
+			value="Adicionar Glossário"
+			oncomplete="#{rich:component('popupPanel_Inserir')}.show()" />
+		<a4j:commandButton value="Voltar"
+			actionListener="#{principalAluno.apagarConteudo}"
+			render="form_Principal"
+			rendered="#{principalAluno.mostrarFuncionalidades}" />
+	</rich:panel>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:body>
+</html>

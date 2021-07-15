@@ -1,0 +1,1084 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../resources/css/style_rest.css" rel="stylesheet"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+	color: black;
+}
+</style>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>Report case</h1>
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="restricted_notify.html"> Report case</a> >> Notify from
+					paper
+				</h4>
+				<br />
+
+
+				<div style="width: 900px; height: 380px; overflow-x: auto;">
+					<p:accordionPanel multiple="true"
+						activeIndex="#{notificationBean.index}">
+						<p:ajax event="tabChange"
+							listener="#{notificationBean.onTabChange}" />
+						<p:tab id="tab0" title="Notify from paper">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+									<h:inputHidden
+										value="#{notificationBean.selected.codNotification}" />
+									<h:inputHidden value="#{paperBean.selected.id}" />
+									<h:inputHidden
+										value="#{notificationBean.selected.creationDate}">
+										<c:convertDateTime dateStyle="medium" />
+									</h:inputHidden>
+									<h:inputHidden value="#{notificationBean.selected.status}" />
+									<h:inputHidden value="#{notificationBean.selected.ativo}" />
+
+
+
+									<h:panelGrid columns="4" width="795" height="0" valign="top"
+										align="left" bgcolor="white">
+										<h:outputLabel value="Publish Date: " for="date" />
+										<p:calendar pattern="yyyy/MM" id="date" yearRange="1900:2100"
+											value="#{paperBean.selected.paperDate}" navigator="true"
+											display="inline" />
+										<h:outputLabel value="Title: " for="title" />
+										<p:inputText id="title" value="#{paperBean.selected.title}"
+											required="false" maxlength="255" />
+										<h:outputLabel value="DOI: " for="doi" />
+										<p:inputText id="doi" value="#{paperBean.selected.DOI}"
+											required="false" maxlength="50" />
+										<h:outputLabel value="Link: " for="link" />
+										<p:inputText id="link" value="#{paperBean.selected.link}"
+											required="false" maxlength="255" />
+										<h:outputLabel value="Country: " for="country" />
+										<p:selectOneMenu id="country"
+											value="#{paperBean.selected.country}" required="false">
+												<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+												<c:selectItem itemValue="United States" itemLabel="United States" />
+												<c:selectItem itemValue="United Kingdom" itemLabel="United Kingdom" />
+												<c:selectItem itemValue="Afghanistan" itemLabel="Afghanistan" />
+												<c:selectItem itemValue="Albania" itemLabel="Albania" />
+												<c:selectItem itemValue="Algeria" itemLabel="Algeria" />
+												<c:selectItem itemValue="American Samoa" itemLabel="American Samoa" />
+												<c:selectItem itemValue="Andorra" itemLabel="Andorra" />
+												<c:selectItem itemValue="Angola" itemLabel="Angola" />
+												<c:selectItem itemValue="Anguilla" itemLabel="Anguilla" />
+												<c:selectItem itemValue="Antarctica" itemLabel="Antarctica" />
+												<c:selectItem itemValue="Antigua and Barbuda" itemLabel="Antigua and Barbuda" />
+												<c:selectItem itemValue="Argentina" itemLabel="Argentina" />
+												<c:selectItem itemValue="Armenia" itemLabel="Armenia" />
+												<c:selectItem itemValue="Aruba" itemLabel="Aruba" />
+												<c:selectItem itemValue="Australia" itemLabel="Australia" />
+												<c:selectItem itemValue="Austria" itemLabel="Austria" />
+												<c:selectItem itemValue="Azerbaijan" itemLabel="Azerbaijan" />
+												<c:selectItem itemValue="Bahamas" itemLabel="Bahamas" />
+												<c:selectItem itemValue="Bahrain" itemLabel="Bahrain" />
+												<c:selectItem itemValue="Bangladesh" itemLabel="Bangladesh" />
+												<c:selectItem itemValue="Barbados" itemLabel="Barbados" />
+												<c:selectItem itemValue="Belarus" itemLabel="Belarus" />
+												<c:selectItem itemValue="Belgium" itemLabel="Belgium" />
+												<c:selectItem itemValue="Belize" itemLabel="Belize" />
+												<c:selectItem itemValue="Benin" itemLabel="Benin" />
+												<c:selectItem itemValue="Bermuda" itemLabel="Bermuda" />
+												<c:selectItem itemValue="Bhutan" itemLabel="Bhutan" />
+												<c:selectItem itemValue="Bolivia" itemLabel="Bolivia" />
+												<c:selectItem itemValue="Bosnia and Herzegovina" itemLabel="Bosnia and Herzegovina" />
+												<c:selectItem itemValue="Botswana" itemLabel="Botswana" />
+												<c:selectItem itemValue="Bouvet Island" itemLabel="Bouvet Island" />
+												<c:selectItem itemValue="Brazil" itemLabel="Brazil" />
+												<c:selectItem itemValue="British Indian Ocean Territory" itemLabel="British Indian Ocean Territory" />
+												<c:selectItem itemValue="Brunei Darussalam" itemLabel="Brunei Darussalam" />
+												<c:selectItem itemValue="Bulgaria" itemLabel="Bulgaria" />
+												<c:selectItem itemValue="Burkina Faso" itemLabel="Burkina Faso" />
+												<c:selectItem itemValue="Burundi" itemLabel="Burundi" />
+												<c:selectItem itemValue="Cambodia" itemLabel="Cambodia" />
+												<c:selectItem itemValue="Cameroon" itemLabel="Cameroon" />
+												<c:selectItem itemValue="Canada" itemLabel="Canada" />
+												<c:selectItem itemValue="Cape Verde" itemLabel="Cape Verde" />
+												<c:selectItem itemValue="Cayman Islands" itemLabel="Cayman Islands" />
+												<c:selectItem itemValue="Central African Republic" itemLabel="Central African Republic" />
+												<c:selectItem itemValue="Chad" itemLabel="Chad" />
+												<c:selectItem itemValue="Chile" itemLabel="Chile" />
+												<c:selectItem itemValue="China" itemLabel="China" />
+												<c:selectItem itemValue="Christmas Island" itemLabel="Christmas Island" />
+												<c:selectItem itemValue="Cocos (Keeling) Islands" itemLabel="Cocos (Keeling) Islands" />
+												<c:selectItem itemValue="Colombia" itemLabel="Colombia" />
+												<c:selectItem itemValue="Comoros" itemLabel="Comoros" />
+												<c:selectItem itemValue="Congo" itemLabel="Congo" />
+												<c:selectItem itemValue="Congo, The Democratic Republic of The" itemLabel="Congo, The Democratic Republic of The" />
+												<c:selectItem itemValue="Cook Islands" itemLabel="Cook Islands" />
+												<c:selectItem itemValue="Costa Rica" itemLabel="Costa Rica" />
+												<c:selectItem itemValue="Cote D'ivoire" itemLabel="Cote D'ivoire" />
+												<c:selectItem itemValue="Croatia" itemLabel="Croatia" />
+												<c:selectItem itemValue="Cuba" itemLabel="Cuba" />
+												<c:selectItem itemValue="Cyprus" itemLabel="Cyprus" />
+												<c:selectItem itemValue="Czech Republic" itemLabel="Czech Republic" />
+												<c:selectItem itemValue="Denmark" itemLabel="Denmark" />
+												<c:selectItem itemValue="Djibouti" itemLabel="Djibouti" />
+												<c:selectItem itemValue="Dominica" itemLabel="Dominica" />
+												<c:selectItem itemValue="Dominican Republic" itemLabel="Dominican Republic" />
+												<c:selectItem itemValue="Ecuador" itemLabel="Ecuador" />
+												<c:selectItem itemValue="Egypt" itemLabel="Egypt" />
+												<c:selectItem itemValue="El Salvador" itemLabel="El Salvador" />
+												<c:selectItem itemValue="Equatorial Guinea" itemLabel="Equatorial Guinea" />
+												<c:selectItem itemValue="Eritrea" itemLabel="Eritrea" />
+												<c:selectItem itemValue="Estonia" itemLabel="Estonia" />
+												<c:selectItem itemValue="Ethiopia" itemLabel="Ethiopia" />
+												<c:selectItem itemValue="Falkland Islands (Malvinas)" itemLabel="Falkland Islands (Malvinas)" />
+												<c:selectItem itemValue="Faroe Islands" itemLabel="Faroe Islands" />
+												<c:selectItem itemValue="Fiji" itemLabel="Fiji" />
+												<c:selectItem itemValue="Finland" itemLabel="Finland" />
+												<c:selectItem itemValue="France" itemLabel="France" />
+												<c:selectItem itemValue="French Guiana" itemLabel="French Guiana" />
+												<c:selectItem itemValue="French Polynesia" itemLabel="French Polynesia" />
+												<c:selectItem itemValue="French Southern Territories" itemLabel="French Southern Territories" />
+												<c:selectItem itemValue="Gabon" itemLabel="Gabon" />
+												<c:selectItem itemValue="Gambia" itemLabel="Gambia" />
+												<c:selectItem itemValue="Georgia" itemLabel="Georgia" />
+												<c:selectItem itemValue="Germany" itemLabel="Germany" />
+												<c:selectItem itemValue="Ghana" itemLabel="Ghana" />
+												<c:selectItem itemValue="Gibraltar" itemLabel="Gibraltar" />
+												<c:selectItem itemValue="Greece" itemLabel="Greece" />
+												<c:selectItem itemValue="Greenland" itemLabel="Greenland" />
+												<c:selectItem itemValue="Grenada" itemLabel="Grenada" />
+												<c:selectItem itemValue="Guadeloupe" itemLabel="Guadeloupe" />
+												<c:selectItem itemValue="Guam" itemLabel="Guam" />
+												<c:selectItem itemValue="Guatemala" itemLabel="Guatemala" />
+												<c:selectItem itemValue="Guinea" itemLabel="Guinea" />
+												<c:selectItem itemValue="Guinea-bissau" itemLabel="Guinea-bissau" />
+												<c:selectItem itemValue="Guyana" itemLabel="Guyana" />
+												<c:selectItem itemValue="Haiti" itemLabel="Haiti" />
+												<c:selectItem itemValue="Heard Island and Mcdonald Islands" itemLabel="Heard Island and Mcdonald Islands" />
+												<c:selectItem itemValue="Holy See (Vatican City State)" itemLabel="Holy See (Vatican City State)" />
+												<c:selectItem itemValue="Honduras" itemLabel="Honduras" />
+												<c:selectItem itemValue="Hong Kong" itemLabel="Hong Kong" />
+												<c:selectItem itemValue="Hungary" itemLabel="Hungary" />
+												<c:selectItem itemValue="Iceland" itemLabel="Iceland" />
+												<c:selectItem itemValue="India" itemLabel="India" />
+												<c:selectItem itemValue="Indonesia" itemLabel="Indonesia" />
+												<c:selectItem itemValue="Iran, Islamic Republic of" itemLabel="Iran, Islamic Republic of" />
+												<c:selectItem itemValue="Iraq" itemLabel="Iraq" />
+												<c:selectItem itemValue="Ireland" itemLabel="Ireland" />
+												<c:selectItem itemValue="Israel" itemLabel="Israel" />
+												<c:selectItem itemValue="Italy" itemLabel="Italy" />
+												<c:selectItem itemValue="Jamaica" itemLabel="Jamaica" />
+												<c:selectItem itemValue="Japan" itemLabel="Japan" />
+												<c:selectItem itemValue="Jordan" itemLabel="Jordan" />
+												<c:selectItem itemValue="Kazakhstan" itemLabel="Kazakhstan" />
+												<c:selectItem itemValue="Kenya" itemLabel="Kenya" />
+												<c:selectItem itemValue="Kiribati" itemLabel="Kiribati" />
+												<c:selectItem itemValue="Korea, Democratic People's Republic of" itemLabel="Korea, Democratic People's Republic of" />
+												<c:selectItem itemValue="Korea, Republic of" itemLabel="Korea, Republic of" />
+												<c:selectItem itemValue="Kuwait" itemLabel="Kuwait" />
+												<c:selectItem itemValue="Kyrgyzstan" itemLabel="Kyrgyzstan" />
+												<c:selectItem itemValue="Lao People's Democratic Republic" itemLabel="Lao People's Democratic Republic" />
+												<c:selectItem itemValue="Latvia" itemLabel="Latvia" />
+												<c:selectItem itemValue="Lebanon" itemLabel="Lebanon" />
+												<c:selectItem itemValue="Lesotho" itemLabel="Lesotho" />
+												<c:selectItem itemValue="Liberia" itemLabel="Liberia" />
+												<c:selectItem itemValue="Libyan Arab Jamahiriya" itemLabel="Libyan Arab Jamahiriya" />
+												<c:selectItem itemValue="Liechtenstein" itemLabel="Liechtenstein" />
+												<c:selectItem itemValue="Lithuania" itemLabel="Lithuania" />
+												<c:selectItem itemValue="Luxembourg" itemLabel="Luxembourg" />
+												<c:selectItem itemValue="Macao" itemLabel="Macao" />
+												<c:selectItem itemValue="Macedonia, The Former Yugoslav Republic of" itemLabel="Macedonia, The Former Yugoslav Republic of" />
+												<c:selectItem itemValue="Madagascar" itemLabel="Madagascar" />
+												<c:selectItem itemValue="Malawi" itemLabel="Malawi" />
+												<c:selectItem itemValue="Malaysia" itemLabel="Malaysia" />
+												<c:selectItem itemValue="Maldives" itemLabel="Maldives" />
+												<c:selectItem itemValue="Mali" itemLabel="Mali" />
+												<c:selectItem itemValue="Malta" itemLabel="Malta" />
+												<c:selectItem itemValue="Marshall Islands" itemLabel="Marshall Islands" />
+												<c:selectItem itemValue="Martinique" itemLabel="Martinique" />
+												<c:selectItem itemValue="Mauritania" itemLabel="Mauritania" />
+												<c:selectItem itemValue="Mauritius" itemLabel="Mauritius" />
+												<c:selectItem itemValue="Mayotte" itemLabel="Mayotte" />
+												<c:selectItem itemValue="Mexico" itemLabel="Mexico" />
+												<c:selectItem itemValue="Micronesia, Federated States of" itemLabel="Micronesia, Federated States of" />
+												<c:selectItem itemValue="Moldova, Republic of" itemLabel="Moldova, Republic of" />
+												<c:selectItem itemValue="Monaco" itemLabel="Monaco" />
+												<c:selectItem itemValue="Mongolia" itemLabel="Mongolia" />
+												<c:selectItem itemValue="Montserrat" itemLabel="Montserrat" />
+												<c:selectItem itemValue="Morocco" itemLabel="Morocco" />
+												<c:selectItem itemValue="Mozambique" itemLabel="Mozambique" />
+												<c:selectItem itemValue="Myanmar" itemLabel="Myanmar" />
+												<c:selectItem itemValue="Namibia" itemLabel="Namibia" />
+												<c:selectItem itemValue="Nauru" itemLabel="Nauru" />
+												<c:selectItem itemValue="Nepal" itemLabel="Nepal" />
+												<c:selectItem itemValue="Netherlands" itemLabel="Netherlands" />
+												<c:selectItem itemValue="Netherlands Antilles" itemLabel="Netherlands Antilles" />
+												<c:selectItem itemValue="New Caledonia" itemLabel="New Caledonia" />
+												<c:selectItem itemValue="New Zealand" itemLabel="New Zealand" />
+												<c:selectItem itemValue="Nicaragua" itemLabel="Nicaragua" />
+												<c:selectItem itemValue="Niger" itemLabel="Niger" />
+												<c:selectItem itemValue="Nigeria" itemLabel="Nigeria" />
+												<c:selectItem itemValue="Niue" itemLabel="Niue" />
+												<c:selectItem itemValue="Norfolk Island" itemLabel="Norfolk Island" />
+												<c:selectItem itemValue="Northern Mariana Islands" itemLabel="Northern Mariana Islands" />
+												<c:selectItem itemValue="Norway" itemLabel="Norway" />
+												<c:selectItem itemValue="Oman" itemLabel="Oman" />
+												<c:selectItem itemValue="Pakistan" itemLabel="Pakistan" />
+												<c:selectItem itemValue="Palau" itemLabel="Palau" />
+												<c:selectItem itemValue="Palestinian Territory, Occupied" itemLabel="Palestinian Territory, Occupied" />
+												<c:selectItem itemValue="Panama" itemLabel="Panama" />
+												<c:selectItem itemValue="Papua New Guinea" itemLabel="Papua New Guinea" />
+												<c:selectItem itemValue="Paraguay" itemLabel="Paraguay" />
+												<c:selectItem itemValue="Peru" itemLabel="Peru" />
+												<c:selectItem itemValue="Philippines" itemLabel="Philippines" />
+												<c:selectItem itemValue="Pitcairn" itemLabel="Pitcairn" />
+												<c:selectItem itemValue="Poland" itemLabel="Poland" />
+												<c:selectItem itemValue="Portugal" itemLabel="Portugal" />
+												<c:selectItem itemValue="Puerto Rico" itemLabel="Puerto Rico" />
+												<c:selectItem itemValue="Qatar" itemLabel="Qatar" />
+												<c:selectItem itemValue="Reunion" itemLabel="Reunion" />
+												<c:selectItem itemValue="Romania" itemLabel="Romania" />
+												<c:selectItem itemValue="Russian Federation" itemLabel="Russian Federation" />
+												<c:selectItem itemValue="Rwanda" itemLabel="Rwanda" />
+												<c:selectItem itemValue="Saint Helena" itemLabel="Saint Helena" />
+												<c:selectItem itemValue="Saint Kitts and Nevis" itemLabel="Saint Kitts and Nevis" />
+												<c:selectItem itemValue="Saint Lucia" itemLabel="Saint Lucia" />
+												<c:selectItem itemValue="Saint Pierre and Miquelon" itemLabel="Saint Pierre and Miquelon" />
+												<c:selectItem itemValue="Saint Vincent and The Grenadines" itemLabel="Saint Vincent and The Grenadines" />
+												<c:selectItem itemValue="Samoa" itemLabel="Samoa" />
+												<c:selectItem itemValue="San Marino" itemLabel="San Marino" />
+												<c:selectItem itemValue="Sao Tome and Principe" itemLabel="Sao Tome and Principe" />
+												<c:selectItem itemValue="Saudi Arabia" itemLabel="Saudi Arabia" />
+												<c:selectItem itemValue="Senegal" itemLabel="Senegal" />
+												<c:selectItem itemValue="Serbia and Montenegro" itemLabel="Serbia and Montenegro" />
+												<c:selectItem itemValue="Seychelles" itemLabel="Seychelles" />
+												<c:selectItem itemValue="Sierra Leone" itemLabel="Sierra Leone" />
+												<c:selectItem itemValue="Singapore" itemLabel="Singapore" />
+												<c:selectItem itemValue="Slovakia" itemLabel="Slovakia" />
+												<c:selectItem itemValue="Slovenia" itemLabel="Slovenia" />
+												<c:selectItem itemValue="Solomon Islands" itemLabel="Solomon Islands" />
+												<c:selectItem itemValue="Somalia" itemLabel="Somalia" />
+												<c:selectItem itemValue="South Africa" itemLabel="South Africa" />
+												<c:selectItem itemValue="South Georgia and The South Sandwich Islands" itemLabel="South Georgia and The South Sandwich Islands" />
+												<c:selectItem itemValue="Spain" itemLabel="Spain" />
+												<c:selectItem itemValue="Sri Lanka" itemLabel="Sri Lanka" />
+												<c:selectItem itemValue="Sudan" itemLabel="Sudan" />
+												<c:selectItem itemValue="Suriname" itemLabel="Suriname" />
+												<c:selectItem itemValue="Svalbard and Jan Mayen" itemLabel="Svalbard and Jan Mayen" />
+												<c:selectItem itemValue="Swaziland" itemLabel="Swaziland" />
+												<c:selectItem itemValue="Sweden" itemLabel="Sweden" />
+												<c:selectItem itemValue="Switzerland" itemLabel="Switzerland" />
+												<c:selectItem itemValue="Syrian Arab Republic" itemLabel="Syrian Arab Republic" />
+												<c:selectItem itemValue="Taiwan, Province of China" itemLabel="Taiwan, Province of China" />
+												<c:selectItem itemValue="Tajikistan" itemLabel="Tajikistan" />
+												<c:selectItem itemValue="Tanzania, United Republic of" itemLabel="Tanzania, United Republic of" />
+												<c:selectItem itemValue="Thailand" itemLabel="Thailand" />
+												<c:selectItem itemValue="Timor-leste" itemLabel="Timor-leste" />
+												<c:selectItem itemValue="Togo" itemLabel="Togo" />
+												<c:selectItem itemValue="Tokelau" itemLabel="Tokelau" />
+												<c:selectItem itemValue="Tonga" itemLabel="Tonga" />
+												<c:selectItem itemValue="Trinidad and Tobago" itemLabel="Trinidad and Tobago" />
+												<c:selectItem itemValue="Tunisia" itemLabel="Tunisia" />
+												<c:selectItem itemValue="Turkey" itemLabel="Turkey" />
+												<c:selectItem itemValue="Turkmenistan" itemLabel="Turkmenistan" />
+												<c:selectItem itemValue="Turks and Caicos Islands" itemLabel="Turks and Caicos Islands" />
+												<c:selectItem itemValue="Tuvalu" itemLabel="Tuvalu" />
+												<c:selectItem itemValue="Uganda" itemLabel="Uganda" />
+												<c:selectItem itemValue="Ukraine" itemLabel="Ukraine" />
+												<c:selectItem itemValue="United Arab Emirates" itemLabel="United Arab Emirates" />
+												<c:selectItem itemValue="United Kingdom" itemLabel="United Kingdom" />
+												<c:selectItem itemValue="United States" itemLabel="United States" />
+												<c:selectItem itemValue="United States Minor Outlying Islands" itemLabel="United States Minor Outlying Islands" />
+												<c:selectItem itemValue="Uruguay" itemLabel="Uruguay" />
+												<c:selectItem itemValue="Uzbekistan" itemLabel="Uzbekistan" />
+												<c:selectItem itemValue="Vanuatu" itemLabel="Vanuatu" />
+												<c:selectItem itemValue="Venezuela" itemLabel="Venezuela" />
+												<c:selectItem itemValue="Viet Nam" itemLabel="Viet Nam" />
+												<c:selectItem itemValue="Virgin Islands, British" itemLabel="Virgin Islands, British" />
+												<c:selectItem itemValue="Virgin Islands, U.S." itemLabel="Virgin Islands, U.S." />
+												<c:selectItem itemValue="Wallis and Futuna" itemLabel="Wallis and Futuna" />
+												<c:selectItem itemValue="Western Sahara" itemLabel="Western Sahara" />
+												<c:selectItem itemValue="Yemen" itemLabel="Yemen" />
+												<c:selectItem itemValue="Zambia" itemLabel="Zambia" />
+												<c:selectItem itemValue="Zimbabwe" itemLabel="Zimbabwe" />
+										</p:selectOneMenu>
+
+
+									</h:panelGrid>
+									<p:dataTable value="#{paperBean.listaPaperNotif}" var="paper"
+										rendered="#{!empty paperBean.listaPaperNotif}" cellpadding="5"
+										bgcolor="#EBEBD6" rules="rows">
+										<p:column headerText="Date">
+											<h:outputText value="#{paper.notification.codNotification}" />
+										</p:column>
+										<p:column headerText="Date">
+											<h:outputText value="#{paper.paperDate}" />
+										</p:column>
+										<p:column headerText="DOI">
+											<h:outputText value="#{paper.DOI}" />
+										</p:column>
+										<p:column headerText="Country">
+											<h:outputText value="#{paper.country}" />
+										</p:column>
+										<p:column headerText="Link">
+											<h:outputText value="#{paper.link}" />
+										</p:column>
+
+									</p:dataTable>
+									<h:dataTable value="#{paperBean.listaPaperNotif}" var="paper"
+										rendered="#{!empty paperBean.listaPaperNotif}" cellpadding="0"
+										rules="rows">
+										<p:column>
+											<h:outputLabel>
+												<p:commandButton styleClass="botao" value="Save changes"
+													action="#{paperBean.edit}" ajax="false" />
+											</h:outputLabel>
+											<p:commandButton value="Complete with existing data"
+												ajax="false">
+												<c:ajax execute="@form" render=":tab1" />
+												<c:setPropertyActionListener target="#{paperBean.selected}"
+													value="#{paper}" />
+											</p:commandButton>
+
+										</p:column>
+
+									</h:dataTable>
+
+									<h:outputLabel id="save">
+										<p:commandButton styleClass="botao" value="Save"
+											action="#{paperBean.save}" ajax="false">
+											<c:ajax execute="@form" render=":tab1" event="click"
+												listener="#{notificationBean.onTabChange}" />
+										</p:commandButton>
+									</h:outputLabel>
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Finish"
+											action="imagesCreated" ajax="false" />
+									</h:outputLabel>
+
+
+								</h:form>
+							</h:panelGrid>
+						</p:tab>
+						<p:tab id="tab1" title="Individual information">
+
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+
+									<h:messages />
+									<h:panelGrid columns="4" width="795" height="0" valign="top"
+										align="left" bgcolor="white">
+										<h:outputLabel value="Age: " for="age" />
+										<p:inputText id="age"
+											value="#{paperBean.selecIndividualPaper.age}"
+											required="false" maxlength="5" />
+
+
+										<h:outputLabel value="Gender: " for="gender" />
+										<p:selectOneRadio id="gender"
+											value="#{paperBean.selecIndividualPaper.gender}">
+											<c:selectItem itemValue="Male" itemLabel="Male" />
+											<c:selectItem itemValue="Female" itemLabel="Female" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+
+										<h:outputLabel value="Pregnancy: " for="pregnancy" />
+										<p:selectOneMenu id="pregnancy"
+											value="#{paperBean.selecIndividualPaper.pregnant}">
+											<c:selectItem itemValue="" itemLabel="Select" />
+											<c:selectItem itemValue="1st Quarter" itemLabel="1st Quarter" />
+											<c:selectItem itemValue="2nd Quarter" itemLabel="2nd Quarter" />
+											<c:selectItem itemValue="3rd Quarter" itemLabel="3rd Quarter" />
+											<c:selectItem itemValue="Ignored gestacional age"
+												itemLabel="Ignored gestacional age" />
+											<c:selectItem itemValue="No" itemLabel="No" />
+											<c:selectItem itemValue="Not applicable"
+												itemLabel="Not applicable" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneMenu>
+										<h:outputLabel value="Ethnic group: " for="ethnicGroup" />
+										<p:selectOneMenu id="ethnicGroup"
+											value="#{paperBean.selecIndividualPaper.ethnicGroup}">
+											<c:selectItem itemValue=""
+												itemLabel="Select the ethnic group" />
+											<c:selectItem itemValue="Caucasian" itemLabel="Caucasian" />
+											<c:selectItem itemValue="Mongolian" itemLabel="Mongolian" />
+											<c:selectItem itemValue="Negroid" itemLabel="Negroid" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneMenu>
+										<h:outputLabel value="Education: " for="education" />
+										<p:selectOneMenu id="education"
+											value="#{paperBean.selecIndividualPaper.scholarity}">
+											<c:selectItem itemValue=""
+												itemLabel="Select educational level" />
+											<c:selectItem itemValue="Illiterate" itemLabel="Illiterate" />
+											<c:selectItem itemValue="Elementary school"
+												itemLabel="Elementary school" />
+											<c:selectItem itemValue="Middle school"
+												itemLabel="Middle school" />
+											<c:selectItem itemValue="High school" itemLabel="High school" />
+											<c:selectItem itemValue="Post-secondary school"
+												itemLabel="Post-secondary school" />
+											<c:selectItem itemValue="Not applicable"
+												itemLabel="Not applicable" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneMenu>
+										<h:outputLabel value="Country: " for="country" />
+										<p:inputText id="country"
+											value="#{paperBean.selecIndividualPaper.country}"
+											required="false" maxlength="509" />
+
+									<!-- 	<h:outputLabel value="City of residence: " for="cityResidence" />
+										<p:inputText id="cityResidence"
+											value="#{paperBean.selecIndividualPaper.cityResidence}"
+											required="false" maxlength="50" /> -->
+									</h:panelGrid>
+
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Save"
+											action="#{paperBean.saveIndividualPaper}" ajax="false">
+											<c:ajax execute="@this" render=":texto" />
+										</p:commandButton>
+									</h:outputLabel>
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Finish"
+											action="imagesCreated" ajax="false" />
+
+									</h:outputLabel>
+
+								</h:form>
+							</h:panelGrid>
+
+
+						</p:tab>
+						<p:tab id="tab2" title="First Symptoms">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form id="fillFirstsymptoms">
+									<h:panelGrid columns="2" width="795" height="0" valign="top"
+										align="left" bgcolor="white" columnClasses="csssym1,csssym2">
+										<h:outputLabel value="First Symptom: " for="firstsymptom" />
+										<p:inputText id="firstsymptom"
+											value="#{paperBean.selectedSym.symptom}" required="false"
+											maxlength="50" />
+											
+											
+										<h:outputLabel value="Date(Prior to admission): " for="date" />
+										
+										<p:selectOneMenu id="date"  display="inline" 
+											value="#{paperBean.selectedSym.symDate}">
+											<c:selectItem itemValue=""
+												itemLabel="Select the date in months" />
+											<c:selectItem itemValue="1" itemLabel="1 month" />
+											<c:selectItem itemValue="2" itemLabel="2 months" />
+											<c:selectItem itemValue="3" itemLabel="3 months" />
+											<c:selectItem itemValue="4" itemLabel="4 months" />
+											<c:selectItem itemValue="5" itemLabel="5 months" />
+											<c:selectItem itemValue="6" itemLabel="6 months" />
+											<c:selectItem itemValue="7" itemLabel="7 months" />
+											<c:selectItem itemValue="8" itemLabel="8 months" />
+											<c:selectItem itemValue="9" itemLabel="9 months" />
+											<c:selectItem itemValue="10" itemLabel="10 months" />
+											<c:selectItem itemValue="11" itemLabel="11 months" />
+											<c:selectItem itemValue="12" itemLabel="12 months" />
+											<c:selectItem itemValue="13" itemLabel="13 months" />
+											<c:selectItem itemValue="14" itemLabel="14 months" />
+											<c:selectItem itemValue="15" itemLabel="15 months" />
+											<c:selectItem itemValue="16" itemLabel="16 months" />
+											<c:selectItem itemValue="17" itemLabel="17 months" />
+											<c:selectItem itemValue="18" itemLabel="18 months" />
+											<c:selectItem itemValue="19" itemLabel="19 months" />
+											<c:selectItem itemValue="20" itemLabel="20 months" />
+											<c:selectItem itemValue="21" itemLabel="21 months" />
+											<c:selectItem itemValue="22" itemLabel="22 months" />
+											<c:selectItem itemValue="23" itemLabel="23 months" />
+											<c:selectItem itemValue="24" itemLabel="24 months" />
+											<c:selectItem itemValue="25" itemLabel="25 months" />
+											<c:selectItem itemValue="26" itemLabel="26 months" />
+											<c:selectItem itemValue="27" itemLabel="27 months" />
+											<c:selectItem itemValue="28" itemLabel="28 months" />
+											<c:selectItem itemValue="29" itemLabel="29 months" />
+											<c:selectItem itemValue="30" itemLabel="30 months" />
+										</p:selectOneMenu>	
+											<!-- 	<p:calendar pattern="yyyy/MM/dd" id="date"
+											value="#{paperBean.selectedSym.symDate}" navigator="true"
+											display="inline" /> -->
+										<p:commandButton action="#{paperBean.includeFirstSym}"
+											value="Add symptom" title="Add symptom" ajax="false">
+											<c:ajax execute="@form" />
+										</p:commandButton>
+
+									</h:panelGrid>
+								</h:form>
+							</h:panelGrid>
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form id="listFirstpaper">
+
+								</h:form>
+							</h:panelGrid>
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form id="listFirstsymptoms">
+
+									<p:dataTable value="#{paperBean.listaFirstSym}" var="symptoms">
+										<p:column headerText="Id">
+											<h:outputText value="#{symptoms.individualPaper.id}" />
+
+										</p:column>
+										<p:column headerText="First Symptoms">
+											<h:outputText value="#{symptoms.symptom}" />
+
+										</p:column>
+										<p:column headerText="Date (in months)">
+											<h:outputText value="#{symptoms.symDate}" />
+
+										</p:column>
+
+									</p:dataTable>
+
+
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Finish"
+											action="imagesCreated" ajax="false" />
+									</h:outputLabel>
+								</h:form>
+							</h:panelGrid>
+						</p:tab>
+						<p:tab id="tab3" title="Others Symptoms">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form id="fillsymptoms">
+									<h:panelGrid columns="3" width="795" height="0" valign="top"
+										align="left" bgcolor="white" columnClasses="csssymText1,csssymTextArea,csssym2">
+										<h:outputLabel value="Symptoms List: " for="symptom" />
+										<p:inputTextarea id="othersSymptoms"
+											value="#{paperBean.othersSymptoms}" required="false"  
+											rows="10" cols="60" />
+										<div>
+											Symptoms#Period
+										</div>
+									</h:panelGrid>
+									<h:panelGrid columns="1" width="795" height="0" valign="top"
+										align="left" bgcolor="white"
+										columnClasses="cssper1">
+									<!-- 	<h:outputLabel
+											value="Period of months after the first symptoms: "
+											for="period" />
+										<p:inputText id="period"
+											value="#{paperBean.selectedSym.period}" required="false"
+											maxlength="50" />
+										<h:outputLabel value="months" /> -->
+										
+										<p:commandButton type="button" onclick="cd.show()"
+											value="Add symptom" title="Add symptoms list" >
+										</p:commandButton>
+										
+										<p:confirmDialog message="Are you sure about the symptoms?"
+											 severity="alert"   widgetVar="cd">
+											<p:commandButton value="Yes" actionListener="#{paperBean.includeFinalSym}"   update="messages" oncomplete="confirmation.hide()" ajax="false">
+													 <c:ajax execute="@form" />
+											</p:commandButton>
+										</p:confirmDialog>
+										
+										
+									</h:panelGrid>
+								</h:form>
+							</h:panelGrid>
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form id="listsymptoms">
+									<p:dataTable value="#{paperBean.listaSymptomsNotif}"
+										var="symptoms">
+										<p:column headerText="Id">
+											<h:outputText value="#{symptoms.individualPaper.id}" />
+
+										</p:column>
+										<p:column headerText="Symptoms">
+											<h:outputText value="#{symptoms.symptom}" />
+
+										</p:column>
+										<p:column headerText="Period">
+											<h:outputText value="#{symptoms.period}" />
+
+										</p:column>
+									</p:dataTable>
+
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Finish"
+											action="imagesCreated" ajax="false" />
+									</h:outputLabel>
+								</h:form>
+							</h:panelGrid>
+							<h:panelGrid columns="2" cellpadding="10">
+
+							</h:panelGrid>
+						</p:tab>
+						<p:tab id="tab4" title="Exams">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+									<h:panelGrid columns="4" width="795" height="0" valign="top"
+										align="left" bgcolor="white">
+
+										<h:outputLabel value="EEG:" for="eeg" />
+										<p:selectOneRadio layout="lineDirection" id="eeg"
+											value="#{resultsBean.selectedPap.EEG}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="u" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_eeg" />
+										<p:inputText id="res_eeg"
+											value="#{resultsBean.selectedPap.res_EEG}" required="false"
+											maxlength="250" />
+										<h:outputLabel value="MRI - Magnetic Resonance Imaging: "
+											for="mri" />
+										<p:selectOneRadio layout="lineDirection" id="mri"
+											value="#{resultsBean.selectedPap.MRI}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_mri" />
+										<p:inputText id="res_mri"
+											value="#{resultsBean.selectedPap.res_MRI}" required="false"
+											maxlength="250" />
+										<h:outputLabel value="14-3-3 protein in CSF: " for="protein14" />
+										<p:selectOneRadio layout="lineDirection" id="protein14"
+											value="#{resultsBean.selectedPap.prot14_3}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_prot14" />
+										<p:inputText id="res_prot14"
+											value="#{resultsBean.selectedPap.res_prot14_3}"
+											required="false" maxlength="250" />
+										<h:outputLabel value="TAU protein in CSF: " for="tau" />
+										<p:selectOneRadio layout="lineDirection" id="tau"
+											value="#{resultsBean.selectedPap.tauProtein}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_tau" />
+										<p:inputText id="res_tau"
+											value="#{resultsBean.selectedPap.res_tau}" required="false"
+											maxlength="250" />
+										<h:outputLabel
+											value="Brain Biopsy and Necropsy: "
+											for="biopsy" />
+										<p:selectOneRadio layout="lineDirection" id="biopsy"
+											value="#{resultsBean.selectedPap.biopsy}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_bio" />
+										<p:inputText id="res_bio"
+											value="#{resultsBean.selectedPap.resBiopsy}" required="false"
+											maxlength="250" />
+										<h:outputLabel
+											value="Necropsy with spongiform encephalopathy: "
+											for="necropsy" />
+										<p:selectOneRadio layout="lineDirection" id="necropsy"
+											value="#{resultsBean.selectedPap.necropsy}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_nec" />
+										<p:inputText id="res_nec"
+											value="#{resultsBean.selectedPap.resNecropsy}"
+											required="false" maxlength="250" />
+										<h:outputLabel
+											value="Immunohistochemistry for prion protein pathological: "
+											for="immunohistochemistry" />
+										<p:selectOneRadio layout="lineDirection"
+											id="immunohistochemistry"
+											value="#{resultsBean.selectedPap.immunohistochemistry}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_im" />
+										<p:inputText id="res_im"
+											value="#{resultsBean.selectedPap.resImmunohistochemistry}"
+											required="false" maxlength="250" />
+										<h:outputLabel value="Genetic analysis (PRNP): " for="prnp" />
+										<p:selectOneRadio layout="pageDirection" id="prnp"
+											value="#{resultsBean.selectedPap.genetic}">
+											<c:selectItem itemValue="Presencemutation"
+												itemLabel="Presence of mutation" />
+											<c:selectItem itemValue="Absencemutation"
+												itemLabel="Absence of mutation" />
+											<c:selectItem itemValue="Inprogress" itemLabel="In progress" />
+											<c:selectItem itemValue="Not Performed" itemLabel="Not Performed" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Mutation: " for="mutation" />
+										<p:inputText id="mutation"
+											value="#{resultsBean.selectedPap.resGenetic}"
+											required="false" maxlength="250" />
+										<h:outputLabel value="129 Codon: " for="codon" />
+										<p:selectOneMenu layout="pageDirection" id="codon"
+											value="#{resultsBean.selectedPap.codon}">
+
+											<c:selectItem itemValue="" itemLabel="Select genotype" />
+											<c:selectItem itemValue="MM" itemLabel="MM" />
+											<c:selectItem itemValue="MV" itemLabel="MV" />
+											<c:selectItem itemValue="VV" itemLabel="VV" />
+										</p:selectOneMenu>
+										<h:outputLabel value="Subtype: " for="sub" />
+										<p:selectOneMenu layout="pageDirection" id="sub"
+											value="#{resultsBean.selectedPap.subtypeCodon}">
+											<c:selectItem itemValue="" itemLabel="Select subtype" />
+											<c:selectItem itemValue="1" itemLabel="1" />
+											<c:selectItem itemValue="2" itemLabel="2" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown " itemLabel="Unknown " />
+										</p:selectOneMenu>
+										
+										<h:outputLabel value="Others: " for="others" />
+										<p:inputTextarea id="others" rows="10" cols="50"
+											autoResize="false" value="#{resultsBean.selectedPap.others}" />
+										
+									</h:panelGrid>
+									<h:dataTable value="#{resultsBean.listResultsPaper}"
+										var="result" cellpadding="0" rules="rows">
+										<p:column>
+											<h:outputLabel>
+												<p:commandButton styleClass="botao" value="Save changes"
+													action="#{resultsBean.editResPaper}" ajax="false">
+
+												</p:commandButton>
+											</h:outputLabel>
+											<p:commandButton value="Complete with existing data"
+												ajax="false">
+												<c:ajax execute="@this" />
+												<c:setPropertyActionListener
+													target="#{resultsBean.selectedPap}" value="#{result}" />
+											</p:commandButton>
+
+										</p:column>
+									</h:dataTable>
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Save"
+											action="#{resultsBean.saveResultPaper}" ajax="false" />
+									</h:outputLabel>
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Finish"
+											action="imagesCreated" ajax="false" />
+									</h:outputLabel>
+								</h:form>
+							</h:panelGrid>
+
+
+						</p:tab>
+						<p:tab id="tab5" title="Images">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+									<h:panelGrid id="infoFoto" columns="2">
+
+										<h:outputText value="Picture: " />
+										<p:fileUpload
+											fileUploadListener="#{picturesBean.fileUploadPicPaper}"
+											label="Select" cancelLabel="Cancel" sizeLimit="400000"
+											invalidSizeMessage="Imagem is too big" auto="true"
+											invalidFileMessage="Type of image is not available"
+											allowTypes="/(\.|\/)(jpe?g|png)$/" />
+
+										<h:outputText value="Description: " />
+										<p:inputText value="#{picturesBean.selectedPicPap.name}" />
+										<h:outputLabel value="Type:" for="primDiag" />
+										<p:selectOneMenu id="primDiag"
+											value="#{picturesBean.selectedPicPap.type}">
+											<c:selectItem itemValue="" itemLabel="Select the image type" />
+											<c:selectItem itemValue="EEG" itemLabel="EEG" />
+											<c:selectItem itemValue="MRI" itemLabel="MRI" />
+											<c:selectItem itemValue="Biopsy" itemLabel="Biopsy" />
+											<c:selectItem itemValue="Necropsy" itemLabel="Necropsy" />
+											<c:selectItem itemValue="Immunohistochemestry"
+												itemLabel="Immunohistochemestry" />
+											<c:selectItem itemValue="PRNP" itemLabel="PRNP" />
+										</p:selectOneMenu>
+
+										<p:commandButton value="Insert" icon="ui-icon-plus"
+											ajax="false" action="#{picturesBean.savePicturePaper}" />
+
+									</h:panelGrid>
+
+
+								</h:form>
+							</h:panelGrid>
+						</p:tab>
+						<p:tab id="tab6" title="Primary diagnostic">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+									<h:panelGrid columns="4" width="795" height="0" valign="top"
+										align="left" bgcolor="white">
+										<h:outputLabel value="Primary diagnostic:" for="primDiag" />
+										<p:selectOneMenu id="primDiag"
+											value="#{suspicionBean.selected.suspect}">
+											<c:selectItem itemValue=""
+												itemLabel="Select primary diagnostic" />
+											<c:selectItem itemValue="CJD" itemLabel="CJD" />
+											<c:selectItem itemValue="GSS" itemLabel="GSS" />
+											<c:selectItem itemValue="IFF" itemLabel="IFF" />
+											<c:selectItem itemValue="Discarded Case"
+												itemLabel="Discarded Case (another diagnostic)" />
+											<c:selectItem itemValue="Other" itemLabel="Other" />
+										</p:selectOneMenu>
+										<h:outputLabel value="Other:" for="otherprimDiag" />
+										<p:inputTextarea id="otherprimDiag" rows="1" cols="33"
+											autoResize="false" value="#{suspicionBean.selected.other}" />
+										<h:outputLabel value="Criteria:" for="criteria" />
+										<p:selectOneMenu id="criteria"
+											value="#{suspicionBean.selected.criteria}">
+											<c:selectItem itemValue="" itemLabel="Select criteria" />
+											<c:selectItem itemValue="Definitive" itemLabel="Definitive" />
+											<c:selectItem itemValue="Possible" itemLabel="Possible" />
+											<c:selectItem itemValue="Probable" itemLabel="Probable" />
+										</p:selectOneMenu>
+									</h:panelGrid>
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Save"
+											action="#{suspicionBean.save}" ajax="false" />
+									</h:outputLabel>
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Finish"
+											action="imagesCreated" ajax="false" />
+									</h:outputLabel>
+								</h:form>
+							</h:panelGrid>
+							<h:form id="listSus">
+
+								<p:dataTable value="#{suspicionBean.list}" var="sus" cellpadding="5"
+									bgcolor="#EBEBD6" rules="rows">
+									<p:column headerText="Suspect">
+										<h:outputText value="#{sus.suspect}" />
+									</p:column>
+									<p:column headerText="Criteria">
+										<h:outputText value="#{sus.criteria}" />
+									</p:column>
+									<p:column headerText="Another suspect">
+										<h:outputText value="#{sus.other}" />
+									</p:column>
+									<p:column headerText="Delete">
+										<p:commandButton action="#{suspicionBean.delete}"
+											update="listFirstsymptoms" styleClass="delete" ajax="false">
+											<!--  <c:ajax execute="@form" immediate="true" />-->
+											<c:setPropertyActionListener
+												target="#{suspicionBean.selected}" value="#{sus}" />
+										</p:commandButton>
+									</p:column>
+
+								</p:dataTable>
+
+
+							</h:form>
+
+						</p:tab>
+						<p:tab id="tab7" title="Conclusion">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+									<h:panelGrid columns="4" width="795" height="0" valign="top"
+										align="left" bgcolor="white">
+										<h:outputLabel value="Final diagnostic:" for="finalDiag" />
+										<p:selectOneMenu id="finalDiag"
+											value="#{conclusionBean.selectedPap.finalDiag}">
+											<c:selectItem itemValue=""
+												itemLabel="Select final diagnostic" />
+											<c:selectItem itemValue="iCJD" itemLabel="iCJD" />
+											<c:selectItem itemValue="sCJD" itemLabel="sCJD" />
+											<c:selectItem itemValue="gCJD" itemLabel="gCJD" />
+											<c:selectItem itemValue="vCJD" itemLabel="vCJD" />
+											<c:selectItem itemValue="sFI" itemLabel="sFI" />
+											<c:selectItem itemValue="FFI" itemLabel="FFI" />
+											<c:selectItem itemValue="GSS" itemLabel="GSS" />
+											<c:selectItem itemValue="Discarded Case"
+												itemLabel="Discarded Case (another diagnostic)" />
+											<c:selectItem itemValue="other" itemLabel="Other" />
+										</p:selectOneMenu>
+										<h:outputLabel value="Other:" for="otherprimDiag" />
+										<p:inputTextarea id="otherConclusion" rows="1" cols="33"
+											autoResize="false" value="#{conclusionBean.selectedPap.other}" />
+											
+										<h:outputLabel value="Criteria:" for="criteria" />
+										<p:selectOneMenu id="criteria"
+											value="#{conclusionBean.selectedPap.criteria}">
+											<c:selectItem itemValue="" itemLabel="Select criteria" />
+											<c:selectItem itemValue="Definitive" itemLabel="Definitive" />
+											<c:selectItem itemValue="Possible" itemLabel="Possible" />
+											<c:selectItem itemValue="Probable" itemLabel="Probable" />
+										</p:selectOneMenu>
+										
+										
+										
+										
+										<h:outputLabel value="Date of death after admission:" for="deathDate" />
+										
+										
+										<p:selectOneMenu id="date"  display="inline" 
+											value="#{conclusionBean.selectedPap.deathDate}">
+											<c:selectItem itemValue=""
+												itemLabel="Select the date in months" />
+											<c:selectItem itemValue="1" itemLabel="1 month" />
+											<c:selectItem itemValue="2" itemLabel="2 months" />
+											<c:selectItem itemValue="3" itemLabel="3 months" />
+											<c:selectItem itemValue="4" itemLabel="4 months" />
+											<c:selectItem itemValue="5" itemLabel="5 months" />
+											<c:selectItem itemValue="6" itemLabel="6 months" />
+											<c:selectItem itemValue="7" itemLabel="7 months" />
+											<c:selectItem itemValue="8" itemLabel="8 months" />
+											<c:selectItem itemValue="9" itemLabel="9 months" />
+											<c:selectItem itemValue="10" itemLabel="10 months" />
+											<c:selectItem itemValue="11" itemLabel="11 months" />
+											<c:selectItem itemValue="12" itemLabel="12 months" />
+											<c:selectItem itemValue="13" itemLabel="13 months" />
+											<c:selectItem itemValue="14" itemLabel="14 months" />
+											<c:selectItem itemValue="15" itemLabel="15 months" />
+											<c:selectItem itemValue="16" itemLabel="16 months" />
+											<c:selectItem itemValue="17" itemLabel="17 months" />
+											<c:selectItem itemValue="18" itemLabel="18 months" />
+											<c:selectItem itemValue="19" itemLabel="19 months" />
+											<c:selectItem itemValue="20" itemLabel="20 months" />
+											<c:selectItem itemValue="21" itemLabel="21 months" />
+											<c:selectItem itemValue="22" itemLabel="22 months" />
+											<c:selectItem itemValue="23" itemLabel="23 months" />
+											<c:selectItem itemValue="24" itemLabel="24 months" />
+											<c:selectItem itemValue="25" itemLabel="25 months" />
+											<c:selectItem itemValue="26" itemLabel="26 months" />
+											<c:selectItem itemValue="27" itemLabel="27 months" />
+											<c:selectItem itemValue="28" itemLabel="28 months" />
+											<c:selectItem itemValue="29" itemLabel="29 months" />
+											<c:selectItem itemValue="30" itemLabel="30 months" />
+										</p:selectOneMenu>	
+
+										<!-- <p:calendar pattern="yyyy/MM/dd" id="deathDate"
+											value="#{conclusionBean.selectedPap.deathDate}"
+											navigator="true" display="inline" /> -->
+								
+
+
+										<h:outputLabel value="Date of closure:" for="closureDate" />
+										<p:calendar pattern="yyyy/MM/dd" id="closureDate"
+											value="#{conclusionBean.selectedPap.clousureDate}"
+											navigator="true" display="inline" />
+									</h:panelGrid>
+									<h:dataTable value="#{conclusionBean.listConclusionPaper}"
+										var="result"
+										rendered="#{!empty conclusionBean.listConclusionPaper}"
+										cellpadding="0" rules="rows">
+										<p:column>
+											<h:outputLabel>
+												<p:commandButton styleClass="botao" value="Save changes"
+													action="#{conclusionBean.editConclusionPaper}" ajax="false" />
+											</h:outputLabel>
+											<p:commandButton value="Complete with existing data"
+												ajax="false">
+												<c:ajax execute="@this" render=":texto" />
+												<c:setPropertyActionListener
+													target="#{conclusionBean.selectedPap}" value="#{result}" />
+											</p:commandButton>
+										</p:column>
+									</h:dataTable>
+
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Save"
+											action="#{conclusionBean.saveConclusionPaper}" ajax="false" />
+									</h:outputLabel>
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Finish"
+											action="imagesCreated" ajax="false" />
+									</h:outputLabel>
+								</h:form>
+							</h:panelGrid>
+							<h:form id="listCon">
+
+								<p:dataTable value="#{conclusionBean.listConclusionPaper}"
+									var="con"
+									rendered="#{!empty conclusionBean.listConclusionPaper}"
+									cellpadding="5" bgcolor="#EBEBD6" rules="rows">
+									<p:column headerText="Final diagnostic">
+										<h:outputText value="#{con.finalDiag}" />
+									</p:column>
+									<p:column headerText="Other">
+										<h:outputText value="#{con.other}" />
+									</p:column>
+									<p:column headerText="Criteria">
+										<h:outputText value="#{con.criteria}" />
+									</p:column>
+									<p:column headerText="Date of death">
+										<h:outputText value="#{con.deathDate}" />
+									</p:column>
+									<p:column headerText="Date of closure">
+										<h:outputText value="#{con.clousureDate}" />
+									</p:column>
+
+								</p:dataTable>
+
+
+
+							</h:form>
+
+						</p:tab>
+						<p:tab id="tab8" title="Add a New Case from this paper"
+							titleStyle="background: #FFB6B0;">
+							<h:form>
+								<h:inputHidden value="#{paperBean.selected.id}" />
+								<p:commandButton value="New Case" icon="ui-icon-plus"
+									ajax="false" action="#{paperBean.newCasePaper}">
+								</p:commandButton>
+
+								<h:outputLabel>
+
+
+									<p:commandButton styleClass="botao" value="Finish"
+										action="restrictednotifyfinish" ajax="false">
+									</p:commandButton>
+
+								</h:outputLabel>
+
+							</h:form>
+						</p:tab>
+					</p:accordionPanel>
+				</div>
+			</div>
+		</div>
+					
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+</html>

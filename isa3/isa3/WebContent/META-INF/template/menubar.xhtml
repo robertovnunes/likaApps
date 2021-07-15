@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="description" content="" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="content-language" content="pt-br" />
+	<meta name="robots" content="noindex, nofollow" />
+	
+</h:head>
+<h:body>
+	<h:form>
+		<p:growl id="messages" />
+
+		<nav id="navegacao" role="navigation">
+				<ul id="main-menu" class="sm sm-inss" role="menubar">
+					<li>
+						<a class="has-submenu" href="#"><span class="sub-arrow">+</span>Relatório</a>
+						<ul>
+							<li>
+								<p:commandLink styleClass="has-submenu" value="Linha do Tempo"  actionListener="#{relatorioLinhaDoTempoController.preparaRelatorioLinhaDoTempo()}"  >
+								</p:commandLink>
+							</li>
+							<li>
+								<a class="has-submenu" href="#">Detalhes Versões</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a class="has-submenu" href="#"><span class="sub-arrow">+</span>Demandas</a>
+						<ul>
+							<li>
+								<p:commandLink styleClass="has-submenu" value="Cadastrar"  actionListener="#{demandaPersistirController.prepararAdicionarDemanda()}"  >
+								</p:commandLink>
+							</li>
+							<li>
+								<a class="has-submenu" href="http://localhost:8080/gerdem/restrict/demanda/demanda_procurar.xhtml">Procurar</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a class="has-submenu" href="#"><span class="sub-arrow">+</span>Cadastros</a>
+						<ul>
+							<li>
+								<a class="has-submenu" href=""><span class="sub-arrow">+</span>Sistemas</a>
+								<ul>
+									<p:commandLink styleClass="has-submenu" value="Cadastrar"  actionListener="#{sistemaPersistirController.prepararAdicionarSistema()}"  >
+									</p:commandLink>
+									<li><a class="has-submenu" href="http://localhost:8080/gerdem/restrict/sistema/sistema_procurar.xhtml">Procurar</a></li>
+								</ul>
+							</li>
+							<li>
+								<a class="has-submenu" href=""><span class="sub-arrow">+</span>Área Dataprev</a>
+								<ul>
+									<p:commandLink styleClass="has-submenu" value="Cadastrar"  actionListener="#{areaDataprevPersistirController.prepararAdicionarAreaDataprev()}"  >
+									</p:commandLink>
+									<li><a class="has-submenu" href="http://localhost:8080/gerdem/restrict/areadataprev/areadataprev_procurar.xhtml">Procurar</a></li>
+								</ul>
+							</li>
+							<li>
+								<a class="has-submenu" href=""><span class="sub-arrow">+</span>Equipe Sistemas INSS</a>
+								<ul>
+									<p:commandLink styleClass="has-submenu" value="Cadastrar"  actionListener="#{equipeSistemasINSSPersistirController.prepararAdicionarEquipeSistemasINSS()}"  >
+									</p:commandLink>
+									<li><a class="has-submenu" href="http://localhost:8080/gerdem/restrict/equipesistemasinss/equipesistemasinss_procurar.xhtml">Procurar</a></li>
+								</ul>
+							</li>
+							<li>
+								<a class="has-submenu" href=""><span class="sub-arrow">+</span>Versão</a>
+								<ul>
+									<p:commandLink styleClass="has-submenu" value="Cadastrar"  actionListener="#{versaoPersistirController.prepararAdicionarVersao()}"  >
+									</p:commandLink>
+									<li><a class="has-submenu" href="http://localhost:8080/gerdem/restrict/versao/versao_procurar.xhtml">Procurar</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a class="has-submenu" href="#">Configurações</a>
+					</li>
+				</ul>
+		</nav>
+		
+	</h:form>
+				<!-- <p:submenu label="Livro Teste" >
+					<p:menuitem value="Cadastrar" url="#" icon="ui-icon-document" />
+					<p:menuitem value="Procurar" url="http://localhost:8080/gerdem/restrict/livro/livro_procurar.xhtml" icon="ui-icon-search" />
+				</p:submenu> -->
+</h:body>
+</html>

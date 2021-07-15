@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/hpv/!svn/ver/5/trunk/hpv/src
+END
+c3p0.properties
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/hpv/!svn/ver/4/trunk/hpv/src/c3p0.properties
+END
+hibernate.cfg.xml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/hpv/!svn/ver/4/trunk/hpv/src/hibernate.cfg.xml
+END
+views.properties
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/hpv/!svn/ver/4/trunk/hpv/src/views.properties
+END
+log4j.xml
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/hpv/!svn/ver/4/trunk/hpv/src/log4j.xml
+END
+vraptor.xml
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/hpv/!svn/ver/4/trunk/hpv/src/vraptor.xml
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/hpv/!svn/ver/4/trunk/hpv/src/log4j.properties
+END
+displaytag.properties
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/hpv/!svn/ver/4/trunk/hpv/src/displaytag.properties
+END
+hibernate.properties
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/hpv/!svn/ver/4/trunk/hpv/src/hibernate.properties
+END

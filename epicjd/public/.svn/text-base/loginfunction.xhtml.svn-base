@@ -1,0 +1,39 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<form method="post" action="#{request.contextPath}/j_spring_security_check">
+		<br/>
+		Email<br/><input type="text" name='j_username' id="textfield" /><br/>
+		Password<br/><input type="password" name='j_password' id="textfield" /><br/>
+		<input type="checkbox" name="_spring_security_remember_me"/>Remember me<br/>
+		<input type="submit" value="Login"/>
+		
+		
+		
+		<!-- <table>
+		<br/>
+			<tr><td>Email</td></tr>
+				<tr><td><input type='text' name='j_username' size="15" id="textfield"/></td></tr>
+			<tr><td>Password</td></tr>
+				<tr><td><input type='password' name='j_password' size="15" id="textfield"/></td></tr>
+			<tr><td align="left"><input type="checkbox" name="_spring_security_remember_me"/>Remember me
+				<input type="submit" value="Login"/></td>
+			</tr>
+			
+		</table> -->
+		<script>
+			document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
+		</script>
+		</form>
+		<h:form>
+   		 	<h:commandButton action="#{userBean.newUser}" value="Sign Up"  />
+
+		</h:form> 
+		
+		</ui:composition>
+
+<!-- <ui:include src="loginfunction.xhtml" /> -->

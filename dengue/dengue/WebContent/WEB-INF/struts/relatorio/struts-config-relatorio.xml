@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+
+   <form-beans>
+  <!-- 
+		<form-bean name="PesquisarContratoParcelamentoActionForm"
+			type="gcom.gui.cobranca.contratoparcelamento.PesquisarContratoParcelamentoActionForm" />
+   -->	
+			<!-- USUARIO -->
+		
+		<form-bean name="mostrarRelatorioIndividual"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="idFicha" type="java.lang.String" />
+		</form-bean>
+		
+	</form-beans>
+
+	<!--******************* PÁGINAS GLOBAIS *******************-->
+	<global-forwards >
+	<!-- USUARIO -->
+		<forward name="fRelatorioGeografico" path="/jsp/relatorio/relatorioGeografico.jsp" />
+		<forward name="fRelatorioFronteiras" path="/jsp/relatorio/relatorioFronteiras.jsp" />
+		<forward name="fRelatorioIndividual" path="/jsp/relatorio/individual/individual.jsp" />
+		
+	</global-forwards>
+	
+	<action-mappings>
+	
+			<!-- USUARIO -->
+		<action path="/relatorio" 
+			type="struts.acoes.RelatorioAcoes"
+			parameter="method" scope="request" validate="false" />
+		
+		
+		<action path="/relatorio"  name="mostrarRelatorioIndividual"
+			type="struts.acoes.RelatorioAcoes"
+			parameter="method" scope="request" validate="false" />
+	<!-- 
+
+		<action name="PesquisarContratoParcelamentoActionForm"
+			type="gcom.gui.cobranca.contratoparcelamento.RetornarContratoParcelamentoPesquisarAction"
+			validate="false" 
+			scope="session"
+			path="/retornarContratoParcelamentoPesquisar">
+			<forward name="retornoPesquisa"
+				path="/jsp/cobranca/contratoparcelamento/contrato_parcelamento_resultado_pesquisa.jsp" />
+		</action>		
+	 -->
+		
+</action-mappings>	
+
+<message-resources null="false"
+		parameter="struts.mensagens.MessageResources" />
+		
+</struts-config>

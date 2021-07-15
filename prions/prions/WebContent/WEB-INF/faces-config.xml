@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.1" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+	<managed-bean>
+		<managed-bean-name>userBean</managed-bean-name>
+		<managed-bean-class>hpdd.web.UserBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>notificationBean</managed-bean-name>
+		<managed-bean-class>hpdd.web.NotificationBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	
+	<managed-bean>  
+        <managed-bean-name>searchBean</managed-bean-name>  
+    <managed-bean-class>hpdd.web.SearchBean</managed-bean-class>  
+    <managed-bean-scope>session</managed-bean-scope>  
+</managed-bean>  
+
+	<navigation-rule>
+			<display-name>buscar</display-name>
+			<from-view-id>/public/search.xhtml</from-view-id>
+			<navigation-case>
+			<from-outcome>search</from-outcome>
+			<to-view-id>/public/showsearch.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>searchSym</from-outcome>
+			<to-view-id>/public/showsearchsym.xhtml</to-view-id>
+		</navigation-case>
+		</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>newUser</from-outcome>
+			<to-view-id>/public/signup.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>userSuccess</from-outcome>
+			<to-view-id>/public/usersucess.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>visualize</from-outcome>
+			<to-view-id>/public/listNotif.xhtml</to-view-id>
+		</navigation-case>
+		<!-- <navigation-case> <from-outcome>notifCreated</from-outcome> <to-view-id>/restrict/restrictednotifygeneral.xhtml</to-view-id> 
+			</navigation-case> -->
+		<navigation-case>
+			<from-outcome>generalCreated</from-outcome>
+			<to-view-id>/restrict/restrictednotifyindividual.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>individualCreated</from-outcome>
+			<to-view-id>/restrict/restrictednotifydata.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>residentialCreated</from-outcome>
+			<to-view-id>/restrict/restrictednotifysuspicion.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>suspicionCreated</from-outcome>
+			<to-view-id>/restrict/restrictednotifydata.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>clinDataCreated</from-outcome>
+			<to-view-id>/restrict/restrictednotifyaspects.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>aspectsCreated</from-outcome>
+			<to-view-id>/restrict/restrictednotifyresults.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>resultsCreated</from-outcome>
+			<to-view-id>/restrict/restrictednotifyconclusion.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>conclusionCreated</from-outcome>
+			<to-view-id>/restrict/restrictednotifysource.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>sourceCreated</from-outcome>
+			<to-view-id>/restrict/restrictednotifyresume.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>resumeCreated</from-outcome>
+			<to-view-id>/restrict/restrictednotifyimages.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>imagesCreated</from-outcome>
+			<to-view-id>/restrict/restrictednotifyfinish.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listnotification</from-outcome>
+			<to-view-id>/restrict/listnotification.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listNotifPaper</from-outcome>
+			<to-view-id>/restrict/listNotifPaper.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formNewIndPaper</from-outcome>
+			<to-view-id>/restrict/formNewIndPaper.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>listuniqueIndPaperx</from-outcome>
+			<to-view-id>/restrict/listuniqueIndPaper.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>searchNotifResult</from-outcome>
+			<to-view-id>/restrict/searchNotifResult.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formpaper</from-outcome>
+			<to-view-id>/restrict/restrictednotifypaper.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+</faces-config>

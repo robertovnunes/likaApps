@@ -1,0 +1,163 @@
+package hpdd.auxiliar;
+
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+public class AuxiliarDAOHibenate implements AuxiliarDAO {
+	private Session session;
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<CasosPaises> listPaises() {
+
+		/*
+		 * Query q1 = this.session
+		 * .createQuery("from General order by country");
+		 */
+
+		/*
+		 * Como fazer!! Select campo1 as TX1, campo2 as TX2 from tab1 UNION ALL
+		 * select campo3 as TX1, campo4 as TX2 from tab2
+		 */
+
+		Query q1 = this.session
+				.createQuery("select new hpdd.auxiliar.CasosPaises(gen.country, count(gen)) from General AS gen where gen.notification.status='Finalizado' group by gen.country");
+		System.out.println("Passou query paper");
+		return q1.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<CasosIdade> listIdade() {
+
+		Query q1 = this.session
+				.createQuery("select new hpdd.auxiliar.CasosIdade(str(ind.age), count(ind)) from Individual AS ind where ind.notification.status='Finalizado' group by ind.age");
+
+		return q1.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<CasosGenero> listGenero() {
+		Query q1 = this.session
+				.createQuery("select new hpdd.auxiliar.CasosGenero(str(ind.gender), count(ind)) from Individual AS ind where ind.notification.status='Finalizado' group by ind.gender");
+
+		return q1.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<CasosGenero> listGeneroPaper() {
+		Query q1 = this.session
+				.createQuery("select new hpdd.auxiliar.CasosGenero(str(ind.gender), count(ind)) from Paper AS ind where ind.notification.status='Finalizado' group by ind.gender");
+
+		return q1.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CasosSintomas> listSintomas() {
+		Query q1 = this.session
+				.createQuery("select new hpdd.auxiliar.CasosGenero(str(gen.gender), count(gen)) from Individual AS gen group by gen.gender");
+
+		return q1.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ResultadoBusca> listBusca(String country, String state,
+			String city, Integer age, String gender, String ethnicGroup,
+			String educationalLevel, String zone, String progDementia,
+			String visualDisorder, String myoclonus,
+			String cerebellarDisorders, String persistentPainDys, String ataxy,
+			String pyramidalSigns, String extrapyramidalSigns,
+			String akineticMutism, String psychiatricDisorders,
+			String sleepDisorders) {
+		Query consult = null;
+		System.out.println("(AuxiliarDAOHib listBusca())Country: " + country);
+		if (country.isEmpty() && state.isEmpty() && city.isEmpty()
+				&& age.equals(0) && gender.isEmpty() && ethnicGroup.isEmpty()
+				&& educationalLevel.isEmpty() && zone.isEmpty()) {
+			System.out.println("vazio");
+			String hql = "select new hpdd.auxiliar.ResultadoBusca(gen.country) from General gen where gen.state=NULL";
+			consult = this.session.createQuery(hql);
+			System.out.println("vazio");
+			List<ResultadoBusca> list = (List<ResultadoBusca>) consult.list();
+			return list;
+		} else {
+			//ResultadoBusca(gen.country, gen.notification.codNotification,sou.reference)
+			//Query q1 = this.session
+			//		.createQuery("select new hpdd.auxiliar.ResultadoBusca(gen.country, gen.notification.codNotification) from General gen, Individual ind where n.status ='Finalizado' and n.codNotification = g.notification.codNotification gen ");
+			String hql = "select distinct new hpdd.auxiliar.ResultadoBusca(gen.country, gen.notification.codNotification,sou.reference) from General gen, Individual ind, Source sou where gen.notification.status ='Finalizado' and  gen.notification.codNotification=sou.notification.codNotification "; 
+			if (!country.isEmpty()) {
+				System.out.println("Entrou país");
+				hql = hql + " and gen.country like :country";
+				consult = this.session.createQuery(hql);
+			}
+			if (!state.isEmpty()) {
+				hql = hql + " and gen.state like :state";
+				consult = this.session.createQuery(hql);
+			}
+			if (!city.isEmpty()) {
+				hql = hql + " and gen.city like :city";
+				consult = this.session.createQuery(hql);
+			}
+			if (!age.equals(0)) {
+				hql = hql + " and ind.age = :age and gen.notification.codNotification=ind.notification.codNotification";
+				consult = this.session.createQuery(hql);
+			}
+			if (!ethnicGroup.isEmpty()) {
+				hql = hql
+						+ " and ind.ethnicGroup like :ethnicGroup and gen.notification.codNotification=ind.notification.codNotification";
+				consult = this.session.createQuery(hql);
+			}
+			if (!gender.isEmpty()) {
+				hql = hql
+						+ " and ind.gender= :gender and gen.notification.codNotification=ind.notification.codNotification";
+				consult = this.session.createQuery(hql);
+			}
+			if (!educationalLevel.isEmpty()) {
+				hql = hql
+						+ " and ind.scholarity like :educationalLevel and gen.notification.codNotification=ind.notification.codNotification";
+				consult = this.session.createQuery(hql);
+			}
+			if (!zone.isEmpty()) {
+				hql = hql
+						+ " and ind.zone like :zone and gen.notification.codNotification=ind.notification.codNotification";
+				consult = this.session.createQuery(hql);
+			}
+			//linka nomes
+			if (!country.isEmpty()) {
+				consult.setString("country", "%" + country + "%");
+			}
+			if (!state.isEmpty()) {
+				consult.setString("state", "%" + state + "%");
+			}
+			if (!city.isEmpty()) {
+				consult.setString("city", "%" + city + "%");
+			}
+			if (!age.equals(0)) {
+				consult.setInteger("age", age);
+			}
+			if (!ethnicGroup.isEmpty()) {
+				consult.setString("ethnicGroup", "%" + ethnicGroup + "%");
+			}
+			if (!gender.isEmpty()) {
+				consult.setString("gender", gender);
+			}
+			if (!educationalLevel.isEmpty()) {
+				consult.setString("educationalLevel", "%" + educationalLevel
+						+ "%");
+			}
+			if (!zone.isEmpty()) {
+				consult.setString("zone", "%" + zone + "%");
+			}
+			List<ResultadoBusca> list = (List<ResultadoBusca>) consult.list();
+			return list;
+		}
+	}
+
+}

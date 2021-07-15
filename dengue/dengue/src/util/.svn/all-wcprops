@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/sae_mental/!svn/ver/72/sae_mental/src/util
+END
+FiltroCaracters.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/sae_mental/!svn/ver/40/sae_mental/src/util/FiltroCaracters.java
+END
+GerarSenha.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/sae_mental/!svn/ver/40/sae_mental/src/util/GerarSenha.java
+END
+DataUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/sae_mental/!svn/ver/40/sae_mental/src/util/DataUtil.java
+END
+LogFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/sae_mental/!svn/ver/40/sae_mental/src/util/LogFilter.java
+END
+mainTestes.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/sae_mental/!svn/ver/45/sae_mental/src/util/mainTestes.java
+END
+GerarBD.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/sae_mental/!svn/ver/72/sae_mental/src/util/GerarBD.java
+END
+HibernateSessionRequestFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/sae_mental/!svn/ver/40/sae_mental/src/util/HibernateSessionRequestFilter.java
+END
+Util.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/sae_mental/!svn/ver/40/sae_mental/src/util/Util.java
+END

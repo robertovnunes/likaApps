@@ -1,0 +1,633 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../resources/css/style_rest.css" rel="stylesheet"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+	color: black;
+}
+</style>
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>Report case</h1>
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="restricted_notify.html"> Report case</a> >> Notify from
+					paper
+				</h4>
+				<br />
+
+
+				<div style="width: 900px; height: 380px; overflow-x: auto;">
+
+					<p:accordionPanel multiple="true" activeIndex="">
+						<p:tab title="Notify from paper">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+									<h:inputHidden
+										value="#{notificationBean.selected.codNotification}" />
+									<h:inputHidden value="#{paperBean.selected.id}" />
+									<h:inputHidden
+										value="#{notificationBean.selected.creationDate}">
+										<c:convertDateTime dateStyle="medium" />
+									</h:inputHidden>
+									<h:inputHidden value="#{notificationBean.selected.status}" />
+									<h:inputHidden value="#{notificationBean.selected.ativo}" />
+
+
+									<h:panelGrid columns="4" width="795" height="0" valign="top"
+										align="left" bgcolor="white">
+										<h:outputLabel value="Paper date: " for="date" />
+										<p:calendar pattern="yyyy/MM" id="date"
+											value="#{paperBean.selected.paperDate}" navigator="true"
+											display="inline" />
+										<h:outputLabel value="DOI: " for="doi" />
+										<p:inputText id="doi" value="#{paperBean.selected.DOI}"
+											required="false" maxlength="30" />
+										<h:outputLabel value="Link: " for="link" />
+										<p:inputText id="link" value="#{paperBean.selected.link}"
+											required="false" maxlength="30" />
+										<h:outputLabel value="Country: " for="country" />
+										<p:inputText id="country"
+											value="#{paperBean.selected.country}" required="false"
+											maxlength="30" />
+										<!-- <h:outputLabel value="Gender: " for="gender" />
+										<p:selectOneRadio id="gender"
+											value="#{paperBean.selected.gender}">
+											<c:selectItem itemValue="Male" itemLabel="Male" />
+											<c:selectItem itemValue="Female" itemLabel="Female" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Age: " for="age" />
+										<p:inputText id="age" value="#{paperBean.selected.age}"
+											required="false" maxlength="30" />
+ -->
+
+									</h:panelGrid>
+
+									<h:dataTable value="#{paperBean.listaPaperNotif}" var="paper"
+										rendered="#{!empty paperBean.listaPaperNotif}" cellpadding="0"
+										rules="rows">
+										<p:column>
+											<h:outputLabel>
+												<p:commandButton styleClass="botao" value="Save changes"
+													action="#{paperBean.edit}" ajax="false" />
+											</h:outputLabel>
+											<p:commandButton value="Complete with existing data"
+												ajax="false">
+												<c:ajax execute="@this" render=":texto" />
+												<c:setPropertyActionListener target="#{paperBean.selected}"
+													value="#{paper}" />
+											</p:commandButton>
+
+										</p:column>
+
+									</h:dataTable>
+									<h:outputLabel id="save">
+										<p:commandButton styleClass="botao" value="Save"
+											action="#{paperBean.save}" ajax="false" />
+									</h:outputLabel>
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Finish"
+											action="imagesCreated" ajax="false" />
+									</h:outputLabel>
+
+
+								</h:form>
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Individual information">
+
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form id="texto">
+									<h:inputHidden pattern="yyyy/MM/dd" id="dateBirth"
+										value="#{individualBean.selected.dateBirth}" navigator="true"
+										display="inline" />
+									<h:inputHidden id="state"
+										value="#{individualBean.selected.state}" required="false"
+										maxlength="30" />
+									<h:messages />
+									<h:panelGrid columns="4" width="795" height="0" valign="top"
+										align="left" bgcolor="white">
+
+										<h:outputLabel value="Age: " for="age" />
+										<p:inputText id="age" value="#{individualBean.selected.age}"
+											required="false" maxlength="5" />
+
+
+										<h:outputLabel value="Gender: " for="gender" />
+										<p:selectOneRadio id="gender"
+											value="#{individualBean.selected.gender}">
+											<c:selectItem itemValue="Male" itemLabel="Male" />
+											<c:selectItem itemValue="Female" itemLabel="Female" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+
+										<h:outputLabel value="Pregnancy: " for="pregnancy" />
+										<p:selectOneMenu id="pregnancy"
+											value="#{individualBean.selected.pregnant}">
+											<c:selectItem itemValue="" itemLabel="Select" />
+											<c:selectItem itemValue="1st Quarter" itemLabel="1st Quarter" />
+											<c:selectItem itemValue="2nd Quarter" itemLabel="2nd Quarter" />
+											<c:selectItem itemValue="3rd Quarter" itemLabel="3rd Quarter" />
+											<c:selectItem itemValue="Ignored gestacional age"
+												itemLabel="Ignored gestacional age" />
+											<c:selectItem itemValue="No" itemLabel="No" />
+											<c:selectItem itemValue="Not applicable"
+												itemLabel="Not applicable" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneMenu>
+										<h:outputLabel value="Ethnic group: " for="ethnicGroup" />
+										<p:selectOneMenu id="ethnicGroup"
+											value="#{individualBean.selected.ethnicGroup}">
+											<c:selectItem itemValue=""
+												itemLabel="Select the ethnic group" />
+											<c:selectItem itemValue="Caucasian" itemLabel="Caucasian" />
+											<c:selectItem itemValue="Mongolian" itemLabel="Mongolian" />
+											<c:selectItem itemValue="Negriod" itemLabel="Negriod" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneMenu>
+										<h:outputLabel value="Education: " for="education" />
+										<p:selectOneMenu id="education"
+											value="#{individualBean.selected.scholarity}">
+											<c:selectItem itemValue=""
+												itemLabel="Select educational level" />
+											<c:selectItem itemValue="Illiterate" itemLabel="Illiterate" />
+											<c:selectItem itemValue="Elementary school"
+												itemLabel="Elementary school" />
+											<c:selectItem itemValue="Middle school"
+												itemLabel="Middle school" />
+											<c:selectItem itemValue="High school" itemLabel="High school" />
+											<c:selectItem itemValue="Post-secondary school"
+												itemLabel="Post-secondary school" />
+											<c:selectItem itemValue="Not applicable"
+												itemLabel="Not applicable" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneMenu>
+										<h:outputLabel value="Country: " for="country" />
+										<p:inputText id="country"
+											value="#{individualBean.selected.country}" required="false"
+											maxlength="509" />
+
+										<h:outputLabel value="City of residence: " for="cityResidence" />
+										<p:inputText id="cityResidence"
+											value="#{individualBean.selected.cityResidence}"
+											required="false" maxlength="50" />
+									</h:panelGrid>
+
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Save"
+											action="#{individualBean.save}" ajax="false" />
+									</h:outputLabel>
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Finish"
+											action="imagesCreated" ajax="false" />
+									</h:outputLabel>
+
+								</h:form>
+							</h:panelGrid>
+
+
+						</p:tab>
+						<p:tab title="First Symptoms">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form id="fillFirstsymptoms">
+									<h:panelGrid columns="2" width="795" height="0" valign="top"
+										align="left" bgcolor="white">
+										<h:outputLabel value="First Symptom: " for="firstsymptom" />
+										<p:inputText id="firstsymptom"
+											value="#{paperBean.selectedSym.symptom}" required="false"
+											maxlength="50" />
+										<h:outputLabel value="Date: " for="date" />
+										<p:calendar id="date" value="#{paperBean.selectedSym.symDate}"
+											navigator="true" display="inline" />
+										<p:commandButton action="#{paperBean.includeFirstSym}"
+											value="Add symptom" title="Add symptom" ajax="false">
+											<c:ajax execute="@form"
+												render=":fillFirstsymptoms :listFirstsymptoms" />
+										</p:commandButton>
+
+									</h:panelGrid>
+								</h:form>
+
+							</h:panelGrid>
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form id="listFirstpaper">
+
+									<p:dataTable value="#{paperBean.listaPaperNotif}" var="paper"
+										rendered="#{!empty paperBean.listaPaperNotif}" cellpadding="5"
+										bgcolor="#EBEBD6" rules="rows">
+										<p:column headerText="Date">
+											<h:outputText value="#{paper.notification.codNotification}" />
+										</p:column>
+										<p:column headerText="Date">
+											<h:outputText value="#{paper.paperDate}" />
+										</p:column>
+										<p:column headerText="DOI">
+											<h:outputText value="#{paper.DOI}" />
+										</p:column>
+										<p:column headerText="Gender">
+											<h:outputText value="#{paper.gender}" />
+										</p:column>
+										<p:column headerText="Age">
+											<h:outputText value="#{paper.age}" />
+										</p:column>
+										<p:column headerText="Country">
+											<h:outputText value="#{paper.country}" />
+										</p:column>
+										<p:column headerText="Link">
+											<h:outputText value="#{paper.link}" />
+										</p:column>
+
+									</p:dataTable>
+
+								</h:form>
+							</h:panelGrid>
+							<h:panelGrid columns="2" cellpadding="10">
+								<!-- <h:form id="listFirstsymptoms">
+
+									<p:dataTable value="#{paperBean.listaFirstSym}" var="symptoms"
+										rendered="#{!empty paperBean.listaFirstSym}">
+										<p:column headerText="First Symptoms">
+											<h:outputText value="#{symptoms.symptom}" />
+
+										</p:column>
+										<p:column headerText="Date">
+											<h:outputText value="#{symptoms.symDate}" />
+
+										</p:column>
+
+									</p:dataTable>
+
+
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Finish"
+											action="imagesCreated" ajax="false" />
+									</h:outputLabel>
+								</h:form> -->
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Symptoms">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form id="fillsymptoms">
+									<h:panelGrid columns="2" width="795" height="0" valign="top"
+										align="left" bgcolor="white">
+										<h:outputLabel value="Symptom: " for="symptom" />
+										<p:inputText id="symptom"
+											value="#{paperBean.selectedSym.symptom}" required="false"
+											maxlength="50" />
+										<p:commandButton action="#{paperBean.includeFinalSym}"
+											value="Add symptom" title="Add symptom" ajax="false">
+											<c:ajax execute="@form" render=":listsymptoms" />
+										</p:commandButton>
+									</h:panelGrid>
+								</h:form>
+							</h:panelGrid>
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form id="listpaper">
+
+									<p:dataTable value="#{paperBean.listaPaperNotif}" var="paper"
+										rendered="#{!empty paperBean.listaPaperNotif}" cellpadding="5"
+										bgcolor="#EBEBD6" rules="rows">
+										<p:column headerText="Date">
+											<h:outputText value="#{paper.paperDate}" />
+										</p:column>
+										<p:column headerText="DOI">
+											<h:outputText value="#{paper.DOI}" />
+										</p:column>
+										<p:column headerText="Gender">
+											<h:outputText value="#{paper.gender}" />
+										</p:column>
+										<p:column headerText="Age">
+											<h:outputText value="#{paper.age}" />
+										</p:column>
+										<p:column headerText="Country">
+											<h:outputText value="#{paper.country}" />
+										</p:column>
+										<p:column headerText="Link">
+											<h:outputText value="#{paper.link}" />
+										</p:column>
+
+									</p:dataTable>
+								</h:form>
+							</h:panelGrid>
+							<h:panelGrid columns="2" cellpadding="10">
+							<!-- 	<h:form id="listSymptoms">
+									<p:dataTable value="#{paperBean.listaSymptomsNotif}"
+										var="symptoms"
+										rendered="#{!empty paperBean.listaSymptomsNotif}">
+										<p:column headerText="Symptom">
+											<h:outputText value="#{symptoms.symptom}" />
+
+										</p:column>
+									</p:dataTable>
+
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Finish"
+											action="imagesCreated" ajax="false" />
+									</h:outputLabel>
+								</h:form> -->
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Exams">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+									<h:panelGrid columns="4" width="795" height="0" valign="top"
+										align="left" bgcolor="white">
+
+										<h:outputLabel value="EEG:" for="eeg" />
+										<p:selectOneRadio layout="lineDirection" id="eeg"
+											value="#{resultsBean.selected.EEG}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="u" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_eeg" />
+										<p:inputText id="res_eeg"
+											value="#{resultsBean.selected.res_EEG}" required="false"
+											maxlength="30" />
+										<h:outputLabel value="MRI - Magnetic Resonance Imaging: "
+											for="mri" />
+										<p:selectOneRadio layout="lineDirection" id="mri"
+											value="#{resultsBean.selected.MRI}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_mri" />
+										<p:inputText id="res_mri"
+											value="#{resultsBean.selected.res_MRI}" required="false"
+											maxlength="30" />
+										<h:outputLabel value="14-3-3 protein in CSF: " for="protein14" />
+										<p:selectOneRadio layout="lineDirection" id="protein14"
+											value="#{resultsBean.selected.prot14_3}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_prot14" />
+										<p:inputText id="res_prot14"
+											value="#{resultsBean.selected.res_prot14_3}" required="false"
+											maxlength="30" />
+										<h:outputLabel value="TAU protein in CSF: " for="tau" />
+										<p:selectOneRadio layout="lineDirection" id="tau"
+											value="#{resultsBean.selected.tauProtein}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_tau" />
+										<p:inputText id="res_tau"
+											value="#{resultsBean.selected.res_tau}" required="false"
+											maxlength="30" />
+										<h:outputLabel
+											value="Brain Biopsy with spongiform encephalopathy: "
+											for="biopsy" />
+										<p:selectOneRadio layout="lineDirection" id="biopsy"
+											value="#{resultsBean.selected.biopsy}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_bio" />
+										<p:inputText id="res_bio"
+											value="#{resultsBean.selected.resBiopsy}" required="false"
+											maxlength="30" />
+										<h:outputLabel
+											value="Necropsy with spongiform encephalopathy: "
+											for="necropsy" />
+										<p:selectOneRadio layout="lineDirection" id="necropsy"
+											value="#{resultsBean.selected.necropsy}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_nec" />
+										<p:inputText id="res_nec"
+											value="#{resultsBean.selected.resNecropsy}" required="false"
+											maxlength="30" />
+										<h:outputLabel
+											value="Immunohistochemistry for prion protein pathological: "
+											for="immunohistochemistry" />
+										<p:selectOneRadio layout="lineDirection"
+											id="immunohistochemistry"
+											value="#{resultsBean.selected.immunohistochemistry}">
+											<c:selectItem itemValue="Performed" itemLabel="Performed" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Result:" for="res_im" />
+										<p:inputText id="res_im"
+											value="#{resultsBean.selected.immunohistochemistry}"
+											required="false" maxlength="30" />
+										<h:outputLabel value="Genetic analysis (PRNP): " for="prnp" />
+										<p:selectOneRadio layout="pageDirection" id="prnp"
+											value="#{resultsBean.selected.genetic}">
+											<c:selectItem itemValue="Presencemutation"
+												itemLabel="Presence of mutation" />
+											<c:selectItem itemValue="Absencemutation"
+												itemLabel="Absence of mutation" />
+											<c:selectItem itemValue="Inprogress" itemLabel="In progress" />
+											<c:selectItem itemValue="NotDone" itemLabel="Not done" />
+										</p:selectOneRadio>
+										<h:outputLabel value="Mutation: " for="mutation" />
+										<p:inputText id="mutation"
+											value="#{resultsBean.selected.resGenetic}" required="false"
+											maxlength="30" />
+										<h:outputLabel value="129 Codon: " for="codon" />
+										<p:selectOneMenu layout="pageDirection" id="codon"
+											value="#{resultsBean.selected.codon}">
+
+											<c:selectItem itemValue="" itemLabel="Select genotype" />
+											<c:selectItem itemValue="MM" itemLabel="MM" />
+											<c:selectItem itemValue="MV" itemLabel="MV" />
+											<c:selectItem itemValue="VV" itemLabel="VV" />
+										</p:selectOneMenu>
+										<h:outputLabel value="Subtype: " for="sub" />
+										<p:selectOneMenu layout="pageDirection" id="sub"
+											value="#{resultsBean.selected.subtypeCodon}">
+											<c:selectItem itemValue="" itemLabel="Select subtype" />
+											<c:selectItem itemValue="1" itemLabel="1" />
+											<c:selectItem itemValue="2" itemLabel="2" />
+											<c:selectItem itemValue="Not performed"
+												itemLabel="Not performed" />
+											<c:selectItem itemValue="Unknown " itemLabel="Unknown " />
+										</p:selectOneMenu>
+
+									</h:panelGrid>
+									<h:dataTable value="#{resultsBean.list}" var="result"
+										rendered="#{!empty resultsBean.list}" cellpadding="0"
+										rules="rows">
+										<p:column>
+											<h:outputLabel>
+												<p:commandButton styleClass="botao" value="Save changes"
+													action="#{resultsBean.edit}" ajax="false" />
+											</h:outputLabel>
+											<p:commandButton value="Complete with existing data"
+												ajax="false">
+												<c:ajax execute="@this" render=":texto" />
+												<c:setPropertyActionListener
+													target="#{resultsBean.selected}" value="#{result}" />
+											</p:commandButton>
+										</p:column>
+									</h:dataTable>
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Save"
+											action="#{resultsBean.save}" ajax="false" />
+									</h:outputLabel>
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Finish"
+											action="imagesCreated" ajax="false" />
+									</h:outputLabel>
+								</h:form>
+							</h:panelGrid>
+
+
+						</p:tab>
+						<p:tab title="Images">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+									<h:panelGrid id="infoFoto" columns="2">
+
+										<h:outputText value="Foto: " />
+										<p:fileUpload fileUploadListener="#{picturesBean.fileUpload}"
+											label="Escolher" cancelLabel="Cancelar" sizeLimit="400000"
+											invalidSizeMessage="Imagem muito grande" auto="true"
+											invalidFileMessage="Tipo de imagem não suportado"
+											allowTypes="/(\.|\/)(jpe?g|png)$/" />
+
+										<h:outputText value="Descrição: " />
+										<p:inputText value="#{picturesBean.selected.name}" />
+										<h:outputLabel value="Type:" for="primDiag" />
+										<p:selectOneMenu id="primDiag"
+											value="#{picturesBean.selected.type}">
+											<c:selectItem itemValue="" itemLabel="Select the image type" />
+											<c:selectItem itemValue="EEG" itemLabel="EEG" />
+											<c:selectItem itemValue="MRI" itemLabel="MRI" />
+											<c:selectItem itemValue="Biopsy" itemLabel="Biopsy" />
+											<c:selectItem itemValue="Necropsy" itemLabel="Necropsy" />
+											<c:selectItem itemValue="Immunohistochemestry"
+												itemLabel="Immunohistochemestry" />
+											<c:selectItem itemValue="PRNP" itemLabel="PRNP" />
+										</p:selectOneMenu>
+
+										<p:commandButton value="Adicionar" icon="ui-icon-plus"
+											ajax="false" action="#{picturesBean.savePicture}" />
+
+									</h:panelGrid>
+
+
+								</h:form>
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Primary diagnostic">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:form>
+									<h:panelGrid columns="4" width="795" height="0" valign="top"
+										align="left" bgcolor="white">
+										<h:outputLabel value="Primary diagnostic:" for="primDiag" />
+										<p:selectOneMenu id="primDiag"
+											value="#{suspicionBean.selected.suspect}">
+											<c:selectItem itemValue=""
+												itemLabel="Select primary diagnostic" />
+											<c:selectItem itemValue="CJD" itemLabel="CJD" />
+											<c:selectItem itemValue="GSS" itemLabel="GSS" />
+											<c:selectItem itemValue="IFF" itemLabel="IFF" />
+											<c:selectItem itemValue="other"
+												itemLabel="Discarded Case (another diagnostic)" />
+										</p:selectOneMenu>
+										<h:outputLabel value="Other:" for="otherprimDiag" />
+										<p:inputTextarea id="otherprimDiag" rows="1" cols="33"
+											autoResize="false" value="#{suspicionBean.selected.suspect}" />
+										<h:outputLabel value="Criteria:" for="criteria" />
+										<p:selectOneMenu id="criteria"
+											value="#{suspicionBean.selected.criteria}">
+											<c:selectItem itemValue="" itemLabel="Select criteria" />
+											<c:selectItem itemValue="Definitive" itemLabel="Definitive" />
+											<c:selectItem itemValue="Possible" itemLabel="Possible" />
+											<c:selectItem itemValue="Probable" itemLabel="Probable" />
+										</p:selectOneMenu>
+									</h:panelGrid>
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Save"
+											action="#{suspicionBean.save}" ajax="false" />
+									</h:outputLabel>
+									<h:outputLabel>
+										<p:commandButton styleClass="botao" value="Finish"
+											action="imagesCreated" ajax="false" />
+									</h:outputLabel>
+								</h:form>
+							</h:panelGrid>
+							<h:form id="listSus">
+
+								<p:dataTable value="#{suspicionBean.list}" var="sus"
+									rendered="#{!empty suspicionBean.list}" cellpadding="5"
+									bgcolor="#EBEBD6" rules="rows">
+									<p:column headerText="Suspect">
+										<h:outputText value="#{sus.suspect}" />
+									</p:column>
+									<p:column headerText="Criteria">
+										<h:outputText value="#{sus.criteria}" />
+									</p:column>
+
+								</p:dataTable>
+
+
+							</h:form>
+
+						</p:tab>
+						<p:tab title="Add a New Case from this paper"
+							titleStyle="background: pink;">
+							<h:form>
+								<h:inputHidden value="#{paperBean.selected.id}" />
+								<p:commandButton value="New Case" icon="ui-icon-plus"
+									ajax="false" action="#{paperBean.newCasePaper}" />
+							</h:form>
+						</p:tab>
+
+					</p:accordionPanel>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+</html>

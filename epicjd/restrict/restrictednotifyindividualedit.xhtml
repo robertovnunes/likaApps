@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../resources/css/style_rest.css" rel="stylesheet"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+}
+</style>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>Report case</h1>
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="restricted_notify.html"> Report case</a> >> Individual
+					information
+				</h4>
+				<br />
+				<ul id="nav">
+					<!-- CSS Tabs -->
+					<li><a href="restrictednotifygeneraledit.jsf">General</a></li>
+					<li><a class="active"
+						href="restrictednotifyindividualedit.jsf"><span>Individual</span></a></li>
+					<!--<li><a href="restrictednotifyresidentialedit.jsf"><span>Residential</span></a></li>-->
+					<!-- <li><a href="restrictednotifysuspicionedit.jsf"><span>Primary
+								diagnostic</span></a></li> -->
+					<li><a href="restrictednotifydataedit.jsf"><span>Clinical
+								info</span></a></li>
+					<li><a href="restrictednotifyaspectsedit.jsf"><span>Epidemiological
+								aspects</span></a></li>
+					<li><a href="restrictednotifyresultsedit.jsf"><span>Exams</span></a></li>
+					<li><a href="restrictednotifyconclusionedit.jsf"><span>Conclusion</span></a></li>
+					<li><a href="restrictednotifysourceedit.jsf"><span>Source</span></a></li>
+					<li><a href="restrictednotifyresumeedit.jsf"><span>Clinical
+								History</span></a></li>
+					<li><a href="restrictednotifyimagesedit.jsf"><span>Images</span></a></li>
+				</ul>
+
+				<h:form id="texto">
+					<h:messages />
+					<h:panelGrid width="795" height="30" valign="top" align="left"
+						colspan="2"
+						style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+						<h:outputLabel value="Individual information"></h:outputLabel>
+					</h:panelGrid>
+					<h:panelGrid columns="4" width="795" height="30" valign="top"
+						align="left" bgcolor="#EBEBD6">
+						<h:outputLabel value="Birthdate: " for="dateBirth" />
+						<p:calendar pattern="yyyy/MM/dd" id="dateBirth"
+							value="#{individualBean.selected.dateBirth}" navigator="true"
+							display="inline" />
+						<h:outputLabel value="Age: " for="age" />
+						<p:inputText id="age" value="#{individualBean.selected.age}"
+							required="false" maxlength="5" />
+
+
+						<h:outputLabel value="Gender: " for="gender" />
+						<p:selectOneRadio id="gender"
+							value="#{individualBean.selected.gender}">
+							<c:selectItem itemValue="Male" itemLabel="Male" />
+							<c:selectItem itemValue="Female" itemLabel="Female" />
+							<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+						</p:selectOneRadio>
+
+						<h:outputLabel value="Pregnancy: " for="pregnancy" />
+						<p:selectOneMenu id="pregnancy"
+							value="#{individualBean.selected.pregnant}">
+							<c:selectItem itemValue="" itemLabel="Select" />
+							<c:selectItem itemValue="1st Quarter" itemLabel="1st Quarter" />
+							<c:selectItem itemValue="2nd Quarter" itemLabel="2nd Quarter" />
+							<c:selectItem itemValue="3rd Quarter" itemLabel="3rd Quarter" />
+							<c:selectItem itemValue="Ignored gestacional age"
+								itemLabel="Ignored gestacional age" />
+							<c:selectItem itemValue="No" itemLabel="No" />
+							<c:selectItem itemValue="Not applicable"
+								itemLabel="Not applicable" />
+							<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+						</p:selectOneMenu>
+						<h:outputLabel value="Ethnic group: " for="ethnicGroup" />
+						<p:selectOneMenu id="ethnicGroup"
+							value="#{individualBean.selected.ethnicGroup}">
+							<c:selectItem itemValue="" itemLabel="Select the ethnic group" />
+							<c:selectItem itemValue="Caucasian" itemLabel="Caucasian" />
+							<c:selectItem itemValue="Mongolian" itemLabel="Mongolian" />
+							<c:selectItem itemValue="Negriod" itemLabel="Negriod" />
+							<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+						</p:selectOneMenu>
+						<h:outputLabel value="Education: " for="education" />
+						<p:selectOneMenu id="education"
+							value="#{individualBean.selected.scholarity}">
+							<c:selectItem itemValue="" itemLabel="Select educational level" />
+							<c:selectItem itemValue="Illiterate" itemLabel="Illiterate" />
+							<c:selectItem itemValue="Elementary school"
+								itemLabel="Elementary school" />
+							<c:selectItem itemValue="Middle school" itemLabel="Middle school" />
+							<c:selectItem itemValue="High school" itemLabel="High school" />
+							<c:selectItem itemValue="Post-secondary school"
+								itemLabel="Post-secondary school" />
+							<c:selectItem itemValue="Not applicable"
+								itemLabel="Not applicable" />
+							<c:selectItem itemValue="Unknown" itemLabel="Unknown" />
+						</p:selectOneMenu>
+						<h:outputLabel value="Country: " for="country" />
+						<p:inputText id="country"
+							value="#{individualBean.selected.country}" required="false"
+							maxlength="509" />
+						<h:outputLabel value="State: " for="state" />
+						<p:inputText id="state" value="#{individualBean.selected.state}"
+							required="false" maxlength="30" />
+						<h:outputLabel value="City of residence: " for="cityResidence" />
+						<p:inputText id="cityResidence"
+							value="#{individualBean.selected.cityResidence}" required="false"
+							maxlength="50" />
+					</h:panelGrid>
+					<h:dataTable value="#{individualBean.list}" var="ind"
+						rendered="#{!empty individualBean.list}" cellpadding="0"
+						rules="rows">
+						<p:column>
+							<p:commandButton value="Complete with existing data" ajax="false">
+								<c:ajax execute="@this" render=":texto" />
+								<c:setPropertyActionListener target="#{individualBean.selected}"
+									value="#{ind}" />
+							</p:commandButton>
+						</p:column>
+					</h:dataTable>
+					<p:commandButton styleClass="botao" value="Save"
+						action="#{individualBean.edit}" ajax="false" />
+					<p:commandButton action="restrictednotifydataedit" value="Next"
+						ajax="false">
+						<c:param name="id"
+							value="#{clinDataBean.selected.notification.codNotification}" />
+					</p:commandButton>
+					<p:commandButton styleClass="botao" value="Finish"
+						action="imagesCreated" ajax="false" />
+
+
+
+				</h:form>
+				<br />
+				<!-- <img src="../resources/imagens/seq_gen.gif"/> -->
+
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+</html>

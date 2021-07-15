@@ -1,0 +1,22 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    <!--<h2>Include page</h2>
+    <p>Include page blah blah lorem ipsum</p>-->
+
+<div id="menu">
+<ul>
+<a href="login.jsf"><li><br/> Home</li></a>
+<a href="search.jsf"><li><br />Search</li></a>
+<a href="news.jsf"><li><br />News</li></a>
+<a href="public_pub.jsf"><li><br />Publications</li></a>
+<a href="public_faq.jsf"><li><br />FAQ</li></a>
+<a href="public_contact.jsf"><li><br />Contact</li></a>
+</ul>
+
+</div>
+</ui:composition>
+
+<!-- <ui:include src="menu.xhtml" /> -->

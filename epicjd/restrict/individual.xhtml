@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>General Notification</title>
+</h:head>
+<h:body>
+	<h1>General Notification</h1>
+	Usuário logado #{request.remoteUser}
+	<br/>
+	Nome do Usuário Logado #{contextoBean.loggedUser.name}
+	<h:form id="edicao">
+		<h:messages/>
+		<h:inputHidden value="#{individualBean.selected.codPatient}"/>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Birth date: " for="dateBirth"/>
+			<h:inputText id="dateBirth" value="#{individualBean.selected.dateBirth}" required="true" maxlength="30">
+				<c:convertDateTime dateStyle="medium"/>
+			</h:inputText>
+			<h:outputLabel value="Age: " for="age"/>
+			<h:inputText id="age" value="#{individualBean.selected.age}" required="true" maxlength="5"/>
+			<!--<h:inputText id="typeage" value="#{individualBean.selected.typeAge}" required="true" maxlength="10"/>  -->
+			<h:selectOneMenu id="zone" value="#{individualBean.selected.typeAge}">
+				<c:selectItem itemValue="Years" itemLabel="Years"/>
+				<c:selectItem itemValue="Months" itemLabel="Months"/>
+				<c:selectItem itemValue="Days" itemLabel="Days"/>
+			</h:selectOneMenu>	
+			<h:outputLabel value="Pregnant" for="pregnant"/>
+			<!-- <h:inputText id="pregnant" value="#{individualBean.selected.pregnant}" required="true" maxlength="30"/> -->
+			<h:selectOneMenu id="pregnant" value="#{individualBean.selected.pregnant}">
+				<c:selectItem itemValue="" itemLabel="Select"/>
+				<c:selectItem itemValue="1st Quarter" itemLabel="1st Quarter"/>
+				<c:selectItem itemValue="2nd Quarter" itemLabel="2nd Quarter"/>
+				<c:selectItem itemValue="3rd Quarter" itemLabel="3rd Quarter"/>
+				<c:selectItem itemValue="Ignored gestacional age" itemLabel="Ignored gestacional age"/>
+				<c:selectItem itemValue="No" itemLabel="No"/>
+				<c:selectItem itemValue="Not applicable" itemLabel="Not applicable"/>
+			</h:selectOneMenu>	
+			<h:outputLabel value="Ethnic group: " for="ethnicGroup"/>
+			<h:selectOneMenu id="ethnicGroup" value="#{individualBean.selected.ethnicGroup}">
+				<c:selectItem itemValue="" itemLabel="Select the ethnic group"/>
+				<c:selectItem itemValue="Caucasian" itemLabel="Caucasian"/>
+				<c:selectItem itemValue="Mongolian" itemLabel="Mongolian"/>
+				<c:selectItem itemValue="Negriod" itemLabel="Negriod"/>
+			</h:selectOneMenu>
+			<h:outputLabel value="Scholarity: " for="scholarity"/>
+			<h:selectOneMenu id="scholarity" value="#{individualBean.selected.scholarity}">
+				<c:selectItem itemValue="" itemLabel="Select educational level"/>
+				<c:selectItem itemValue="Illiterate" itemLabel="Illiterate"/>
+				<c:selectItem itemValue="Elementary school" itemLabel="Elementary school"/>
+				<c:selectItem itemValue="Middle school" itemLabel="Middle school"/>
+				<c:selectItem itemValue="High school" itemLabel="High school"/>
+				<c:selectItem itemValue="Post-secondary school" itemLabel="Post-secondary school"/>
+				<c:selectItem itemValue="Not applicable" itemLabel="Not applicable"/>
+			</h:selectOneMenu>
+			<h:outputLabel value="Card number: " for="cardNumber"/>
+			<h:inputText id="cardNumber" value="#{individualBean.selected.cardNumber}" required="true" maxlength="10"/>
+			<h:outputLabel value="Mother name: " for="motherName"/>
+			<h:inputText id="motherName" value="#{individualBean.selected.motherName}" required="true" maxlength="50"/>
+			
+			<h:commandButton value="Save" action="#{individualBeanBean.save}" />
+		</h:panelGrid>
+	</h:form>
+	
+</h:body>
+</html>

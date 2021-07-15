@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 29
+/svn/hpv/!svn/ver/7/trunk/hpv
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/hpv/!svn/ver/4/trunk/hpv/.project
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/hpv/!svn/ver/4/trunk/hpv/.classpath
+END

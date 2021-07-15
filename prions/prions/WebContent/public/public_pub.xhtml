@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="../resources/css/style.css" media="screen"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="login">
+			<div id="formlogin">
+				<table>
+
+
+					<form method="post"
+						action="#{request.contextPath}/j_spring_security_check">
+						<br /> Email<br />
+						<input type="text" name='j_username' id="textfield" /><br />
+						Password<br />
+						<input type="password" name='j_password' id="textfield" /><br />
+						<input type="checkbox" name="_spring_security_remember_me" />Remember
+						me<br /> <input type="submit" value="Login" />
+
+
+
+
+						<!-- <table>
+		<br/>
+			<tr><td>Email</td></tr>
+				<tr><td><input type='text' name='j_username' size="15" id="textfield"/></td></tr>
+			<tr><td>Password</td></tr>
+				<tr><td><input type='password' name='j_password' size="15" id="textfield"/></td></tr>
+			<tr><td align="left"><input type="checkbox" name="_spring_security_remember_me"/>Remember me
+				<input type="submit" value="Login"/></td>
+			</tr>
+			
+		</table> -->
+						<script>
+							document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
+						</script>
+					</form>
+					<h:form>
+						<h:commandButton action="#{userBean.newUser}" value="Sign Up" />
+
+					</h:form>
+
+				</table>
+			</div>
+		</div>
+		<div id="corpo">
+			<div id="texto">
+				<h1>Publications</h1>
+				<h4>
+					<a href="login.jsf">Home</a> >><a href="public_pub.jsf"> Publications</a>
+				</h4>
+				<br />
+
+				<h:form id="texto" styleClass="centered">
+
+					<div
+						style="height: 400px; width: 926px; overflow-x: auto; overflow-y: auto;">
+						<!-- <h:panelGrid columns="8" width="900" valign="top" align="left"
+							bgcolor="#EBEBD6"> -->
+							<!-- <h:dataTable value="#{publicationBean.list}" var="pub"
+								rendered="#{!empty publicationBean.list}" cellpadding="15"
+								bgcolor="#EBEBD6" rules="rows">-->
+								<p:dataTable var="pub" value="#{publicationBean.list}">
+							<p:column headerText="Title">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.title}" />
+							</p:column>
+							<p:column headerText="Periodical">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.periodical}" />
+							</p:column>
+							<p:column headerText="Authors">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.authors}" />
+							</p:column>
+							<p:column headerText="Page">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.page}" />
+							</p:column>
+							<p:column headerText="Volume">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.volume}" />
+							</p:column>
+							<p:column headerText="Year">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.year}" />
+							</p:column>
+							<p:column headerText="Link">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.link}" />
+							</p:column>
+							<!-- <h:column>
+									<c:facet name="header">Periodical</c:facet>
+							#{pub.periodical}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Page</c:facet>
+							#{pub.page}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Volume</c:facet>
+							#{pub.volume}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Year</c:facet>
+							#{pub.year}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Link</c:facet>
+							#{pub.link}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Authors</c:facet>
+							#{pub.authors}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Description</c:facet>
+							#{pub.description}
+						</h:column> -->
+							</p:dataTable>
+						<!-- </h:panelGrid> -->
+					</div>
+
+				</h:form>
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:t="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Teorizacao</title>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:head>
+<h:body>
+	<f:event
+		listener="#{teorizacaoEstudo.getReferencias(logon.usuarioLogado, principalAluno.estudoSelecionado)}"
+		type="javax.faces.event.PreRenderViewEvent" />
+	<h:panelGroup>
+		<rich:panel styleClass="panel_invisivel">
+			<br />
+			<h:outputLabel id="outputLabel_Programacao"
+				value="Referências (pdf, doc, docx. Tamanho máximo 16MB)" styleClass="campo_titulo" />
+			<br />
+			<t:outputText value="#{define.PENSAE_REFERENCIAS_INSTRUCOES}"
+				styleClass="campo_conteudo" />
+			<br />
+			<h:commandLink value="#{teorizacaoEstudo.link}"
+				actionListener="#{teorizacaoEstudo.downloadArquivo()}"
+				styleClass="link" />
+			<br />
+			<rich:fileUpload
+				fileUploadListener="#{teorizacaoEstudo.uploadListener}"
+				maxFilesQuantity="1" id="fileUpload_Programacao"
+				immediateUpload="true" allowFlash="true"
+				acceptedTypes="pdf, doc, docx"
+				style="max-height:70px;"
+				addLabel="Adicionar arquivo"
+				clearAllLabel="Limpar Tudo"
+				clearLabel="Limpar"
+				deleteLabel="Excluir"
+				doneLabel="Concluido"
+				serverErrorLabel="Erro no servidor, contate um administrador"
+				sizeErrorLabel="Tamanho não Permitido" 
+				sizeExceededLabel="Tamanho limite excedido"
+				uploadLabel="Enviar"
+				disabled="#{arcoPrincipal.desabilitarFuncionalidadesFaseTeorizacao()}"/>
+		</rich:panel>
+	</h:panelGroup>
+</h:body>
+</html>

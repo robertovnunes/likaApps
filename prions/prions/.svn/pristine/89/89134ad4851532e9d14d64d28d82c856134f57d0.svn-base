@@ -1,0 +1,252 @@
+package hpdd.web;
+
+import hpdd.clinData.ClinData;
+import hpdd.general.General;
+import hpdd.general.GeneralRN;
+import hpdd.individual.Individual;
+import hpdd.notification.Notification;
+import hpdd.notification.NotificationRN;
+import hpdd.residential.Residential;
+
+import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+@ManagedBean(name = "searchBean")
+@SessionScoped
+public class SearchBean {
+	private General gen = new General();
+	private Individual ind = new Individual();
+	private Residential res = new Residential();
+	private ClinData cli = new ClinData();
+	private Notification notif = new Notification();
+	
+	/*private String country; //general
+	private String state; //general
+	private String city; //general
+	private Integer age; //individual
+	*/private String gender; //individual
+	/*private String ethnicGroup; //individual
+	private String educationalLevel; //individual
+	private String zone; //residence
+	private String progDementia;//cliData
+	private String visualDisorder;//cliData
+	private String myoclonus;//cliData
+	private String cerebellarDisorders;//cliData
+	private String persistentPainDys;//cliData
+	private String ataxy;//cliData
+	private String pyramidalSigns;//cliData
+	private String extrapyramidalSigns;//cliData
+	private String akineticMutism;//cliData
+	private String psychiatricDisorders;//cliData
+	private String sleepDisorders;//cliData*/
+	
+	
+
+	private List<General> list = null;
+	
+	public General getGen() {
+		return gen;
+	}
+	public void setGen(General gen) {
+		this.gen = gen;
+	}
+	
+	public Individual getInd() {
+		return ind;
+	}
+	public void setInd(Individual ind) {
+		this.ind = ind;
+	}
+	public Residential getRes() {
+		return res;
+	}
+	public void setRes(Residential res) {
+		this.res = res;
+	}
+	public ClinData getCli() {
+		return cli;
+	}
+	public void setCli(ClinData cli) {
+		this.cli = cli;
+	}
+	public List<General> getList() {
+			//Poderia ser General, Individual, etc.
+			GeneralRN generalRN = new GeneralRN();
+			this.list = generalRN.listFiltro(gen.getCountry(), gen.getState(), gen.getCity(), ind.getAge(), ind.getGender(), ind.getEthnicGroup(), ind.getScholarity(), res.getZone(), cli.getProgDementia(), 
+					cli.getVisualDisorder(), cli.getMyoclonus(), cli.getCerebellarDisorders(), cli.getPersistentPainDys(), cli.getAtaxy(), cli.getPyramidalSigns(), cli.getExtrapyramidalSigns(), cli.getAkineticMutism(), cli.getPsychiatricDisorders(),
+					cli.getSleepDisorders());
+		
+		
+		return this.list;
+	}
+	
+	
+	public String visualize() {
+		
+		NotificationRN notificationRN = new NotificationRN();
+		notificationRN.restoreSearch();
+		this.notif = notificationRN.load(this.gen.getNotification().getCodNotification());
+		this.notif.setAtivo(true);
+		notificationRN.save(notif);
+		this.gen = new General();
+		this.ind = new Individual();
+		this.list = null;
+		return "visualize";
+	}
+
+	/*public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}*/
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+/*
+	public String getEthnicGroup() {
+		return ethnicGroup;
+	}
+
+	public void setEthnicGroup(String ethnicGroup) {
+		this.ethnicGroup = ethnicGroup;
+	}
+
+	public String getEducationalLevel() {
+		return educationalLevel;
+	}
+
+	public void setEducationalLevel(String educationalLevel) {
+		this.educationalLevel = educationalLevel;
+	}
+
+	public String getZone() {
+		return zone;
+	}
+
+	public void setZone(String zone) {
+		this.zone = zone;
+	}
+
+	public String getProgDementia() {
+		return progDementia;
+	}
+
+	public void setProgDementia(String progDementia) {
+		this.progDementia = progDementia;
+	}
+
+	public String getVisualDisorder() {
+		return visualDisorder;
+	}
+
+	public void setVisualDisorder(String visualDisorder) {
+		this.visualDisorder = visualDisorder;
+	}
+
+	public String getMyoclonus() {
+		return myoclonus;
+	}
+
+	public void setMyoclonus(String myoclonus) {
+		this.myoclonus = myoclonus;
+	}
+
+	public String getCerebellarDisorders() {
+		return cerebellarDisorders;
+	}
+
+	public void setCerebellarDisorders(String cerebellarDisorders) {
+		this.cerebellarDisorders = cerebellarDisorders;
+	}
+
+	public String getPersistentPainDys() {
+		return persistentPainDys;
+	}
+
+	public void setPersistentPainDys(String persistentPainDys) {
+		this.persistentPainDys = persistentPainDys;
+	}
+
+	public String getAtaxy() {
+		return ataxy;
+	}
+
+	public void setAtaxy(String ataxy) {
+		this.ataxy = ataxy;
+	}
+
+	public String getPyramidalSigns() {
+		return pyramidalSigns;
+	}
+
+	public void setPyramidalSigns(String pyramidalSigns) {
+		this.pyramidalSigns = pyramidalSigns;
+	}
+
+	public String getExtrapyramidalSigns() {
+		return extrapyramidalSigns;
+	}
+
+	public void setExtrapyramidalSigns(String extrapyramidalSigns) {
+		this.extrapyramidalSigns = extrapyramidalSigns;
+	}
+
+	public String getAkineticMutism() {
+		return akineticMutism;
+	}
+
+	public void setAkineticMutism(String akineticMutism) {
+		this.akineticMutism = akineticMutism;
+	}
+
+	public String getPsychiatricDisorders() {
+		return psychiatricDisorders;
+	}
+
+	public void setPsychiatricDisorders(String psychiatricDisorders) {
+		this.psychiatricDisorders = psychiatricDisorders;
+	}
+
+	public String getSleepDisorders() {
+		return sleepDisorders;
+	}
+
+	public void setSleepDisorders(String sleepDisorders) {
+		this.sleepDisorders = sleepDisorders;
+	}*/
+	
+
+}

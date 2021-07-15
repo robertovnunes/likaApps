@@ -1,0 +1,338 @@
+package util;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import model.Endereco;
+import model.curso.Curso;
+import model.curso.DeterminanteHipoteses;
+import model.curso.EstudoDeCaso;
+import model.curso.matricula.AvaliacaoProfessor;
+import model.curso.matricula.ambulatorio.Material;
+import model.curso.matricula.arcomaguerez.HipotesesDeSolucao;
+import model.curso.matricula.arcomaguerez.PontosChave;
+import model.curso.matricula.arcomaguerez.Teorizacao;
+import model.sistema.Arquivo;
+import model.usuario.Administrador;
+import model.usuario.Aluno;
+import model.usuario.Professor;
+
+import org.apache.commons.io.IOUtils;
+import org.hibernate.SessionFactory;
+
+import dados.hibernate.HibernateUtil;
+import fachada.Fachada;
+
+public class MainPopulaBD {
+	
+	public static void execCriarArqvsCurso(){
+		
+		SessionFactory sf = HibernateUtil.getFabricaDeSessao();
+		sf.getCurrentSession().beginTransaction();
+		
+		InputStream input;
+		try {
+			Arquivo arqv = new Arquivo();
+			arqv.setExtensao("application/pdf");
+			arqv.setNomeArqv("Edital_FACEPE_08-2013_PPSUS_2012.pdf");
+			input = new FileInputStream("C:\\LIKA\\Fisioterapia\\Edital_FACEPE_08-2013_PPSUS_2012.pdf");
+			byte[] arraybytes = IOUtils.toByteArray(input);
+			arqv.setDadosArqv(arraybytes);
+			List<Arquivo> listaArqv = new ArrayList<Arquivo>();
+			listaArqv.add(arqv);
+			Fachada.getInstancia().inserirArquivosCurso(listaArqv);
+			
+			
+			sf.getCurrentSession().getTransaction().commit();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	
+	public static void execMainPopulaBD(){
+		
+
+		SessionFactory sf = HibernateUtil.getFabricaDeSessao();
+		sf.getCurrentSession().beginTransaction();
+		Endereco end = new Endereco("Rua Arcoverde","180","Janga","53439110","Paulista","PE","Ponto de Referencia");
+		Endereco end2 = new Endereco("Rua Arcoverde","180","Janga","53439110","Paulista","PE","Ponto de Referencia");
+		Endereco end3= new Endereco("Rua Arcoverde","180","Janga","53439110","Paulista","PE","Ponto de Referencia");
+		Endereco end4= new Endereco("Rua Arcoverde","180","Janga","53439110","Paulista","PE","Ponto de Referencia");
+		
+		Aluno alunoAsd = new Aluno("Paulo Diniz","01234567891",end,"asd","asd","tesra@gmail.com", "Masculino", 0, "UFPE");
+		Fachada.getInstancia().criarUsuarioAluno(alunoAsd);
+		
+		Aluno aluno = new Aluno("Paulo Diniz","01234567891",end2,"aluno","aluno","tesra@gmail.com", "Masculino", 0, "UFPE");
+		Fachada.getInstancia().criarUsuarioAluno(aluno);
+		
+		Professor professor = new Professor("Rosalie Belian","01234567891",end3,"professor","professor","xxxtesra@gmail.com", "Feminino", 0, "UFPE");
+		Fachada.getInstancia().criarUsuarioProfessor(professor);
+		
+		Administrador admin = new Administrador("Administrador Sistema","01234567891",end4,"admin","admin","tffesra@gmail.com", "Masculino", 0);
+		Fachada.getInstancia().criarUsuarioAdministrador(admin);
+		
+		Curso curso1 = new Curso(0, "Nome do curso em ANDAMENTO1 selecionado com texto longo em duas linhas", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+				" It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+				new Date(), new Date(), Curso.ANDAMENTO, professor, null);
+		
+		Curso curso1x = new Curso(0, "Nome do curso em ANDAMENTO2 selecionado com texto longo em duas linhas", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+				" It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+				new Date(), new Date(), Curso.ANDAMENTO, professor, null);
+		
+		Curso curso2 = new Curso(0, "Nome do curso BLOQUEADO selecionado com texto longo em duas linhas", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+				" It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+				new Date(), new Date(), Curso.BLOQUEADO, professor, null);
+		
+		Curso curso3 = new Curso(0, "Nome do curso CONCLUIDO selecionado com texto longo em duas linhas", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+				" It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+				new Date(), new Date(), Curso.CONCLUIDO, professor,null);
+		
+		Curso curso4 = new Curso(0, "Nome do curso PREVISTO1 selecionado com texto longo em duas linhas", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+				" It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+				new Date(), new Date(), Curso.PREVISTO,professor, null);
+		
+		Curso curso4x = new Curso(0, "Nome do curso PREVISTO2 selecionado com texto longo em duas linhas", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+				" It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+				new Date(), new Date(), Curso.PREVISTO, professor,null);
+		
+		Curso curso5 = new Curso(0, "Nome do curso PAUSA selecionado com texto longo em duas linhas", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+				" It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+				new Date(), new Date(), Curso.PAUSA,professor, null);
+		
+		curso1 = Fachada.getInstancia().inserirCurso(curso1);
+		curso1x = Fachada.getInstancia().inserirCurso(curso1x);
+		curso2 = Fachada.getInstancia().inserirCurso(curso2);
+		curso3 = Fachada.getInstancia().inserirCurso(curso3);
+		curso4 = Fachada.getInstancia().inserirCurso(curso4);
+		curso4x = Fachada.getInstancia().inserirCurso(curso4x);
+		curso5 = Fachada.getInstancia().inserirCurso(curso5);
+		
+		List<Curso> cursos = new ArrayList<Curso>();
+		cursos.add(curso1);
+		cursos.add(curso2);
+		cursos.add(curso3);
+		cursos.add(curso4);
+		cursos.add(curso5);
+		
+		Fachada.getInstancia().matricularAlunoCursos(alunoAsd, cursos);
+		
+		sf.getCurrentSession().getTransaction().commit();
+		
+	}
+	
+	public static void execPopulaMateriais(){
+		
+
+		SessionFactory sf = HibernateUtil.getFabricaDeSessao();
+		sf.getCurrentSession().beginTransaction();
+		
+		Material mat1 = new Material("Mesa e cadeira para o profissional",Material.GERAL);
+		Material mat2 = new Material("Porta retrato",Material.GERAL);
+		Material mat3 = new Material("Mesa clínica",Material.GERAL);
+		Material mat4 = new Material("Armário para guardar os prontuários e receituários",Material.GERAL);
+		Material mat5 = new Material("Computador e impressora",Material.GERAL);
+		Material mat6 = new Material("Fogão",Material.GERAL);
+		Material mat7 = new Material("Abajur",Material.GERAL);
+		Material mat8 = new Material("Geladeira",Material.GERAL);
+		Material mat9 = new Material("Televisão",Material.GERAL);
+		Material mat10 = new Material("Aparelho de DVD/BLU-RAY",Material.GERAL);
+		Material mat11 = new Material("Suporte para Álcool gel/sabão líquido",Material.GERAL);
+		Material mat12 = new Material("Lixeira para lixo comum",Material.GERAL);
+		Material mat13 = new Material("Suporte para papel toalha",Material.GERAL);
+		Material mat14 = new Material("Lixeira para lixo contaminado",Material.GERAL);
+		
+		
+		Fachada.getInstancia().cadastrarMaterial(mat1);
+		Fachada.getInstancia().cadastrarMaterial(mat2);
+		Fachada.getInstancia().cadastrarMaterial(mat3);
+		Fachada.getInstancia().cadastrarMaterial(mat4);
+		Fachada.getInstancia().cadastrarMaterial(mat5);
+		Fachada.getInstancia().cadastrarMaterial(mat6);
+		Fachada.getInstancia().cadastrarMaterial(mat7);
+		Fachada.getInstancia().cadastrarMaterial(mat8);
+		Fachada.getInstancia().cadastrarMaterial(mat9);
+		Fachada.getInstancia().cadastrarMaterial(mat10);
+		Fachada.getInstancia().cadastrarMaterial(mat11);
+		Fachada.getInstancia().cadastrarMaterial(mat12);
+		Fachada.getInstancia().cadastrarMaterial(mat13);
+		Fachada.getInstancia().cadastrarMaterial(mat14);
+
+		
+		Material mate1 = new Material("Papel Toalha",Material.USO_CORRENTE);
+		Material mate2 = new Material("Álcool 70%",Material.USO_CORRENTE);
+		Material mate3 = new Material("Algodão",Material.USO_CORRENTE);
+		Material mate4 = new Material("Papel ofício",Material.USO_CORRENTE);
+		Material mate5 = new Material("Caneta",Material.USO_CORRENTE);
+		Material mate6 = new Material("Lupa",Material.USO_CORRENTE);
+		
+		Fachada.getInstancia().cadastrarMaterial(mate1);
+		Fachada.getInstancia().cadastrarMaterial(mate2);
+		Fachada.getInstancia().cadastrarMaterial(mate3);
+		Fachada.getInstancia().cadastrarMaterial(mate4);
+		Fachada.getInstancia().cadastrarMaterial(mate5);
+		Fachada.getInstancia().cadastrarMaterial(mate6);
+		
+		
+		Material mater1 = new Material("Balança pediátrica",Material.USO_CLINICO);
+		Material mater2 = new Material("Régua antropométrica",Material.USO_CLINICO);
+		Material mater3 = new Material("Estetoscópio com duas peças torácicas (diafragma e campânula)",Material.USO_CLINICO);
+		Material mater4 = new Material("Esfigmomanômetro",Material.USO_CLINICO);
+		Material mater5 = new Material("Monitor cardíaco",Material.USO_CLINICO);
+		Material mater6 = new Material("Termômetro",Material.USO_CLINICO);
+		Material mater7 = new Material("Eletrocardiógrafo",Material.USO_CLINICO);
+		Material mater8 = new Material("Glicosímetro",Material.USO_CLINICO);
+		Material mater9 = new Material("Fita métrica",Material.USO_CLINICO);
+		Material mater10 = new Material("Lanterna",Material.USO_CLINICO);
+		Material mater11 = new Material("Otoscópio",Material.USO_CLINICO);
+		Material mater12 = new Material("Ventilador mecânico",Material.USO_CLINICO);
+		
+		
+		Fachada.getInstancia().cadastrarMaterial(mater1);
+		Fachada.getInstancia().cadastrarMaterial(mater2);
+		Fachada.getInstancia().cadastrarMaterial(mater3);
+		Fachada.getInstancia().cadastrarMaterial(mater4);
+		Fachada.getInstancia().cadastrarMaterial(mater5);
+		Fachada.getInstancia().cadastrarMaterial(mater6);
+		Fachada.getInstancia().cadastrarMaterial(mater7);
+		Fachada.getInstancia().cadastrarMaterial(mater8);
+		Fachada.getInstancia().cadastrarMaterial(mater9);
+		Fachada.getInstancia().cadastrarMaterial(mater10);
+		Fachada.getInstancia().cadastrarMaterial(mater11);
+		Fachada.getInstancia().cadastrarMaterial(mater12);
+		
+		sf.getCurrentSession().getTransaction().commit();
+	
+	}
+	
+	public static void execCadastrarEstudosDeCasos(){
+		SessionFactory sf = HibernateUtil.getFabricaDeSessao();
+		sf.getCurrentSession().beginTransaction();
+		try {
+			Curso curso = new Curso(1);
+			InputStream input;
+			
+			List<Arquivo> imagensEc = new ArrayList<Arquivo>();
+			Arquivo arqv = new Arquivo();
+			arqv.setExtensao("image/jpeg");
+			arqv.setNomeArqv("photo03.jpg");
+			input = new FileInputStream("C:\\LIKA\\pensae2\\photo03.jpg");
+			byte[] arraybytes = IOUtils.toByteArray(input);
+			arqv.setDadosArqv(arraybytes);
+			imagensEc.add(arqv);
+			
+			Arquivo arqv3 = new Arquivo();
+			arqv3.setExtensao("image/jpeg");
+			arqv3.setNomeArqv("photo05.jpg");
+			input = new FileInputStream("C:\\LIKA\\pensae2\\photo05.jpg");
+			arraybytes = IOUtils.toByteArray(input);
+			arqv3.setDadosArqv(arraybytes);
+			imagensEc.add(arqv3);
+			
+			Arquivo arqv4 = new Arquivo();
+			arqv4.setExtensao("image/jpeg");
+			arqv4.setNomeArqv("photo06.jpg");
+			input = new FileInputStream("C:\\LIKA\\pensae2\\photo06.jpg");
+			arraybytes = IOUtils.toByteArray(input);
+			arqv4.setDadosArqv(arraybytes);
+			imagensEc.add(arqv4);
+			
+			Arquivo arqv2 = new Arquivo();
+			arqv2.setExtensao("image/jpeg");
+			arqv2.setNomeArqv("photo04.jpg");
+			input = new FileInputStream("C:\\LIKA\\pensae2\\photo04.jpg");
+			arraybytes = IOUtils.toByteArray(input);
+			arqv2.setDadosArqv(arraybytes);
+			List<Arquivo> imgsAux = new ArrayList<Arquivo>();
+			imgsAux.add(arqv2);
+			
+			EstudoDeCaso estudo = new EstudoDeCaso(EstudoDeCaso.ANDAMENTO, "Título do Estudo de Caso Curso 001", "Objetivos Gerais do Estudo de Caso", "Objetivos Específicos do Estudo de Caso",
+					EstudoDeCaso.BAIXO, "Descrição do Estudo de Caso EC1: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus, mi et adipiscing laoreet, urna tortor imperdiet nulla, et facilisis risus urna nec dolor. In lacinia, mauris sit amet vehicula lacinia, augue nibh ultricies justo, in molestie tellus risus a ante. In eget erat risus. In eget interdum magna, in tincidunt turpis. Nam imperdiet mattis gravida. Cras augue sem, sagittis nec tortor et, gravida vulputate enim.", 
+					imagensEc, imgsAux, "PontosChave do Estudo de caso: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus, mi et adipiscing laoreet, urna tortor imperdiet nulla, et facilisis risus urna nec dolor. ", curso);
+			Fachada.getInstancia().cadastrarEstudoDeCaso(estudo);
+			
+			EstudoDeCaso estudo2 = new EstudoDeCaso(EstudoDeCaso.PREVISTO, "Título do Estudo de Caso Curso 002", "Objetivos Gerais do Estudo de Caso", "Objetivos Específicos do Estudo de Caso",
+					EstudoDeCaso.BAIXO, "Descrição do Estudo de Caso EC2: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus, mi et adipiscing laoreet, urna tortor imperdiet nulla, et facilisis risus urna nec dolor. In lacinia, mauris sit amet vehicula lacinia, augue nibh ultricies justo, in molestie tellus risus a ante. In eget erat risus. In eget interdum magna, in tincidunt turpis. Nam imperdiet mattis gravida. Cras augue sem, sagittis nec tortor et, gravida vulputate enim.", 
+					imagensEc, imgsAux, "PontosChave do Estudo de caso: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus, mi et adipiscing laoreet, urna tortor imperdiet nulla, et facilisis risus urna nec dolor. ", curso);
+			Fachada.getInstancia().cadastrarEstudoDeCaso(estudo2);
+			
+			EstudoDeCaso estudo3 = new EstudoDeCaso(EstudoDeCaso.ANDAMENTO, "Título do Estudo de Caso Curso 003", "Objetivos Gerais do Estudo de Caso", "Objetivos Específicos do Estudo de Caso",
+					EstudoDeCaso.BAIXO, "Descrição do Estudo de Caso EC3: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus, mi et adipiscing laoreet, urna tortor imperdiet nulla, et facilisis risus urna nec dolor. In lacinia, mauris sit amet vehicula lacinia, augue nibh ultricies justo, in molestie tellus risus a ante. In eget erat risus. In eget interdum magna, in tincidunt turpis. Nam imperdiet mattis gravida. Cras augue sem, sagittis nec tortor et, gravida vulputate enim.", 
+					imagensEc, imgsAux, "PontosChave do Estudo de caso: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus, mi et adipiscing laoreet, urna tortor imperdiet nulla, et facilisis risus urna nec dolor. ", curso);
+			Fachada.getInstancia().cadastrarEstudoDeCaso(estudo3);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		sf.getCurrentSession().getTransaction().commit();
+	}
+	
+	public static void execCadastrarDeterminateHiposteses(){
+		SessionFactory sf = HibernateUtil.getFabricaDeSessao();
+		sf.getCurrentSession().beginTransaction();
+		try {
+			
+			DeterminanteHipoteses det = new DeterminanteHipoteses("Determinate Escolhido 1", new EstudoDeCaso(1));
+			DeterminanteHipoteses det2 = new DeterminanteHipoteses("Determinate Escolhido 2", new EstudoDeCaso(1));
+			DeterminanteHipoteses det3 = new DeterminanteHipoteses("Determinate Escolhido 3", new EstudoDeCaso(1));
+			
+			Fachada.getInstancia().adicionarDeterminanteHipoteses(det);
+			Fachada.getInstancia().adicionarDeterminanteHipoteses(det2);
+			Fachada.getInstancia().adicionarDeterminanteHipoteses(det3);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		sf.getCurrentSession().getTransaction().commit();
+	}
+	
+	public static void execCadastrarFeedBacksProfessor(){
+		SessionFactory sf = HibernateUtil.getFabricaDeSessao();
+		sf.getCurrentSession().beginTransaction();
+		try {
+			PontosChave pontos = new PontosChave();
+			pontos.setId(1);
+			AvaliacaoProfessor avaliacao = new AvaliacaoProfessor("A", "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. ");
+			pontos.setAvaliacaoProfessor(avaliacao);
+			
+			AvaliacaoProfessor avaliacao2 = new AvaliacaoProfessor("C", "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. ");
+			Teorizacao teorizacao = new Teorizacao();
+			teorizacao.setId(1);
+			teorizacao.setAvaliacaoProfessor(avaliacao2);
+			
+			AvaliacaoProfessor avaliacao3 = new AvaliacaoProfessor("B", "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. ");
+			HipotesesDeSolucao hipoteses = new HipotesesDeSolucao();
+			hipoteses.setId(1);
+			hipoteses.setAvaliacaoProfessor(avaliacao3);
+			
+			Fachada.getInstancia().inserirAvaliacaoProfessor(avaliacao);
+			Fachada.getInstancia().inserirAvaliacaoProfessor(avaliacao2);
+			Fachada.getInstancia().inserirAvaliacaoProfessor(avaliacao3);
+			Fachada.getInstancia().atualizarPontosChave(pontos);
+			Fachada.getInstancia().atualizarTeorizacao(teorizacao);
+			Fachada.getInstancia().atualizarHipotesesDeSolucao(hipoteses);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		sf.getCurrentSession().getTransaction().commit();
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+//		MainPopulaBD.execMainPopulaBD();
+//		MainPopulaBD.execPopulaMateriais();
+//		MainPopulaBD.execCriarArqvsCurso();
+//		MainPopulaBD.execCadastrarEstudosDeCasos();
+//		MainPopulaBD.execCadastrarDeterminateHiposteses();
+		MainPopulaBD.execCadastrarFeedBacksProfessor();
+	}
+
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>PenSAE</title>
+</h:head>
+<h:body>
+	<h:form id="form_Logon">
+		<h:panelGrid id="panelGrid_Principal" columns="1" style="height:auto;">
+			<rich:panel id="panel_Descricao" style="width: 640px;">
+				<h:outputLabel id="outputLabel_Titulo"
+					value="#{define.PENSAE_TITULO}" styleClass="campo_titulo" />
+				<br />
+				<h:outputText id="outputText_Descricao"
+					value="#{define.PENSAE_DESCRICAO}" styleClass="campo_conteudo" />
+			</rich:panel>
+			<rich:panel id="panel_Logon" style="width: 250px; height:100%;">
+				<h:message for="form_Logon" style="color:red" />
+				<br />
+				<h:outputLabel id="outputLabel_Login" value="Login: " />
+				<h:inputText id="inputText_login" value="#{logon.login}" />
+				<br />
+				<h:outputLabel id="outputLabel_Senha" value="Senha: " />
+				<h:inputSecret id="inputText_Senha" value="#{logon.password}" />
+				<br />
+				<h:commandButton value="Entrar" action="#{logon.logon()}" />
+				<h:commandButton value="Esqueci minha senha"
+					onclick="alert('Funcionalidade em construção.');" />
+				<br />
+				<h:outputLabel id="outputLabel_Cadastre"
+					value="Ainda não está cadastrado? " />
+				<h:commandLink id="commandLink_Cadastro" value="Cadastre-se"
+					action="cadastro" styleClass="link" />
+			</rich:panel>
+		</h:panelGrid>
+	</h:form>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:body>
+</html>

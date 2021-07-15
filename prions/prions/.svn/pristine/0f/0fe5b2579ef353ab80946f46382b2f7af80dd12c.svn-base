@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_rest.css" rel="stylesheet"
+	type="text/css" />
+
+<title>Home</title>
+</h:head>
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+}
+</style>
+<script type="text/javascript">
+	//<![CDATA[
+	function message1() {
+		alert("Notification saved!	Go to the menu 'My notification' and see your last notification. There you can add the missing data to be filled.");
+		return false;
+	}
+
+	function message2() {
+		alert("Notification done! Go to the menu 'My notification' and see your last notification.");
+		return false;
+	}
+	//]]>
+</script>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>Report case</h1>
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="restricted_notify.html"> Report case </a> >> Clinical
+					History
+				</h4>
+				<br />
+				<ul id="nav">
+					<!-- CSS Tabs 
+<li><a href="restrictednotifygeneral.jsf">General</a></li>
+<li><a href="restrictednotifyindividual.jsf"><span>Individual</span></a></li>
+<li><a href="restrictednotifyresidential.jsf"><span>Residential</span></a></li>
+<li><a href="restrictednotifysuspicion.jsf"><span>Clinical suspicion</span></a></li>
+<li><a href="restrictednotifydata.jsf"><span>Clinical data</span></a></li>
+<li><a href="restrictednotifyaspects.jsf"><span>Aspects</span></a></li>
+<li><a href="restrictednotifyresults.jsf"><span>Results</span></a></li>
+<li><a href="restrictednotifyconclusion.jsf"><span>Conclusion</span></a></li>
+<li><a class="active" href="restrictednotifyresume.jsf"><span>Clinical History</span></a></li>
+<li><a href="restrictednotifyimages.jsf"><span>Images</span></a></li>-->
+				</ul>
+
+				<h:form id="texto">
+					<h:messages />
+					<div style="width: 774.5px; height: 276px;">
+						<h:panelGrid width="795" height="30" valign="top" align="left"
+							colspan="2"
+							style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+							<h:outputLabel value="Finish notification"></h:outputLabel>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="795" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">	
+			If you want to complete the notification at a later time, click "Finish Later".
+			<p:commandButton action="#{notificationBean.keepStatus}"
+								image="../resources/imagens/finishlater.gif"
+								onclick="return message1();" type="submit" ajax="false">
+								<c:param name="id"
+									value="#{clinDataBean.selected.notification.codNotification}" />
+							</p:commandButton>
+			If you want to complete the notification now, click End Now.<br />
+Note: You can no longer edit the information later.
+			<p:commandButton action="#{notificationBean.changeStatus}"
+								image="../resources/imagens/finishnow.gif"
+								onclick="return confirm('Your notice should be completed and you can not update the data later. Are you sure you want to finish the notification?')"
+								type="submit" ajax="false">
+								<c:param name="id"
+									value="#{notificationBean.selected.codNotification}" />
+							</p:commandButton>
+
+						</h:panelGrid>
+					</div>
+				</h:form>
+
+
+				<br />
+				<!-- <img src="../resources/imagens/seq_ima.gif"/> -->
+
+			</div>
+		</div>
+		<div id="footer"></div>
+	</div>
+</h:body>
+
+</html>

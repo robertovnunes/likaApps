@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+  		<!-- 
+  		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://150.161.67.1/hpv2</property>
+        <property name="hibernate.connection.username">hpv</property>
+        <property name="hibernate.connection.password">q5Cj49TaZYyLnLVm</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+        
+        	
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+        		
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://192.168.254.2/hpv</property>
+        <property name="hibernate.connection.username">hpv</property>
+        <property name="hibernate.connection.password">casa</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLMyISAMDialect</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>		
+
+  		
+        -->
+        	
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/hpv2</property>
+        <property name="hibernate.connection.username">hpv</property>
+        <property name="hibernate.connection.password">q5Cj49TaZYyLnLVm</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+        
+      
+     
+        
+        
+        
+        
+        
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.timeout">1800</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+    	<property name="hibernate.c3p0.idle_test_period">100</property>
+		<property name="hibernate.c3p0.acquire_increment">5</property>	
+		
+    	<property name="hibernate.show_sql">true</property>
+    	<property name="hibernate.format_sql">true</property>
+		
+		<mapping class="br.com.lika.hpv.model.usuario.Usuario"/>
+		<mapping class="br.com.lika.hpv.model.formulario.Formulario"/>
+		<mapping class="br.com.lika.hpv.model.formulario.InformacoesPessoais"/>
+		<mapping class="br.com.lika.hpv.model.formulario.SituacaoSocioEconomicaDemografica"/>
+		<mapping class="br.com.lika.hpv.model.formulario.HistoricoSexual"/>
+		<mapping class="br.com.lika.hpv.model.formulario.HistoricoClinico"/>
+		<mapping class="br.com.lika.hpv.model.formulario.HistoricoFamiliar"/>
+		<mapping class="br.com.lika.hpv.model.formulario.HistoricoAlimentar"/>
+		<mapping class="br.com.lika.hpv.model.formulario.Tabagismo"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.Fumo"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.ConsumoBebidaAlcoolica"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.ConsumoBrotoSamambaia"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.Fogao"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.Frango"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.CarneVermelha"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.ProdutosQuimicos"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.MetaisPesados"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.Radiacoes"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.Imunossupressoras"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.MedicacaoMenorPausa"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.MedicacaoUsoContinuo"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.MalEstar"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.Diabetes"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.Cirurgias"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.Cancer"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.ParenteDoencaCronica"/>
+		<mapping class="br.com.lika.hpv.model.formulario.util.ParenteCancer"/>
+		<mapping class="br.com.lika.hpv.model.laudo.LaudoCitopatologico"/>
+		<mapping class="br.com.lika.hpv.model.laudo.LaudoClamidia"/>
+		<mapping class="br.com.lika.hpv.model.laudo.LaudoHbv"/>
+		<mapping class="br.com.lika.hpv.model.laudo.LaudoHcv"/>
+		<mapping class="br.com.lika.hpv.model.laudo.LaudoHiv"/>
+		<mapping class="br.com.lika.hpv.model.laudo.laudoHIV.ReagenteHIV"/>
+		<mapping class="br.com.lika.hpv.model.laudo.LaudoHpv"/>
+		<mapping class="br.com.lika.hpv.model.laudo.LaudoSifilis"/>
+		<mapping class="br.com.lika.hpv.model.laudo.LaudoViral"/>
+		<mapping class="br.com.lika.hpv.model.laudo.TemplateTextosLaudo"/>
+		<mapping class="br.com.lika.hpv.model.laudo.laudoHPV.AdequabilidadeAmostraLaudoHPV"/>
+		<mapping class="br.com.lika.hpv.model.laudo.laudoHPV.TipoAmostraLaudoHPV"/>
+		<mapping class="br.com.lika.hpv.model.amostra.Amostra"/>
+		<mapping class="br.com.lika.hpv.model.anexo.Anexo"/>
+		<mapping class="br.com.lika.hpv.model.formulario.HistoricoModificacoes"/>
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Acompanhamento por Estudante</title>
+</h:head>
+<h:body>
+	<f:view>
+		<f:event
+			listener="#{acompanhamentoEstudante.setUsuarioLogado(logon.usuarioLogado)}"
+			type="javax.faces.event.PostAddToViewEvent" />
+		<f:event
+			listener="#{acompanhamentoEstudante.carregarListaEstudantes(principalProfessor.cursoSelecionado)}"
+			type="javax.faces.event.PreRenderComponentEvent" />
+		<rich:panel id="panel_Titulo" styleClass="panel_invisivel">
+			<h:outputLabel id="outputLabel_TituloPagina"
+				value="Acompanhamento por Estudante"
+				styleClass="titulo_principal_pagina" />
+			<br />
+			<br />
+			<h:outputLabel id="outputLabel_CursoSelecionado"
+				value="Curso: #{principalProfessor.cursoSelecionado.nome}"
+				styleClass="titulo_principal_pagina" />
+			<br />
+			<br />
+			<rich:dataTable id="dataTable_Acompanhamento"
+				value="#{acompanhamentoEstudante.listaAlunoEstudoCaso}" var="aec">
+				<rich:column label="Aluno">
+					<f:facet name="header">
+						<h:outputText value="Aluno" />
+					</f:facet>
+					<h:outputText value="#{aec.aluno.usuario.nome}" />
+				</rich:column>
+				<rich:column label="EstudoCaso">
+					<f:facet name="header">
+						<h:outputText value="Caso" />
+					</f:facet>
+					<h:outputText value="#{aec.estudocaso.nome}" />
+				</rich:column>
+				<rich:column label="inicio_Curso">
+					<f:facet name="header">
+						<h:outputText value="Inicio Curso" />
+					</f:facet>
+					<h:outputText
+						value="#{principalProfessor.cursoSelecionado.dataInicio}">
+						<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</rich:column>
+				<rich:column label="VisualizacaoGrafica">
+					<f:facet name="header">
+						<h:outputText value="Visualização Gráfica" />
+					</f:facet>
+					<a4j:commandButton value="Visualizar atividades"
+						actionListener="#{acompanhamentoEstudante.setAtual(aec)}"
+						oncomplete="#{rich:component('popup_Avaliacao')}.show(); return false;"
+						render="panel_PrincipalPopupAvaliacao" />
+				</rich:column>
+			</rich:dataTable>
+			<br />
+			<h:commandButton value="Voltar"
+				actionListener="#{principalProfessor.apagarConteudo}"
+				render="document.getelementbyid(panelGroup_Target)" />
+
+			<rich:popupPanel id="popup_Avaliacao" modal="true" autosized="true"
+				resizeable="false">
+				        <f:facet name="controls">
+					<h:outputLink value="#"
+						onclick="#{rich:component('popup_Avaliacao')}.hide(); return false;"
+						style="COLOR: #ffffff;">
+								X
+							</h:outputLink>
+				</f:facet>
+
+				<rich:panel id="panel_PrincipalPopupAvaliacao"
+					styleClass="panel_invisivel">
+					<h:outputLabel value="Avaliação do estudante"
+						styleClass="campo_titulo" />
+					<br />
+					<br />
+					<h:outputLabel
+						value="Fase de #{acompanhamentoEstudante.getStringFasePopup()}"
+						styleClass="campo_titulo" />
+					<br />
+					<br />
+					<rich:tabPanel id="tabPanelAvaliacao"
+						activeItem="#{acompanhamentoEstudante.activeTab}"
+						switchType="client">
+						<rich:tab
+							header="Avaliação da Observação de Realidade e Pontos-Chaves"
+							name="observacao" execute="@form">
+							<rich:panel styleClass="panel_invisivel">
+								<rich:dataTable id="dataTable_avaliacaoObservacao"
+									value="#{acompanhamentoEstudante.listaPontosChaveAluno}"
+									var="pca">
+									<rich:column label="Nome">
+										<f:facet name="header">
+											<h:outputText value="Nome" />
+										</f:facet>
+										<h:outputText value="#{pca.nome}" />
+									</rich:column>
+									<rich:column label="Justificativa">
+										<f:facet name="header">
+											<h:outputText value="Justificativa" />
+										</f:facet>
+										<h:outputText value="#{pca.justificativa}" />
+									</rich:column>
+								</rich:dataTable>
+								<h:outputText value="Comentário" />
+								<br />
+								<h:inputTextarea
+									value="#{acompanhamentoEstudante.avaliacaoaInserir.comentarioObservacao}"
+									cols="200" rows="5" />
+								<br />
+								<h:outputText value="Nota" />
+								<br />
+								<h:selectOneMenu id="selectOneListbox_notaAvaliacaoObservaacao"
+									value="#{acompanhamentoEstudante.avaliacaoaInserir.notaObservacao}">
+									<f:selectItem itemLabel="Selecione" />
+									<f:selectItem itemLabel="A" itemValue="5" />
+									<f:selectItem itemLabel="B" itemValue="4" />
+									<f:selectItem itemLabel="C" itemValue="3" />
+									<f:selectItem itemLabel="D" itemValue="2" />
+									<f:selectItem itemLabel="E" itemValue="1" />
+								</h:selectOneMenu>
+							</rich:panel>
+						</rich:tab>
+						<rich:tab header="Avaliação da teorização" name="teorizacao"
+							execute="@form">
+							<rich:panel>
+								<h:commandLink
+									value="#{acompanhamentoEstudante.arquivo.nomeArquivo}"
+									actionListener="#{acompanhamentoEstudante.downloadArquivo()}"
+									styleClass="link" />
+								<h:outputText value="Comentário" />
+								<br />
+								<h:inputTextarea
+									value="#{acompanhamentoEstudante.avaliacaoaInserir.comentarioTeorizacao}"
+									cols="200" rows="5" />
+								<br />
+								<h:outputText value="Nota" />
+								<br />
+								<h:selectOneMenu id="selectOneListbox_notaAvaliacaoTeorizacao"
+									value="#{acompanhamentoEstudante.avaliacaoaInserir.notaTeorizacao}">
+									<f:selectItem itemLabel="Selecione" />
+									<f:selectItem itemLabel="A" itemValue="5" />
+									<f:selectItem itemLabel="B" itemValue="4" />
+									<f:selectItem itemLabel="C" itemValue="3" />
+									<f:selectItem itemLabel="D" itemValue="2" />
+									<f:selectItem itemLabel="E" itemValue="1" />
+								</h:selectOneMenu>
+							</rich:panel>
+						</rich:tab>
+						<rich:tab header="Avaliação das hipóteses de solução"
+							name="hipoteses" execute="@form">
+							<rich:panel>
+								<rich:dataTable id="dataTable_PlanoCuidados"
+									value="#{acompanhamentoEstudante.listaDiagnosticoAlunoAtual}"
+									var="diagnostico">
+									<rich:column label="Diagnósticos" width="300">
+										<f:facet name="header">
+											<h:outputText value="Diagnósticos" />
+										</f:facet>
+										<h:outputText value="#{diagnostico.cipe.termo} " />
+										<h:outputText value="#{diagnostico.descricao}" />
+									</rich:column>
+									<rich:column id="column_Metas" width="300">
+										<f:facet name="header">
+											<h:outputText value="Metas / Intervenções" />
+										</f:facet>
+										<a4j:repeat value="#{diagnostico.metaalunos.toArray()}"
+											var="meta">
+											<t:panelGrid columns="3">
+												<rich:panel styleClass="panel_invisivel">
+													<h:outputText value="#{meta.descricao}" />
+												</rich:panel>
+												<h:outputText value=" / " />
+												<rich:panel styleClass="panel_invisivel">
+													<a4j:repeat value="#{meta.intervencaoalunos.toArray()}"
+														var="intervencao">
+														<h:outputText value="#{intervencao.cipe.termo} " />
+														<h:outputText value="#{intervencao.descricao}" />
+														<br />
+													</a4j:repeat>
+												</rich:panel>
+											</t:panelGrid>
+											<br />
+										</a4j:repeat>
+									</rich:column>
+								</rich:dataTable>
+								<h:outputText value="Comentário" />
+								<br />
+								<h:inputTextarea
+									value="#{acompanhamentoEstudante.avaliacaoaInserir.comentarioPlanoCuidados}"
+									cols="200" rows="5" />
+								<br />
+								<h:outputText value="Nota" />
+								<br />
+								<h:selectOneMenu id="selectOneListbox_notaAvaliacaoPlano"
+									value="#{acompanhamentoEstudante.avaliacaoaInserir.notaPlanoCuidados}">
+									<f:selectItem itemLabel="Selecione" />
+									<f:selectItem itemLabel="A" itemValue="5" />
+									<f:selectItem itemLabel="B" itemValue="4" />
+									<f:selectItem itemLabel="C" itemValue="3" />
+									<f:selectItem itemLabel="D" itemValue="2" />
+									<f:selectItem itemLabel="E" itemValue="1" />
+								</h:selectOneMenu>
+							</rich:panel>
+						</rich:tab>
+					</rich:tabPanel>
+					<a4j:commandButton value="Salvar"
+						onclick="#{rich:component('popup_Avaliacao')}.hide(); return true;"
+						actionListener="#{acompanhamentoEstudante.atualizarAvaliacao()}"
+						render="panel_Titulo" />
+					<a4j:commandButton value="Cancelar"
+						onclick="#{rich:component('popup_Avaliacao')}.hide(); return true;"
+						actionListener="#{acompanhamentoEstudante.limparCampos()}"
+						render="panel_Titulo" />
+				</rich:panel>
+			</rich:popupPanel>
+
+		</rich:panel>
+	</f:view>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:body>
+</html>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>PenSAE</title>
+</h:head>
+<h:body>
+	<f:event listener="#{logon.verificaLogon}"
+		type="javax.faces.event.PostAddToViewEvent" />
+	<f:event
+		listener="#{principalAluno.setUsuarioLogado(logon.usuarioLogado)}"
+		type="javax.faces.event.PreRenderViewEvent" />
+	<h:form id="form_Principal">
+		<rich:toolbar id="toolbar_Principal" itemSeparator="line">
+			<rich:menuItem id="dropDownMenu_Apresentacao" label="Cursos"
+				value="Cursos"
+				actionListener="#{principalAluno.mostrarListaCursosAluno}" />
+			<rich:menuItem id="menuItem_Organizando"
+				label="Organizar Ambulatório " value="Organizar Ambulatório "
+				actionListener="#{principalAluno.mostrarAmbulatorio}"
+				rendered="#{principalAluno.mostrarFuncionalidades}" />
+			<rich:dropDownMenu id="dropDownMenu_Estudo" label="Estudos Caso"
+				value="Estudos Caso"
+				rendered="#{principalAluno.mostrarFuncionalidades}">
+				<c:forEach items="#{principalAluno.estudos}" var="estudo">
+					<rich:menuItem label="#{estudo.nome}"
+						actionListener="#{principalAluno.mostrarCasoEstudoArcoPrincipal(estudo)}" />
+				</c:forEach>
+			</rich:dropDownMenu>
+			<rich:dropDownMenu id="dropDownMenu_Avaliacao" label="Avaliação"
+				value="Estudos Caso"
+				rendered="#{principalAluno.mostrarFuncionalidades}">
+				<rich:menuItem id="menuItem_AutoAvaliacao"
+					label="Minha opinião sobre o curso"
+					actionListener="#{principalAluno.mostrarAutoAvaliacao}" />
+				<rich:menuItem id="menuItem_AvaliacaoEstudoCaso"
+					label="Feedback por estudo de caso"
+					value="Avaliação por Estudo de caso"
+					actionListener="#{principalAluno.mostrarPrincipalAvaliacao}" />
+			</rich:dropDownMenu>
+			<rich:dropDownMenu id="dropDownMenu_Ferramentas" label="Ferramentas"
+				value="Ferramentas"
+				rendered="#{principalAluno.mostrarFuncionalidades}">
+				<rich:menuItem label="Material Pedagógico" />
+				<rich:menuItem label="Busca" />
+				<rich:menuItem label="Glossário"
+					value="Glossário"
+					actionListener="#{principalAluno.mostrarGlossario}" />
+			</rich:dropDownMenu>
+			<rich:dropDownMenu id="dropDownMenu_Comunicacao" label="Comunicação"
+				value="Comunicação"
+				rendered="#{principalAluno.mostrarFuncionalidades}">
+				<rich:menuItem label="Fórum" />
+				<rich:menuItem label="Construção Compartilhada" />
+			</rich:dropDownMenu>
+			<rich:dropDownMenu id="dropDownMenu_Sobre" label="Sobre o Sistema"
+				value="Sobre o Sistema">
+				<rich:menuItem label="Tutorial" />
+				<rich:menuItem label="Mapa do Software" />
+				<rich:menuItem label="Ajuda" />
+			</rich:dropDownMenu>
+			<rich:menuItem id="dropDownMenu_Perfil" label="Perfil"
+				value="Apresentação do Curso"
+				actionListener="#{principalAluno.mostrarPerfilAluno}"
+				icon="/resources/icones/edit_profile.png" />
+			<rich:menuItem id="menuItem_Sair" label="Sair" value="Sair"
+				action="#{logon.logOut()}"
+				actionListener="#{principalAluno.resetarConteudo}" />
+		</rich:toolbar>
+		<h:panelGroup id="panelGroup_Target">
+			<rich:panel rendered="#{principalAluno.mostrar}"
+				styleClass="panel_invisivel">
+				<ui:include src="#{principalAluno.page}" />
+			</rich:panel>
+		</h:panelGroup>
+	</h:form>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:body>
+</html>

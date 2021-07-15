@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout.xhtml">
+	
+			<ui:define name="content"> 
+				<div id="container">
+
+					    <div id="middle">    
+							<div id="middle_align">
+					
+					            <div id="wrapper" class="">
+					            	
+					            <p:fieldset legend="Cadastro de Aluno" style="margin-bottom:20px">
+    
+					                <h:form prependId="false">
+										<h:outputLabel for="Nome" value="Nome: *"  />
+										<h:outputLabel id="titulo" value="#{cadastrarAlunoController.aluno.nome}" required="true"  label="Nome"  />
+										<br />
+										<h:outputLabel for="CPF" value="CPF: *"  />
+										<h:outputLabel id="CPF" value="#{cadastrarAlunoController.aluno.cpf}" style="width: 200px;"  required="true"  label="CPF" />
+										<br />
+										<h:outputLabel for="Celular" value="Celular: *"  />
+										<h:outputLabel id="Celular" value="#{cadastrarAlunoController.aluno.telefone}" style="width: 200px;"  required="true"  label="Celular" />
+										<br />
+										<h:outputLabel for="Email" value="Email: *"  />
+										<h:outputLabel id="Email" value="#{cadastrarAlunoController.aluno.email}" style="width: 400px;" required="true"  label="Email"  />
+										<br />
+										<h:outputLabel for="sexo" value="Sexo: *"  />
+										<h:outputLabel id="sexo" value="#{cadastrarAlunoController.aluno.sexo}" style="width: 200px;"  required="true"  label="sexo" />
+							            <br />
+										<h:outputLabel for="Login" value="Login: *"  />
+										<h:outputLabel id="Login" value="#{cadastrarAlunoController.aluno.login}" style="width: 200px;" required="true"  label="Login"  />
+										<br />
+										<h:outputLabel for="CEP" value="CEP: *"  />
+										<h:outputLabel id="CEP" value="#{cadastrarAlunoController.aluno.endereco.cep}" style="width: 200px;" required="true"  label="CEP">
+										</h:outputLabel>
+										<br />
+										<h:outputLabel for="estado" value="Estado: *"  />
+										<h:outputLabel id="estado" value="#{cadastrarAlunoController.aluno.endereco.estado}" style="width: 200px;"  required="true"  label="estado" />
+										<br />
+										<h:outputLabel for="cidade" value="Cidade: *"  />
+										<h:outputLabel id="cidade" value="#{cadastrarAlunoController.aluno.endereco.cidade}" style="width: 400px;" required="true"  label="Cidade"  />
+										<br />
+										<h:outputLabel for="bairro" value="Bairro: *"  />
+										<h:outputLabel id="bairro" value="#{cadastrarAlunoController.aluno.endereco.bairro}" style="width: 400px;" required="true"  label="Bairro"  />
+										<br />
+										<h:outputLabel for="numero" value="Número: *"  />
+										<h:outputLabel id="numero" value="#{cadastrarAlunoController.aluno.endereco.numero}" style="width: 100px;" required="true"  label="Número"  />
+										<br />
+										<h:outputLabel for="descricao" value="Logradouro: *"  />
+										<h:outputLabel id="descricao" value="#{cadastrarAlunoController.aluno.endereco.descricao}" style="width: 400px;" required="true"  label="Logradouro"  />
+										<br />
+										<h:outputLabel for="referencia" value="Referência: *"  />
+										<h:outputLabel id="referencia" value="#{cadastrarAlunoController.aluno.endereco.referencia}" style="width: 400px;" required="true"  label="Referência"  />
+										<br /><br /><br />
+									</h:form>
+    							</p:fieldset>
+									
+									
+					            </div><!-- /#wrapper -->
+					
+					    	</div><!-- /#middle_align -->
+					    		<div style="width: 100%; height: 200px;"></div>
+					    </div><!-- /#middle -->    
+						</div><!-- /#container -->
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

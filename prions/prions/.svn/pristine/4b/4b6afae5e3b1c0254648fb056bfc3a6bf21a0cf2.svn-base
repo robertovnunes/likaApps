@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_rest.css" rel="stylesheet" type="text/css" />
+<title>Home</title>
+</h:head>
+
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+}
+</style> 
+
+<h:body>
+<div id="header">
+<div id="logo">
+</div>
+<div id="flags">
+<a href="#"><img src="../resources/imagens/bra.gif"/></a>
+<a href="#"><img src="../resources/imagens/eua.gif"/></a>
+</div>
+<div id="welcome">
+<table title="User status" align="center">
+	<b>User logged: #{request.remoteUser}</b>
+	<br/>
+	Welcome, #{contextoBean.loggedUser.name}!
+
+</table>
+</div>
+<ui:include src="menu.xhtml" />
+<div id="corpo">
+<div id="texto">
+<h1>Report case</h1>
+    <h4><a href="home_restricted.jsf">Home</a> >><a href="restricted_notify.html"> Report case</a> >> Individual information</h4><br/>
+    <ul id="nav">
+                                        <!-- CSS Tabs -->
+<li><a  href="restrictednotifygeneral.jsf">General</a></li>
+<li><a class="active" href="restrictednotifyindividual.jsf"><span>Individual</span></a></li>
+<!--  <li><a href="restrictednotifyresidential.jsf"><span>Residential</span></a></li>-->
+<!-- <li><a href="restrictednotifysuspicion.jsf"><span>Primary diagnostic</span></a></li>-->
+<li><a href="restrictednotifydata.jsf"><span>Clinical info</span></a></li>
+<li><a href="restrictednotifyaspects.jsf"><span>Epidemiological aspects</span></a></li>
+<li><a href="restrictednotifyresults.jsf"><span>Exames</span></a></li>
+<li><a href="restrictednotifyconclusion.jsf"><span>Conclusion</span></a></li>
+<li><a href="restrictednotifysource.jsf"><span>Source</span></a></li>
+<li><a href="restrictednotifyresume.jsf"><span>Clinical History</span></a></li>
+<li><a href="restrictednotifyimages.jsf"><span>Images</span></a></li></ul>
+
+<h:form id="texto">
+		<h:messages/>
+		<h:panelGrid  width="795" height="30" valign="top" align="left"  colspan="2" style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+			<h:outputLabel value="Individual information"></h:outputLabel>
+		</h:panelGrid>	
+		<h:panelGrid columns="4" width="795" height="30" valign="top" align="left" bgcolor="#EBEBD6">	
+			<h:outputLabel value="Birthdate: " for="dateBirth"/>
+			<p:calendar id="dateBirth" value="#{individualBean.selected.dateBirth}" navigator="true" display="inline"/>  
+			<h:outputLabel value="Age: " for="age"/>
+			<p:inputText id="age" value="#{individualBean.selected.age}" required="false" maxlength="5"/>
+			
+			
+			<h:outputLabel value="Gender: " for="gender"/>
+			<p:selectOneRadio id="gender" value="#{individualBean.selected.gender}">
+				<c:selectItem itemValue="Male" itemLabel="Male"/>
+				<c:selectItem itemValue="Female" itemLabel="Female"/>
+				<c:selectItem itemValue="Unknown" itemLabel="Unknown"/>
+			</p:selectOneRadio>	
+			
+			<h:outputLabel value="Pregnancy: " for="pregnancy"/>
+			<p:selectOneMenu id="pregnancy" value="#{individualBean.selected.pregnant}">
+				<c:selectItem itemValue="" itemLabel="Select"/>
+				<c:selectItem itemValue="1st Quarter" itemLabel="1st Quarter"/>
+				<c:selectItem itemValue="2nd Quarter" itemLabel="2nd Quarter"/>
+				<c:selectItem itemValue="3rd Quarter" itemLabel="3rd Quarter"/>
+				<c:selectItem itemValue="Ignored gestacional age" itemLabel="Ignored gestacional age"/>
+				<c:selectItem itemValue="No" itemLabel="No"/>
+				<c:selectItem itemValue="Not applicable" itemLabel="Not applicable"/>
+			</p:selectOneMenu>	
+			<h:outputLabel value="Ethnic group: " for="ethnicGroup"/>
+			<p:selectOneMenu id="ethnicGroup" value="#{individualBean.selected.ethnicGroup}">
+				<c:selectItem itemValue="" itemLabel="Select the ethnic group"/>
+				<c:selectItem itemValue="Caucasian" itemLabel="Caucasian"/>
+				<c:selectItem itemValue="Mongolian" itemLabel="Mongolian"/>
+				<c:selectItem itemValue="Negriod" itemLabel="Negriod"/>
+			</p:selectOneMenu>
+			<h:outputLabel value="Education: " for="education"/>
+			<p:selectOneMenu id="education" value="#{individualBean.selected.scholarity}">
+				<c:selectItem itemValue="" itemLabel="Select educational level"/>
+				<c:selectItem itemValue="Illiterate" itemLabel="Illiterate"/>
+				<c:selectItem itemValue="Elementary school" itemLabel="Elementary school"/>
+				<c:selectItem itemValue="Middle school" itemLabel="Middle school"/>
+				<c:selectItem itemValue="High school" itemLabel="High school"/>
+				<c:selectItem itemValue="Post-secondary school" itemLabel="Post-secondary school"/>
+				<c:selectItem itemValue="Not applicable" itemLabel="Not applicable"/>
+			</p:selectOneMenu>
+			<h:outputLabel value="Social security number: " for="cardNumber"/>
+			<p:inputText id="cardNumber" value="#{individualBean.selected.cardNumber}" required="false" maxlength="10"/>
+			<h:outputLabel value="Mother name: " for="motherName"/>
+			<p:inputText id="motherName" value="#{individualBean.selected.motherName}" required="false" maxlength="50"/>
+			<h:outputLabel value="Country: " for="country"/>
+			<p:inputText id="country" value="#{individualBean.selected.country}" required="false" maxlength="509"/>	
+			<h:outputLabel value="State: " for="state"/>
+			<p:inputText id="state" value="#{individualBean.selected.state}" required="false" maxlength="30"/>
+			<h:outputLabel value="City of residence: " for="cityResidence"/>
+			<p:inputText id="cityResidence" value="#{individualBean.selected.cityResidence}" required="false" maxlength="50"/>
+			<h:outputLabel value="Zip Code: " for="code"/>
+			<p:inputText id="code" value="#{individualBean.selected.code}" required="false" maxlength="11"/>
+			<h:outputLabel value="Address: " for="address"/>
+			<p:inputText id="address" value="#{individualBean.selected.address}" required="false" maxlength="50"/>
+			<h:outputLabel value="Phone: " for="phone"/>
+			<p:inputText id="phone" value="#{individualBean.selected.phone}" required="false" maxlength="509"/>	
+			<h:outputLabel value="Zone: " for="zone"/>	
+			<p:selectOneMenu id="zone" value="#{individualBean.selected.zone}">
+				<c:selectItem itemValue="" itemLabel="Select zone"/>
+				<c:selectItem itemValue="Urban" itemLabel="Urban"/>
+				<c:selectItem itemValue="Rural" itemLabel="Rural"/>
+				<c:selectItem itemValue="Peri" itemLabel="Peri"/>
+			</p:selectOneMenu>	
+			</h:panelGrid>
+			
+			
+			<h:outputLabel>
+			<p:commandButton styleClass="botao"  value="Save" action="#{individualBean.save}" ajax="false"/>
+			</h:outputLabel>
+			<h:outputLabel><p:commandButton styleClass="botao" value="Finish" action="imagesCreated" ajax="false" /></h:outputLabel>
+			
+	</h:form>
+	<br/>
+
+
+</div>
+</div>
+<div id="footer">
+<ui:include src="footer.xhtml" />
+<p align="center" style="margin-top: 0px; margin-left: 250px;"><font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font></p>
+</div>
+</div>
+</h:body>
+</html>

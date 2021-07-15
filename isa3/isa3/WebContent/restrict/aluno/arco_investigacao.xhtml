@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<body>
+	<ui:composition>
+			<f:facet name="title" >
+		       <p:graphicImage value="#{pageContext.request.contextPath}/resources/imagens/icons/Play-1-Normal-Red-icon.png" rendered="#{arcoMagueresController.arcoMaguerez.faseDoArco == 0}" />
+		       <p:graphicImage value="#{pageContext.request.contextPath}/resources/imagens/icons/Actions-dialog-ok-apply-icon.png" rendered="#{arcoMagueresController.arcoMaguerez.faseDoArco > 0}" />
+               <h:outputText value="Investigação" style="margin-left: 5px; margin-top:2px; float: right;" />
+            </f:facet>
+           	<p:panel id="panelInvestigacao" widgetVar="panelInvestigacao" >
+               <div class="rf-tab-hdr-brd hipotese">
+               	 <div class="help">
+                             <h3 class="arco obs"> Investigação</h3>
+                             Analise o estudo de caso a seguir, observando as informações relevantes ao planejamento da assistência de Enfermagem.  
+                   </div>
+				 <div class="img_descricao">
+                	 <c:forEach items="#{arcoMagueresController.estudoDeCaso.imagensCaso}" var="imagem" varStatus="index">
+	                	 <c:if test="#{index.count == 1 }">
+	                          <a style="position: relative; z-index:2;" href="#{request.contextPath}/photos?id=#{imagem.id}" class='modalPortfolio' title="#{imagem.nomeArqv}">
+	                               	<img src="#{request.contextPath}/photos?id=#{imagem.id}" width="120" height="120" alt="#{imagem.nomeArqv}" />
+	                           </a>
+	                	 </c:if>
+	       			</c:forEach>
+                    </div>	
+               	<p style="font-size: 16px;">
+               		<h:outputText value="#{arcoMagueresController.estudoDeCaso.titulo}" />
+              		</p><br />
+       			<b>Descrição:</b><br />
+      				<div style="text-align: justify; position: relative; z-index:2;">
+       				<h:outputText escape="false" value="#{arcoMagueresController.estudoDeCaso.descricao}" />
+      				</div>
+       			<b>Objetivos Gerais:</b><br /><h:outputText escape="false"  value="#{arcoMagueresController.estudoDeCaso.objetivosGerais}" /><br /><br />
+       			<b>Objetivos Específicos:</b><br /><h:outputText escape="false"  value="#{arcoMagueresController.estudoDeCaso.objetivosEspecificos}" />
+       			<br /><br />
+       			<b>Imagens Auxiliares:</b><br />
+       			
+       			<c:forEach items="#{arcoMagueresController.estudoDeCaso.imagensAuxiliares}" var="imagem" varStatus="index">
+       				
+       	        	<a target="_blank" style="position: relative; z-index:2;" href="#{request.contextPath}/photos?id=#{imagem.id}" class='modalPortfolio'  title="#{imagem.nomeArqv}">
+       	        		<img src="#{request.contextPath}/photos?id=#{imagem.id}" width="60" height="60"  alt="#{imagem.nomeArqv}" />
+      	        		</a>
+       			</c:forEach>
+       			<br />
+       		</div>
+       		<table class="navegacao" style="position: relative; z-index:2;">
+            	<tr>
+	             	<td style="vertical-align: top;">
+	               		<p:commandButton value="Voltar" type="button" disabled="true" icon="ui-icon-triangle-1-w" />
+	                </td>
+	                <td class="space"></td>
+	            	<td class="left">    
+				        <p:commandButton value="Limpar" type="button"  icon="ui-icon-close" />
+	                </td>
+	               <td class="right">
+				        <p:commandButton value="Salvar" type="button" oncomplete="PF('dlg').show()" icon="ui-icon-disk" validateClient="true">
+				        	<p:confirm header="Confirmação" message="Você deseja realmente salvar?" icon="ui-icon-alert" />
+				        </p:commandButton>
+               		 </td>
+	                <td class="space"></td>
+	                 <td style="vertical-align: top;">
+	        			<p:commandButton value="Avançar" id="avancarInvestigacao" update="tabView" actionListener="#{arcoMagueresController.avancarFase(1)}"   icon="ui-icon-triangle-1-e" validateClient="true">
+				        	<p:confirm header="Confirmação" message="Você deseja realmente avançar a fase?" icon="ui-icon-alert" />
+				        </p:commandButton>
+	                </td>
+              </tr>
+            </table>
+            </p:panel>
+	</ui:composition>
+</body>
+</html>
+
+

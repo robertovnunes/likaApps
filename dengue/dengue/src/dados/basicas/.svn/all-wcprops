@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/sae_mental/!svn/ver/90/sae_mental/src/dados/basicas
+END
+EnfermeiroDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/sae_mental/!svn/ver/40/sae_mental/src/dados/basicas/EnfermeiroDAO.java
+END
+EnderecoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/sae_mental/!svn/ver/40/sae_mental/src/dados/basicas/EnderecoDAO.java
+END
+ProntuarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/sae_mental/!svn/ver/40/sae_mental/src/dados/basicas/ProntuarioDAO.java
+END
+AlunoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/sae_mental/!svn/ver/40/sae_mental/src/dados/basicas/AlunoDAO.java
+END
+UsuarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/sae_mental/!svn/ver/41/sae_mental/src/dados/basicas/UsuarioDAO.java
+END
+ProfessorDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/sae_mental/!svn/ver/40/sae_mental/src/dados/basicas/ProfessorDAO.java
+END
+AtendimentoDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/sae_mental/!svn/ver/87/sae_mental/src/dados/basicas/AtendimentoDAO.java
+END
+PacienteDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/sae_mental/!svn/ver/48/sae_mental/src/dados/basicas/PacienteDAO.java
+END

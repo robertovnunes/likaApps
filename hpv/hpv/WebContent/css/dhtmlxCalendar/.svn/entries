@@ -1,0 +1,74 @@
+10
+
+dir
+8
+http://www.ideias.ufpe.br/svn/hpv/trunk/hpv/WebContent/css/dhtmlxCalendar
+http://www.ideias.ufpe.br/svn/hpv
+
+
+
+2012-03-29T14:16:40.912407Z
+6
+hpv
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5b728482-e907-4580-aaf0-2caa88facc80
+
+codebase
+dir
+
+doc
+dir
+
+readme.txt
+file
+
+
+
+
+2012-07-24T19:32:24.710000Z
+355ddc6fcf7c5692e6afa7cece5ed60d
+2012-03-29T14:16:40.912407Z
+6
+hpv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+69
+
+samples
+dir
+
+sources
+dir
+

@@ -1,0 +1,80 @@
+package hpdd.web;
+
+import hpdd.conclusion.Conclusion;
+import hpdd.conclusion.ConclusionRN;
+import hpdd.web.util.ContextoUtil;
+
+import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+@ManagedBean(name = "conclusionBean")
+@RequestScoped
+public class ConclusionBean {
+	private Conclusion selected = new Conclusion();
+	private List<Conclusion> list = null;
+
+	public String save() {
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		this.selected.setNotification(null);
+		ConclusionRN conclusionRN = new ConclusionRN();
+		this.selected.setNotification(conclusionRN.getNotification(contextoBean
+				.getLoggedUser().getIduser()));
+		conclusionRN.save(this.selected);
+		this.selected = new Conclusion();
+		this.list = null;
+		return "conclusionCreated";
+
+	}
+
+	public void edit() {
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		this.selected.setNotification(null);
+		ConclusionRN conclusionRN = new ConclusionRN();
+		// System.out.println("Id indiv edit" +
+		// contextoBean.getLoggedUser().getIduser());
+		this.selected.setNotification(conclusionRN
+				.getNotificationToUPDATE(contextoBean.getLoggedUser()
+						.getIduser()));
+		// System.out.println("Cod indiv edit => antes = " +
+		// this.selected.getNotification().getCodNotification());
+		if (conclusionRN
+				.find(this.selected.getNotification().getCodNotification())) {
+			conclusionRN.update(this.selected);
+		} else
+			conclusionRN.save(this.selected);
+		// System.out.println("Cod indiv edit => depois = " +
+		// this.selected.getNotification().getCodNotification());
+		this.selected = new Conclusion();
+		this.list = null;
+
+	}
+
+	public void delete() {
+		ConclusionRN conclusionRN = new ConclusionRN();
+		conclusionRN.delete(this.selected);
+		this.selected = new Conclusion();
+		this.list = null;
+
+	}
+
+	public Conclusion getSelected() {
+		return selected;
+	}
+
+	public void setSelected(Conclusion selected) {
+		this.selected = selected;
+	}
+
+	public List<Conclusion> getList() {
+		if (this.list == null) {
+			ContextoBean contextoBean = ContextoUtil.getContextoBean();
+
+			ConclusionRN conclusionRN = new ConclusionRN();
+			this.list = conclusionRN.list(contextoBean.getLoggedUser()
+					.getIduser());
+		}
+		return this.list;
+	}
+}

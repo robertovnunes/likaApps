@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<mapping class="lika.model.Autor" />
+		<mapping class="lika.model.ProjetoSimples" />
+		<mapping class="lika.model.BolsistaProjeto" />
+		<mapping class="lika.model.Funcionario" />
+		<mapping class="lika.model.Aluno" />
+		<mapping class="lika.model.AreaDePesquisa" />
+		<mapping class="lika.model.Titulacao" />
+		<mapping class="lika.model.Departamento" />
+		<mapping class="lika.model.Cracha" />
+		<mapping class="lika.model.Equipamento" />
+		<mapping class="lika.model.Funcao" />
+		<mapping class="lika.model.Pesquisador" />
+		<mapping class="lika.model.GrupoDePesquisa" />
+		<mapping class="lika.model.Laboratorio" />
+		<mapping class="lika.model.LogSistema" />
+		<mapping class="lika.model.Pessoa" />
+		<mapping class="lika.model.PessoaProjeto" />
+		<mapping class="lika.model.PessoaProjetoID" />
+		<mapping class="lika.model.Projeto" />
+		<mapping class="lika.model.Publicacao" />
+		<mapping class="lika.model.SubAreaDePesquisa" />
+		<mapping class="lika.model.Usuario" />
+	</session-factory>
+</hibernate-configuration>

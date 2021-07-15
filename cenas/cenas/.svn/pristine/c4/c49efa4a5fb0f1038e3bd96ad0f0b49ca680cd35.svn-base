@@ -1,0 +1,313 @@
+package logic;
+
+import interceptor.AutorizadorAdministradorInterceptor;
+import interceptor.DaoInterceptor;
+
+import java.util.List;
+
+import model.Aluno;
+import model.Disciplina;
+import model.Periodo;
+import model.Professor;
+import model.Usuario;
+
+import org.vraptor.annotations.Component;
+import org.vraptor.annotations.In;
+import org.vraptor.annotations.InterceptedBy;
+import org.vraptor.annotations.Out;
+import org.vraptor.i18n.FixedMessage;
+import org.vraptor.plugin.hibernate.Validate;
+import org.vraptor.scope.ScopeType;
+import org.vraptor.validator.ValidationErrors;
+
+import dao.DaoFactory;
+
+/**
+ * @author RCM
+ *
+ */
+
+@Component("admin")
+@InterceptedBy({DaoInterceptor.class, AutorizadorAdministradorInterceptor.class})
+public class AdminLogic {
+
+	@In(scope = ScopeType.SESSION, required = true)
+	private Usuario usuario;
+
+	private final DaoFactory factory;
+
+	Aluno aluno;
+
+	List<Aluno> alunos;
+
+	Professor professor;
+
+	List<Professor> professores;
+
+	Disciplina disciplina;
+
+	List<Disciplina> disciplinas;
+
+	@In(scope = ScopeType.SESSION, required = false)
+	@Out(scope = ScopeType.SESSION)
+	private Periodo periodo;
+
+	public AdminLogic(DaoFactory factory) {
+		this.factory = factory;
+	}
+
+	//----- PAGINA INCIAL -----
+
+	public void inicio() {
+		this.alunos = this.factory.getDaoAluno().listarAlunoEmOrdemAlfabetica();
+		this.periodo = this.factory.getDaoPeriodo().carregar();
+	}
+	
+	public void formularioAlterarSenha() {
+		
+	}
+
+	public void mudarSenha(Usuario usuario) {
+		Usuario user = (Usuario) this.usuario;
+		
+		user.setSenha(usuario.getSenha());
+		
+		this.factory.beginTransaction();
+		this.factory.getDaoUsuario().adiciona(user);
+		this.factory.commit();
+	}
+
+	//---------- ALUNOS -----------
+
+	public void formularioAluno() {
+		this.disciplinas = this.factory.getDaoDisciplina().listaTudo();	
+	}
+
+	@Validate(params={"aluno"})
+	public void cadastrarAluno(Aluno aluno) {
+		this.factory.beginTransaction();
+		this.factory.getDaoAluno().adiciona(aluno);
+		this.factory.commit();
+	}
+
+	public void validateCadastrarAluno(ValidationErrors erros, Aluno aluno) {
+		
+		this.aluno = aluno;
+		
+		if (aluno != null) {
+			if (aluno.getLogin() != null) {
+				if (aluno.getId() == null) {
+					if (this.factory.getDaoAluno().recuperarAlunoPorLogin(aluno.getLogin()) != null)
+						erros.add(new FixedMessage("aluno.login", "Já existe um aluno cadastrado com este Login.", "aluno"));
+				} else {
+					if (this.factory.getDaoAluno().recuperarAlunoPorLogin(aluno.getLogin(), aluno.getId()) != null) {
+						erros.add(new FixedMessage("aluno.login", "Já existe um aluno cadastrado com este Login.", "aluno"));
+					}
+				}
+			}
+			if(aluno.getCPF() != null) {
+				if(aluno.getId() == null) {
+					if(this.factory.getDaoAluno().recuperarAlunoPorCPF(aluno.getCPF()) != null) {
+						erros.add(new FixedMessage("aluno.CPF", "Já existe um aluno cadastrado com este CPF.", "aluno"));
+					}
+				} else {
+					if(this.factory.getDaoAluno().recuperarAlunoPorCPF(aluno.getCPF(), aluno.getId()) != null) {
+						erros.add(new FixedMessage("aluno.CPF", "Já existe um aluno cadastrado com este CPF.", "aluno"));
+					}
+				}				
+			}
+		}
+	}
+	
+	public void alunoDependencia(Aluno aluno) {
+		this.factory.beginTransaction();
+		this.aluno = this.factory.getDaoAluno().procura(aluno.getId());
+		this.factory.commit();
+	}
+	
+	public void removerAluno(Aluno aluno) {
+		this.factory.beginTransaction();
+		this.factory.getDaoAluno().remover(aluno.getId());
+		this.factory.commit();
+	}
+
+	public void editarAluno(Aluno aluno) {
+		this.aluno = this.factory.getDaoAluno().procura(aluno.getId());
+		this.formularioAluno();
+	}
+
+	public void confirmarCadastroAluno(Aluno aluno) {
+		this.aluno = this.factory.getDaoAluno().recuperarAlunoPorLogin(aluno.getLogin());
+	}
+
+	//------- PROFESSORES ---------
+
+	public void formularioProfessor() {
+		this.disciplinas = this.factory.getDaoDisciplina().listaTudo();
+	}
+
+	@Validate(params={"professor"})
+	public void cadastrarProfessor(Professor professor) {
+		this.factory.beginTransaction();
+		this.factory.getDaoProfessor().adiciona(professor);
+		this.factory.commit();
+	}
+
+	public void validateCadastrarProfessor(ValidationErrors erros, Professor professor){
+		
+		this.professor = professor;
+		
+		if (professor != null) {
+			if (professor.getLogin() != null) {
+				if (professor.getId() == null) {
+					if (this.factory.getDaoProfessor().recuperarProfessorPorLogin(professor.getLogin()) != null)
+						erros.add(new FixedMessage("professor.login", "Já existe um usuário cadastrado com este Login.", "professor"));
+				} else {
+					if (this.factory.getDaoProfessor().recuperarProfessorPorLogin(professor.getLogin(), professor.getId()) != null) {
+						erros.add(new FixedMessage("professor.login", "Já existe um usuário cadastrado com este Login.", "professor"));
+					}
+				}
+			}
+			if(professor.getCPF() != null) {
+				if(professor.getId() == null) {
+					if(this.factory.getDaoProfessor().recuperarProfessorPorCPF(professor.getCPF()) != null) {
+						erros.add(new FixedMessage("professor.CPF", "Já existe um usuário cadastrado com este CPF.", "professor"));
+					}
+				} else {
+					if(this.factory.getDaoProfessor().recuperarProfessorPorCPF(professor.getCPF(), professor.getId()) != null) {
+						erros.add(new FixedMessage("professor.CPF", "Já existe um usuário cadastrado com este CPF.", "professor"));
+					}
+				}				
+			}
+		}
+	}
+
+	public void removerProfessor(Professor professor) {
+		this.factory.beginTransaction();
+		this.factory.getDaoProfessor().remover(professor.getId());
+		this.factory.commit();
+	}
+
+	public void editarProfessor(Professor professor) {
+		this.professor = this.factory.getDaoProfessor().procura(professor.getId());
+		this.formularioProfessor();
+	}
+
+	public void confirmarCadastroProfessor(Professor professor) {
+		this.professor = this.factory.getDaoProfessor().recuperarProfessorPorLogin(professor.getLogin());
+	}
+
+	public void listarProfessores() {
+		this.professores = this.factory.getDaoProfessor().listaTudo();
+	}
+
+	//------- DISCIPLINAS ---------
+
+	public void formularioDisciplina() {
+
+	}
+
+	@Validate (params = {"disciplina"})
+	public void cadastrarDisciplina(Disciplina disciplina) {
+		this.factory.beginTransaction();
+		this.factory.getDaoDisciplina().adiciona(disciplina);
+		this.factory.commit();
+	}
+
+	public void validateCadastrarDisciplina(ValidationErrors erros, Disciplina disciplina) {
+		this.disciplina = disciplina;	
+	}
+
+	public void editarDisciplina(Disciplina disciplina) {
+		this.disciplina = this.factory.getDaoDisciplina().procura(disciplina.getId());
+	}
+
+	public void listarDisciplinas() {
+		this.disciplinas = this.factory.getDaoDisciplina().listaTudo();
+	}
+
+	public void removerDisciplina(Disciplina disciplina) {
+		this.factory.beginTransaction();
+		this.factory.getDaoDisciplina().remover(disciplina.getId());
+		this.factory.commit();
+	}
+
+	//----- PERIODO -----
+
+	public void setarPeriodo() {
+		this.periodo = this.factory.getDaoPeriodo().carregar();
+	}
+
+	public void cadastrarNovoPeriodo(Periodo periodo) {
+		this.factory.beginTransaction();
+		this.factory.getDaoPeriodo().adiciona(periodo);
+		this.factory.commit();
+	}
+
+	//----- GETTERS e SETTERS -----
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
+	}
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
+
+	public Periodo getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(Periodo periodo) {
+		this.periodo = periodo;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
+	public List<Professor> getProfessores() {
+		return professores;
+	}
+
+	public void setProfessores(List<Professor> professores) {
+		this.professores = professores;
+	}
+
+}

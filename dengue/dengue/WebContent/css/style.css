@@ -1,0 +1,164 @@
+
+body{
+margin: 0;
+padding: 0;
+background: #ffffff;
+color: #3276bb;
+}
+
+h1{
+	font-family:Impact, Arial;
+	font-size:28px;
+	color: #3276bb;
+		text-align:left;
+}
+
+#topo_cinza{
+background: url('../images/topo_cinza.png');
+height: 31px;
+}
+
+#topo_content{
+padding-top: 10px;
+
+}
+
+#barra_azul{
+
+height: 100px;
+margin-top: -150px;
+}
+
+#barra_azul_menor{
+
+height: 50px;
+margin-top: -100px;
+}
+
+#doctor{
+float: left;
+position:relative;
+z-index:-1;
+}
+
+#logo{
+ vertical-align: top;
+ margin-top: 40px;
+ 
+ float: left;
+}
+
+#login_box{
+
+
+margin-top: 50px;
+width:342px;
+height: 198px;
+background: url('../images/login_box.png');
+
+}
+
+#login_box_logado{
+
+width:334px;
+height: 106px;
+background: url('../images/login_box_logado.png');
+
+}
+
+#nurse{
+
+width:518px;
+
+}
+
+#texto{
+text-align:justify;
+}
+
+#rodape
+{
+height: 110px;
+padding: 30px;
+ background: #1e8cc2;
+ color: white;
+}
+
+input{
+border: 1px #1e8ccb solid;
+border-radius:5px;
+padding-left: 5px;	
+}
+
+input[type="text"]{
+border: 1px #1e8ccb solid;
+border-radius:5px;
+padding-left: 5px;	
+}
+
+input[type="button"]{
+border: 1px #1e8ccb solid;
+border-radius:5px;
+padding-left: 5px;	
+}
+input[type="submit"]{
+border: 1px #1e8ccb solid;
+border-radius:5px;
+padding-left: 5px;	
+}
+
+input[type="button"]:hover{
+cursor: pointer;
+}
+input[type="submit"]:hover{
+cursor: pointer;
+}
+
+
+select{
+border: 1px #1e8ccb solid;
+border-radius:5px;
+padding-left: 5px;	
+}
+
+.input-text
+{
+border: 1px #1e8ccb solid;
+border-radius:5px;
+
+padding-left: 5px;
+}
+
+.input-200
+{
+	width: 200px;
+}
+
+#main-content{
+	background: url(../images/nurse.png) no-repeat #fff; 
+	horizontal-align: center;  
+	background-size: 1024px 100%;
+	background-position:center;
+}
+
+#titulo-verm{
+	color: #409c03;
+	font-size: 16px;
+}
+
+.titulo{
+	font-weight: bold;
+	font-size:14px;	
+	
+}
+
+.desabilitar-form { 
+	position: absolute; 
+	width: 100%; 
+	height: 550px; 
+	background-color: #CCCCCC; 
+	z-index:1; 
+	filter:alpha(opacity='20'); 
+	-moz-opacity:0.2; opacity:0.2; 
+} 
+

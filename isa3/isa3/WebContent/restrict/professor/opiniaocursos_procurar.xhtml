@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout_professor.xhtml">
+	
+			<ui:define name="content"> 
+			<div id="container">
+			    <div id="middle">    
+					<div id="middle_align">
+			            <div id="wrapper" class="logado professor">
+			            <h3 class="bread">Procurar Matrículas Estudo de Caso do Aluno</h3>
+				<div style="padding:30px; padding-top:10px;">
+					<div class='page-header page-header-intro'>
+						<h2>Procurar Matrículas Estudos de Caso do Aluno</h2>
+					</div>
+				<h:form>
+					    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				</h:form>
+				<br />
+				<div class='panel panel-default'>
+						<div class='panel-heading'>
+							<span class='ico-br-gov-mps'></span>
+							Preencha os espaços em branco para filtrar a busca
+						</div>
+						<div class='panel-body'>
+							<div class='row'>
+								<div class='col-md-10'>
+									 <div class="form-group" >
+											<h:form prependId="false">
+												<p:dataTable emptyMessage="Nenhum Registro Encontrado" id="tabelaMatriculas" var="matricula" rows="15" paginator="true" rowsPerPageTemplate="5,10,15"
+													value="#{matriculaEstudosDeCasoProcurarController.listarMatriculaCursoAluno}">
+													<p:column   filterBy="#{matricula.id}" style="text-align: center;">
+														<f:facet name="header" >
+															<h:outputText value="ID" />
+														</f:facet>
+														<h:outputText value="#{matricula.id}" />
+													</p:column>
+													<p:column  filterBy="#{matricula.aluno.nome}"  sortBy="#{matricula.aluno.nome}" style="text-align: center;">
+														<f:facet name="header">
+															<h:outputText value="Aluno" />
+														</f:facet>
+														<h:outputText value="#{matricula.aluno.nome}" />
+													</p:column>
+													<p:column  filterBy="#{matricula.curso.titulo}" sortBy="#{matricula.curso.titulo}" style="text-align: center;">
+														<f:facet name="header">
+															<h:outputText value="Curso" />
+														</f:facet>
+														<h:outputText value="#{matricula.curso.titulo}" id="titulo" />
+														 <p:tooltip id="tooltip#{matricula.curso.titulo}" for="titulo" value="#{matricula.curso.titulo}" escape="false" >
+			           									 </p:tooltip>
+													</p:column>
+													<p:column style="text-align: center;">
+														<f:facet name="header">
+															<h:outputText value="Ações" />
+														</f:facet>
+														
+														<p:commandButton action="#{matriculaEstudosDeCasoProcurarController.visualizarPerguntas(matricula)}" oncomplete="PF('dialog').show();" update="dialog" value="Abrir" icon="ui-icon-folder-open">
+														</p:commandButton>
+														
+													</p:column>
+												</p:dataTable>
+											</h:form>
+											
+											<p:dialog header="Matrículo Estudos de Caso do Curso" widgetVar="dialog" modal="true" width="800" id="dialog">
+												<b>
+													1ª: Qual foi seu sentimento participando do curso de extensão "O Processo de Enfermagem Aplicado à Criança de 0 a 2 anos"?
+												</b>
+												<br />  
+												<h:outputText value="#{matriculaEstudosDeCasoProcurarController.matriculaCursoAluno.pergunta1}" escape="false" /><br />
+			    								<br /><br />
+												<b>
+													2ª: A partir dos três cenários que você conheceu no curso, fale sobre os pontos facilitadores e dificultadores em relação à aprendizagem do Processo de Enfermagem.
+												</b> 
+												<br />
+												<h:outputText value="#{matriculaEstudosDeCasoProcurarController.matriculaCursoAluno.pergunta2}" escape="false" /><br />
+			    								<br /><br />
+												<b>
+													3ª: A partir da sua experiência na utilização do software educativo PenSAE, fale sobre os pontos positivos e negativos deste sistema.
+												</b>
+												<br />
+												<h:outputText value="#{matriculaEstudosDeCasoProcurarController.matriculaCursoAluno.pergunta3}" escape="false" /><br />
+			    								<br /><br />
+												<b>
+													4ª: Ao terminar o curso de extensão, você considera estar preparado para o exercício prático do Processo de Enfermagem a criança de 0 a 2 anos?
+												</b>
+												<br />
+												<h:outputText value="#{matriculaEstudosDeCasoProcurarController.matriculaCursoAluno.pergunta4}" escape="false" /><br />
+			    								
+											</p:dialog>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

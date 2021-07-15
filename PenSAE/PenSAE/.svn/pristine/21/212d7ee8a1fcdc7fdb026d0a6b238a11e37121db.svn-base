@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>PenSAE</title>
+</h:head>
+<h:body>
+	<f:event listener="#{logon.verificaLogon}"
+		type="javax.faces.event.PostAddToViewEvent" />
+	<f:event
+		listener="#{principalProfessor.setUsuarioLogado(logon.usuarioLogado)}"
+		type="javax.faces.event.PreRenderViewEvent" />
+	<f:event listener="#{principalProfessor.carregarProfessor}"
+		type="javax.faces.event.PreRenderComponentEvent" />
+	<h:form id="form_Principal">
+		<rich:toolbar id="toolbar_Principal" itemSeparator="line">
+			<rich:menuItem id="menuItem_Cursos" label="Cursos" value="Cursos"
+				mode="ajax"
+				actionListener="#{principalProfessor.mostrarListaCursos}"
+				render="panelGroup_Target panelGroup_TargetCriarEditar" />
+			<rich:menuItem id="menuItem_Estudos" label="Estudos de Casos"
+				value="Estudos de Caso" mode="ajax"
+				actionListener="#{principalProfessor.mostrarListaEstudo}"
+				render="panelGroup_Target panelGroup_TargetCriarEditar"
+				rendered="#{principalProfessor.mostrarFuncionalidades}" />
+			<rich:dropDownMenu id="dropDownMenu_Acompanhamento"
+				label="Acompanhamento" value="Acompanhamento" mode="ajax"
+				rendered="#{principalProfessor.mostrarFuncionalidades}">
+				<rich:menuItem id="menuItem_AcompanhamentoEstudante"
+					label="Acompanhamento por Estudante"
+					actionListener="#{principalProfessor.mostrarAcompanhamentoEstudante}"
+					render="panelGroup_Target panelGroup_TargetCriarEditar" />
+				<rich:menuItem id="menuItem_AcompanhamentoEstudo"
+					label="Acompanhamento por Estudo de Caso"
+					actionListener="#{principalProfessor.mostrarAcompanhamentoEstudoCaso}"
+					render="panelGroup_Target panelGroup_TargetCriarEditar" />
+			</rich:dropDownMenu>
+			<rich:menuItem label="Glossário" mode="ajax" value="Glossário"
+				actionListener="#{principalProfessor.mostrarGlossario}"
+				rendered="#{principalProfessor.mostrarFuncionalidades}"
+				render="panelGroup_Target panelGroup_TargetCriarEditar" />
+			<rich:dropDownMenu id="dropDownMenu_Sobre" label="Sobre o Sistema"
+				value="Sobre o Sistema">
+				<rich:menuItem id="menuItem_Mapa" label="Mapa do Software" />
+				<rich:menuItem id="menuItem_Ajuda" label="Ajuda" />
+				<rich:menuItem id="menuItem_Tutorial" label="Tutorial" />
+			</rich:dropDownMenu>
+			<rich:menuItem id="menuItem_Sair" label="Sair" value="Sair"
+				action="#{logon.logOut()}"
+				actionListener="#{principalProfessor.resetarConteudo}" />
+		</rich:toolbar>
+		<h:panelGroup id="panelGroup_Target">
+			<rich:panel rendered="#{principalProfessor.mostrar}"
+				styleClass="panel_invisivel">
+				<ui:include src="#{principalProfessor.page}" />
+			</rich:panel>
+		</h:panelGroup>
+	</h:form>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:body>
+</html>

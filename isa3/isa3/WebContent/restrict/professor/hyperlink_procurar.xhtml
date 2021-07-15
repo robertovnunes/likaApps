@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout_professor.xhtml">
+	
+			<ui:define name="content"> 
+			<div id="container">
+			    <div id="middle">    
+					<div id="middle_align">
+			            <div id="wrapper" class="logado professor">
+			            <h3 class="bread">Procurar HyperLink</h3>
+				<div style="padding:30px; padding-top:10px;">
+					<div class='page-header page-header-intro'>
+						<h2>Procurar HyperLink</h2>
+					</div>
+				<h:form>
+					    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				</h:form>
+				<br />
+				<div class='panel panel-default'>
+						<div class='panel-heading'>
+							<span class='ico-br-gov-mps'></span>
+							Preencha os espaços em branco para filtrar a busca
+						</div>
+						<div class='panel-body'>
+							<div class='row'>
+								<div class='col-md-10'>
+									 <div class="form-group" >
+											<h:form prependId="false">
+												<p:dataTable emptyMessage="Nenhum Registro Encontrado" id="tabelaHyperLinks" var="hiperLink" rows="15" paginator="true" rowsPerPageTemplate="5,10,15"
+													value="#{hyperLinkProcurarController.listarHyperLink}">
+													<p:column   filterBy="#{hiperLink.id}" style="text-align: center;">
+														<f:facet name="header" >
+															<h:outputText value="ID" />
+														</f:facet>
+														<h:outputText value="#{hiperLink.id}" />
+													</p:column>
+													<p:column   filterBy="#{hiperLink.titulo}" sortBy="#{hiperLink.titulo}" style="text-align: center;">
+														<f:facet name="header">
+															<h:outputText value="Título" />
+														</f:facet>
+														<h:outputText value="#{hiperLink.titulo}" />
+													</p:column>
+													<p:column  filterBy="#{hiperLink.textoResumido}" sortBy="#{hiperLink.textoResumido}" style="text-align: center;">
+														<f:facet name="header">
+															<h:outputText value="Texto" />
+														</f:facet>
+														<h:outputText escape="false" id="textoResumido" value="#{hiperLink.textoResumido}" />
+														<p:tooltip id="toolTipFocus" for="textoResumido" value="#{hiperLink.texto}" escape="false" />
+ 
+													</p:column>
+													<p:column style="text-align: center;">
+														<f:facet name="header">
+															<h:outputText value="Ações" />
+														</f:facet>
+														<script src="#{request.contextPath}/resources/js/clipboard.min.js"></script>
+														<script >
+															new Clipboard('.btn');
+														</script>
+														<p:growl widgetVar="growlWV" />
+														<button class="btn" type="button" data-clipboard-text="#{request.contextPath}/restrict/hyperlink.xhtml?idHyperlink=#{hiperLink.id}" style="border: 0 none !important; background: none !important;" onclick="PF('growlWV').renderMessage({'summary':'', 'detail':'Texto Copiado para área de transferência. CTRL + C', 'severity':'warn'}); ">
+															<span class="ui-button-icon-left ui-icon ui-c ui-icon-copy"></span>
+   														</button>
+														
+														<p:commandButton action="#{hyperLinkPersistirController.prepararAlterarHyperLink(hiperLink)}"
+															update="tabelaHyperLinks" value="" icon="ui-icon-pencil" style="height: 15px; width: 25px; margin-left: 5px; padding: 0 !important; border: 0 none; background: none; left: 0;">
+														</p:commandButton>
+														
+														<p:commandButton
+															action="#{hyperLinkProcurarController.excluirHyperLink()}"
+															update="tabelaHyperLinks" value=""
+															style="height: 15px; width: 25px; margin-left: 5px; padding: 0 !important; border: 0 none; background: none; left: 0;" icon="ui-icon-trash">
+															<p:confirm header="Confirmação"
+																message="Você deseja realmente remover?" icon="ui-icon-alert" />
+														</p:commandButton>
+														
+														<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+													        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+													        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+													    </p:confirmDialog>
+														
+													</p:column>
+												</p:dataTable>
+											</h:form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

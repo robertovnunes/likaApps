@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<menu>
+	<!-- file -->
+	<item id="m1" text="Questinario">
+		<item id="m11" text="Novo" img="new.gif" imgdis="new_dis.gif"><hotkey>Ctrl+N</hotkey></item>
+		<item id="m12" text="Lista" img="new.gif" imgdis="new_dis.gif"><hotkey>Ctrl+N</hotkey></item>
+		<item id="ms4" type="separator"/>
+		<item id="m19" text="Sair"><hotkey>Ctrl+Q</hotkey></item>
+	</item>
+	<!-- edit -->
+	<item id="m2" text="Relatorios">
+	
+	</item>
+	<!-- about -->
+	<item id="m3" text="Help">
+		<item id="m31" text="About..."><hotkey>Ctrl+I</hotkey></item>
+		<item id="m32" text="Help"><hotkey>F1</hotkey></item>
+		<item id="m33" text="Bug Reporting"/>
+		</item>
+</menu>

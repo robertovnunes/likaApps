@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Plano de Cuidados</title>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:head>
+<h:body>
+	<f:view>
+		<f:event
+			listener="#{planoCuidados.setAlunoEstudoCaso(arcoPrincipal.alunoEstudoCaso)}"
+			type="javax.faces.event.PostAddToViewEvent" />
+		<f:event listener="#{planoCuidados.carregarDiagnosticosInseridos()}"
+			type="javax.faces.event.PreRenderViewEvent" />
+		<rich:panel id="panel_PlanoCuidados" styleClass="panel_invisivel">
+			<h:outputLabel value="Plano de Cuidados" styleClass="campo_titulo" />
+			<rich:dataTable id="dataTable_PlanoCuidados"
+				value="#{planoCuidados.diagnosticosSelecionados}" var="diagnostico"
+				rows="10">
+				<rich:column label="Diagnósticos" width="300">
+					<f:facet name="header">
+						<h:outputText value="Diagnósticos" />
+					</f:facet>
+					<h:outputText value="#{diagnostico.cipe.termo}" />
+					<h:inputText value="#{diagnostico.descricao}" />
+					<a4j:commandButton id="commandButton_EditarDiagnostico"
+						image="/resources/icones/edit-icon.png" title="Editar diagnóstico"
+						actionListener="#{planoCuidados.editarDiagnostico(diagnostico)}"
+						oncomplete="#{rich:component('popupPanel_DiagnosticosPlano')}.show()"
+						limitRender="true"
+						render="panel_PlanoCuidados panel_CamposDiagnosticoPlano"
+						disabled="#{arcoPrincipal.desabilitarFuncionalidadesFasePlano()}" />
+					<a4j:commandButton id="commandButton_ExcluirDiagnosticoPlano"
+						image="/resources/icones/remove-icon.png"
+						title="Excluir diagnóstico"
+						onclick="return confirm('Deseja realmente excluir este diagnóstico?')"
+						actionListener="#{planoCuidados.excluirDiagnostico(diagnostico)}"
+						limitRender="true" render="panel_PlanoCuidados"
+						disabled="#{arcoPrincipal.desabilitarFuncionalidadesFasePlano()}" />
+				</rich:column>
+				<rich:column id="column_Metas" width="300">
+					<f:facet name="header">
+						<h:outputText value="Metas / Intervenções" />
+					</f:facet>
+					<a4j:repeat value="#{diagnostico.metaalunos.toArray()}" var="meta">
+						<t:panelGrid columns="3">
+							<rich:panel styleClass="panel_invisivel">
+								<h:inputText value="#{meta.descricao}"
+									styleClass="inputText_invisivel" />
+							</rich:panel>
+							<rich:panel styleClass="panel_invisivel">
+								<a4j:repeat value="#{meta.intervencaoalunos.toArray()}"
+									var="intervencao">
+									<h:outputText value="#{intervencao.cipe.termo}" />
+									<h:inputText value="#{intervencao.descricao}" />
+									<br />
+								</a4j:repeat>
+							</rich:panel>
+							<rich:panel styleClass="panel_invisivel">
+								<a4j:commandButton id="commandButton_EditarMetaPlano"
+									image="/resources/icones/edit-icon.png" title="Editar Meta"
+									actionListener="#{planoCuidados.editarMeta(diagnostico, meta)}"
+									oncomplete="#{rich:component('popupPanel_Metas')}.show()"
+									limitRender="true" render="dataTable_PlanoCuidados"
+									disabled="#{arcoPrincipal.desabilitarFuncionalidadesFasePlano()}" />
+								<a4j:commandButton id="commandButton_ExcluirMetaPlano"
+									image="/resources/icones/remove-icon.png" title="Excluir Meta"
+									onclick="return confirm('Deseja realmente excluir esta meta?')"
+									actionListener="#{planoCuidados.excluirMeta(diagnostico, meta)}"
+									limitRender="true" render="dataTable_PlanoCuidados"
+									disabled="#{arcoPrincipal.desabilitarFuncionalidadesFasePlano()}" />
+							</rich:panel>
+						</t:panelGrid>
+						<br />
+					</a4j:repeat>
+					<a4j:commandButton image="/resources/icones/add-icon.png"
+						title="Adicionar Meta"
+						actionListener="#{planoCuidados.prepararAdicionarMeta(diagnostico)}"
+						oncomplete="#{rich:component('popupPanel_Metas')}.show(); return false;"
+						disabled="#{arcoPrincipal.desabilitarFuncionalidadesFasePlano()}"
+						style="" />
+					<rich:popupPanel id="popupPanel_Metas" modal="true"
+						resizeable="false"
+						onmaskclick="#{rich:component('popupPanel_Metas')}.hide()"
+						autosized="true" domElementAttachment="form">
+						<f:facet name="header">
+							<h:outputText value="Adicionar determinantes" />
+						</f:facet>
+						<f:facet name="controls">
+							<h:outputLink value="#"
+								onclick="#{rich:component('popupPanel_Metas')}.hide(); return false;">
+                X
+            </h:outputLink>
+						</f:facet>
+						<rich:panel id="panel_CamposMetas" styleClass="panel_invisivel">
+							<h:outputLabel id="outputLabel_Meta" value="Meta"
+								styleClass="campo_subtitulo" />
+							<br />
+							<h:inputTextarea id="inputTextArea_MetaPlano" cols="60"
+								value="#{planoCuidados.metaString}" immediate="true" />
+							<br />
+							<rich:panel id="panel_Intervencoes">
+								<rich:dataTable id="dataTable_IntervencoesPlano"
+									styleClass="table_comum"
+									value="#{planoCuidados.meta.intervencaoalunos.toArray()}"
+									var="intervencao">
+									<rich:column>
+										<f:facet name="header">
+											<div style="width: 300px;">
+												<h:outputText value="Intervencao" />
+											</div>
+										</f:facet>
+										<h:outputText
+											value="#{intervencao.cipe.termo} #{intervencao.descricao}" />
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">
+										</f:facet>
+										<a4j:commandButton id="commandButton_EditarIntervencaoPlano"
+											image="/resources/icones/edit-icon.png"
+											title="Editar Intervenção"
+											actionListener="#{planoCuidados.editarIntervencao(diagnostico, meta, intervencao)}"
+											limitRender="true" render="panel_Intervencoes"
+											disabled="#{arcoPrincipal.desabilitarFuncionalidadesFasePlano()}">
+										</a4j:commandButton>
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">
+										</f:facet>
+										<a4j:commandButton image="/resources/icones/remove-icon.png"
+											title="Excluir Intervenção"
+											onclick="return confirm('Deseja realmente excluir este diagnóstico?')"
+											actionListener="#{planoCuidados.excluirIntervencao(diagnostico, meta, intervencao)}"
+											limitRender="true" render="panel_Intervencoes"
+											disabled="#{arcoPrincipal.desabilitarFuncionalidadesFasePlano()}" />
+									</rich:column>
+								</rich:dataTable>
+								<br />
+								<h:outputLabel id="outputLabel_CamposIntervencoesPlano"
+									value="Inserir Intervenção" styleClass="campo_titulo" />
+								<br />
+								<h:outputLabel id="outputLabel_IntevencaoTermoPlano"
+									value="Termo do eixo ação" styleClass="campo_subtitulo" />
+								<br />
+								<rich:autocomplete id="autocomplete_IntervencoesPlano"
+									mode="ajax" minChars="1" autofill="false"
+									autocompleteMethod="#{planoCuidados.getIntervencoesDisponiveis}"
+									value="#{planoCuidados.cipeIntervencao}"
+									fetchValue="#{intervencao.termo}" var="intervencao"
+									layout="table">
+									<rich:column>
+										<h:outputLabel value="#{intervencao.termo}" />
+									</rich:column>
+									<rich:column>
+										<h:outputLabel value="#{intervencao.descricaoConceito}" />
+									</rich:column>
+								</rich:autocomplete>
+								<br />
+								<h:outputLabel
+									id="outputLabel_IntervencaoTextoComplementarPlano"
+									value="Texto complementar" styleClass="campo_subtitulo" />
+								<br />
+								<h:inputTextarea
+									id="inputTextArea_IntervencaoTextoComplementarPlano" cols="60"
+									value="#{planoCuidados.intervencao.descricao}" immediate="true" />
+								<a4j:commandButton id="commandButton_AdicionarIntervencaoPlano"
+									value="Adicionar Intervenção"
+									actionListener="#{planoCuidados.adicionarIntervencao(diagnostico, meta)}"
+									render="panel_Intervencoes"
+									disabled="#{arcoPrincipal.desabilitarFuncionalidadesFasePlano()}" />
+							</rich:panel>
+							<br />
+							<a4j:commandButton value="Adicionar Meta" type="submit"
+								title="Adicionar Meta"
+								onclick="#{rich:component('popupPanel_Metas')}.hide(); return true;"
+								actionListener="#{planoCuidados.adicionarMeta()}"
+								render="panel_PlanoCuidados"
+								disabled="#{arcoPrincipal.desabilitarFuncionalidadesFasePlano()}" />
+							<a4j:commandButton value="Cancelar"
+								onclick="#{rich:component('popupPanel_Metas')}.hide(); return true;"
+								actionListener="#{planoCuidados.cancelarEditarMeta()}"
+								render="panel_PlanoCuidados"
+								disabled="#{arcoPrincipal.desabilitarFuncionalidadesFasePlano()}" />
+						</rich:panel>
+					</rich:popupPanel>
+				</rich:column>
+				<f:facet name="footer">
+					<a4j:commandButton title="Adicionar Diagnóstico"
+						image="/resources/icones/add-icon.png"
+						onclick="#{rich:component('popupPanel_DiagnosticosPlano')}.show(); return true;"
+						disabled="#{arcoPrincipal.desabilitarFuncionalidadesFasePlano()}" />
+				</f:facet>
+			</rich:dataTable>
+			<br />
+			<rich:popupPanel id="popupPanel_DiagnosticosPlano" modal="true"
+				resizeable="false"
+				onmaskclick="#{rich:component('popupPanel_DiagnosticosPlano')}.hide()"
+				autosized="true" domElementAttachment="form">
+				<f:facet name="header">
+					<h:outputText value="Adicionar diagnostico" />
+				</f:facet>
+				<f:facet name="controls">
+					<h:outputLink value="#"
+						onclick="#{rich:component('popupPanel_DiagnosticosPlano')}.hide(); return false;">
+                X
+            </h:outputLink>
+				</f:facet>
+				<rich:panel id="panel_CamposDiagnosticoPlano">
+					<h:outputLabel id="outputLabel_CamposDiagnosticoPlano"
+						value="Inserir Diagnóstico" styleClass="campo_titulo" />
+					<br />
+					<h:outputLabel id="outputLabel_DeterminanteDiagnostico"
+						value="Determinante" styleClass="campo_subtitulo" />
+					<br />
+					<h:selectOneMenu id="select_DeterminanteDiagnostico"
+						value="#{planoCuidados.pontoSelecionado}"
+						enableManualInput="false"
+						converter="#{pontoChaveAlunoConverterBean}">
+						<f:selectItems value="#{planoCuidados.pontosChave}"
+							var="determinante" itemLabel="#{determinante.nome}"
+							itemValue="#{determinante}" />
+					</h:selectOneMenu>
+					<br />
+					<h:outputLabel id="outputLabel_TermoDiagnostico"
+						value="Termo do eixo foco" styleClass="campo_subtitulo" />
+					<br />
+					<rich:autocomplete id="autocomplete_DiagnosticosPlano" mode="ajax"
+						minChars="0" autofill="false"
+						autocompleteMethod="#{planoCuidados.getDiagnosticosDisponiveis}"
+						value="#{planoCuidados.cipeDiagnostico}"
+						fetchValue="#{diagnostico.termo}" var="diagnostico" layout="table">
+						<rich:column>
+							<h:outputLabel value="#{diagnostico.termo}" />
+						</rich:column>
+						<rich:column>
+							<h:outputLabel value="#{diagnostico.descricaoConceito}" />
+						</rich:column>
+					</rich:autocomplete>
+					<br />
+					<h:outputLabel id="outputLabel_diagnosticosTextoComplementarPlano"
+						value="Texto complementar" styleClass="campo_subtitulo" />
+					<br />
+					<h:inputTextarea
+						id="inputTextarea_DiagnosticoTextoComplementarPlano" cols="60"
+						value="#{planoCuidados.diagnostico.descricao}" />
+					<br />
+					<a4j:commandButton id="commandButton_AdicionarDiagnosticoPlano"
+						value="Adicionar diagnóstico"
+						onclick="#{rich:component('popupPanel_DiagnosticosPlano')}.hide(); return true;"
+						actionListener="#{planoCuidados.adicionarDiagnostico()}"
+						render="panel_PlanoCuidados"
+						disabled="#{arcoPrincipal.desabilitarFuncionalidadesFasePlano()}" />
+					<a4j:commandButton id="commandButton_CancelarDiagnosticoPlano"
+						value="Cancelar"
+						onclick="#{rich:component('popupPanel_DiagnosticosPlano')}.hide(); return true;"
+						actionListener="#{planoCuidados.cancelarEditarDiagnostico()}"
+						render="panel_PlanoCuidados"
+						disabled="#{arcoPrincipal.desabilitarFuncionalidadesFasePlano()}" />
+				</rich:panel>
+			</rich:popupPanel>
+		</rich:panel>
+	</f:view>
+</h:body>
+</html>

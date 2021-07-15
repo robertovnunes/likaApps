@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_rest.css" rel="stylesheet"
+	type="text/css" />
+<title>Home</title>
+</head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>Report case</h1>
+				<h4>
+					<a href="home_restricted.html">Home</a> >> Report case
+				</h4>
+
+				<p>Here the doctor or researcher may include new cases of prion
+					disease. If you want to add a new case click the button bellow.</p>
+				<!-- <h:form id="notification"> -->
+				<h:form id="notification">
+					<h:messages />
+					<!--<h:commandLink action="/restrict/restrictednotifygeneral" title="Report Case">
+				<h:commandButton value="Report Case" action="general" />
+			</h:commandLink>-->
+					<h:panelGrid columns="2" width="300" height="30" valign="top">
+						<h:outputLabel style="font-weight: bold"
+							value="Notification form " />
+						<h:outputLabel style="font-weight: bold"
+							value="Notify from paper " />
+						<h:outputLabel>
+							<a href="../restrict/restrictednotifygeneral.jsf"><img
+								title="Add new case" height="70" width="80"
+								src="../resources/imagens/Folder-icon.png" /></a>
+								</h:outputLabel>
+						<h:outputLabel>
+								<h:commandButton action="#{paperBean.selectandRestore}" styleClass="button" image="../resources/imagens/Folder-iconpurple.png" />
+						</h:outputLabel>
+						<!-- <h:outputLabel><a href="../restrict/restrictednotifypaper.jsf"><img title="Add new case" height="70" width="80" src="../resources/imagens/Folder-iconpurple.png"/></a>
+			</h:outputLabel> -->
+			
+		</h:panelGrid>
+				</h:form>
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+</html>

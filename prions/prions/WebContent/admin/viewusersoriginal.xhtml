@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Users</title>
+</h:head>
+<h:body>
+	<h1>Users</h1>
+	<hr/>
+	<h:form>
+<h:messages/>
+<h:dataTable value="#{userBean.list}" var="user" rules="rows" cellpadding="5"  bgcolor="#EBEBD6" styleClass="centered" width="400">
+	<c:facet name="caption">
+	The following listing shows all system users. You may perform activation and 
+	deactivation, editing and deletion for users.
+	</c:facet>
+	<c:facet name="header">Listing users</c:facet>
+	<c:facet name="footer">End of the listing</c:facet>
+	<h:column>
+		<h:commandLink action="#{userBean.changeStatus}">
+			<h:graphicImage library="imagens" name="user_status_#{user.status}.png" style="border:0"/>
+			<c:setPropertyActionListener target="#{userBean.user}" value="#{user}"/>
+		</h:commandLink>
+	</h:column>
+	<h:column> 
+		<c:facet name="header">Name</c:facet>
+		#{user.name}
+	</h:column>
+	<h:column> 
+		<c:facet name="header">Type</c:facet>
+		#{user.occupation}
+	</h:column>
+	<h:column> 
+		<c:facet name="header">First Access</c:facet>
+		#{user.date_reg}
+	</h:column>
+</h:dataTable>
+
+</h:form>
+</h:body>
+</html>

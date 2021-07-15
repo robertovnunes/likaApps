@@ -1,0 +1,88 @@
+package hpdd.notification;
+import java.util.List;
+import org.hibernate.*;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
+
+import hpdd.doctor.*;
+
+public class NotificationDAOHibernate implements NotificationDAO {
+	private Session session;
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+	public void delete(Notification patient){
+		this.session.delete(patient);
+	}
+	public void save(Notification patient){
+		System.out.println("Entrou 3");
+		this.session.saveOrUpdate(patient);
+	}
+	public Notification load(Integer patient){
+		return (Notification) this.session.get(Notification.class, patient);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Notification> list(Doctor user) {
+		Criteria criteria = this.session.createCriteria(Notification.class);
+		criteria.add(Restrictions.eq("user", user));
+		criteria.addOrder(Order.desc("creationDate"));
+		return criteria.list();
+	}
+	
+	public void restore(Integer id) {
+		System.out.println("Restore!");
+		/*String hql = "UPDATE Notification SET ativo=0  WHERE ativo=1";
+		Query consult = this.session.createSQLQuery(hql);*/
+		String hql = "UPDATE Notification SET ativo=:newativo  WHERE ativo=:oldativo and user.iduser=:id";
+		//String hql = "select n from Notification n where n.creationDate = (select max(n1.creationDate) from Notification n1) and n.user=:iduser";
+		//Query consult = this.session.createQuery(hql);
+		Query updatedEntities = this.session.createQuery(hql);
+		updatedEntities.setBoolean("newativo",false);
+		updatedEntities.setBoolean( "oldativo",true);
+		updatedEntities.setInteger("id", id);
+		updatedEntities.executeUpdate();
+	}
+	@Override
+	public void restoreSearch() {
+		System.out.println("Restore!");
+		/*String hql = "UPDATE Notification SET ativo=0  WHERE ativo=1";
+		Query consult = this.session.createSQLQuery(hql);*/
+		String hql = "UPDATE Notification SET ativo=:newativo  WHERE ativo=:oldativo";
+		//String hql = "select n from Notification n where n.creationDate = (select max(n1.creationDate) from Notification n1) and n.user=:iduser";
+		//Query consult = this.session.createQuery(hql);
+		Query updatedEntities = this.session.createQuery(hql);
+		updatedEntities.setBoolean("newativo",false);
+		updatedEntities.setBoolean( "oldativo",true);
+		updatedEntities.executeUpdate();
+		
+	}
+	public void change(Integer id) {
+		System.out.println("Restore!");
+		/*String hql = "UPDATE Notification SET ativo=0  WHERE ativo=1";
+		Query consult = this.session.createSQLQuery(hql);*/
+		String hql = "UPDATE Notification SET status=:finalizado  WHERE ativo=:ativo and user=:iduser";
+		//String hql = "select n from Notification n where n.creationDate = (select max(n1.creationDate) from Notification n1) and n.user=:iduser";
+		//Query consult = this.session.createQuery(hql);
+		Query updatedEntities = this.session.createQuery(hql);
+		updatedEntities.setString("finalizado", "Finalizado");
+		updatedEntities.setBoolean("ativo",true);
+		updatedEntities.setInteger("iduser", id);
+		updatedEntities.executeUpdate();
+	}
+	@Override
+	public void keep(Integer iduser) {
+		System.out.println("Restore!");
+		/*String hql = "UPDATE Notification SET ativo=0  WHERE ativo=1";
+		Query consult = this.session.createSQLQuery(hql);*/
+		String hql = "UPDATE Notification SET status=:andamento  WHERE ativo=:ativo and user=:iduser";
+		//String hql = "select n from Notification n where n.creationDate = (select max(n1.creationDate) from Notification n1) and n.user=:iduser";
+		//Query consult = this.session.createQuery(hql);
+		Query updatedEntities = this.session.createQuery(hql);
+		updatedEntities.setString("andamento", "Em andamento");
+		updatedEntities.setBoolean("ativo",true);
+		updatedEntities.setInteger("iduser", iduser);
+		updatedEntities.executeUpdate();
+	}
+	
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Home Admin</title>
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url(../resources/imagens/modelo.png);
+	background-color: #C8C8C8;
+	background-repeat: repeat-x;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 10px;
+}
+</style>
+<link href="../resources/css/estilo.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+/*<![CDATA[*/
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}/*]]>*/
+</script>
+</head>
+
+<h:body onload="MM_preloadImages('../resources/imagens/button_admin/home_hov.png','../resources/imagens/button_admin/user_hov.png','../resources/imagens/button_admin/case_hov.png','../resources/imagens/button_admin/log_hov.png','../resources/imagens/button_admin/faq_hov.png','../resources/imagens/button_admin/cont_hov.png','../resources/imagens/button_admin/logout_hov.png')">
+<div id="lateral_dir"><img src="../resources/imagens/barra.png" /></div>
+<div id="lateral_esq"><img src="../resources/imagens/barra.png" /></div>
+
+<div id="logo"><img src="../resources/imagens/logo4.jpg"/></div>
+<div id="menu"><a href="home_admin.jsf" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('home','','../resources/imagens/button_admin/home_hov.png',1)"><img src="../resources/imagens/button_admin/home.png" alt="home" width="182" height="34" id="home" /></a><br/>
+  <a href="../admin/admin_users.jsf" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('users','','../resources/imagens/button_admin/user_hov.png',1)"><img src="../resources/imagens/button_admin/user.png" alt="manage users" width="182" height="33" id="users" /></a><br/>
+  <a href="admin_cases.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('cases','','../resources/imagens/button_admin/case_hov.png',1)"><img src="../resources/imagens/button_admin/case.png" alt="manage cases" width="182" height="32" id="cases" /></a><br/>
+  <a href="admin_logs.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('logs','','../resources/imagens/button_admin/log_hov.png',1)"><img src="../resources/imagens/button_admin/log.png" alt="view logs" width="182" height="33" id="logs" /></a><br/>
+  <a href="admin_faq.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('faq','','../resources/imagens/button_admin/faq_hov.png',1)"><img src="../resources/imagens/button_admin/faq.png" alt="faq" width="182" height="33" id="faq" /></a><br/>
+  <a href="admin_contact.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('contact','','../resources/imagens/button_admin/cont_hov.png',1)"><img src="../resources/imagens/button_admin/cont.png" alt="contact" width="182" height="33" id="contact" /></a><br/>
+  <a onclick="document.location='#{request.contextPath}/j_spring_security_logout'"  onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('logout','','../resources/imagens/button_admin/logout_hov.png',1)"><img src="../resources/imagens/button_admin/logout.png" alt="logout" width="182" height="33" title="logout" id="logout"/></a><br/>
+  <!-- <a href="home_public.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('logout','','../resources/imagens/button_admin/logout_hov.png',1)"><img src="../resources/imagens/button_admin/logout.png" alt="logout" width="182" height="33" id="logout" /></a>-->
+<table title="User status" align="center">
+	<b>Usuário logado #{request.remoteUser}</b>
+	<br/>
+	Bem vindo, #{contextoBean.loggedUser.name}
+	
+	<!-- <a onclick="document.location='#{request.contextPath}/j_spring_security_logout'" title="Sair">
+			<h:graphicImage library="imagens" name="button-logout.jpg" />
+			</a>-->
+
+
+</table>
+
+	
+  
+  </div>
+<div id="conteudo" style="position: absolute; left: 1px; top: 93px; width: 758px; height: 379px; z-index: 1; overflow: auto">
+<h1>Sistema dPrion</h1>
+    <p>O sistema dPrion tem como objetivo divulgar publicamente informações sobre doenças priônicas e auxiliar médicos e grupos de pesquisa no controle de casos dessas doenças. O acesso ao sistema se dará de forma online e, em seu funcionamento pleno, será possível cadastrar novos casos de doenças priônicas e acesso às informações dos mesmos. <a href="http://dcjbrasil.com.br/">http://dcjbrasil.com.br</a>.</p>
+	
+</div>    
+
+</h:body>
+</html>

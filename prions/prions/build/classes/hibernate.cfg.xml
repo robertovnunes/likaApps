@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+        <!-- <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hpdd</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">doleron0587</property>  -->
+        <property name="connection.datasource">java:/comp/env/jdbc/hpdd</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="current_session_context_class">thread</property>
+    
+        <mapping class="hpdd.doctor.Doctor"/>
+        <mapping class="hpdd.general.General"/>
+        <mapping class="hpdd.individual.Individual"/>
+        <mapping class="hpdd.individual.IndividualPaper"/>
+        <mapping class="hpdd.notification.Notification"/>
+        <mapping class="hpdd.residential.Residential"/>
+        <mapping class="hpdd.suspicion.Suspicion"/>
+		<mapping class="hpdd.clinData.ClinData"/>
+		<mapping class="hpdd.aspects.Aspects"/>
+		<mapping class="hpdd.results.Results"/>
+		<mapping class="hpdd.results.ResultsPaper"/>
+		<mapping class="hpdd.conclusion.Conclusion"/>
+		<mapping class="hpdd.conclusion.ConclusionPaper"/>
+		<mapping class="hpdd.resume.Resume"/>
+		<mapping class="hpdd.source.Source"/>
+		<mapping class="hpdd.paper.Paper"/>
+		<mapping class="hpdd.paper.Symptoms"/>
+		<mapping class="hpdd.auxiliar.CasosPaises"/>
+		<mapping class="hpdd.auxiliar.CasosIdade"/>
+		<mapping class="hpdd.auxiliar.CasosSintomas"/>
+		<mapping class="hpdd.faq.Faq"/>
+		<mapping class="hpdd.publication.Publication"/>
+		<mapping class="hpdd.pictures.Pictures"/>
+		<mapping class="hpdd.pictures.PicturesPaper"/>
+    </session-factory>
+</hibernate-configuration>
+

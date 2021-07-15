@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../resources/css/style_rest.css" rel="stylesheet"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+}
+</style>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>Report case</h1>
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="restricted_notify.html"> Report case</a> >> Source
+				</h4>
+				<br />
+				<ul id="nav">
+					<!-- CSS Tabs -->
+					<li><a href="restrictednotifygeneraledit.jsf">General</a></li>
+					<li><a href="restrictednotifyindividualedit.jsf"><span>Individual</span></a></li>
+					<!--<li><a href="restrictednotifyresidentialedit.jsf"><span>Residential</span></a></li>-->
+					<!-- <li><a href="restrictednotifysuspicionedit.jsf"><span>Primary
+								diagnostic</span></a></li> -->
+					<li><a href="restrictednotifydataedit.jsf"><span>Clinical
+								info</span></a></li>
+					<li><a href="restrictednotifyaspectsedit.jsf"><span>Epidemiological
+								aspects</span></a></li>
+					<li><a href="restrictednotifyresultsedit.jsf"><span>Exames</span></a></li>
+					<li><a href="restrictednotifyconclusionedit.jsf"><span>Conclusion</span></a></li>
+					<li><a class="active" href="restrictednotifysourceedit.jsf"><span>Source</span></a></li>
+					<li><a href="restrictednotifyresumeedit.jsf"><span>Clinical
+								History</span></a></li>
+					<li><a href="restrictednotifyimagesedit.jsf"><span>Images</span></a></li>
+				</ul>
+
+				<h:form id="texto">
+					<h:messages/>
+		<h:panelGrid  width="795" height="30" valign="top" align="left"  colspan="2" style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+			<h:outputLabel value="Source"></h:outputLabel>
+		</h:panelGrid>	
+		<h:panelGrid columns="4" width="795" height="30" valign="top" align="left" bgcolor="#EBEBD6">	
+			
+			<h:outputLabel value="Date: " for="date"/>
+			<p:calendar id="date" value="#{sourceBean.selected.notifDate}" navigator="true" display="inline"/>  
+			<h:outputLabel value="State: " for="state"/>
+			<p:inputText id="state" value="#{sourceBean.selected.state}" required="false" maxlength="30"/>
+			<h:outputLabel value="City: " for="city"/>
+			<p:inputText id="city" value="#{sourceBean.selected.city}" required="false" maxlength="50"/>
+			<h:outputLabel value="Health unit (or other source notifying): " for="unit"/>
+			<p:inputText id="unit" value="#{sourceBean.selected.unit}" required="false" maxlength="509"/>	
+				
+			<h:outputLabel></h:outputLabel>
+			<h:outputLabel></h:outputLabel>
+			<h:outputLabel></h:outputLabel>
+			</h:panelGrid>	
+							<h:dataTable value="#{sourceBean.list}" var="sou"
+						rendered="#{!empty sourceBean.list}" cellpadding="0"
+						rules="rows">
+						<p:column>
+							<p:commandButton value="Complete with existing data" ajax="false">
+								<c:ajax execute="@this" render=":texto" />
+								<c:setPropertyActionListener target="#{sourceBean.selected}"
+									value="#{sou}" />
+							</p:commandButton>
+						</p:column>
+					</h:dataTable>
+					<p:commandButton styleClass="botao" value="Save"
+						action="#{sourceBean.edit}" ajax="false" />
+					<p:commandButton action="restrictednotifysuspicionedit"
+						value="Next" ajax="false">
+						<c:param name="id"
+							value="#{sourceBean.selected.notification.codNotification}" />
+					</p:commandButton>
+					<p:commandButton styleClass="botao" value="Finish"
+						action="imagesCreated" ajax="false" />
+				</h:form>
+				<br />
+				<!-- <img src="../resources/imagens/seq_gen.gif"/> -->
+
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+</html>

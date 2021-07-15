@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout_professor.xhtml">
+	
+			<ui:define name="content"> 
+				<div style="padding:30px; padding-top:10px;">
+					<div class='page-header page-header-intro'>
+						<h2>Visualizar Estudo de Caso</h2>
+					</div>
+				<h:form>
+					    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				</h:form>
+				<br />
+				<div class='panel panel-default'>
+						<div class='panel-heading'>
+							<span class='ico-br-gov-mps'></span>
+							Detalhes do Estudo de Caso
+						</div>
+						<div class='panel-body'>
+							<div class='row'>
+								<div class='col-md-3'>
+									 <div class="form-group">
+									      <h:form prependId="false">
+													<p:outputLabel value="Curso:" for="curso" />
+							 					    <h:outputText id="curso" value="#{estudoDeCasoPersistirController.curso.titulo}"/>
+													<br />
+										            <h:outputLabel for="status" value="Status: *"  />
+										            <h:outputText id="status" value="#{estudoDeCasoPersistirController.estudoDeCaso.statusDescricao}"/>
+													<br />
+													<h:outputLabel for="grauDificuldade" value="Grau de dificuldade: *"  />
+													<h:outputText id="grauDificuldade" value="#{estudoDeCasoPersistirController.estudoDeCaso.grauDificuldadeTxt}"/>
+													<br />
+													<h:outputLabel for="Titulo" value="Título: *"  />
+													<h:outputText id="Titulo" value="#{estudoDeCasoPersistirController.estudoDeCaso.titulo}"  />
+													<br />
+													<h:outputLabel for="Descricao" value="Descrição: *"  />
+													<h:outputText id="Descricao" widgetVar="Descricao" value="#{estudoDeCasoPersistirController.estudoDeCaso.descricao}" escape="false"/>
+    												<br />
+													<h:outputLabel for="ObjetivosGerais" value="Objetivos Gerais: *"  />
+													<h:outputText id="ObjetivosGerais" widgetVar="ObjetivosGerais" value="#{estudoDeCasoPersistirController.estudoDeCaso.objetivosGerais}" escape="false" />
+				    								<br />
+													<h:outputLabel for="ObjetivosEsp" value="Objetivos Específicos: *"  />
+													<h:outputText id="ObjetivosEsp" widgetVar="ObjetivosEsp" value="#{estudoDeCasoPersistirController.estudoDeCaso.objetivosEspecificos}" escape="false" />
+													<br />
+													<p:panel id="panelArquivosPrincipaisEstudoCaso" style="margin: 0; padding: 0;">
+														<h:outputLabel value="Imagem Principal do Estudo de Caso: *"  />
+														 <c:forEach items="#{estudoDeCasoPersistirController.estudoDeCaso.imagensCaso}" var="arquivoImp" varStatus="index">
+										           				<a href="#{request.contextPath}/photos?id=#{arquivoImp.id}" target="_blank">
+										           					<img src="#{request.contextPath}/photos?id=#{arquivoImp.id}" width="30" height="30"  alt="#{arquivoImp.nomeArqv}" />
+										           					<h:outputText value="#{arquivoImp.nomeArqv}"></h:outputText>
+										           				</a>
+										           		</c:forEach>
+													</p:panel>
+													<br /><br />
+													<p:panel id="panelArquivosEstudoCaso" style="margin: 0; padding: 0;">
+														<h:outputLabel value="Imagens Auxiliares do Estudo de Caso: *"  />
+														 <c:forEach items="#{estudoDeCasoPersistirController.estudoDeCaso.imagensAuxiliares}" var="arquivo" varStatus="index">
+										           				<a href="#{request.contextPath}/photos?id=#{arquivo.id}" target="_blank">
+										           					<img src="#{request.contextPath}/photos?id=#{arquivo.id}" width="30" height="30"  alt="#{arquivo.nomeArqv}" />
+										           					<h:outputText value="#{arquivo.nomeArqv}"></h:outputText>
+										           				</a>
+										           		</c:forEach>
+													</p:panel>
+										</h:form>
+								    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				
+				</div>
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

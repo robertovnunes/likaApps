@@ -1,0 +1,405 @@
+@charset "utf-8";
+/* CSS Document */
+/*
+*{
+padding:0;
+margin:0;
+}
+
+#header{
+background:url(../imagens/header.gif);
+height:618px;
+}
+	
+#logo{
+	margin-left:13px;
+	margin-top:30px;
+	width:325px;
+	height:67px;
+	background:url(../imagens/logo.gif);
+	
+	
+}
+
+*/
+#conteudo {
+	position: absolute;
+	left: 130px;
+	top: 110px;
+	height: 340px;
+	z-index: 1;
+}
+
+#navbar-iframe {
+	height: 0px;
+	visibility: hidden;
+	display: none;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: url(../imagens/header.gif);
+	text-decoration: none;
+	height: 700px;
+}
+
+/*header*/
+.header {
+	clear: both;
+	text-decoration: none;
+}
+
+#logo { /*clear:both;
+	margin-left:13px;
+	margin-top:30px;
+	width:325px;
+	height:67px;
+	background:url(../imagens/logo.gif);*/
+	margin-left: 4px;
+	margin-top: 23px;
+	width: 254px;
+	height: 91px;
+	background-image: url(../imagens/logoepiCJD4.png);
+}
+
+#menu {
+	clear: both;
+	margin-left: 22px;
+	margin-right: 1061px;
+	margin-top: 30px;
+	display: block;
+	font-size: 15px;
+	font-weight: bold;
+	/*font-family:"Lucida Console", Monaco, monospace;*/
+	font-family: arial, verdana, sans-serif;
+}
+
+#menu a {
+	text-decoration: none;
+}
+
+#menu li {
+	clear: both;
+	text-decoration: none;
+	margin-left: -40px;
+	margin-right: 1061px;
+	margin-top: 61px;
+	display: block;
+	margin-top: 0px;
+	color: #336600;
+	background: url(../imagens/buttonmenu.gif) no-repeat center center;
+	width: 266px;
+	height: 50px;
+	text-align: center;
+}
+
+#menu li:hover {
+	clear: both;
+	text-decoration: none;
+	font-weight: bold;
+	display: block;
+	color: #363636;
+	background: url(../imagens/buttonmenu_hover.gif);
+}
+
+#login {
+	clear: both;
+	margin-left: 22px;
+	margin-top: -19px;
+	margin-right: 1061px;
+	height: 266px;
+	font-size: 12pt;
+	background: url(../resources/imagens/logo.gif);
+	background-repeat: no-repeat;
+	font-family: arial, verdana, sans-serif;
+}
+
+form {
+	clear: both;
+	width: 220px;
+	margin: 0 auto;
+	font-family: arial, verdana, sans-serif;
+}
+
+#textfield {
+	clear: both;
+	height: 20px;
+	width: 220px;
+	border: 1px solid white;
+	border-radius: 5px;
+	font-family: arial, verdana, sans-serif;
+}
+
+#corpo {
+	clear: both;
+	background: url(../imagens/corpo_rest.gif);
+	margin-left: 300px;
+	margin-top: -515px;
+	margin-right: 26px;
+	width: 1023px;
+	height: 500px;
+	position: absolute;
+	text-decoration: none;
+	font-family: arial, verdana, sans-serif;
+}
+
+#texto {
+	clear: both;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-decoration: none;
+	font-family: arial, verdana, sans-serif;
+	/*font-size: 13px;*/
+	font-size: 13px;
+	color: #363636;
+}
+
+#texto a {
+	text-decoration: none;
+	color: #363636;
+	font-family: arial, verdana, sans-serif;
+}
+
+#texto p { /*text-indent: 1.5em;*/
+	margin-top: 0;
+	text-align: justify;
+}
+
+#fillsymptoms {
+	clear: both;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-decoration: none;
+	font-family: arial, verdana, sans-serif;
+	/*font-size: 13px;*/
+	font-size: 13px;
+	color: #363636;
+}
+
+#fillsymptoms a {
+	color: black;
+	font-family: arial, verdana, sans-serif;
+}
+
+#fillsymptoms p { /*text-indent: 1.5em;*/
+	margin-top: 0;
+	text-align: justify;
+}
+
+#listsymptoms {
+	clear: both;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-decoration: none;
+	font-family: arial, verdana, sans-serif;
+	/*font-size: 13px;*/
+	font-size: 13px;
+	color: #363636;
+}
+
+#listsymptoms a {
+	color: black;
+	font-family: arial, verdana, sans-serif;
+}
+
+#listsymptoms p { /*text-indent: 1.5em;*/
+	margin-top: 0;
+	text-align: justify;
+}
+
+#listpaper {
+	clear: both;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-decoration: none;
+	font-family: arial, verdana, sans-serif;
+	/*font-size: 13px;*/
+	font-size: 13px;
+	color: #363636;
+}
+
+#listpaper a {
+	color: black;
+	font-family: arial, verdana, sans-serif;
+}
+
+#listpaper p { /*text-indent: 1.5em;*/
+	margin-top: 0;
+	text-align: justify;
+}
+
+#flags {
+	margin-right: 30px;
+	margin-left: 1240px;
+	clear: both;
+	width: 80px;
+	display: block;
+	font-size: 12px;
+	margin-top: -18px;
+	/*background:url(../imagens/login.png);*/
+	background-repeat: no-repeat;
+	font-family: arial, verdana, sans-serif;
+}
+
+#welcome {
+	clear: both;
+	/*margin-right:110px;*/
+	margin-left: 1000px;
+	margin-top: -30px;
+	font-family: arial, verdana, sans-serif;
+	font-size: small;
+	color: #363636;
+	width: 300px;
+	display: block;
+}
+
+#admin {
+	clear: both;
+	/*margin-right:110px;*/
+	margin-left: 920px;
+	margin-top: -30px;
+	font-family: arial, verdana, sans-serif;
+	font-size: small;
+	color: #363636;
+	width: 300px;
+	display: block;
+}
+
+#footer {
+	clear: both;
+	background: #B3D962;
+	width: 1349px;
+	height: 60px;
+	margin-top: 0px;
+	font-family: arial, verdana, sans-serif;
+	font-size: 12px;
+}
+
+/* rounded */
+#nav {
+	margin: 0;
+	padding: 0 0 20px 10px;
+}
+
+#nav li {
+	margin: 0;
+	padding: 0;
+	display: inline;
+	list-style-type: none;
+}
+
+#nav a:link,#nav a:visited {
+	float: left;
+	font-size: 10px;
+	line-height: 14px;
+	font-weight: bold;
+	padding: 0 10px 6px 4px;
+	text-decoration: none;
+	font-size: 8pt;
+	color: #708491;
+}
+
+#nav a:link.active,#nav a:visited.active,#nav a:hover {
+	color: #000;
+	/*background: url(rounded.gif) bottom center;*/
+	background-image: url(../imagens/rounded.gif);
+	background-repeat: no-repeat;
+	background-position: bottom;
+}
+
+#lateral_esq {
+	height: 565px;
+	width: 161px;
+	float: left;
+}
+
+#lateral_dir {
+	float: right;
+	height: 565px;
+	width: 161px;
+}
+
+.cssColumn1 {
+	padding: 0 0 75px 0px;
+	width: 250px;
+}
+
+.cssColumn2 {
+	width: 450px;
+}
+
+.tableEvenRow {
+	background: white;
+}
+
+.tableOddRow {
+	background: white;
+}
+
+.botao {
+	float: left;
+}
+
+.botaoInclude {
+	float: left;
+	margin-right: 500px;
+	background: url("../imagens/add1.png") no-repeat top;
+	width: 18px;
+	height: 18px;
+}
+
+.button {
+	width: 80px;
+	height: 70px;
+}
+
+.cssColumn1 {
+	
+}
+
+.cssColumn2 {
+	
+}
+
+.cssColumn3 {
+	
+}
+
+.visualize {
+	background-image: url('../imagens/visualizar.png');
+	width: 27px;
+	height: 26px
+}
+
+.edit {
+	background: white url('../imagens/pencil.png') no-repeat top;
+	width: 28px;
+	height: 29px;
+}
+
+.delete {
+	background: white url('../imagens/user_status_false.png') no-repeat left;
+	width: 27px;
+	height: 26px;
+}
+
+.newCase {
+    background: pink;
+}
+.csssym1{
+	 width: 200px;
+}
+.csssym2{
+	 width: 450px;
+}
+.cssper1{
+	 width: 250px;
+}
+.cssper2{
+	 width: 30px;
+}
+.cssper3{
+	 width: 350px;
+}
+

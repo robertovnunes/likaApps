@@ -1,0 +1,58 @@
+
+#containerCaixasPersonalizadas {
+    width: 800px;
+}
+
+.limpar {
+    clear: both;
+}
+
+.caixaP {
+    width: 275px;
+   	margin-bottom:10px;
+    float: left;
+    border: 1px solid black;
+}
+
+h3.titCxP {
+   width: 240px;
+    background-color: #EEEEEE;
+    margin-top: 0px;
+    float: left;
+    padding-left: 10px;
+}
+
+.fechar {
+    color: #FF0000;
+    cursor: pointer;
+    width: 25px;
+    background-color: #EEEEEE;
+    border: 0px none black;
+    text-align: center;
+    font-weight: bolder;
+    float: left;
+    vertical-align: text-bottom;
+}
+
+h3.titCxP, .fechar {
+    font-family: Verdana;
+    font-size: 16px;
+    line-height: 25px;
+    /*				height: 25px;*/
+}
+
+.fechar:after {
+    clear: both;
+    visibility: hidden;
+    display: none;
+    width: 0px;
+    content: ".";
+}
+
+.containerNoticias {
+    padding: 10px;
+}
+
+.containerNoticias {
+    line-height: 25px;
+}

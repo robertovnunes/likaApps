@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:head>
+<h:body>
+	<f:view>
+		<f:event
+			listener="#{criarEditarCurso.setProfessorLogado(principalProfessor.professor)}"
+			type="javax.faces.event.PreRenderViewEvent" />
+		<rich:panel id="panel_Titulo" styleClass="panel_invisivel">
+			<h:outputLabel id="outputLabel_TituloPagina"
+				style="font-size:medium;font-weight:bold;" value="Inserir Curso" />
+			<br />
+			<h:messages showDetail="true" style="color:red" />
+			<br />
+			<h:outputLabel id="outputLabel_TituloCurso" value="Título"
+				styleClass="campo_titulo" />
+			<br />
+			<h:inputText id="inputText_TituloCurso" size="150" maxlength="100"
+				value="#{criarEditarCurso.tituloCurso}" />
+			<br />
+			<h:outputLabel id="outputLabel_ObjetivoCurso" value="Objetivos"
+				styleClass="campo_titulo" />
+			<br />
+			<h:inputTextarea id="inputTextarea_ObjetivoCurso" cols="150" rows="2"
+				value="#{criarEditarCurso.objetivoCurso}" />
+			<br />
+			<h:outputLabel id="outputLabel_EmentaCurso" value="Ementa"
+				styleClass="campo_titulo" />
+			<br />
+			<h:inputTextarea id="inputTextarea_EmentaCurso" cols="150" rows="2"
+				value="#{criarEditarCurso.ementaCurso}" />
+			<br />
+			<h:outputLabel id="outputLabel_PeriodoCurso" value="Período"
+				styleClass="campo_titulo" />
+			<br />
+			<h:outputLabel id="outputLabel_PeriodoDeCurso" value="De:"
+				styleClass="campo_subtitulo" />
+			<rich:calendar id="calendar_From" popup="true" showWeeksBar="false"
+				datePattern="dd/MM/yyyy" value="#{criarEditarCurso.inicioCurso}" />
+			<h:outputLabel id="outputLabel_PeriodoAteCurso" value="Até:"
+				styleClass="campo_subtitulo" />
+			<rich:calendar id="calendar_To" popup="true" showWeeksBar="false"
+				datePattern="dd/MM/yyyy" value="#{criarEditarCurso.fimCurso}" />
+			<br />
+			<h:outputLabel id="outputLabel_Programacao"
+				value="Programação (pdf, doc, docx. Tamanho máximo 16MB)"
+				styleClass="campo_titulo" />
+			<br />
+			<h:outputLabel value="Você já inseriu o arquivo de nome "
+				rendered="#{criarEditarCurso.arquivo != null}" />
+			<h:commandLink value="#{criarEditarCurso.arquivo.nomeArquivo}"
+				actionListener="#{criarEditarCurso.downloadArquivo()}"
+				styleClass="link" />
+			<br />
+			<rich:fileUpload
+				fileUploadListener="#{criarEditarCurso.uploadListener}"
+				maxFilesQuantity="1" id="fileUpload_Programacao"
+				immediateUpload="true" allowFlash="true"
+				acceptedTypes="pdf, doc, docx" addLabel="Adicionar arquivo"
+				clearAllLabel="Limpar Tudo" clearLabel="Limpar"
+				deleteLabel="Excluir" doneLabel="Concluido"
+				serverErrorLabel="Erro no servidor, contate um administrador"
+				sizeErrorLabel="Tamanho não Permitido"
+				sizeExceededLabel="Tamanho limite excedido" uploadLabel="Enviar">
+			</rich:fileUpload>
+			<br />
+			<h:commandButton id="commandButton_Salvar" value="Salvar"
+				actionListener="#{principalProfessor.mostrarListaCursos(criarEditarCurso.salvarCurso())}"
+				render="document.getelementbyid(panelGroup_Target)">
+			</h:commandButton>
+			<h:commandButton id="commandButton_Cancelar" value="Cancelar"
+				actionListener="#{principalProfessor.mostrarListaCursos(criarEditarCurso.limparCampos())}"
+				render="document.getelementbyid(panelGroup_Target)">
+			</h:commandButton>
+		</rich:panel>
+	</f:view>
+</h:body>
+</html>

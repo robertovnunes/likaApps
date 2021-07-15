@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../resources/css/style_rest.css" rel="stylesheet"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+}
+</style>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="mynotifications.jsf"> My Notifications</a>
+				</h4>
+				<br />
+
+				<h:form id="texto" styleClass="centered">
+
+					<h:messages />
+					<div style="height: 400px; width: 970px; overflow-x: auto;">
+
+						<p:dataTable value="#{paperBean.listaPaperNotif}" id="pap"
+							rowClasses="tableOddRow, tableEvenRow" var="paper" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<p:column>
+								<p:commandButton
+									style="width:800px !important; height: 30px !important;"
+									action="restrictednotifypaperedit" value="Edit informations"
+									ajax="false">
+									<c:param name="id"
+										value="#{paper.notification.codNotification}" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+
+						<p:dataTable value="#{paperBean.listaPaperNotif}"
+							rowClasses="tableOddRow, tableEvenRow" var="paper" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+
+							<c:facet name="header">Paper</c:facet>
+
+							<p:column>
+								<c:facet name="header">Notification code</c:facet>
+		#{paper.notification.codNotification}
+	</p:column>
+							<p:column>
+								<c:facet name="header">DOI</c:facet>
+		#{paper.DOI}
+	</p:column>
+<p:column>
+								<c:facet name="header">Title</c:facet>
+		#{paper.title}
+	</p:column>
+							<p:column>
+								<c:facet name="header">Link</c:facet>
+		#{paper.link}
+	</p:column>
+							<p:column>
+								<c:facet name="header">Country</c:facet>
+		#{paper.country}
+	</p:column>
+
+
+						</p:dataTable>
+						<p:dataTable value="#{paperBean.listaUniqueIndividualPaper}"
+							rowClasses="tableOddRow, tableEvenRow" var="indpaper"
+							rules="rows" cellpadding="5" bgcolor="#EBEBD6"
+							style="text-align: center" width="950">
+
+							<c:facet name="header">Individual informations</c:facet>
+							<p:column>
+								<c:facet name="header">ID</c:facet>
+		#{indpaper.id}
+	</p:column>
+							<p:column>
+								<c:facet name="header">Age</c:facet>
+		#{indpaper.age}
+	</p:column>
+							<p:column>
+								<c:facet name="header">Gender</c:facet>
+		#{indpaper.gender}
+	</p:column>
+
+							<p:column>
+								<c:facet name="header">Pregnancy</c:facet>
+		#{indpaper.pregnant}
+	</p:column>
+							<p:column>
+								<c:facet name="header">Ethnic group</c:facet>
+		#{indpaper.ethnicGroup}
+	</p:column>
+							<p:column>
+								<c:facet name="header">Education</c:facet>
+		#{indpaper.scholarity}
+	</p:column>
+
+							<p:column>
+								<c:facet name="header">Country</c:facet>
+		#{indpaper.country}
+	</p:column>
+							<p:column>
+								<c:facet name="header">City of residence</c:facet>
+		#{indpaper.cityResidence}
+	</p:column>
+
+						</p:dataTable>
+						<p:dataTable value="#{paperBean.showFirstSym}"
+							rowClasses="tableOddRow, tableEvenRow" var="firstSym"
+							rules="rows" cellpadding="5" bgcolor="#EBEBD6"
+							style="text-align: center" width="950">
+
+							<c:facet name="header">First Symptoms</c:facet>
+							<!-- <p:column>
+								<c:facet name="header">ID</c:facet>
+		#{firstSym.id}
+	</p:column> -->
+							<p:column>
+								<c:facet name="header">Date</c:facet>
+		#{firstSym.symDate}
+	</p:column>
+							<p:column>
+								<c:facet name="header">First Symptom</c:facet>
+		#{firstSym.symptom}
+	</p:column>
+						</p:dataTable>
+						<p:dataTable value="#{paperBean.showSymptomsNotif}"
+							rowClasses="tableOddRow, tableEvenRow" var="sym" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+
+							<c:facet name="header">Symptoms</c:facet>
+						<!-- 	<p:column>
+								<c:facet name="header">ID</c:facet>
+		#{sym.id}
+	</p:column> -->
+							<p:column>
+								<c:facet name="header">Date</c:facet>
+		#{sym.symDate}
+	</p:column>
+							<p:column>
+								<c:facet name="header">Symptom</c:facet>
+		#{sym.symptom}
+	</p:column>
+						</p:dataTable>
+						<p:dataTable value="#{resultsBean.showResultsPaper}"
+							rowClasses="tableOddRow, tableEvenRow" var="results" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<c:facet name="header">Exams</c:facet>
+
+							<p:column headerText="EEG">
+								<h:outputText value="#{results.EEG} " />
+							</p:column>
+							<p:column headerText="EEG Result">
+								<h:outputText value="#{results.res_EEG} " />
+							</p:column>
+							<p:column headerText="Magnetic resonance(MRI)">
+								<h:outputText value="#{results.MRI}" />
+							</p:column>
+							<p:column headerText="MRI Result">
+								<h:outputText value="#{results.res_MRI} " />
+							</p:column>
+
+						</p:dataTable>
+						<p:dataTable value="#{resultsBean.showResultsPaper}"
+							rowClasses="tableOddRow, tableEvenRow" var="results" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<p:column headerText="14-3-3 Protein in Spinal Fluid">
+								<h:outputText value="#{results.prot14_3}" />
+							</p:column>
+							<p:column headerText="14-3-3 Protein in Spinal Fluid Result">
+								<h:outputText value="#{results.res_prot14_3} " />
+							</p:column>
+							<p:column headerText="Tau protein in cerebrospinal fluid">
+								<h:outputText value="#{results.tauProtein} " />
+							</p:column>
+							<p:column headerText="Tau protein result">
+								<h:outputText value="#{results.res_tau} " />
+							</p:column>
+
+						</p:dataTable>
+						<p:dataTable value="#{resultsBean.showResultsPaper}"
+							rowClasses="tableOddRow, tableEvenRow" var="results" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<p:column
+								headerText="Brain biopsy with spongiform Encephalopathy">
+								<h:outputText value="#{results.biopsy} " />
+							</p:column>
+							<p:column headerText="Brain biopsy result">
+								<h:outputText value="#{results.resBiopsy} " />
+							</p:column>
+							<p:column headerText="Necropsy with spongiform encephalopathy">
+								<h:outputText value="#{results.necropsy} " />
+							</p:column>
+							<p:column headerText="Necropsy result">
+								<h:outputText value="#{results.resNecropsy} " />
+							</p:column>
+						</p:dataTable>
+
+						<p:dataTable value="#{resultsBean.showResultsPaper}"
+							rowClasses="tableOddRow, tableEvenRow" var="results" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<p:column
+								headerText="Immunohistochemistry for pathological prion protein">
+								<h:outputText value="#{results.immunohistochemistry} " />
+							</p:column>
+							<p:column headerText="Immunohistochemistry result">
+								<h:outputText value="#{results.resImmunohistochemistry} " />
+							</p:column>
+							<p:column headerText="Genetic analysis (PRNP)">
+								<h:outputText value="#{results.genetic} " />
+							</p:column>
+							<p:column headerText="Mutation">
+								<h:outputText value="#{results.resGenetic} " />
+							</p:column>
+							<p:column headerText="129 Codon">
+								<h:outputText value="#{results.codon} " />
+							</p:column>
+							<p:column headerText="Subtype">
+								<h:outputText value="#{results.subtypeCodon} " />
+							</p:column>
+
+						</p:dataTable>
+						<p:dataTable value="#{suspicionBean.showSuspicion}"
+							rowClasses="tableOddRow, tableEvenRow" var="sus" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<c:facet name="header">Primary diagnostic</c:facet>
+							<p:column headerText="Suspect">
+								<h:outputText value="#{sus.suspect} " />
+							</p:column>
+							<p:column headerText="Criteria">
+								<h:outputText value="#{sus.criteria} " />
+							</p:column>
+							<p:column headerText="Other suspect">
+								<h:outputText value="#{sus.other} " />
+							</p:column>
+
+						</p:dataTable>
+						<p:dataTable value="#{conclusionBean.listConclusionPaperEdit}"
+							rowClasses="tableOddRow, tableEvenRow" var="con" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<c:facet name="header">Conclusion</c:facet>
+							<p:column headerText="Final diagnostic">
+								<h:outputText value="#{con.finalDiag} " />
+							</p:column>
+							<p:column headerText="Criteria">
+								<h:outputText value="#{con.criteria} " />
+							</p:column>
+							<p:column headerText="Date of death">
+								<h:outputText value="#{con.deathDate} " />
+							</p:column>
+							<p:column headerText="Date of closure">
+								<h:outputText value="#{con.clousureDate} " />
+							</p:column>
+
+						</p:dataTable>
+					</div>
+				</h:form>
+
+
+			</div>
+		</div>
+		<div id="footer"></div>
+	</div>
+</h:body>
+
+</html>

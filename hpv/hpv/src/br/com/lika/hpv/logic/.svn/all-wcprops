@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic
+END
+UsuarioLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/UsuarioLogic.java
+END
+LaudoHcvLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/LaudoHcvLogic.java
+END
+LaudoHbvLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/LaudoHbvLogic.java
+END
+LaudoSifilisLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/LaudoSifilisLogic.java
+END
+FormularioLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/FormularioLogic.java
+END
+LaudoClamidiaLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/LaudoClamidiaLogic.java
+END
+AdministradorLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/AdministradorLogic.java
+END
+AmostrasLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/AmostrasLogic.java
+END
+LaudoHpvLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/LaudoHpvLogic.java
+END
+AnexosLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/AnexosLogic.java
+END
+LogadoLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/LogadoLogic.java
+END
+LoginLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/LoginLogic.java
+END
+LaudoHivLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/LaudoHivLogic.java
+END
+ViralLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/ViralLogic.java
+END
+CodBarraLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/CodBarraLogic.java
+END
+CitopatoLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/CitopatoLogic.java
+END
+GeraLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/logic/GeraLogic.java
+END

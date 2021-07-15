@@ -1,0 +1,49 @@
+package hpdd.conclusion;
+
+import hpdd.conclusion.Conclusion;
+import hpdd.conclusion.ConclusionDAO;
+import hpdd.notification.Notification;
+import hpdd.util.DAOFactory;
+
+import java.util.List;
+
+public class ConclusionRN {
+	private ConclusionDAO conclusionDAO;
+
+	public ConclusionRN() {
+		this.conclusionDAO = DAOFactory.createConclusionDAO();
+	}
+
+	public List<Conclusion> list(Integer id) {
+		return this.conclusionDAO.list(id);
+	}
+
+	public Conclusion load(Integer conclusion) {
+		return this.conclusionDAO.load(conclusion);
+	}
+
+	public void save(Conclusion conclusion) {
+		this.conclusionDAO.save(conclusion);
+	}
+
+	public void delete(Conclusion conclusion) {
+		this.conclusionDAO.delete(conclusion);
+	}
+
+	public Notification getNotification(Integer iduser) {
+		return this.conclusionDAO.getNotification(iduser);
+	}
+
+	public Notification getNotificationToUPDATE(Integer iduser) {
+		return this.conclusionDAO.getNotificationToUPDATE(iduser);
+	}
+
+	public boolean find(Integer codNotification) {
+		return this.conclusionDAO.find(codNotification);
+	}
+
+	public void update(Conclusion selected) {
+		this.conclusionDAO.update(selected);
+		
+	}
+}

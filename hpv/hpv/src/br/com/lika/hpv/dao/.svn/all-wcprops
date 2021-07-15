@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao
+END
+FormularioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/FormularioDAO.java
+END
+DiabetesDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/DiabetesDAO.java
+END
+ImunossupressorasDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/ImunossupressorasDAO.java
+END
+MetaisPesadosDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/MetaisPesadosDAO.java
+END
+RadiacoesDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/RadiacoesDAO.java
+END
+DAOFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/DAOFactory.java
+END
+ParenteCancerDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/ParenteCancerDAO.java
+END
+ParenteDoencaCronicaDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/ParenteDoencaCronicaDAO.java
+END
+CirurgiasDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/CirurgiasDAO.java
+END
+UsuarioDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/UsuarioDAO.java
+END
+MalEstarDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/MalEstarDAO.java
+END
+CancerDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/CancerDAO.java
+END
+DAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/DAO.java
+END
+ProdutosQuimicosDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/dao/ProdutosQuimicosDAO.java
+END

@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../resources/css/style_rest.css" rel="stylesheet"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+	color: black;
+}
+</style>
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="mynotifications.jsf"> My Notifications</a>
+				</h4>
+				<br />
+
+				<h:form id="texto" styleClass="centered">
+
+					<h:messages />
+					<div
+						style="height: 400px; width: 970px; overflow-x: auto; overflow-y: scroll">
+
+						<p:dataTable value="#{generalBean.list}" id="gen"
+							rowClasses="tableOddRow, tableEvenRow" var="general" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<p:column>
+								<p:commandButton
+									style="width:800px !important; height: 30px !important;"
+									action="restrictednotifygeneraledit" value="Edit informations"
+									ajax="false">
+									<c:param name="id"
+										value="#{general.notification.codNotification}" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+
+						<p:dataTable value="#{generalBean.list}"
+							rowClasses="tableOddRow, tableEvenRow" var="general" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+
+							<c:facet name="header">General data</c:facet>
+
+
+							<p:column headerText="Code">
+								<h:outputText value="#{general.notification.codNotification}" />
+							</p:column>
+							<p:column headerText="Date">
+								<h:outputText value="#{general.notifDate}" />
+							</p:column>
+							<p:column headerText="Country">
+								<h:outputText value="#{general.country}" />
+							</p:column>
+							<p:column headerText="State">
+								<h:outputText value="#{general.state}" />
+							</p:column>
+							<p:column headerText="City">
+								<h:outputText value="#{general.city}" />
+							</p:column>
+							<p:column headerText="Zone">
+								<h:outputText value="#{general.zone}" />
+							</p:column>
+
+
+						</p:dataTable>
+						<!-- <h:form prependId="false"> -->
+						<p:dataTable value="#{individualBean.list}"
+							rowClasses="tableOddRow, tableEvenRow" var="individual"
+							rules="rows" cellpadding="5" bgcolor="#EBEBD6"
+							style="text-align: center" width="950">
+							<c:facet name="header">Individual information</c:facet>
+
+							<p:column headerText="Birth date">
+								<h:outputText value="#{individual.dateBirth}" />
+							</p:column>
+							<p:column headerText="Age">
+								<h:outputText value="#{individual.age}" />
+							</p:column>
+							<p:column headerText="Gender">
+								<h:outputText value="#{individual.gender}" />
+							</p:column>
+							<p:column headerText="Pregnant">
+								<h:outputText value="#{indivual.pregnant}" />
+							</p:column>
+							<p:column headerText="Ethnic group">
+								<h:outputText value="#{individual.ethnicGroup}" />
+							</p:column>
+							<p:column headerText="Scholarity">
+								<h:outputText value="#{individual.scholarity}" />
+							</p:column>
+							<p:column headerText="Card number">
+								<h:outputText value="#{individual.cardNumber}" />
+							</p:column>
+
+
+
+						</p:dataTable>
+						<!-- </h:form> -->
+						<p:dataTable value="#{individualBean.list}"
+							rowClasses="tableOddRow, tableEvenRow" var="individual"
+							rules="rows" cellpadding="5" bgcolor="#EBEBD6"
+							style="text-align: center" width="950">
+							<c:facet name="header">Residential data</c:facet>
+
+							<p:column headerText="Residence city">
+								<h:outputText value="#{individual.cityResidence}" />
+							</p:column>
+							<p:column headerText="Address">
+								<h:outputText value="#{individual.address}" />
+							</p:column>
+							<p:column headerText="Zip Code">
+								<h:outputText value="#{individual.zip}" />
+							</p:column>
+							<p:column headerText="Phone">
+								<h:outputText value="#{indivual.phone}" />
+							</p:column>
+
+						</p:dataTable>
+						<p:dataTable value="#{clinDataBean.list}"
+							rowClasses="tableOddRow, tableEvenRow" var="clinData"
+							rules="rows" cellpadding="5" bgcolor="#EBEBD6"
+							style="text-align: center" width="950">
+							<c:facet name="header">Clinical data</c:facet>
+
+							<p:column headerText="Date of first symptoms">
+								<h:outputText value="#{clinData.notifFisrtSym}" />
+							</p:column>
+
+							<p:column headerText="First symptoms">
+								<h:outputText value="#{clinData.progDementia}" />
+								<h:outputText value=" / " />
+								<h:outputText value="#{clinData.visualDisorder}" />
+								<h:outputText value=" / " />
+								<h:outputText value="#{clinData.myoclonus}" />
+								<h:outputText value=" / " />
+								<h:outputText value="#{clinData.visualDisorder}" />
+								<h:outputText value=" / " />
+								<h:outputText value="#{clinData.cerebellarDisorders}" />
+								<h:outputText value=" / " />
+								<h:outputText value="#{clinData.persistentPainDys}" />
+								<h:outputText value=" / " />
+								<h:outputText value="#{clinData.ataxy}" />
+								<h:outputText value=" / " />
+								<h:outputText value="#{clinData.pyramidalSigns}" />
+								<h:outputText value=" / " />
+								<h:outputText value="#{clinData.extrapyramidalSigns}" />
+								<h:outputText value=" / " />
+								<h:outputText value="#{clinData.akineticMutism}" />
+								<h:outputText value=" / " />
+								<h:outputText value="#{clinData.extrapyramidalSigns}" />
+								<h:outputText value=" / " />
+								<h:outputText value="#{clinData.psychiatricDisorders}" />
+								<h:outputText value=" / " />
+								<h:outputText value="#{clinData.sleepDisorders}" />
+
+							</p:column>
+						</p:dataTable>
+						<p:dataTable value="#{aspectsBean.list}"
+							rowClasses="tableOddRow, tableEvenRow" var="aspects" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<c:facet name="header">Epidemiological Aspects</c:facet>
+
+							<p:column headerText="Has traveled abroad after 1984?">
+								<h:outputText value="#{aspects.travel}" />
+							</p:column>
+							<p:column headerText="Date last trip">
+								<h:outputText value="#{aspects.lastTrip}" />
+							</p:column>
+							<p:column headerText="Country">
+								<h:outputText value="#{aspects.country}" />
+							</p:column>
+							<p:column
+								headerText="Any relatives had similar clinical picture?">
+								<h:outputText value="#{aspects.relativeClinFeat}" />
+							</p:column>
+							<p:column headerText="The patient eats or ate beef after 1984?">
+								<h:outputText value="#{aspects.beef}" />
+							</p:column>
+							<p:column headerText="Vegetarian?">
+								<h:outputText value="#{aspects.vegetarian}" />
+							</p:column>
+						</p:dataTable>
+
+						<p:dataTable value="#{aspectsBean.list}"
+							rowClasses="tableOddRow, tableEvenRow" var="aspects" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<c:facet name="header">Iatrogenic exposure</c:facet>
+
+							<p:column headerText="Duramter">
+								<h:outputText value="#{aspects.duramater}" />
+							</p:column>
+							<p:column headerText="HGH">
+								<h:outputText value="#{aspects.hgh}" />
+							</p:column>
+							<p:column headerText="Cornea Transplant">
+								<h:outputText value="#{aspects.corneaTransp}" />
+							</p:column>
+							<p:column headerText="Neurosurgery">
+								<h:outputText value="#{aspects.neurosurgery}" />
+							</p:column>
+							<p:column headerText="Blood transfusion">
+								<h:outputText value="#{aspects.bloodTransf}" />
+							</p:column>
+						</p:dataTable>
+						<p:dataTable value="#{resultsBean.list}"
+							rowClasses="tableOddRow, tableEvenRow" var="results" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<c:facet name="header">Laboratorial results</c:facet>
+
+							<p:column headerText="EEG">
+								<h:outputText value="#{results.EEG} " />
+							</p:column>
+							<p:column headerText="EEG Result">
+								<h:outputText value="#{results.res_EEG} " />
+							</p:column>
+							<p:column headerText="Magnetic resonance(MRI)">
+								<h:outputText value="#{results.MRI}" />
+							</p:column>
+							<p:column headerText="MRI Result">
+								<h:outputText value="#{results.res_MRI} " />
+							</p:column>
+
+						</p:dataTable>
+						<p:dataTable value="#{resultsBean.list}"
+							rowClasses="tableOddRow, tableEvenRow" var="results" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<p:column headerText="14-3-3 Protein in Spinal Fluid">
+								<h:outputText value="#{results.prot14_3}" />
+							</p:column>
+							<p:column headerText="14-3-3 Protein in Spinal Fluid Result">
+								<h:outputText value="#{results.res_prot14_3} " />
+							</p:column>
+							<p:column headerText="Tau protein in cerebrospinal fluid">
+								<h:outputText value="#{results.tauProtein} " />
+							</p:column>
+							<p:column headerText="Tau protein result">
+								<h:outputText value="#{results.res_tau} " />
+							</p:column>
+
+						</p:dataTable>
+						<p:dataTable value="#{resultsBean.list}"
+							rowClasses="tableOddRow, tableEvenRow" var="results" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<p:column
+								headerText="Brain biopsy with spongiform Encephalopathy">
+								<h:outputText value="#{results.biopsy} " />
+							</p:column>
+							<p:column headerText="Brain biopsy result">
+								<h:outputText value="#{results.resBiopsy} " />
+							</p:column>
+							<p:column headerText="Necropsy with spongiform encephalopathy">
+								<h:outputText value="#{results.necropsy} " />
+							</p:column>
+							<p:column headerText="Necropsy result">
+								<h:outputText value="#{results.resNecropsy} " />
+							</p:column>
+						</p:dataTable>
+						<p:dataTable value="#{resultsBean.list}"
+							rowClasses="tableOddRow, tableEvenRow" var="results" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<p:column
+								headerText="Immunohistochemistry for pathological prion protein">
+								<h:outputText value="#{results.immunohistochemistry} " />
+							</p:column>
+							<p:column headerText="Immunohistochemistry result">
+								<h:outputText value="#{results.resImmunohistochemistry} " />
+							</p:column>
+							<p:column headerText="Genetic analysis (PRNP)">
+								<h:outputText value="#{results.genetic} " />
+							</p:column>
+							<p:column headerText="Mutation">
+								<h:outputText value="#{results.resGenetic} " />
+							</p:column>
+
+						</p:dataTable>
+						<p:dataTable value="#{conclusionBean.list}"
+							rowClasses="tableOddRow, tableEvenRow" var="conclusion"
+							rules="rows" cellpadding="5" bgcolor="#EBEBD6"
+							style="text-align: center" width="950">
+							<c:facet name="header">Conclusion</c:facet>
+							<p:column>
+								<c:facet name="header">Notification code</c:facet>
+		#{conclusion.notification.codNotification} 
+	</p:column>
+							<p:column>
+								<c:facet name="header">Final diagnostic</c:facet>
+		#{conclusion.finalDiag}
+	</p:column>
+							<p:column>
+								<c:facet name="header">Criteria</c:facet>
+		#{conclusion.criteria}
+	</p:column>
+
+
+							<p:column>
+								<c:facet name="header">Death date</c:facet>
+		#{conclusion.deathDate}
+	</p:column>
+							<p:column>
+								<c:facet name="header">Closure date</c:facet>
+		#{conclusion.clousureDate}
+	</p:column>
+
+						</p:dataTable>
+						<p:dataTable value="#{sourceBean.list}"
+							rowClasses="tableOddRow, tableEvenRow" var="source" rules="rows"
+							cellpadding="5" bgcolor="#EBEBD6" style="text-align: center"
+							width="950">
+							<c:facet name="header">Source</c:facet>
+							<p:column>
+								<c:facet name="header">Source code</c:facet>
+		#{source.notification.codNotification} 
+	</p:column>
+							<p:column>
+								<c:facet name="header">State</c:facet>
+		#{source.state}
+	</p:column>
+							<p:column>
+								<c:facet name="header">City</c:facet>
+		#{source.city}
+	</p:column>
+							<p:column>
+								<c:facet name="header">Unit</c:facet>
+		#{source.unit}
+	</p:column>
+							<p:column>
+								<c:facet name="header">Date</c:facet>
+		#{source.notifDate}
+	</p:column>
+
+						</p:dataTable>
+					</div>
+				</h:form>
+
+
+			</div>
+		</div>
+		<div id="footer"></div>
+	</div>
+</h:body>
+
+</html>

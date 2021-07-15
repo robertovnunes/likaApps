@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:t="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Informações do Curso</title>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:head>
+<h:body>
+	<f:event listener="#{listaCursosAluno.listarCursosPorAluno(logon.usuarioLogado)}"
+		type="javax.faces.event.PreRenderViewEvent" />
+	<f:view>
+		<rich:panel styleClass="panel_invisivel">
+			<h:outputLabel id="outputLabel_TituloPagina"
+				style="font-size:medium;font-weight:bold;" value="Cursos inscritos" />
+		</rich:panel>
+		<br />
+		<rich:dataTable id="dataTable_listaCursos" value="#{listaCursosAluno.cursosMatriculados}" var="curso"
+			style="text-align:left; width : 450px;">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nome" />
+				</f:facet>
+				<h:outputText value="#{curso.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Período" />
+				</f:facet>
+				<h:outputText value="De " />
+				<h:outputText value="#{curso.dataInicio}">
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+				</h:outputText>
+				<h:outputText value=" até " />
+				<h:outputText value="#{curso.dataFim}">
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+				</f:facet>
+				<a4j:commandButton id="commandButton_SelecionarCurso"
+					value="Cursar"
+					title="cursar" 
+					render="dataTable_listaCursos form_Principal"
+					actionListener="#{principalAluno.setCursoSelecionado(curso)}"
+					disabled="#{listaCursosAluno.isButtonSelecionarDisabled(principalAluno.cursoSelecionado, curso)}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+				</f:facet>
+				<h:commandButton id="commandButton_popup"
+					image="/resources/icones/search-icon.png"
+					title="exibir informações">
+					<rich:componentControl target="popup_infoCurso" operation="show" />
+				</h:commandButton>
+    <rich:popupPanel id="popup_infoCurso" modal="true" autosized="true"
+					resizeable="false">
+        <f:facet name="header">
+            <h:outputText value="#{curso.nome}" />
+        </f:facet>
+        <f:facet name="controls">
+						<h:outputLink value="#"
+							onclick="#{rich:component('popup_infoCurso')}.hide(); return false;"
+							style="COLOR: #ffffff;">
+						</h:outputLink>
+					</f:facet>
+
+					<rich:panel styleClass="panel_invisivel">
+						<h:outputLabel value="Objetivos" styleClass="campo_titulo" />
+						<br />
+						<h:outputText value="#{curso.objetivo}" />
+						<br />
+						<br />
+						<h:outputLabel value="Ementa" styleClass="campo_titulo" />
+						<br />
+						<h:outputText value="#{curso.ementa}" />
+						<br />
+						<br />
+						<h:outputLabel value="Período" styleClass="campo_titulo" />
+						<br />
+						<h:outputText value="De " />
+						<h:outputText value="#{curso.dataInicio}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+						</h:outputText>
+						<h:outputText value=" até " />
+						<h:outputText value="#{curso.dataFim}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+						</h:outputText>
+						<br />
+						<br />
+						<h:outputLabel value="Programação" styleClass="campo_titulo" />
+						<br />
+						<h:commandLink
+							value="#{listaCursosAluno.carregarProgramacaoCurso(curso.id)}" />
+						<h:commandLink
+							value="#{listaCursosAluno.programacaoCurso.nomeArquivo}"
+							actionListener="#{listaCursosAluno.downloadArquivo()}" />
+						<br />
+						<br />
+						<h:outputLabel value="Professor responsável"
+							styleClass="campo_titulo" />
+						<br />
+						<h:outputText
+							value="#{principalAluno.getProfessorResponsavel(curso.id)}" />
+						<br />
+						<br />
+					</rich:panel>
+					<h:commandButton value="Fechar"
+						onclick="#{rich:component('popup_infoCurso')}.hide(); return false;" />
+    </rich:popupPanel>
+			</h:column>
+
+		</rich:dataTable>
+
+		<br />
+		<rich:panel styleClass="panel_invisivel">
+			<h:commandButton value="Matricular-se em novos cursos" 
+				actionListener="#{listaCursosAluno.setMostrarMatricula(true)}"/>
+			<h:commandButton value="Voltar"
+				actionListener="#{principalAluno.apagarConteudo}"
+				render="document.getelementbyid(panelGroup_Target)" 
+				rendered="#{principalAluno.mostrarFuncionalidades}"/>
+		</rich:panel>
+		<rich:panel id="matricula_NovosCursos" styleClass="panel_invisivel" 
+			rendered="#{listaCursosAluno.mostrarMatricula}">
+			<rich:dataTable value="#{listaCursosAluno.cursosNaoMatriculados}" var="curso">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Curso" />
+				</f:facet>
+				<h:outputText value="#{curso.nome}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Período" />
+				</f:facet>
+				<h:outputText value="De " />
+				<h:outputText value="#{curso.dataInicio}">
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+				</h:outputText>
+				<h:outputText value=" até " />
+				<h:outputText value="#{curso.dataFim}">
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+				</f:facet>
+				<h:commandButton id="commandButton_SelecionarCurso"
+					value="Matricular-se"
+					title="matricular-se" 
+					actionListener="#{listaCursosAluno.matricularCurso(curso)}"
+					render="matricula_NovosCursos">					
+				</h:commandButton>
+			</h:column>
+			</rich:dataTable>
+			<br />
+			<h:commandButton value="finalizar" 
+				actionListener="#{listaCursosAluno.setMostrarMatricula(false)}"/>
+		</rich:panel>
+	</f:view>
+</h:body>
+</html>

@@ -1,0 +1,53 @@
+package hpdd.clinData;
+
+import hpdd.notification.Notification;
+import hpdd.util.DAOFactory;
+
+import java.util.List;
+
+public class ClinDataRN {
+	private ClinDataDAO clinDataDAO;
+
+	public ClinDataRN() {
+		this.clinDataDAO = DAOFactory.createClinDataDAO();
+	}
+
+	public List<ClinData> list(Integer id) {
+		return this.clinDataDAO.list(id);
+	}
+
+	public ClinData load(Integer clinData) {
+		return this.clinDataDAO.load(clinData);
+	}
+
+	public void save(ClinData clinData) {
+		this.clinDataDAO.save(clinData);
+	}
+
+	public void delete(ClinData clinData) {
+		this.clinDataDAO.delete(clinData);
+	}
+
+	public Notification getNotification(Integer iduser) {
+		return this.clinDataDAO.getNotification(iduser);
+	}
+
+	public Notification getNotificationToUPDATE(Integer iduser) {
+		return this.clinDataDAO.getNotificationToUPDATE(iduser);
+	}
+
+	public boolean find(Integer codNotification) {
+		return this.clinDataDAO.find(codNotification);
+	}
+
+	public void update(ClinData clinData) {
+		this.clinDataDAO.update(clinData);
+		
+	}
+	public List<ClinData> listDataNotifSearch(Integer id) {
+		return this.clinDataDAO.listDataNotifSearch(id);
+	}
+
+
+	
+}

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout_professor.xhtml">
+	
+			<ui:define name="content"> 
+			<div id="container">
+			    <div id="middle">    
+					<div id="middle_align">
+			            <div id="wrapper" class="logado professor">
+			            <h3 class="bread">Perfil HyperLink</h3>
+			            
+				<div style="padding:30px; padding-top:10px;">
+					<div class='page-header page-header-intro'>
+					</div>
+				<h:form id="formMessages">
+					    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				</h:form>
+				<br />
+				<div class='panel panel-default'>
+						<div class='panel-heading'>
+							<span class='ico-br-gov-mps'></span>
+							Informe os dados do formulário abaixo
+							<br /><br />
+						</div>
+						<div class='panel-body'>
+							<div class='row'>
+								<div class='col-md-10'>
+									 <div class="form-group">
+							          		<p:fieldset legend="Imagens HyperLink" style="margin-bottom:20px">
+								                <h:form prependId="false">
+													<h:outputLabel for="titulo" value="Título: *"  />
+													<h:inputText id="titulo" value="#{hyperLinkPersistirController.hyperLink.titulo}" required="true"  label="Título"  />
+													<br />
+													<h:outputLabel for="texto" value="Texto: *" />
+													<p:editor id="texto" widgetVar="texto"
+														value="#{hyperLinkPersistirController.hyperLink.texto}"
+														required="true" width="600" />
+													<br /><br />
+													<p:panel id="panelArquivosImagensHyperlink"
+														style="margin: 0; padding: 0;">
+														<h:outputLabel value="Imagens do HyperLink: *" />
+														<c:forEach
+															items="#{hyperLinkPersistirController.hyperLink.imagens}"
+															var="arquivoImp" varStatus="index">
+															<a href="#{request.contextPath}/photos?id=#{arquivoImp.id}"
+																target="_blank"> <img
+																src="#{request.contextPath}/photos?id=#{arquivoImp.id}" width="30"
+																height="30" alt="#{arquivoImp.nomeArqv}" /> <h:outputText
+																	value="#{arquivoImp.nomeArqv}"></h:outputText>
+															</a>
+															<p:commandButton
+																actionListener="#{hyperLinkPersistirController.excluirArquivo(arquivoImp)}"
+																immediate="true" update="panelArquivosImagensHyperlink"
+																value=""
+																style="height: 15px; width: 25px; margin-left: 5px; padding: 0 !important; border: 0 none; background: none; left: 0;"
+																icon="ui-icon-trash">
+																<p:confirm header="Confirmação"
+																	message="Você deseja realmente remover?" icon="ui-icon-alert" />
+															</p:commandButton>
+															<br />
+														</c:forEach>
+														<p:fileUpload
+															fileUploadListener="#{hyperLinkPersistirController.handleFileUpload}"
+															multiple="true"
+															allowTypes="/(\.|\/)(png|jpg|jpeg|gif)$/" immediate="true"
+															auto="false" mode="advanced"
+															invalidFileMessage="Tipo do Arquivo inválido"
+															update="panelArquivosImagensHyperlink"
+															fileSizeMessage="O tamanho do arquivo é muito grande"
+															cancelLabel="Cancelar" label="Selecionar" sizeLimit="10000000" />
+													</p:panel>
+													<br /><br />
+													<p:panel id="panelArquivosDocumentosHyperlink"
+														style="margin: 0; padding: 0;">
+														<h:outputLabel value="Documentos do HyperLink: *" />
+														<c:forEach
+															items="#{hyperLinkPersistirController.hyperLink.documentos}"
+															var="arquivoDoc" varStatus="index">
+															<a href="#{request.contextPath}/photos?id=#{arquivoDoc.id}"
+																target="_blank"> <h:outputText value="#{arquivoDoc.nomeArqv}"></h:outputText>
+															</a>
+															<p:commandButton
+																actionListener="#{hyperLinkPersistirController.excluirArquivoDoc(arquivoDoc)}"
+																immediate="true" update="panelArquivosDocumentosHyperlink"
+																value=""
+																style="height: 15px; width: 25px; margin-left: 5px; padding: 0 !important; border: 0 none; background: none; left: 0;"
+																icon="ui-icon-trash">
+																<p:confirm header="Confirmação"
+																	message="Você deseja realmente remover?" icon="ui-icon-alert" />
+															</p:commandButton>
+															<br />
+														</c:forEach>
+														<p:fileUpload
+															fileUploadListener="#{hyperLinkPersistirController.handleFileUploadDoc}"
+															multiple="true"
+															allowTypes="/(\.|\/)(pdf|doc|docx|txt)$/" immediate="true"
+															auto="false" mode="advanced"
+															invalidFileMessage="Tipo do Arquivo inválido"
+															update="panelArquivosDocumentosHyperlink"
+															fileSizeMessage="O tamanho do arquivo é muito grande"
+															cancelLabel="Cancelar" label="Selecionar" sizeLimit="10000000" />
+													</p:panel>
+													<br /><br /><br />
+													<c:if test="#{hyperLinkPersistirController.hyperLink.id == 0}">
+														<p:commandButton actionListener="#{hyperLinkPersistirController.adicionarHyperLink}" value="Salvar" validateClient="true" >
+															<p:confirm header="Confirmação" message="Você deseja realmente salvar?" icon="ui-icon-alert" />
+														</p:commandButton>
+													</c:if>
+													<c:if test="#{hyperLinkPersistirController.hyperLink.id != 0}">
+														<p:commandButton actionListener="#{hyperLinkPersistirController.alterarHyperLink}" value="Salvar" validateClient="true" >
+															<p:confirm header="Confirmação" message="Você deseja realmente alterar?" icon="ui-icon-alert" />
+														</p:commandButton>
+													</c:if>
+													<br />
+													<p:confirmDialog global="true" styleClass="confirmDialog" showEffect="fade" hideEffect="fade">
+												        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+												        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+												    </p:confirmDialog>
+									                <br />
+												</h:form>
+			    							</p:fieldset>
+									      
+								    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

@@ -1,0 +1,74 @@
+package hpdd.web;
+
+import hpdd.results.Results;
+import hpdd.results.ResultsRN;
+import hpdd.web.util.ContextoUtil;
+
+import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+@ManagedBean(name = "resultsBean")
+@RequestScoped
+public class ResultsBean {
+	private Results selected = new Results();
+	private List<Results> list = null;
+
+	public String save() {
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		this.selected.setNotification(null);
+		ResultsRN resultsRN = new ResultsRN();
+		this.selected.setNotification(resultsRN.getNotification(contextoBean
+				.getLoggedUser().getIduser()));
+		resultsRN.save(this.selected);
+		this.selected = new Results();
+		this.list = null;
+		return "resultsCreated";
+
+	}
+
+	public void edit() {
+
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		this.selected.setNotification(null);
+		ResultsRN resultsRN = new ResultsRN();
+		//System.out.println("Id indiv edit" + contextoBean.getLoggedUser().getIduser());
+		this.selected.setNotification(resultsRN.getNotificationToUPDATE(contextoBean.getLoggedUser().getIduser()));
+		//System.out.println("Cod indiv edit => antes = " + this.selected.getNotification().getCodNotification());
+		if (resultsRN.find(this.selected.getNotification()
+				.getCodNotification())) {
+			resultsRN.update(this.selected);
+		} else resultsRN.save(this.selected);
+		//System.out.println("Cod indiv edit => depois = " + this.selected.getNotification().getCodNotification());
+		this.selected = new Results();
+		this.list = null;
+	}
+
+	public void delete() {
+		ResultsRN resultsRN = new ResultsRN();
+		resultsRN.delete(this.selected);
+		this.selected = new Results();
+		this.list = null;
+
+	}
+
+	public Results getSelected() {
+		return selected;
+	}
+
+	public void setSelected(Results selected) {
+		this.selected = selected;
+	}
+
+	public List<Results> getList() {
+		if (this.list == null) {
+			ContextoBean contextoBean = ContextoUtil.getContextoBean();
+
+			ResultsRN resultsRN = new ResultsRN();
+			this.list = resultsRN
+					.list(contextoBean.getLoggedUser().getIduser());
+		}
+		return this.list;
+	}
+}

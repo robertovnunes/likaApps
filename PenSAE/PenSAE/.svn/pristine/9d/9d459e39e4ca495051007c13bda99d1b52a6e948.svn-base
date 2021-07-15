@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+</h:head>
+<h:body>
+	<a4j:status onstart="#{rich:component('popupPanel_Loading')}.show()"
+		onstop="#{rich:component('popupPanel_Loading')}.hide()" />
+	<rich:popupPanel id="popupPanel_Loading" modal="true" moveable="false"
+		resizeable="false" autosized="true">
+		<h:graphicImage value="/resources/icones/loader.gif" />
+	</rich:popupPanel>
+</h:body>
+</html>

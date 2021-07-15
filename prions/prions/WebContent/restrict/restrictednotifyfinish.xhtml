@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../resources/css/style_rest.css" rel="stylesheet"
+		type="text/css" />
+
+	<title>Home</title>
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+}
+</style>
+<script type="text/javascript">
+	//<![CDATA[
+	function message1(x) {
+		alert("Notification saved!	Go to the menu 'My notification' and see your notifications. There you can add the missing data to be filled. Remember to save the identification number.");
+		return false;
+	}
+
+	function message2(x) {
+		alert("Notification done! Go to the menu 'My notification' and see your notifications. Remember to save the identification number.");
+		return false;
+	}
+	//]]>
+</script>
+</h:head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>Report case</h1>
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="restricted_notify.html"> Finish </a>
+				</h4>
+				<br />
+				<ul id="nav">
+				</ul>
+
+				<h:form id="texto">
+					<h:messages />
+					<div style="width: 774.5px; height: 276px;">
+						<h:panelGrid width="795" height="30" valign="top" align="left"
+							colspan="2"
+							style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+							<h:outputLabel value="Finish notification"></h:outputLabel>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="795" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+
+							<p:column>If you want to complete the notification at a later time, click "Edit Later".
+</p:column>
+							<p:column>
+								<p:growl id="messages1" showDetail="true" />
+								<p:commandButton update="messages1" ajax="false" type="button"
+									onclick="cd1.show()" image="../resources/imagens/finishnow.gif"
+									value="Edit Later" />
+								<p:confirmDialog
+									message="Your notice should be completed and you can update the data later. Are you sure you want to continue later?"
+									header="Edit later" widgetVar="cd1">
+									<p:commandButton value="Yes"
+										actionListener="#{notificationBean.keepStatus}"
+										oncomplete="confirmation.hide()"
+										onclick="message1()"
+										ajax="false">
+										<c:param name="id"
+											value="#{notificationBean.selected.codNotification}" />
+									</p:commandButton>
+
+									<p:commandButton value="No" onclick="confirmation.hide()" />
+								</p:confirmDialog>
+							</p:column>
+
+
+							<p:column>If you want to complete the notification now, click "Finish Now".<br />
+Note: You can no longer edit the information later.
+</p:column>
+							<p:column>
+								<p:growl id="messages2" showDetail="true" />
+								<p:commandButton update="messages2" ajax="false" type="button"
+									onclick="cd2.show()" image="../resources/imagens/finishnow.gif"
+									value="Finish Now" />
+								<p:confirmDialog
+									message="Are you sure you want to finish the notification? Note you can not update the data later?"
+									header="Finish now" severity="alert" widgetVar="cd2">
+
+									<p:commandButton value="Yes"
+										actionListener="#{notificationBean.changeStatus}"
+										oncomplete="confirmation.hide()"
+										onclick="message2()"
+										ajax="false">
+										<c:param name="id"
+											value="#{notificationBean.selected.codNotification}" />
+									</p:commandButton>
+									<p:commandButton value="No" onclick="confirmation.hide()" />
+								</p:confirmDialog>
+							</p:column>
+							<p:dataTable id="datatable2" var="notification" value="#{notificationBean.list2}">
+
+						<p:column>
+							<h:outputText value= "The identification number: " />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{notification.codNotification}" />
+						</p:column>
+					</p:dataTable>
+						</h:panelGrid>
+					</div>
+					
+				</h:form>
+				<br />
+				<!-- <img src="../resources/imagens/seq_ima.gif"/> -->
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+
+</html>

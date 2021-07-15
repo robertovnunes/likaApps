@@ -1,0 +1,49 @@
+/*link: http://jsfiddle.net/callmepc/Mqrmq/ */
+
+/*Not related to example*/
+body {font-family:Helvetica;line-height:1.8em;text-shadow:0px 1px 1px #fff;}
+#spacer{height:0;width:300px;border-top:solid 1px #ddd;border-bottom:solid 1px #fff;margin:5px 0;}
+#testDiv{background:#f7f7f7;padding:20px;height:200px;}
+
+/*Styles related with example*/
+.awesome-text-box{
+    
+	margin-top: 22px;
+	margin-bottom: 4px;
+	width: 99.5%;
+    padding: 4px;
+    border: 1px solid #DDDDDD;
+	
+	
+    
+    /*Applying CSS3 gradient*/
+    background: -moz-linear-gradient(center top , #FFFFFF,  #EEEEEE 1px, #FFFFFF 20px);    
+    background: -webkit-gradient(linear, left top, left 20, from(#FFFFFF), color-stop(5%, #EEEEEE) to(#FFFFFF));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBFBFB', endColorstr='#FFFFFF');
+    
+    /*Applying CSS 3radius*/    
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    
+    /*Applying CSS3 box shadow*/
+	-webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.75);
+	box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
+	
+/*    -moz-box-shadow: 0 0 2px #DDDDDD;*/
+/*    -webkit-box-shadow: 0 0 2px #DDDDDD;*/
+/*    box-shadow: 0 0 2px #DDDDDD;*/
+
+}
+.awesome-text-box:hover
+{
+    border:1px solid #cccccc;
+}
+.awesome-text-box:focus
+{
+    /*box-shadow:0 0 2px #FFFE00;*/
+	-webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.75);
+	box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
+}

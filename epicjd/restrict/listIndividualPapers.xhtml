@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../resources/css/style_rest.css" rel="stylesheet"
+		type="text/css" />
+	<title>My Notifications</title>
+	<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+}
+</style>
+</h:head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>My notifications</h1>
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="mynotifications.jsf"> My Notifications</a>
+				</h4>
+				<br />
+
+				<h:form id="texto" styleClass="centered">
+
+					<h:messages />
+					<div
+						style="height: 380px; width: 817px; overflow-x: auto; overflow-y: scroll">
+						<p:dataTable id="dataTable" var="indpaper"
+							value="#{paperBean.listaIndividualPaperNotif}">
+
+							<c:facet name="header">Listing notification</c:facet>
+							<p:column>
+								<c:facet name="header">
+									<h:outputText value="Paper" />
+								</c:facet>
+								<h:outputText value="#{indpaper.paper.id}" />
+							</p:column>
+							<p:column>
+								<c:facet name="header">
+									<h:outputText value="Case code" />
+								</c:facet>
+								<h:outputText value="#{indpaper.id}" />
+							</p:column>
+							<p:column>
+								<c:facet name="header">
+									<h:outputText value="Visualize" />
+								</c:facet>
+								<p:commandButton action="#{paperBean.activateIndividualPaper}"
+									styleClass="visualize" ajax="false" immediate="true">
+									<c:setPropertyActionListener
+										target="#{paperBean.selecIndividualPaper}" value="#{indpaper}" />
+								</p:commandButton>
+							</p:column>
+							<p:column>
+							<c:facet name="header">
+									<h:outputText value="Delete" />
+								</c:facet>
+								<p:commandButton action="#{paperBean.delete}"
+									styleClass="delete" ajax="false">
+									<c:setPropertyActionListener
+										target="#{paperBean.selecIndividualPaper}" value="#{indpaper}" />
+								</p:commandButton>
+							</p:column>
+
+						</p:dataTable>
+					</div>
+				</h:form>
+			</div>
+
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+
+</html>

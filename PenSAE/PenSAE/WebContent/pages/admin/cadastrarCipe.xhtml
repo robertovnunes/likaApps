@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Cadastrar Cipe</title>
+</h:head>
+<h:body>
+	<f:event listener="#{cadastrarCipe.carregarListaCipe()}"
+		type="javax.faces.event.PreRenderComponentEvent" />
+	<rich:panel id="panel_cadasTrarCipe" style="width:100%;"
+		styleClass="panel_invisivel">
+		<h:outputLabel id="outputLabel_Titulo" value="CIPE"
+			styleClass="titulo_principal_pagina" />
+		<rich:panel id="panel_TabelaCipe" styleClass="panel_invisivel">
+			<h:outputLabel id="outputLabel_Tamanho"
+				value="Quantos itens por página:" styleClass="campo_subtitulo" />
+			<br />
+			<rich:inputNumberSpinner id="inputNumberSpinner_TamanhoPagina"
+				minValue="1" maxValue="20" value="#{cadastrarCipe.tamanhoPagina}" />
+			<br />
+			<a4j:commandButton value="Listar"
+				actionListener="#{cadastrarCipe.carregarListaCipe()}"
+				render="panel_TabelaCipe" />
+			<br />
+			<h:outputLabel value="Listagem" styleClass="campo_titulo" style="max-width:100%;"/>
+			<rich:dataTable id="datable_Cipe" value="#{cadastrarCipe.listaCipe}"
+				var="cipe">
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Código" />
+					</f:facet>
+					<h:outputText value="#{cipe.codigo}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Termo" />
+					</f:facet>
+					<h:outputText value="#{cipe.termo}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Descrição" />
+					</f:facet>
+					<h:outputText value="#{cipe.descricaoConceito}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Eixo" />
+					</f:facet>
+					<h:outputText value="#{cipe.eixo}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Versão" />
+					</f:facet>
+					<h:outputText value="#{cipe.versao}" />
+				</rich:column>
+			</rich:dataTable>
+			<h:outputLabel id="outputLabel_Paginas"
+				value="Página #{cadastrarCipe.paginaAtual} de #{cadastrarCipe.numeroTotalPaginas} páginas" />
+			<br />
+			<a4j:commandButton id="commandButton_Anterior"
+				value="Página anterior"
+				actionListener="#{cadastrarCipe.paginaAnterior()}"
+				disabled="#{cadastrarCipe.desabilitarAnterior()}"
+				render="panel_TabelaCipe" />
+			<a4j:commandButton id="commandButton_Seguinte"
+				value="Página seguinte"
+				actionListener="#{cadastrarCipe.paginaSeguinte()}"
+				disabled="#{cadastrarCipe.desabilitarSeguinte()}"
+				render="panel_TabelaCipe" />
+			<rich:popupPanel autosized="true" id="popupPanel_Inserir"
+				modal="true" moveable="false"
+				onmaskclick="#{rich:component('popupPanel_Inserir')}.hide()"
+				domElementAttachment="form">
+				<f:facet name="header">
+					<h:outputText value="Adicionar termo CIPE" />
+				</f:facet>
+				<f:facet name="controls">
+					<h:outputLink value="#"
+						onclick="#{rich:component('popupPanel_Inserir')}.hide(); return false;">
+                X
+            </h:outputLink>
+				</f:facet>
+				<rich:panel styleClass="panel_invisivel">
+					<h:outputLabel id="outputLabel_Codigo" value="Código" />
+					<br />
+					<rich:inputNumberSpinner id="inputNumberSpinner_Codigo"
+						maxValue="999999999" value="#{cadastrarCipe.cipe.codigo}" />
+					<br />
+					<h:outputLabel id="outputLabel_Termo" value="Termo" />
+					<br />
+					<h:inputTextarea id="inputText_Termo"
+						value="#{cadastrarCipe.cipe.termo}" cols="50" rows="3" />
+					<br />
+					<h:outputLabel id="outputLabel_Descricao" value="Descrição" />
+					<br />
+					<h:inputTextarea id="inputTextArea_Descricao"
+						value="#{cadastrarCipe.cipe.descricaoConceito}" cols="50" rows="3" />
+					<br />
+					<h:outputLabel id="outputLabel_Eixo" value="Eixo" />
+					<br />
+					<h:inputText id="inputText_Eixo" value="#{cadastrarCipe.cipe.eixo}" />
+					<br />
+					<h:outputLabel id="outputLabel_Versao" value="Versão" />
+					<br />
+					<h:inputText id="inputText_Versao"
+						value="#{cadastrarCipe.cipe.versao}" />
+					<br />
+					<a4j:commandButton id="commandButton_Inserir" value="Cadastrar"
+						actionListener="#{cadastrarCipe.inserirCipe()}"
+						oncomplete="#{rich:component('popupPanel_Inserir')}.hide()"
+						render="form_Principal" />
+					<a4j:commandButton id="commandButton_Cancelar" value="Cancelar"
+						oncomplete="#{rich:component('popupPanel_Inserir')}.hide()"
+						render="form_Principal" />
+				</rich:panel>
+			</rich:popupPanel>
+		</rich:panel>
+		<a4j:commandButton id="commandButton_InserirCipe" value="Inserir Cipe"
+			oncomplete="#{rich:component('popupPanel_Inserir')}.show()" />
+		<a4j:commandButton id="commandButton_Voltar" value="Voltar"
+			actionListener="#{principalAdmin.apagarConteudo()}"
+			render="form_Principal" />
+	</rich:panel>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:body>
+</html>

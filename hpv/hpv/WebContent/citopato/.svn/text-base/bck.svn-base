@@ -1,0 +1,243 @@
+<%@ taglib uri="/WEB-INF/meutag.tld" prefix="m" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<%@include file="../head.jsp" %>
+		<script type="text/javascript" src="./javascripts/scriptFormatarData.js"> </script>
+	    <title>HPV-LIKA</title>
+  	</head>
+	<body>
+	    <div id="container">
+			<div id="top">
+		        <%@include file="../top.jsp" %>
+	      	</div>
+	      	<div id="menuh-container">
+		      	<%@include file="../logado/menu.jsp" %>
+	      	</div>
+			<div class="clear:both;">
+			</div>
+			<div id="leftnav" style="min-height: 500px;">
+	      		<%@include file="leftnav.jsp" %>
+			</div>
+			
+			
+			<div id="content">
+				<h2>FORMUL&Aacute;RIO CADASTRO BI&Oacute;PSIA</h2><!-- campo obrigatorio o h2 no css!!! -->
+
+				<br>
+				<form action="#" method = "post">
+					<table class="block">
+						<tr>
+							<td class="block">
+								CNPJ do laborat&oacute;rio:
+							</td>
+							<td class="block">
+								<input type='text' name="biopsia.cnpjLaboratorio" maxlength="14" style="width: 100%;" />
+							</td>
+						</tr>
+						<tr>
+							<td class="block">
+								N&uacute;mero do exame:
+							</td>
+							<td class="block">
+								<input type='text' name="biopsia.numeroExame" maxlength="16" style="width: 100%;" />
+							</td>
+						</tr>
+						<tr>
+							<td class="block">
+								Nome do laborat&oacute;rio:
+							</td>
+							<td class="block">
+								<input type='text' name="biopsia.nomeLaboratorio" maxlength="50" style="width: 100%;" />
+							</td>
+						</tr>
+						<tr>
+							<td class="block">
+								Recebido em:
+							</td>
+							<td class="block">
+								<input type='text' name="biopsia.cnpjLaboratorio" maxlength="10" style="width: 100px;" onkeyup="this.value=formateadata(this.value);"/>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="block" colspan="2">
+								AVALIA&Ccedil;&Atilde;O PR&Eacute;-ANAL&Iacute;TICA
+							</td>
+						</tr>
+
+						<tr>
+							<td class="block">
+								Amostra rejeitada por:
+							</td>
+							<td class="block">
+									<input type="checkbox" name='rejeitada'>Aus&ecirc;ncia ou erro na identifica&ccedil;&atilde;o da l&acirc;mina,frasco ou formul&aacute;rio<br/>
+									<input type="checkbox" name='rejeitada'>L&acirc;mina danificada ou ausente <br/>
+									<input type="checkbox" name='rejeitada'>Causas alheias ao laborat&oacute;rio: <input type='text' ><br/>
+									<input type="checkbox" name='rejeitada'>Outras causas: <input type=text ><br/>
+							</td>
+						</tr>
+						<tr>
+							<td class="block">
+								Adequabilidade do material
+							</td>
+							<td class="block">
+									<input type="checkbox" name='aceito'>Satisfat&oacute;rio<br/>
+									<p> 
+										Insatisfat&oacute;rio para avalia&ccedil;&atilde;o onc&oacute;tica devido a:
+										<br/><br/>
+										<input type="checkbox" name='erro'>Material acelular ou hipocelular em menos de 10% do esfrega&ccedil;o <br/>
+										<input type="checkbox" name='erro'> Sangue em mais de 75% do esfrega&ccedil;o;<br/>
+										<input type="checkbox" name='erro' >Pl&oacute;citos em mais de 75% do esfrega&ccedil;o;<br/>
+										<input type="checkbox" name='erro' >Artefatos de dissecamento em mais de 75% do esfrega&ccedil;o;<br/>
+										<input type="checkbox" name='erro' >Contaminantes externos em mais de 75% do esfrega&ccedil;o;<br/>
+										<input type="checkbox" name='erro' >Intensa superposi&ccedil;&atilde;o celular em mais de 75% do esfrega&ccedil;o;<br/>
+										<input type="checkbox" name='erro' >Outros.<br/>
+									</p>
+							</td>
+						</tr>
+						<tr>
+							<td class="block">
+								Epit&eacute;lios representados na amostra:
+							</td>
+							<td class="block">
+								<input type="checkbox" name='epitelios' >Escamoso; <br/>
+								<input type="checkbox" name='epitelios'> Glandular;<br/>
+								<input type="checkbox" name='epitelios' >Metapl&aacute;sico.<br/>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="block">
+								DIAGN&Oacute;STICO DESCRITIVO
+							</td>
+							<td class="block" colspan="2">
+								<input type="checkbox" >DENTRO DOS LIMITES DA NORMALIDADE, NO MATERIAL EXAMINADO<br><br>
+								<input type="checkbox" name='epitelios' >Inflama&ccedil;&atilde;o; <br/>
+								<input type="checkbox" name='epitelios'> Metaplasia escamosa imatura;<br/>
+								<input type="checkbox" name='epitelios' >Reparacao;<br/>
+								<input type="checkbox" name='epitelios' >Atrofia com inflama&ccedil;&atilde;o;<br/>
+								<input type="checkbox" name='epitelios' >Radia&ccedil;&atilde;o;<br/>
+								<input type="checkbox" name='epitelios' >Outros: <br><textarea style="width:400px;" title="Outros"> </textarea><br/>
+							</td>
+						</tr>
+						<tr>
+							<td class="block">
+								Microbiologia
+							</td>
+							<td class="block">
+								<input type="checkbox" >Lactobacillus sp <br>
+								<input type="checkbox" >Cocos<br>
+								<input type="checkbox" >Sugestivo de <i>chlamydia sp</i> <br>
+								<input type="checkbox" ><i>Actinomyces sp</i> <br>
+								<input type="checkbox" ><i>Candida sp</i> <br>
+								<input type="checkbox" ><i>Trichomonas vaginalis</i> <br>
+								<input type="checkbox" >Efeito citop&aacute;tico compat&iacute;vel com v&iacute;rus do tipo <i>Herpes</i> <br>
+								<input type="checkbox" >Bacilos supracitoplasm&aacute;ticos (sugestivos de <i>Gardnerella/Mobiluncus </i> <br>
+								<input type="checkbox" >Outros bacilos <br>
+								<input type="checkbox" >Outros:<br><textarea style="width:400px;" title="Outros"> </textarea><br>
+							</td>
+						</tr>
+						<tr>
+							<td class="block">
+								C&Eacute;LULAS AT&Iacute;PICAS DE SIGNIFICADO INDETERMINADO
+							</td>
+							<td class="block">
+								<fieldset>
+									<legend>Escamosas</legend>
+									<input type="checkbox"> Possivelmente n&atilde;o  neopl&aacute;sicas <br>
+									<input type="checkbox"> N&atilde;o se pode atestar les&atilde;o de alto grau <br>
+								</fieldset>
+								<br><br>
+								<fieldset>
+									<legend>Glandulares</legend>
+									<input type="checkbox"> Possivelmente n&atilde;o  neopl&aacute;sicas <br>
+									<input type="checkbox"> N&atilde;o se pode atestar les&atilde;o de alto grau <br>
+								</fieldset>
+								<br><br>
+								<fieldset>
+									<legend>De origem indefinida</legend>
+									<input type="checkbox"> Possivelmente n&atilde;o  neopl&aacute;sicas <br>
+									<input type="checkbox"> N&atilde;o se pode atestar les&atilde;o de alto grau <br>
+								</fieldset>
+								<br><br>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="block">
+								ATIPIAS EM C&Eacute;LULAS ESCAMOSAS
+							</td>
+							<td class="block">
+								<input type="checkbox" >Les&atilde;o intra-epitelial de baixo grau (compreendendo efeito citp&aacute;tico pelo HPV e neoplasia intra-epitelial cervical grau I)<br>
+								<input type="checkbox" >Les&atilde;o intra-epitelial de alto grau (compreendendo neoplasias intra-epiteliais cervicais graus II e III)<br>
+								<input type="checkbox" >Les&atilde;o intra-epitelial de alto grau, n&atilde;o podendo micro-invas&atilde;o <br>
+								<input type="checkbox" >Carcinoma epidermoide invasor <br>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="block">
+								ATIPIAS EM C&Eacute;LULAS GLANDULARES
+							</td>
+							<td class="block">
+								<input type="checkbox" >Adenocarcinoma invasor <i>"in situ"</i> <br><br>
+								<p style="float: left;">
+									Adenocarcinoma invasor: <div><input type="checkbox" >Cervical<br>
+																 <input type="checkbox" >Endometrial<br>
+																 <input type="checkbox" >Sem outras especifica&ccedil;&otilde;es
+															</div>
+								</p>								
+								<input type="checkbox" >OUTRAS NEOPLASIAS MAL&Iacute;GNAS: <input type=text /> <br>
+								<input type="checkbox" >PRESEN&Ccedil;A DE C&Eacute;LULAS ENDOMETRIAIS (NA P&Oacute;S-MENOPAUSA OU ACIMA DE 40 ANOS, FORA DO PER&Iacute;ODO MENSTRUAL) <br>
+								
+							</td>
+						</tr>
+						<tr>
+							<td class="block">
+								Observa&ccedil;&otilde;es gerais:
+							</td>
+							<td class="block">
+								<textarea rows="3" cols="40" style="width: 100%;"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td class="block">
+								Data da libera&ccedil;&atilde;o
+							</td>
+							<td class="block">
+								<input type="text" maxlength="10" onkeyup="this.value=formateadata(this.value);" style="width: 100px;">
+							</td>
+						</tr>
+						<tr>
+							<td class="block">
+								Respons&aacute;vel pelo resultado:
+							</td>
+							<td class="block">
+								
+								Nome:<input type="text" style="width: 100%" ><br>
+								CNFF(CPF):<input type="text" style="width: 100%" maxlength="9"><br>
+							</td>
+						</tr>
+
+
+						<tr><td> </td><td><br/> </td>  </tr>
+						<tr>
+							<td align="center" colspan="2" class="block">
+								<input type="reset" value="Limpar" style="margin-right: 30px;"/>
+								<input type="submit" value="Salvar" style="margin-left: 30px;"/>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>		
+			<div id="footer">
+			 	<%@include file="../footer.jsp" %>
+			</div>
+		</div>
+	</body>
+</html>

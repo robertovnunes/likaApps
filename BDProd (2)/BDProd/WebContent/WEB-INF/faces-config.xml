@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+	version="1.2">
+
+
+	<validator>
+		<validator-id>validadorEmail</validator-id>
+		<validator-class>lika.util.EmailValidator</validator-class>
+	</validator>
+
+
+
+	<application>
+		<action-listener>lika.handler.ErroHandler</action-listener>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+	</application>
+
+	<managed-bean>
+		<managed-bean-name>grupoHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.GrupoHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>usuarioHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.UsuarioHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>relatorioAlunoHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.RelatorioAlunoHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>relatorioAlunosAtivosHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.RelatorioAlunosAtivosHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>relatorioPublicacaoHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.relatorioPublicacaoHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>relatorioProjetoHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.relatorioProjetoHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+
+	<managed-bean>
+		<managed-bean-name>publicacaoHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.PublicacaoHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+
+	<managed-bean>
+		<managed-bean-name>pessoaHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.PessoaHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>equipamentoHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.EquipamentoHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>bolsistaProjetoHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.BolsistaProjetoHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>alunoHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.AlunoHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+
+	<managed-bean>
+		<managed-bean-name>funcionarioHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.FuncionarioHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>relatorioHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.RelatorioHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>sessionHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.SessionHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>adminHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.AdminHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>laboratorioHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.LaboratorioHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>areaHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.AreaHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>projetoHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.ProjetoHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>pesquisadorHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.PesquisadorHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>relatorioEmailHandler</managed-bean-name>
+		<managed-bean-class>lika.handler.RelatorioEmailHandler</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>relatorioEmail</from-outcome>
+			<to-view-id>/relatorio/relatorioEmail.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>erro</from-outcome>
+			<to-view-id>/erro.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>logout</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/logout.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<display-name>acessoNegado</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>acessoNegado</from-outcome>
+			<to-view-id>/acessoNegado.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>login</display-name>
+		<from-view-id>/login.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>sucesso</from-outcome>
+			<to-view-id>/pesquisador/inicioPesquisador.jsp</to-view-id>
+
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>esqueceuSenha</from-outcome>
+			<to-view-id>/esqueceuSenha.jsp</to-view-id>
+
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>falha</from-outcome>
+			<to-view-id>/login.jsp</to-view-id>
+
+		</navigation-case>
+
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoPesquisador</display-name>
+		<from-view-id>/pesquisador/inicioPesquisador.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoPesquisador</from-outcome>
+			<to-view-id>/pesquisador/perfilPesquisador.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>pesquisadores</display-name>
+		<navigation-case>
+			<from-outcome>pesquisarPesquisador</from-outcome>
+			<to-view-id>/pesquisador/inicioPesquisador.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<display-name>visualizarPesquisador</display-name>
+		<from-view-id>/pesquisador/inicioPesquisador.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarPesquisador</from-outcome>
+			<to-view-id>/pesquisador/perfilPesquisador.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>PesquisarPesquisador</display-name>
+		<from-view-id>/pesquisador/perfilPesquisador.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarPesquisador</from-outcome>
+			<to-view-id>/pesquisador/inicioPesquisador.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<navigation-rule>
+		<display-name>editarPesquisador</display-name>
+		<from-view-id>/pesquisador/visualizarPesquisador.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>editarPesquisador</from-outcome>
+			<to-view-id>/pesquisador/perfilPesquisador.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- FUNCIONARIOS -->
+
+
+	<navigation-rule>
+		<display-name>listarFuncionario</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarFuncionario</from-outcome>
+			<to-view-id>/funcionario/inicioFuncionario.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoFuncionario</display-name>
+		<from-view-id>/funcionario/inicioFuncionario.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoFuncionario</from-outcome>
+			<to-view-id>/funcionario/perfilFuncionario.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarFuncionario</display-name>
+		<from-view-id>/funcionario/inicioFuncionario.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarFuncionario</from-outcome>
+			<to-view-id>/funcionario/perfilFuncionario.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<!--  ALUNOS -->
+
+
+	<navigation-rule>
+		<display-name>listarAluno</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarAluno</from-outcome>
+			<to-view-id>/aluno/inicioAluno.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoAluno</display-name>
+		<from-view-id>/aluno/inicioAluno.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoAluno</from-outcome>
+			<to-view-id>/aluno/perfilAluno.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarAluno</display-name>
+		<from-view-id>/aluno/inicioAluno.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarAluno</from-outcome>
+			<to-view-id>/aluno/perfilAluno.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+	<!--  BOLSISTAS -->
+
+
+	<navigation-rule>
+		<display-name>listarBolsista</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarBolsista</from-outcome>
+			<to-view-id>/bolsistaProjeto/inicioBolsista.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoBolsista</display-name>
+		<from-view-id>/bolsistaProjeto/inicioBolsista.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoBolsista</from-outcome>
+			<to-view-id>/bolsistaProjeto/perfilBolsista.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarBolsista</display-name>
+		<from-view-id>/bolsistaProjeto/inicioBolsista.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarBolsista</from-outcome>
+			<to-view-id>/bolsistaProjeto/perfilBolsista.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<!--  AREA_DE_PESQUISA -->
+
+
+	<navigation-rule>
+		<display-name>listarArea</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarArea</from-outcome>
+			<to-view-id>/areaDePesquisa/inicioArea.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoArea</display-name>
+		<from-view-id>/areaDePesquisa/inicioArea.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoArea</from-outcome>
+			<to-view-id>/areaDePesquisa/perfilArea.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarArea</display-name>
+		<from-view-id>/areaDePesquisa/inicioArea.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarArea</from-outcome>
+			<to-view-id>/areaDePesquisa/perfilArea.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+	<!--  SUB_AREA_DE_PESQUISA -->
+
+
+	<navigation-rule>
+		<display-name>listarSubArea</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarSubArea</from-outcome>
+			<to-view-id>/subAreaDePesquisa/inicioSubArea.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoSubArea</display-name>
+		<from-view-id>/subAreaDePesquisa/inicioSubArea.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoSubArea</from-outcome>
+			<to-view-id>/subAreaDePesquisa/perfilSubArea.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarSubArea</display-name>
+		<from-view-id>/subAreaDePesquisa/inicioSubArea.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarSubArea</from-outcome>
+			<to-view-id>/subAreaDePesquisa/perfilSubArea.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!--  EQUIPAMENTOS -->
+
+	<navigation-rule>
+		<display-name>listarEquipamentos</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarEquipamentos</from-outcome>
+			<to-view-id>/equipamento/inicioEquipamento.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoEquipamento</display-name>
+		<from-view-id>/equipamento/inicioEquipamento.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoEquipamento</from-outcome>
+			<to-view-id>/equipamento/perfilEquipamento.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarEquipamento</display-name>
+		<from-view-id>/equipamento/inicioEquipamento.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarEquipamento</from-outcome>
+			<to-view-id>/equipamento/perfilEquipamento.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!--  LAB -->
+
+	<navigation-rule>
+		<display-name>listarLaboratorio</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarLaboratorio</from-outcome>
+			<to-view-id>/laboratorio/inicioLaboratorio.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoLaboratorio</display-name>
+		<from-view-id>/laboratorio/inicioLaboratorio.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoLaboratorio</from-outcome>
+			<to-view-id>/laboratorio/perfilLaboratorio.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarLaboratorio</display-name>
+		<from-view-id>/laboratorio/inicioLaboratorio.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarLaboratorio</from-outcome>
+			<to-view-id>/laboratorio/perfilLaboratorio.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<!--  Projeto -->
+
+	<navigation-rule>
+		<display-name>listarProjeto</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarProjeto</from-outcome>
+			<to-view-id>/projeto/inicioProjeto.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoProjeto</display-name>
+		<from-view-id>/projeto/inicioProjeto.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoProjeto</from-outcome>
+			<to-view-id>/projeto/perfilProjeto.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarProjeto</display-name>
+		<from-view-id>/projeto/inicioProjeto.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarProjeto</from-outcome>
+			<to-view-id>/projeto/perfilProjeto.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+	<!--  Periódico -->
+
+	<navigation-rule>
+		<display-name>listarPeriodico</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarPeriodico</from-outcome>
+			<to-view-id>/periodico/inicioPeriodico.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoPeriodico</display-name>
+		<from-view-id>/periodico/inicioPeriodico.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoPeriodico</from-outcome>
+			<to-view-id>/periodico/perfilPeriodico.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarPeriodico</display-name>
+		<from-view-id>/periodico/inicioPeriodico.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarPeriodico</from-outcome>
+			<to-view-id>/periodico/perfilPeriodico.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+	<!--  Livro -->
+
+	<navigation-rule>
+		<display-name>listarLivro</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarLivro</from-outcome>
+			<to-view-id>/livro/inicioLivro.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoLivro</display-name>
+		<from-view-id>/livro/inicioLivro.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoLivro</from-outcome>
+			<to-view-id>/livro/perfilLivro.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarLivro</display-name>
+		<from-view-id>/livro/inicioLivro.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarLivro</from-outcome>
+			<to-view-id>/livro/perfilLivro.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+	<!--  Anais -->
+
+	<navigation-rule>
+		<display-name>listarAnais</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarAnais</from-outcome>
+			<to-view-id>/anais/inicioAnais.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoAnais</display-name>
+		<from-view-id>/anais/inicioAnais.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoAnais</from-outcome>
+			<to-view-id>/anais/perfilAnais.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarAnais</display-name>
+		<from-view-id>/anais/inicioAnais.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarAnais</from-outcome>
+			<to-view-id>/anais/perfilAnais.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!--  Grupo de Pesquisa -->
+
+	<navigation-rule>
+		<display-name>listarGrupo</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarGrupo</from-outcome>
+			<to-view-id>/grupoDePesquisa/inicioGrupo.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoGrupo</display-name>
+		<from-view-id>/grupoDePesquisa/inicioGrupo.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoGrupo</from-outcome>
+			<to-view-id>/grupoDePesquisa/perfilGrupo.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarGrupo</display-name>
+		<from-view-id>/grupoDePesquisa/inicioGrupo.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarGrupo</from-outcome>
+			<to-view-id>/grupoDePesquisa/perfilGrupo.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<!--  Usuários -->
+
+	<navigation-rule>
+		<display-name>listarUsuario</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarUsuario</from-outcome>
+			<to-view-id>/administracao/inicioUsuario.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoUsuario</display-name>
+		<from-view-id>/administracao/inicioUsuario.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoUsuario</from-outcome>
+			<to-view-id>/administracao/perfilUsuario.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarUsuario</display-name>
+		<from-view-id>/administracao/inicioUsuario.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarUsuario</from-outcome>
+			<to-view-id>/administracao/perfilUsuario.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!--  Função -->
+
+	<navigation-rule>
+		<display-name>listarFuncao</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarFuncao</from-outcome>
+			<to-view-id>/administracao/inicioFuncao.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoFuncao</display-name>
+		<from-view-id>/administracao/inicioFuncao.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoFuncao</from-outcome>
+			<to-view-id>/administracao/perfilFuncao.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarFuncao</display-name>
+		<from-view-id>/administracao/inicioFuncao.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarFuncao</from-outcome>
+			<to-view-id>/administracao/perfilFuncao.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<!--  Departamento -->
+
+	<navigation-rule>
+		<display-name>listarDepartamento</display-name>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarDepartamento</from-outcome>
+			<to-view-id>/administracao/inicioDepartamento.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>novoDepartamento</display-name>
+		<from-view-id>/administracao/inicioDepartamento.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>novoDepartamento</from-outcome>
+			<to-view-id>/administracao/perfilDepartamento.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>visualizarDepartamento</display-name>
+		<from-view-id>/administracao/inicioDepartamento.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarDepartamento</from-outcome>
+			<to-view-id>/administracao/perfilDepartamento.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+	<!--  RELATÓRIOS -->
+
+	<navigation-rule>
+		<display-name>relatorioPublicacoes</display-name>
+		<navigation-case>
+			<from-outcome>relatorioPublicacoes</from-outcome>
+			<to-view-id>/relatorio/relatorioPublicacao.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>relatorioProjetos</display-name>
+		<navigation-case>
+			<from-outcome>relatorioProjetos</from-outcome>
+			<to-view-id>/relatorio/relatorioProjeto.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>relatorioAlunos</display-name>
+		<navigation-case>
+			<from-outcome>relatorioAlunos</from-outcome>
+			<to-view-id>/relatorio/relatorioAluno.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<navigation-rule>
+		<display-name>relatorioAlunosAtivos</display-name>
+		<navigation-case>
+			<from-outcome>relatorioAlunosAtivos</from-outcome>
+			<to-view-id>/relatorio/relatorioAlunosAtivos.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+</faces-config>

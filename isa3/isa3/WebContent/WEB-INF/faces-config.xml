@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.1" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+	<application>
+		<locale-config>
+			<default-locale>pt-br</default-locale>
+		</locale-config>
+	</application>
+    	
+	<navigation-rule>  
+	        <from-view-id>*</from-view-id>  
+	        <navigation-case>  
+	            <from-outcome>index</from-outcome>  
+	            <to-view-id>/index.xhtml</to-view-id>  
+	            <redirect/>  
+	        </navigation-case> 
+	        
+	        <navigation-case>
+				<from-outcome>cursoDetalhesAlunoController</from-outcome>
+				<to-view-id>/restrict/aluno/curso_detalhes.xhtml</to-view-id>
+			</navigation-case> 
+			
+	         <navigation-case>
+				<from-outcome>cursoAlunoProcurar</from-outcome>
+				<to-view-id>/restrict/aluno/curso_procurar.xhtml</to-view-id>
+			</navigation-case> 
+			
+			<navigation-case>
+				<from-outcome>matriculaEstudosDeCasoAlunoController</from-outcome>
+				<to-view-id>/restrict/aluno/estudosdecaso_listar.xhtml</to-view-id>
+			</navigation-case> 
+			
+			<navigation-case>
+				<from-outcome>arcoMagueresController</from-outcome>
+				<to-view-id>/restrict/aluno/arcomagueres.xhtml</to-view-id>
+			</navigation-case> 
+			
+			<navigation-case>
+				<from-outcome>opiniaoSobreCursoController</from-outcome>
+				<to-view-id>/restrict/aluno/opiniao_curso.xhtml</to-view-id>
+			</navigation-case> 
+			
+			<navigation-case>
+				<from-outcome>cadastrarAlunoController</from-outcome>
+				<to-view-id>/public/cadastrar_aluno.xhtml</to-view-id>
+			</navigation-case> 
+			
+			<navigation-case>
+				<from-outcome>feedbackEstudosDeCasoAlunoController</from-outcome>
+				<to-view-id>/restrict/aluno/feedback_estudosdecaso_listar.xhtml</to-view-id>
+			</navigation-case> 
+			
+			<navigation-case>
+				<from-outcome>usuarioProcurar</from-outcome>
+				<to-view-id>/restrict/professor/usuario_procurar.xhtml</to-view-id>
+			</navigation-case>
+	        <navigation-case>
+				<from-outcome>usuarioPersistir</from-outcome>
+				<to-view-id>/restrict/professor/usuario_persistir.xhtml</to-view-id>
+			</navigation-case>
+			<navigation-case>
+				<from-outcome>usuarioVisualizar</from-outcome>
+				<to-view-id>/restrict/professor/usuario_visualizar.xhtml</to-view-id>
+			</navigation-case>
+			
+			<navigation-case>
+				<from-outcome>cursoProfessorProcurarController</from-outcome>
+				<to-view-id>/restrict/professor/curso_procurar.xhtml</to-view-id>
+			</navigation-case>
+			<navigation-case>
+				<from-outcome>cursoProfessorPersistirController</from-outcome>
+				<to-view-id>/restrict/professor/curso_persistir.xhtml</to-view-id>
+			</navigation-case>
+			<navigation-case>
+				<from-outcome>cursoProfessorVisualizarController</from-outcome>
+				<to-view-id>/restrict/professor/curso_visualizar.xhtml</to-view-id>
+			</navigation-case>
+			
+			<navigation-case>
+				<from-outcome>estudoDeCasoProcurar</from-outcome>
+				<to-view-id>/restrict/professor/estudodecaso_procurar.xhtml</to-view-id>
+			</navigation-case>
+	        <navigation-case>
+				<from-outcome>estudoDeCasoPersistir</from-outcome>
+				<to-view-id>/restrict/professor/estudodecaso_persistir.xhtml</to-view-id>
+			</navigation-case>
+			<navigation-case>
+				<from-outcome>estudoDeCasoVisualizar</from-outcome>
+				<to-view-id>/restrict/professor/estudodecaso_visualizar.xhtml</to-view-id>
+			</navigation-case>
+			
+			
+			<navigation-case>
+				<from-outcome>matriculaEstudosDeCasoProcurar</from-outcome>
+				<to-view-id>/restrict/professor/opiniaocursos_procurar.xhtml</to-view-id>
+			</navigation-case>
+			
+			<navigation-case>
+				<from-outcome>arcoMagueresEstudosDeCasoProcurar</from-outcome>
+				<to-view-id>/restrict/professor/arcomagueres_procurar.xhtml</to-view-id>
+			</navigation-case>
+			
+			<navigation-case>
+				<from-outcome>hyperLinkController</from-outcome>
+				<to-view-id>/restrict/hyperlink.xhtml</to-view-id>
+			</navigation-case>
+			
+			<navigation-case>
+				<from-outcome>hyperLinkProcurar</from-outcome>
+				<to-view-id>/restrict/professor/hyperlink_procurar.xhtml</to-view-id>
+			</navigation-case>
+	        <navigation-case>
+				<from-outcome>hyperLinkPersistir</from-outcome>
+				<to-view-id>/restrict/professor/hyperlink_persistir.xhtml</to-view-id>
+			</navigation-case>
+			<navigation-case>
+				<from-outcome>hyperLinkVisualizar</from-outcome>
+				<to-view-id>/restrict/professor/hyperlink_visualizar.xhtml</to-view-id>
+			</navigation-case>
+	    </navigation-rule>  
+    
+    
+</faces-config>

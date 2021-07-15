@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_rest.css" rel="stylesheet"
+	type="text/css" />
+<title>Home</title>
+</h:head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+
+		</div>
+		<div id="admin">
+			<h:form>
+				<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+			<h:commandLink action="/admin/home_admin" title="Administrativo">
+						<h:graphicImage width="30" height="30" library="imagens" name="admin3.png" />
+					</h:commandLink>
+				</sec:ifAnyGranted>
+			</h:form>
+
+		</div>
+		<div id="welcome">
+
+			<table title="User status" align="center">
+
+				<b>User logged: #{request.remoteUser}</b>
+				<br />
+				<b>Welcome, #{contextoBean.loggedUser.name}!</b>
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>Publications</h1>
+				<h4>
+					<a href="home_restrited.jsf">Home</a> >><a href="restricted_publications.jsf"> Publications</a>
+				</h4>
+				<h:form id="texto" styleClass="centered">
+
+					<div
+						style="height: 400px; width: 926px; overflow-x: auto; overflow-y: auto;">
+							<p:dataTable var="pub" value="#{publicationBean.list}">
+							<p:column headerText="Title">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.title}" />
+							</p:column>
+							<p:column headerText="Periodical">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.periodical}" />
+							</p:column>
+							<p:column headerText="Authors">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.authors}" />
+							</p:column>
+							<p:column headerText="Page">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.page}" />
+							</p:column>
+							<p:column headerText="Volume">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.volume}" />
+							</p:column>
+							<p:column headerText="Year">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.year}" />
+							</p:column>
+							<p:column headerText="Link">
+								<!-- <c:facet name="header">Title</c:facet> -->
+								<h:outputText value="#{pub.link}" />
+							</p:column>
+							</p:dataTable>
+					</div>
+
+				</h:form>
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+
+
+	</div>
+</h:body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"	
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_rest.css" rel="stylesheet"
+	type="text/css" />
+<title>My Notifications</title>
+</head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="mynotifications.jsf"> My Notifications</a>
+				</h4>
+				<br />
+				<h:form id="texto">
+					<h:messages />
+					<div style="width: 774.5px; height: 276px; overflow: auto;">
+						<h:panelGrid width="758" height="30" valign="top" align="left"
+							colspan="2"
+							style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+							<h:outputLabel value="Clinical data"></h:outputLabel>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="758" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+							<h:outputLabel value="Date of first symptoms: "
+								for="firstSymptoms" />
+							<h:inputText id="firstSymptoms"
+								value="#{clinDataBean.selected.notifFisrtSym}" required="false"
+								maxlength="30">
+								<c:convertDateTime dateStyle="medium" />
+							</h:inputText>
+
+							<h:outputLabel value="Occupation: " for="occupation" />
+							<h:inputText id="occupation"
+								value="#{clinDataBean.selected.occupation}" required="false"
+								maxlength="30" />
+						</h:panelGrid>
+						<h:panelGrid width="758" height="30" valign="top" align="left"
+							colspan="2"
+							style="background-color: #808040; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+							<h:outputLabel value="Signs and symptoms"></h:outputLabel>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="758" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+							<h:outputLabel value="Progressive dementia: "
+								for="progressiveDementia" />
+							<h:selectOneRadio id="progressiveDementia"
+								value="#{clinDataBean.selected.progDementia}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Visual disorders: " for="visualDisorders" />
+							<h:selectOneRadio id="visualDisorders"
+								value="#{clinDataBean.selected.visualDisorder}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Myoclonus: " for="myoclonus" />
+							<h:selectOneRadio id="myoclonus"
+								value="#{clinDataBean.selected.myoclonus}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Cerebellar disorders: "
+								for="cerebellarDisorders" />
+							<h:selectOneRadio id="cerebellarDisorders"
+								value="#{clinDataBean.selected.cerebellarDisorders}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Persistent painful dysesthesia: "
+								for="persistentPainfulDysesthesia" />
+							<h:selectOneRadio id="persistentPainfulDysesthesia"
+								value="#{clinDataBean.selected.persistentPainDys}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Ataxy: " for="ataxy" />
+							<h:selectOneRadio id="ataxy"
+								value="#{clinDataBean.selected.ataxy}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Pyramidal signs: " for="pyramidalSigns" />
+							<h:selectOneRadio id="pyramidalSigns"
+								value="#{clinDataBean.selected.pyramidalSigns}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Extrapyramidal signs: "
+								for="extrapyramidalSigns" />
+							<h:selectOneRadio id="extrapyramidalSigns"
+								value="#{clinDataBean.selected.extrapyramidalSigns}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Akinetic mutism:" for="akineticMutism" />
+							<h:selectOneRadio id="akineticMutism"
+								value="#{clinDataBean.selected.akineticMutism}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Psychiatric disorders: "
+								for="psychiatricDisorders" />
+							<h:selectOneRadio id="psychiatricDisorders"
+								value="#{clinDataBean.selected.psychiatricDisorders}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Sleep disorders: " for="sleepDisorders" />
+							<h:selectOneRadio id="sleepDisorders"
+								value="#{clinDataBean.selected.sleepDisorders}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel></h:outputLabel>
+							<h:outputLabel>
+								<h:commandButton action="#{clinDataBean.edit}" value="Salvar">
+									<c:param name="id"
+										value="#{clinDataBean.selected.notification.codNotification}" />
+								</h:commandButton>
+								<h:commandButton action="editAsp" value="Next">
+									<c:param name="id"
+										value="#{clinDataBean.selected.notification.codNotification}" />
+								</h:commandButton>
+							</h:outputLabel>
+						</h:panelGrid>
+					</div>
+				</h:form>
+
+
+
+			</div>
+		</div>
+		<div id="footer"></div>
+	</div>
+</h:body>
+
+</html>

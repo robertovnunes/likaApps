@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_rest.css" rel="stylesheet"
+	type="text/css" />
+<title>Home</title>
+</h:head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>My profile</h1>
+				<h4>
+					<a href="home_restrited.jsf">Home</a> >><a
+						href="restricted_update.jsf"> My profile</a>
+				</h4>
+				<p>
+					<a></a>
+
+				</p>
+				<div id="conteudo">
+					<h:form id="update">
+						<!-- <h:messages /> -->
+						<h:inputHidden value="#{userBean.user.iduser}" />
+						<h:inputHidden value="#{userBean.user.status}" />
+						<h:inputHidden value="#{userBean.user.date_reg}">
+							<c:convertDateTime pattern="dd/MM/yyyy" />
+						</h:inputHidden>
+
+						<h:panelGrid columns="4" bgcolor="#EBEBD6" styleClass="centered"
+							width="400" cellpadding="5">
+							<h:outputLabel value="Name:" for="name" />
+							<p:inputText id="name" value="#{userBean.user.name}"/>
+
+							<h:outputLabel value="Role:" for="role" />
+							<p:selectOneMenu id="role" value="#{userBean.user.occupation}"
+								title="Select any one in this menu" required="true">
+								<c:selectItem itemLabel="Doctor" itemValue="Doctor" />
+								<c:selectItem itemLabel="Researcher" itemValue="Researcher" />
+
+							</p:selectOneMenu>
+
+							<h:outputLabel value="Institution:" for="institution" />
+							<p:inputText id="institution" label="Institute"
+								value="#{userBean.user.institute}" size="40" required="true" />
+
+							<h:outputLabel value="Document:" for="document" />
+							<p:inputText id="document" label="Document"
+								value="#{userBean.user.document}" size="40" required="true" />
+
+							<h:outputLabel value="Gender:" for="gender" />
+							<p:selectOneRadio id="gender" value="#{userBean.user.gender}"
+								required="true">
+								<c:selectItem itemLabel="Male" itemValue="Male" />
+								<c:selectItem itemLabel="Female" itemValue="Female" />
+							</p:selectOneRadio>
+
+							<h:outputLabel value="Address:" for="address" />
+							<p:inputText id="address" label="direction"
+								value="#{userBean.user.direction}" size="40" required="true" />
+
+							<h:outputLabel value="Country:" for="country" />
+							<p:inputText id="country" label="country"
+								value="#{userBean.user.country}" size="40" required="true" />
+
+							<h:outputLabel value="City:" for="city" />
+							<p:inputText id="city" label="city" value="#{userBean.user.city}"
+								size="40" required="true" />
+
+							<h:outputLabel value="Phone:" for="phone" />
+							<p:inputText id="phone" label="phone"
+								value="#{userBean.user.phone}" size="40" required="true" />
+
+							<h:outputLabel value="Email:" for="email" />
+							<p:inputText id="email" label="email"
+								value="#{userBean.user.email}" size="40" required="true" />
+
+
+							<h:outputLabel value="Password:" for="password" />
+							<p:password id="password" label="password"
+								value="#{userBean.user.password}" required="true" maxlength="10"
+								redisplay="true" />
+
+							<h:outputLabel value="Confirm password:" for="confirmPassword" />
+							<p:password id="confirmPassword" label="confirmPassword"
+								value="#{userBean.confirmPassword}" required="true"
+								maxlength="10" redisplay="true" />
+
+							<h:outputText />
+							<p:commandButton action="#{userBean.update}" value="Update" ajax="true">
+								<c:ajax execute="@form" render=":update :listprofile" />
+							</p:commandButton>
+						</h:panelGrid>
+					</h:form>
+					<h:form id="listprofile">
+					<!--  <h:panelGrid columns="4" bgcolor="#EBEBD6" styleClass="centered"
+							width="730" cellpadding="5">
+							<h:dataTable value="#{userBean.listLoggeddUser}" var="user"
+								rendered="#{!empty userBean.listLoggeddUser}" cellpadding="5"
+								bgcolor="#EBEBD6" rules="rows">-->
+								 <p:dataTable var="user" value="#{userBean.listLoggeddUser}">  
+								 
+							<p:column headerText="ID User">
+								<h:outputText value="#{user.iduser}" />
+							</p:column>
+							<p:column headerText="Name">
+								<h:outputText value="#{user.name}" />
+							</p:column>
+							<p:column headerText="Role">
+								<h:outputText value="#{user.occupation}" />
+							</p:column>
+							<p:column headerText="Institution">
+								<h:outputText value="#{user.institute}" />
+							</p:column>
+							<p:column headerText="Country">
+								<h:outputText value="#{user.country}" />
+							</p:column>
+							<p:column headerText="City">
+								<h:outputText value="#{user.city}" />
+							</p:column>
+							<p:column headerText="Email">
+								<h:outputText value="#{user.email}" />
+							</p:column>
+							<p:column headerText="Password">
+								<h:outputText value="#{user.password}" />
+							</p:column>
+							<p:column headerText="Edit">
+								<h:commandButton styleClass="edit">
+										<c:ajax execute="@form" render=":update :listprofile" />
+										<c:setPropertyActionListener target="#{userBean.user}"
+											value="#{user}" />
+									</h:commandButton>
+							</p:column>
+							<!-- 	<h:column>
+									<c:facet name="header">ID User</c:facet>
+							#{user.iduser}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Name</c:facet>
+							#{user.name}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Role</c:facet>
+							#{user.occupation}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Institution</c:facet>
+							#{user.institute}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Country</c:facet>
+							#{user.country}
+						</h:column>
+								<h:column>
+									<c:facet name="header">City</c:facet>
+							#{user.city}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Email</c:facet>
+							#{user.email}
+						</h:column>
+								<h:column>
+									<c:facet name="header">Password</c:facet>
+							#{user.password}
+						</h:column>
+						 -->
+								<!-- <c:facet name="header">My profile</c:facet> -->
+								<h:column>
+									<h:commandButton styleClass="edit">
+										<c:ajax execute="@this" render=":update :listprofile" />
+										<c:setPropertyActionListener target="#{userBean.user}"
+											value="#{user}" />
+									</h:commandButton>
+								</h:column>
+							</p:dataTable>
+						<!-- </h:panelGrid> -->
+					</h:form>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+</html>

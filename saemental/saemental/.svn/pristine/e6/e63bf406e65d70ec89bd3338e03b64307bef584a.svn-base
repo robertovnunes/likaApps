@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+	<data-sources />
+
+	<form-beans>
+		<!-- SISTEMA -->
+		<form-bean name="logon"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="loginUsuario" type="java.lang.String" />
+			<form-property name="senhaUsuario" type="java.lang.String" />
+		</form-bean>
+
+		<!-- USUARIO -->
+		<form-bean name="usuarioAcoes"
+			type="org.apache.struts.validator.DynaValidatorForm">
+		</form-bean>
+		
+		<form-bean name="usuarioAdd"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="nome" type="java.lang.String" />
+			<form-property name="cpf" type="java.lang.String" />
+			<form-property name="endereco" type="java.lang.String" />
+			<form-property name="numero" type="java.lang.String" />
+			<form-property name="bairro" type="java.lang.String" />
+			<form-property name="cep" type="java.lang.String" />
+			<form-property name="cidade" type="java.lang.String" />
+			<form-property name="federacao" type="java.lang.String" />
+			<form-property name="telefone" type="java.lang.String" />
+			<form-property name="conselho" type="java.lang.String" />
+			<form-property name="sexo" type="java.lang.String" />
+			<form-property name="pto_referencia" type="java.lang.String" />
+			<form-property name="restricaoAcesso" type="java.lang.String" />
+			<form-property name="login" type="java.lang.String" />
+			<form-property name="senha" type="java.lang.String" />
+			<form-property name="confirmasenha" type="java.lang.String" />
+			<form-property name="acao" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="buscarUsuarios"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="tfBusca" type="java.lang.String" />
+			<form-property name="tipoDeBusca" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="mostrarTelaUsuarioEdit"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="id" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="usuarioAlterarSenha"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="senhaAntiga" type="java.lang.String" />
+			<form-property name="senhaNova" type="java.lang.String" />
+			<form-property name="senhaConfirmar" type="java.lang.String" />
+		</form-bean>
+		
+		<!-- PACIENTE -->
+		<form-bean name="pacienteAcoes"
+			type="org.apache.struts.validator.DynaValidatorForm">
+		</form-bean>
+		
+		<form-bean name="mostrarTelaPacienteEditar"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="id" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="pacienteAdd"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="nome" type="java.lang.String" />
+			<form-property name="cpf" type="java.lang.String" />
+			<form-property name="endereco" type="java.lang.String" />
+			<form-property name="numero" type="java.lang.String" />
+			<form-property name="bairro" type="java.lang.String" />
+			<form-property name="cep" type="java.lang.String" />
+			<form-property name="cidade" type="java.lang.String" />
+			<form-property name="federacao" type="java.lang.String" />
+			<form-property name="telefone" type="java.lang.String" />
+			<form-property name="numeroProntuario" type="java.lang.String" />
+			<form-property name="sexo" type="java.lang.String" />
+			<form-property name="pto_referencia" type="java.lang.String" />
+			<form-property name="filiacao" type="java.lang.String" />
+			<form-property name="inputDate" type="java.lang.String" />
+			<form-property name="idade" type="java.lang.String" />
+			<form-property name="raca" type="java.lang.String" />
+			<form-property name="estado_civil" type="java.lang.String" />
+			<form-property name="num_filhos" type="java.lang.String" />
+			<form-property name="religiao" type="java.lang.String" />
+			<form-property name="escolaridade" type="java.lang.String" />
+			<form-property name="profissao" type="java.lang.String" />
+			<form-property name="acao" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="pacienteBuscar"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="tfBusca" type="java.lang.String" />
+			<form-property name="tipoDeBusca" type="java.lang.String" />
+		</form-bean>
+		
+		<!-- ATENDIMENTO -->
+		<form-bean name="antedimentosPaciente"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="id" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="atendimentoBuscar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="tfBusca" type="java.lang.String" />
+			<form-property name="tipoDeBusca" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="queixaSalvar"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="queixa" type="java.lang.String" />
+			<form-property name="cids" type="java.lang.String" />
+			<form-property name="medicacoes" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="antPessoaisSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="escolhidosCaractComport" type="java.lang.String" />
+			<form-property name="gravidez" type="java.lang.String" />
+			<form-property name="parto" type="java.lang.String" />
+			<form-property name="tbqualMotora" type="java.lang.String" />
+			<form-property name="tbqualLinguagem" type="java.lang.String" />
+			<form-property name="tbqualVisao" type="java.lang.String" />
+			<form-property name="tbqualAudicao" type="java.lang.String" />
+			<form-property name="tbqualPaladar" type="java.lang.String" />
+			<form-property name="tbqualOlfato" type="java.lang.String" />
+			<form-property name="tbqualTato" type="java.lang.String" />
+			<form-property name="ativo" type="java.lang.String" />
+			<form-property name="timido" type="java.lang.String" />
+			<form-property name="impaciente" type="java.lang.String" />
+			<form-property name="agressivo" type="java.lang.String" />
+			<form-property name="distraido" type="java.lang.String" />
+			<form-property name="inseguro" type="java.lang.String" />
+			<form-property name="chorava" type="java.lang.String" />
+			<form-property name="tbqualOutros" type="java.lang.String" />
+			<form-property name="puberdade" type="java.lang.String" />
+			<form-property name="relacionamentoAdolecentes" type="java.lang.String" />
+			<form-property name="grauAnsiedade" type="java.lang.String" />
+			<form-property name="relacPais" type="java.lang.String" />
+			<form-property name="relacAutoridades" type="java.lang.String" />
+			<form-property name="autoEstima" type="java.lang.String" />
+			<form-property name="dependencia" type="java.lang.String" />
+			<form-property name="notasAdolec" type="java.lang.String" />
+			<form-property name="idadeSexualVidaSexual" type="java.lang.String" />
+			<form-property name="orientacaoSexual" type="java.lang.String" />
+			<form-property name="usoDrogas" type="java.lang.String" />
+			<form-property name="escolhidosDrogaHidden" type="java.lang.String" />
+			<form-property name="antecPessoaisOutrasInfo" type="java.lang.String" />
+			
+		</form-bean>
+		
+		<form-bean name="antFamiliaresSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="parentes" type="java.lang.String" />
+			<form-property name="patologias" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="necessidadesSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="sono" type="java.lang.String" />
+			<form-property name="sonoQual" type="java.lang.String" />
+			<form-property name="eliminacao" type="java.lang.String" />
+			<form-property name="eliminacaoQual" type="java.lang.String" />
+			<form-property name="nutricao" type="java.lang.String" />
+			<form-property name="nutricaoQual" type="java.lang.String" />
+			<form-property name="sexualidade" type="java.lang.String" />
+			<form-property name="sexualidadeQual" type="java.lang.String" />
+			<form-property name="percepcao" type="java.lang.String" />
+			<form-property name="percepcaoQual" type="java.lang.String" />
+			<form-property name="exercicio" type="java.lang.String" />
+			<form-property name="exercicioQual" type="java.lang.String" />
+			<form-property name="cognicao" type="java.lang.String" />
+			<form-property name="cognicaoQual" type="java.lang.String" />
+			<form-property name="relacionamentos" type="java.lang.String" />
+			<form-property name="relacionamentosQual" type="java.lang.String" />
+			<form-property name="estresse" type="java.lang.String" />
+			<form-property name="estresseQual" type="java.lang.String" />
+			<form-property name="autoconceito" type="java.lang.String" />
+			<form-property name="autoconceitoQual" type="java.lang.String" />
+			<form-property name="espirituais" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="sinaisVitaisSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="temperatura" type="java.lang.String" />
+			<form-property name="tempLocal" type="java.lang.String" />
+			<form-property name="pulsoLocal" type="java.lang.String" />
+			<form-property name="pulso" type="java.lang.String" />
+			<form-property name="freqCard" type="java.lang.String" />
+			<form-property name="freqCardPadrao" type="java.lang.String" />
+			<form-property name="pressaoArt" type="java.lang.String" />
+			<form-property name="pressaoLocal" type="java.lang.String" />
+			<form-property name="freqResp" type="java.lang.String" />
+			<form-property name="freqRestLocal" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="sinaisVitaisSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="temperatura" type="java.lang.String" />
+			<form-property name="tempLocal" type="java.lang.String" />
+			<form-property name="pulsoLocal" type="java.lang.String" />
+			<form-property name="pulso" type="java.lang.String" />
+			<form-property name="freqCard" type="java.lang.String" />
+			<form-property name="freqCardPadrao" type="java.lang.String" />
+			<form-property name="pressaoArt" type="java.lang.String" />
+			<form-property name="pressaoLocal" type="java.lang.String" />
+			<form-property name="freqResp" type="java.lang.String" />
+			<form-property name="freqRestLocal" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="couroCabeludoSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="semqueixa" type="java.lang.String" />
+			<form-property name="inflamacoes" type="java.lang.String" />
+			<form-property name="parasitose" type="java.lang.String" />
+			<form-property name="sujidade" type="java.lang.String" />
+			<form-property name="deformidadeCraniana" type="java.lang.String" />
+			<form-property name="outros" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="olhosSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="semqueixa" type="java.lang.String" />
+			<form-property name="acuidade" type="java.lang.String" />
+			<form-property name="deformidade" type="java.lang.String" />
+			<form-property name="dor" type="java.lang.String" />
+			<form-property name="edema" type="java.lang.String" />
+			<form-property name="hiperemia" type="java.lang.String" /> 
+			<form-property name="ictericia" type="java.lang.String" /> 
+			<form-property name="lacrimejamento" type="java.lang.String" /> 
+			<form-property name="prurido" type="java.lang.String" /> 
+			<form-property name="ptose" type="java.lang.String" /> 
+			<form-property name="ressecamento" type="java.lang.String" />
+			<form-property name="secrecao" type="java.lang.String" />
+			<form-property name="lentes" type="java.lang.String" />
+			<form-property name="outros" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="narizSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="semqueixa" type="java.lang.String" />
+			<form-property name="deformidade" type="java.lang.String" />
+			<form-property name="dor" type="java.lang.String" />
+			<form-property name="epistaxe" type="java.lang.String" />
+			<form-property name="obstrucao" type="java.lang.String" />
+			<form-property name="secrecao" type="java.lang.String" /> 
+			<form-property name="outros" type="java.lang.String" /> 
+		</form-bean>
+		
+		<form-bean name="orelhasSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="semqueixa" type="java.lang.String" />
+			<form-property name="cerume" type="java.lang.String" />
+			<form-property name="deformidade" type="java.lang.String" />
+			<form-property name="dor" type="java.lang.String" />
+			<form-property name="edema" type="java.lang.String" />
+			<form-property name="hiperacusia" type="java.lang.String" /> 
+			<form-property name="hiperemia" type="java.lang.String" /> 
+			<form-property name="hipoacusia" type="java.lang.String" /> 
+			<form-property name="lesoes" type="java.lang.String" /> 
+			<form-property name="otorragia" type="java.lang.String" /> 
+			<form-property name="prurido" type="java.lang.String" />
+			<form-property name="secrecao" type="java.lang.String" />
+			<form-property name="zumbido" type="java.lang.String" />
+			<form-property name="deficit" type="java.lang.String" />
+			<form-property name="aparelho" type="java.lang.String" />
+			<form-property name="outros" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="bocaSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="semqueixa" type="java.lang.String" />
+			<form-property name="cianose" type="java.lang.String" />
+			<form-property name="lesoesLabios" type="java.lang.String" />
+			<form-property name="ressecamentoLabios" type="java.lang.String" />
+			<form-property name="edemaLabios" type="java.lang.String" />
+			<form-property name="hiperemiaLabios" type="java.lang.String" /> 
+			<form-property name="labiosoutros" type="java.lang.String" /> 
+			<form-property name="ausencia" type="java.lang.String" /> 
+			<form-property name="cariados" type="java.lang.String" /> 
+			<form-property name="protese" type="java.lang.String" /> 
+			<form-property name="dentesoutros" type="java.lang.String" />
+			<form-property name="edemasGengivas" type="java.lang.String" />
+			<form-property name="hiperamia" type="java.lang.String" />
+			<form-property name="hipertrofia" type="java.lang.String" />
+			<form-property name="lesoesGengiva" type="java.lang.String" />
+			<form-property name="manchasGengivas" type="java.lang.String" />
+			<form-property name="sangramento" type="java.lang.String" />
+			<form-property name="gengivasoutros" type="java.lang.String" />
+			<form-property name="corLingua" type="java.lang.String" />
+			<form-property name="edemaLingua" type="java.lang.String" />
+			<form-property name="lesoesLingua" type="java.lang.String" />
+			<form-property name="lisa" type="java.lang.String" />
+			<form-property name="manchasLingua" type="java.lang.String" />
+			<form-property name="linguaoutros" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="pescocoSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="semqueixa" type="java.lang.String" />
+			<form-property name="jugulares" type="java.lang.String" />
+			<form-property name="jugularoutros" type="java.lang.String" />
+			<form-property name="tireoide" type="java.lang.String" />
+			<form-property name="tireoideoutros" type="java.lang.String" />
+			<form-property name="ganglios" type="java.lang.String" /> 
+			<form-property name="gangliosoutros" type="java.lang.String" /> 
+		</form-bean>
+		
+		<form-bean name="mamasSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="semqueixa" type="java.lang.String" />
+			<form-property name="mastite" type="java.lang.String" />
+			<form-property name="nodulacao" type="java.lang.String" />
+			<form-property name="displasia" type="java.lang.String" />
+			<form-property name="deformidade" type="java.lang.String" />
+			<form-property name="neoplasias" type="java.lang.String" /> 
+			<form-property name="ginecomastia" type="java.lang.String" /> 
+			<form-property name="secrecao" type="java.lang.String" /> 
+			<form-property name="colostro" type="java.lang.String" />
+			<form-property name="outros" type="java.lang.String" /> 
+		</form-bean>
+		
+		<form-bean name="sistRespiratorioSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="semqueixa" type="java.lang.String" />
+			<form-property name="sonsvesiculares" type="java.lang.String" />
+			<form-property name="sonsestertores" type="java.lang.String" />
+			<form-property name="sonsroncos" type="java.lang.String" />
+			<form-property name="sonsoutros" type="java.lang.String" />
+			<form-property name="tosse" type="java.lang.String" /> 
+			<form-property name="expectoausente" type="java.lang.String" /> 
+			<form-property name="expectopurulento" type="java.lang.String" /> 
+			<form-property name="expectomucosa" type="java.lang.String" />
+			<form-property name="expectoserosa" type="java.lang.String" /> 
+			<form-property name="expectosanguinea" type="java.lang.String" /> 
+			<form-property name="expectoracaooutros" type="java.lang.String" />
+			<form-property name="hemoptiseausente" type="java.lang.String" /> 
+			<form-property name="hemoptisevivo" type="java.lang.String" />
+			<form-property name="hemoptiseespumoso" type="java.lang.String" /> 
+			<form-property name="hemoptisemucoso" type="java.lang.String" />
+			<form-property name="hemoptiseoutros" type="java.lang.String" /> 
+			<form-property name="dor" type="java.lang.String" /> 
+			<form-property name="outros" type="java.lang.String" /> 
+		</form-bean>
+		
+		<form-bean name="sistCardioSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+             <form-property name="semqueixa" type="java.lang.String" />
+			<form-property name="sonsnormofoneticas" type="java.lang.String" />
+			<form-property name="sonshiperfoneticas" type="java.lang.String" />
+			<form-property name="sonshipofoneticas" type="java.lang.String" />
+			<form-property name="sonscomsopros" type="java.lang.String" />
+			<form-property name="sonssemsopros" type="java.lang.String" /> 
+			<form-property name="sonsoutros" type="java.lang.String" /> 
+			<form-property name="perfussao" type="java.lang.String" />
+			<form-property name="perfusaooutros" type="java.lang.String" /> 
+			<form-property name="dorconstricao" type="java.lang.String" /> 
+			<form-property name="dorcompressao" type="java.lang.String" />
+			<form-property name="dorqueimacao" type="java.lang.String" /> 
+			<form-property name="dorpeso" type="java.lang.String" />
+			<form-property name="dorpontada" type="java.lang.String" /> 
+			<form-property name="doroutros" type="java.lang.String" />
+			<form-property name="dorretroesternal" type="java.lang.String" /> 
+			<form-property name="dorombroesquerdo" type="java.lang.String" /> 
+			<form-property name="dorpescoco" type="java.lang.String" /> 
+           	 <form-property name="dorface" type="java.lang.String" />
+           	<form-property name="dorinterescapular" type="java.lang.String" />
+           	<form-property name="dorepigastrica" type="java.lang.String" />
+           	<form-property name="dorLocaloutros" type="java.lang.String" />
+           	<form-property name="geralpalpitacoes" type="java.lang.String" />
+           	<form-property name="geralsincope" type="java.lang.String" />
+           	<form-property name="geralmmii" type="java.lang.String" />
+           	<form-property name="geralmmss" type="java.lang.String" />
+           	<form-property name="geralanasarca" type="java.lang.String" />
+           	<form-property name="geralformigamento" type="java.lang.String" />
+           	<form-property name="geralcaimbras" type="java.lang.String" />
+           	<form-property name="geraldor" type="java.lang.String" />
+           	<form-property name="geralLocal" type="java.lang.String" />
+           	<form-property name="geralOutros" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="sistGastroSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+             <form-property name="semqueixa" type="java.lang.String" />
+			<form-property name="abdomenplano" type="java.lang.String" />
+			<form-property name="abdomengloboso" type="java.lang.String" />
+			<form-property name="abdomensemigloboso" type="java.lang.String" />
+			<form-property name="abdomenescavado" type="java.lang.String" />
+			<form-property name="abdomenoutros" type="java.lang.String" />
+			<form-property name="anorexia" type="java.lang.String" /> 
+			<form-property name="ascite" type="java.lang.String" /> 
+			<form-property name="colicas" type="java.lang.String" />
+			<form-property name="constipacao" type="java.lang.String" /> 
+			<form-property name="diarreia" type="java.lang.String" /> 
+			<form-property name="disfagia" type="java.lang.String" />
+			<form-property name="dispepsia" type="java.lang.String" /> 
+			<form-property name="distensao" type="java.lang.String" />
+			<form-property name="eructacao" type="java.lang.String" /> 
+			<form-property name="flatulencia" type="java.lang.String" />
+			<form-property name="ganhopeso" type="java.lang.String" /> 
+			<form-property name="halitose" type="java.lang.String" /> 
+			<form-property name="hematemese" type="java.lang.String" /> 
+           	 <form-property name="melena" type="java.lang.String" />
+           	<form-property name="nauseas" type="java.lang.String" />
+           	<form-property name="odinofagia" type="java.lang.String" />
+           	<form-property name="perdapeso" type="java.lang.String" /> 
+			<form-property name="pirose" type="java.lang.String" /> 
+           	 <form-property name="refluxo" type="java.lang.String" />
+           	<form-property name="sialorreia" type="java.lang.String" />
+           	<form-property name="singulto" type="java.lang.String" />
+           	<form-property name="vomitos" type="java.lang.String" />
+           	<form-property name="dor" type="java.lang.String" />
+           	<form-property name="dorOnde" type="java.lang.String" />
+     		<form-property name="outros" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="sistUrinaSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+                  	  <form-property name="semqueixa" type="java.lang.String" />
+			<form-property name="corlimpida" type="java.lang.String" />
+			<form-property name="corcolurica" type="java.lang.String" />
+			<form-property name="corconcentrada" type="java.lang.String" />
+			<form-property name="corespumosa" type="java.lang.String" />
+			<form-property name="coroutros" type="java.lang.String" />
+			<form-property name="miccionaisoliguria" type="java.lang.String" />
+			<form-property name="micccionaisdisuria" type="java.lang.String" />
+			<form-property name="miccionaisanuria" type="java.lang.String" />
+			<form-property name="miccionaispolaciuria" type="java.lang.String" />
+			<form-property name="miccionaishematuria" type="java.lang.String" />
+			<form-property name="miccionaisincotinecia" type="java.lang.String" />
+			<form-property name="miccionaisretencao" type="java.lang.String" />
+			<form-property name="miccionaisenurese" type="java.lang.String" />
+			<form-property name="miccionaispoliuria" type="java.lang.String" />
+			<form-property name="miccionaispiuria" type="java.lang.String" />
+			<form-property name="miccionaisoutros" type="java.lang.String" />
+			<form-property name="ciclo" type="java.lang.String" />
+			<form-property name="menopausa" type="java.lang.String" />
+			<form-property name="sangramentos" type="java.lang.String" />
+			<form-property name="prurido" type="java.lang.String" />
+			<form-property name="lesoes" type="java.lang.String" />
+			<form-property name="odor" type="java.lang.String" />
+			<form-property name="corrimento" type="java.lang.String" />
+			<form-property name="colicas" type="java.lang.String" />
+		</form-bean>
+		
+		<form-bean name="pelesAnexosSalvar" 
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="semqueixa" type="java.lang.String" />
+			<form-property name="coloracaopalidez" type="java.lang.String" />
+			<form-property name="coloracaocianose" type="java.lang.String" />
+			<form-property name="coloracaoictericia" type="java.lang.String" />
+			<form-property name="coloracaoeritema" type="java.lang.String" />
+			<form-property name="coloracaopetequias" type="java.lang.String" />
+			<form-property name="coloracaoequimoses" type="java.lang.String" />
+			<form-property name="coloracaohipocromia" type="java.lang.String" />
+			<form-property name="coloracaohipercromia" type="java.lang.String" />
+			<form-property name="coloracaooutros" type="java.lang.String" />
+			<form-property name="hidrahidratada" type="java.lang.String" />
+			<form-property name="hidraxerodermia" type="java.lang.String" />
+			<form-property name="hidrahiperdrose" type="java.lang.String" />
+			<form-property name="hidrataoutros" type="java.lang.String" />
+	        <form-property name="turgor" type="java.lang.String" />
+			<form-property name="turgoroutros" type="java.lang.String" />
+			<form-property name="lesoespapula" type="java.lang.String" />
+			<form-property name="lesoesnodulo" type="java.lang.String" />
+			<form-property name="lesoestumor" type="java.lang.String" />
+			<form-property name="lesoesurticaria" type="java.lang.String" />
+			<form-property name="lesoesvesicula" type="java.lang.String" />
+			<form-property name="lesoesbolha" type="java.lang.String" />
+			<form-property name="lesoespustula" type="java.lang.String" />
+			<form-property name="lesoesabscesso" type="java.lang.String" />
+			<form-property name="lesoeshematoma" type="java.lang.String" />	
+	        <form-property name="lesoescicatriz" type="java.lang.String" />	
+            <form-property name="lesoesescara" type="java.lang.String" />	
+            <form-property name="lesoeserosao" type="java.lang.String" />	
+            <form-property name="lesoesfissura" type="java.lang.String" />	
+            <form-property name="lesoesfistula" type="java.lang.String" />	
+            <form-property name="edema" type="java.lang.String" />	
+            <form-property name="lesoesoutros" type="java.lang.String" />
+            <form-property name="feridascronicas" type="java.lang.String" />	
+            <form-property name="feridascirurgicas" type="java.lang.String" />	
+            <form-property name="feridastraumaticas" type="java.lang.String" />	
+            <form-property name="feridasinfectadas" type="java.lang.String" />	
+            <form-property name="feridastecido" type="java.lang.String" />
+            <form-property name="feridasgranuladas" type="java.lang.String" />
+            <form-property name="feridaseptelizadas" type="java.lang.String" />
+            <form-property name="feridasoutros" type="java.lang.String" />	
+            <form-property name="unhaspalidez" type="java.lang.String" />	
+            <form-property name="unhascianose" type="java.lang.String" />	
+            <form-property name="unhasonicofagia" type="java.lang.String" />	
+            <form-property name="unhassujidade" type="java.lang.String" />	
+            <form-property name="unhashipercromia" type="java.lang.String" />	
+            <form-property name="unhasoutros" type="java.lang.String" />	
+            <form-property name="peloshipertricose" type="java.lang.String" />	
+            <form-property name="peloshipotricose" type="java.lang.String" />	
+            <form-property name="pelosalopecia" type="java.lang.String" />		 
+          	<form-property name="pelosoutros" type="java.lang.String" />	    			
+		</form-bean>
+		
+		
+		<form-bean name="cidAdd"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="cidId" type="java.lang.String" />
+		</form-bean>
+		
+	</form-beans>
+	<global-exceptions />
+
+	<global-forwards>
+
+		<!-- SISTEMA -->
+		<forward name="fIndex" path="/paciente.do?method=mostrarTelaPacienteBuscar" />
+		<forward name="fLogon" path="/JSPs/home.jsp" />
+		<forward name="fError" path="/JSPs/error.jsp" />
+		<forward name="fLogoff" path="/JSPs/home.jsp" />
+		
+		<!-- USUARIO -->
+		<forward name="fUsuarioAdd" path="/JSPs/menu-principal/usuario/usuariosAdicionar.jsp" />
+		<forward name="fUsuarioEdit" path="/JSPs/menu-principal/usuario/usuariosEditar.jsp" />
+		<forward name="fUsuarioBusca" path="/JSPs/menu-principal/usuario/usuariosBuscar.jsp" />
+		<forward name="fUsuarioAlterarSenha" path="/JSPs/menu-principal/usuario/AlterarSenha.jsp" />
+		
+		<!-- PACIENTE -->
+		<forward name="fPacienteAdd" path="/JSPs/menu-principal/paciente/pacientesAdicionar.jsp" />
+		<forward name="fPacienteBusca" path="/JSPs/menu-principal/paciente/pacientesBuscar.jsp" />
+		<forward name="fPacienteAtendimentos" path="/JSPs/Antendimentos/pacienteAtendimentos.jsp" />
+		<forward name="fPacienteEditar" path="/JSPs/menu-principal/paciente/pacientesEditar.jsp" />
+		
+		<!-- ATENDIMENTOS -->
+		<forward name="fAtendimento" path="/JSPs/Antendimentos/Atendimento/Queixa/QueixaDoencaAtual.jsp" />
+		<forward name="fAtendimentoQueixa" path="/JSPs/Antendimentos/Atendimento/Queixa/QueixaDoencaAtual.jsp" />
+		<forward name="fAtendimentoAntPessoais" path="/JSPs/Antendimentos/Atendimento/Historico/AntecedentesPessoais.jsp" />
+		<forward name="fAtendimentoAntFamiliares" path="/JSPs/Antendimentos/Atendimento/Historico/AntecedentesFamiliares.jsp" />
+		<forward name="fAtendimentoNecessidades" path="/JSPs/Antendimentos/Atendimento/Necessidades/NecessidadesBasicas.jsp" />
+		<forward name="fAtendimentoExameFisico" path="/JSPs/Antendimentos/Atendimento/ExameFisico/SinaisVitais.jsp" />
+		<forward name="fAtendimentoExMentalGeral" path="/JSPs/Antendimentos/Atendimento/ExameMental/ExameMentalGeral.jsp" />
+		<forward name="fAtendimentoExMentalMini" path="/JSPs/Antendimentos/Atendimento/ExameMental/ExameMentalMiniMental.jsp" />
+		
+		<forward name="fAtendimentoProcEnfermagem" path="/JSPs/Antendimentos/Atendimento/DiagnosticoIntervencoes/ProcessoEnfermagem.jsp" />
+		<forward name="fAtendimentoAlta" path="/JSPs/Antendimentos/Atendimento/Alta.jsp" />
+		<forward name="fAtendimentoAssAtendimento" path="/JSPs/Antendimentos/Atendimento/AssinarAtendimento.jsp" />
+		<forward name="fAtendimentoObsAtendimento" path="/JSPs/Antendimentos/Atendimento/Observacoes/ObservacoesAtendimento.jsp" />
+		<forward name="fAtendimentoAvaliacoesProf" path="/JSPs/Antendimentos/Atendimento/Avaliacoes/AvaliacoesProfessor.jsp" />
+		<forward name="fAtendimentoDiagnosticoIntervencoes" path="/JSPs/Antendimentos/Atendimento/Avaliacoes/AvaliacoesProfessor.jsp" />
+		<forward name="fDiagnosticoAdd" path="/JSPs/Antendimentos/Atendimento/DiagnosticoIntervencoes/DiagnosticoAdd.jsp" />
+		<forward name="fDiagnosticoEscolhido" path="/JSPs/Antendimentos/Atendimento/DiagnosticoIntervencoes/Diagnostico.jsp" />
+		
+		
+		<forward name="fAtendimentoObsAtendimentoSelecionado" path="/JSPs/Antendimentos/Atendimento/Observacoes/Observacao.jsp" />
+		<forward name="fAtendimentoAvaliacoesProfSelecionada" path="/JSPs/Antendimentos/Atendimento/Avaliacoes/Avaliacao.jsp" />
+		
+		<!-- EXAME FISICO -->
+		<forward name="fExameFisicoSinaisVitais" path="/JSPs/Antendimentos/Atendimento/ExameFisico/SinaisVitais.jsp" />
+		<forward name="fExameFisicoCabeca" path="/JSPs/Antendimentos/Atendimento/ExameFisico/Cabeca.jsp" />
+		<forward name="fExameFisicoOlhos" path="/JSPs/Antendimentos/Atendimento/ExameFisico/Olhos.jsp" />
+		<forward name="fExameFisicoNariz" path="/JSPs/Antendimentos/Atendimento/ExameFisico/Nariz.jsp" />
+		<forward name="fExameFisicoOrelhas" path="/JSPs/Antendimentos/Atendimento/ExameFisico/Orelhas.jsp" />
+		<forward name="fExameFisicoBoca" path="/JSPs/Antendimentos/Atendimento/ExameFisico/Boca.jsp" />
+		<forward name="fExameFisicoPescoco" path="/JSPs/Antendimentos/Atendimento/ExameFisico/Pescoco.jsp" />
+		<forward name="fExameFisicoMamas" path="/JSPs/Antendimentos/Atendimento/ExameFisico/ExameMamas.jsp" />
+		<forward name="fExameFisicoSistRespiratorio" path="/JSPs/Antendimentos/Atendimento/ExameFisico/SistRespiratorio.jsp" />
+		<forward name="fExameFisicoSistCardio" path="/JSPs/Antendimentos/Atendimento/ExameFisico/SistCardio.jsp" />
+		<forward name="fExameFisicoSistGastro" path="/JSPs/Antendimentos/Atendimento/ExameFisico/SistGastro.jsp" />
+		<forward name="fExameFisicoSistUrina" path="/JSPs/Antendimentos/Atendimento/ExameFisico/SistUrina.jsp" />
+		<forward name="fExameFisicoPelesAnexos" path="/JSPs/Antendimentos/Atendimento/ExameFisico/PelesAnexos.jsp" />
+		
+		
+	</global-forwards>
+	<action-mappings>
+		<!-- SISTEMA -->
+		<action path="/sistema" 
+			type="struts.acoes.SistemaAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<action path="/error" 
+			type="struts.acoes.SistemaAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<action path="/error" name="reportarBug" 
+			type="struts.acoes.SistemaAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+			
+		<action name="logon" 
+			path="/logon"
+			type="struts.acoes.SistemaAcoes" 
+			parameter="method" scope="request" input="/JSPs/home.jsp" validate="false" />
+			
+		<action name="logoff" 
+			path="/logoff"
+			type="struts.acoes.SistemaAcoes" 
+			parameter="method" scope="request" input="/JSPs/home.jsp" validate="false" />
+			
+		<!-- USUARIO -->
+		<action path="/usuario"  name="usuarioAcoes"
+			type="struts.acoes.UsuarioAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<action path="/usuarioAdd"  name="usuarioAdd"
+			type="struts.acoes.UsuarioAcoes" input="/JSPs/menu-principal/usuario/usuariosAdicionar.jsp"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/usuario"  name="mostrarTelaUsuarioEdit"
+			type="struts.acoes.UsuarioAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<action path="/buscarUsuarios"  name="buscarUsuarios"
+			type="struts.acoes.UsuarioAcoes" input="/JSPs/menu-principal/usuario/usuariosBuscar.jsp"
+			parameter="method" scope="request" validate="false" />
+		
+		<action path="/usuarioAlterarSenha"  name="usuarioAlterarSenha"
+			type="struts.acoes.UsuarioAcoes"
+			parameter="method" scope="request" validate="false" />	
+
+		<!-- PACIENTE -->
+		<action path="/paciente"  name="pacienteAcoes"
+			type="struts.acoes.PacienteAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<action path="/pacienteAdd"  name="pacienteAdd"
+			type="struts.acoes.PacienteAcoes"
+			parameter="method" scope="request" validate="false" />
+		
+		<action path="/paciente"  name="mostrarTelaPacienteEditar" 
+			type="struts.acoes.PacienteAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<action path="/pacienteBuscar"  name="pacienteBuscar"
+			type="struts.acoes.PacienteAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<!-- ATENDIMENTOS -->
+		<action path="/antendimento"  name="antedimentosPaciente"
+			type="struts.acoes.PacienteAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<action path="/atendimentoBuscar"  name="atendimentoBuscar"
+			type="struts.acoes.PacienteAcoes"
+			parameter="method" scope="request" validate="false" />	
+		
+		<action path="/atendimento" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/queixa" name="queixaSalvar" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/cidAdd" name="cidAdd" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+	
+		<action path="/cidRemover" name="removerCid" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+
+
+		<action path="/antPessoais" name="antPessoaisSalvar" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/antFamiliares" name="antFamiliaresSalvar" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/necessidades" name="necessidadesSalvar" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />
+		
+		<action path="/sinaisVitais" name="sinaisVitaisSalvar" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/couroCabeludo" name="couroCabeludoSalvar" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<action path="/olhos" name="olhosSalvar" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />	
+		
+		<action path="/nariz" name="narizSalvar" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/orelhas" name="orelhasSalvar" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />	
+		
+		<action path="/boca" name="bocaSalvar" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />	
+		
+		<action path="/pescoco" name="pescocoSalvar" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/mamas" name="mamasSalvar" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />	
+		
+		<action path="/sistRespiratorio" name="sistRespiratorioSalvar" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/sistCardio" name="sistCardioSalvar" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />			
+		
+		<action path="/sistGastro" name="sistGastroSalvar" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/sistUrina" name="sistUrinaSalvar" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />			
+		
+		<action path="/pelesAnexos" name="pelesAnexosSalvar" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />			
+				
+		<action path="/exameFisico" 
+			type="struts.acoes.ExameFisicoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+			
+		<action path="/exameMentalGeral" name="exameMentalGeralSalvar" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />		
+			
+		<action path="/exameMentalMiniMental" name="exameMentalMiniMentalSalvar" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />		
+			
+		<action path="/cipeBuscar" name="cipeBuscar" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+		
+		<action path="/diagnosticoAdd" name="diagnosticoAdd" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+		
+		<action path="/nicNocBuscar" name="nicNocBuscar" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/diagnosticoSalvar" name="diagnosticoSalvar" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/nicAdd" name="nicAdd" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/nocAdd" name="nocAdd" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+		
+		<action path="/diagnostico" name="mostrarTelaDiagnostico" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+		
+		<action path="/diagnostico" name="removerNoc" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+		
+		<action path="/diagnostico" name="removerNic" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+		
+		
+		<action path="/intervencaoAdd" name="intervencaoAdd" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+		<action path="/resultadoAdd" name="resultadoAdd" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+		
+		<action path="/diagnostico" name="removerResultado" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+		
+		<action path="/diagnostico" name="removerIntervencao" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<action path="/alta" name="altaSalvar" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />
+		
+		<action path="/assinar" name="assinarAtendimento" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+			
+		<action path="/adendoAdd" name="adicionarAdendo" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<action path="/adendoSelect" name="selecionarAdendo" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<action path="/observacoesBuscar" name="observacoesBuscar" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+			
+			
+		<action path="/avaliacaoAdd" name="adicionarAvaliacao" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<action path="/avaliacaoSelect" name="selecionarAvaliacao" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />
+			
+		<action path="/avaliacoesBuscar" name="avaliacoesBuscar" 
+			type="struts.acoes.AtendimentoAcoes"
+			parameter="method" scope="request" validate="false" />	
+				
+		</action-mappings>
+	
+	<controller nocache="true" />
+	<message-resources null="false"
+		parameter="struts.mensagens.MessageResources" />
+
+</struts-config>

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/paper
+END
+Paper.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/paper/Paper.java
+END
+PaperRN.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/paper/PaperRN.java
+END
+PaperDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/paper/PaperDAO.java
+END
+Symptoms.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/paper/Symptoms.java
+END
+SymptomsRN.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/paper/SymptomsRN.java
+END
+SymptomDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/paper/SymptomDAO.java
+END
+PaperDAOHibernate.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/paper/PaperDAOHibernate.java
+END
+SymptomDAOHibernate.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/prion/!svn/ver/24/desenvolvimento/HPDD_T2_17_06_2013/src/hpdd/paper/SymptomDAOHibernate.java
+END

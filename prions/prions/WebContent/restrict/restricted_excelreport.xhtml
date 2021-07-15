@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_rest.css" rel="stylesheet"
+	type="text/css" />
+<title>Excel Export</title>
+</h:head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+			<h1>Excel Export</h1>
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="restricted_excelreport.jsf"> Excel Export</a>
+				</h4>
+				<br />
+
+				<h:form id="texto" styleClass="centered">
+
+					<h:messages />
+					<div
+						style="height: 400px; width: 500px; overflow-x: auto; overflow-y: auto;">
+						
+						<h:outputLabel value="From Date: " for="date" />
+						<p:calendar pattern="yyyy/MM/dd" id="dateFrom"  yearRange="1900:2100" value="#{excelReportBean.dateFrom}" navigator="true" display="inline"/>
+						<h:outputLabel value="To Date: "  for="date" />
+						<p:calendar pattern="yyyy/MM/dd" id="dateTo"  yearRange="1900:2100" value="#{excelReportBean.dateTo}" navigator="true" display="inline"/>  
+			
+				<br /><br />
+						<h:outputLabel value="Country: " for="country" />
+						<p:selectOneMenu id="country" width="200px" style="width:200px;"
+											value="#{excelReportBean.country}" required="false">
+												<c:selectItem itemValue="" itemLabel="All" />
+												<c:selectItem itemValue="United States" itemLabel="United States" />
+												<c:selectItem itemValue="United Kingdom" itemLabel="United Kingdom" />
+												<c:selectItem itemValue="Afghanistan" itemLabel="Afghanistan" />
+												<c:selectItem itemValue="Albania" itemLabel="Albania" />
+												<c:selectItem itemValue="Algeria" itemLabel="Algeria" />
+												<c:selectItem itemValue="American Samoa" itemLabel="American Samoa" />
+												<c:selectItem itemValue="Andorra" itemLabel="Andorra" />
+												<c:selectItem itemValue="Angola" itemLabel="Angola" />
+												<c:selectItem itemValue="Anguilla" itemLabel="Anguilla" />
+												<c:selectItem itemValue="Antarctica" itemLabel="Antarctica" />
+												<c:selectItem itemValue="Antigua and Barbuda" itemLabel="Antigua and Barbuda" />
+												<c:selectItem itemValue="Argentina" itemLabel="Argentina" />
+												<c:selectItem itemValue="Armenia" itemLabel="Armenia" />
+												<c:selectItem itemValue="Aruba" itemLabel="Aruba" />
+												<c:selectItem itemValue="Australia" itemLabel="Australia" />
+												<c:selectItem itemValue="Austria" itemLabel="Austria" />
+												<c:selectItem itemValue="Azerbaijan" itemLabel="Azerbaijan" />
+												<c:selectItem itemValue="Bahamas" itemLabel="Bahamas" />
+												<c:selectItem itemValue="Bahrain" itemLabel="Bahrain" />
+												<c:selectItem itemValue="Bangladesh" itemLabel="Bangladesh" />
+												<c:selectItem itemValue="Barbados" itemLabel="Barbados" />
+												<c:selectItem itemValue="Belarus" itemLabel="Belarus" />
+												<c:selectItem itemValue="Belgium" itemLabel="Belgium" />
+												<c:selectItem itemValue="Belize" itemLabel="Belize" />
+												<c:selectItem itemValue="Benin" itemLabel="Benin" />
+												<c:selectItem itemValue="Bermuda" itemLabel="Bermuda" />
+												<c:selectItem itemValue="Bhutan" itemLabel="Bhutan" />
+												<c:selectItem itemValue="Bolivia" itemLabel="Bolivia" />
+												<c:selectItem itemValue="Bosnia and Herzegovina" itemLabel="Bosnia and Herzegovina" />
+												<c:selectItem itemValue="Botswana" itemLabel="Botswana" />
+												<c:selectItem itemValue="Bouvet Island" itemLabel="Bouvet Island" />
+												<c:selectItem itemValue="Brazil" itemLabel="Brazil" />
+												<c:selectItem itemValue="British Indian Ocean Territory" itemLabel="British Indian Ocean Territory" />
+												<c:selectItem itemValue="Brunei Darussalam" itemLabel="Brunei Darussalam" />
+												<c:selectItem itemValue="Bulgaria" itemLabel="Bulgaria" />
+												<c:selectItem itemValue="Burkina Faso" itemLabel="Burkina Faso" />
+												<c:selectItem itemValue="Burundi" itemLabel="Burundi" />
+												<c:selectItem itemValue="Cambodia" itemLabel="Cambodia" />
+												<c:selectItem itemValue="Cameroon" itemLabel="Cameroon" />
+												<c:selectItem itemValue="Canada" itemLabel="Canada" />
+												<c:selectItem itemValue="Cape Verde" itemLabel="Cape Verde" />
+												<c:selectItem itemValue="Cayman Islands" itemLabel="Cayman Islands" />
+												<c:selectItem itemValue="Central African Republic" itemLabel="Central African Republic" />
+												<c:selectItem itemValue="Chad" itemLabel="Chad" />
+												<c:selectItem itemValue="Chile" itemLabel="Chile" />
+												<c:selectItem itemValue="China" itemLabel="China" />
+												<c:selectItem itemValue="Christmas Island" itemLabel="Christmas Island" />
+												<c:selectItem itemValue="Cocos (Keeling) Islands" itemLabel="Cocos (Keeling) Islands" />
+												<c:selectItem itemValue="Colombia" itemLabel="Colombia" />
+												<c:selectItem itemValue="Comoros" itemLabel="Comoros" />
+												<c:selectItem itemValue="Congo" itemLabel="Congo" />
+												<c:selectItem itemValue="Congo, The Democratic Republic of The" itemLabel="Congo, The Democratic Republic of The" />
+												<c:selectItem itemValue="Cook Islands" itemLabel="Cook Islands" />
+												<c:selectItem itemValue="Costa Rica" itemLabel="Costa Rica" />
+												<c:selectItem itemValue="Cote D'ivoire" itemLabel="Cote D'ivoire" />
+												<c:selectItem itemValue="Croatia" itemLabel="Croatia" />
+												<c:selectItem itemValue="Cuba" itemLabel="Cuba" />
+												<c:selectItem itemValue="Cyprus" itemLabel="Cyprus" />
+												<c:selectItem itemValue="Czech Republic" itemLabel="Czech Republic" />
+												<c:selectItem itemValue="Denmark" itemLabel="Denmark" />
+												<c:selectItem itemValue="Djibouti" itemLabel="Djibouti" />
+												<c:selectItem itemValue="Dominica" itemLabel="Dominica" />
+												<c:selectItem itemValue="Dominican Republic" itemLabel="Dominican Republic" />
+												<c:selectItem itemValue="Ecuador" itemLabel="Ecuador" />
+												<c:selectItem itemValue="Egypt" itemLabel="Egypt" />
+												<c:selectItem itemValue="El Salvador" itemLabel="El Salvador" />
+												<c:selectItem itemValue="Equatorial Guinea" itemLabel="Equatorial Guinea" />
+												<c:selectItem itemValue="Eritrea" itemLabel="Eritrea" />
+												<c:selectItem itemValue="Estonia" itemLabel="Estonia" />
+												<c:selectItem itemValue="Ethiopia" itemLabel="Ethiopia" />
+												<c:selectItem itemValue="Falkland Islands (Malvinas)" itemLabel="Falkland Islands (Malvinas)" />
+												<c:selectItem itemValue="Faroe Islands" itemLabel="Faroe Islands" />
+												<c:selectItem itemValue="Fiji" itemLabel="Fiji" />
+												<c:selectItem itemValue="Finland" itemLabel="Finland" />
+												<c:selectItem itemValue="France" itemLabel="France" />
+												<c:selectItem itemValue="French Guiana" itemLabel="French Guiana" />
+												<c:selectItem itemValue="French Polynesia" itemLabel="French Polynesia" />
+												<c:selectItem itemValue="French Southern Territories" itemLabel="French Southern Territories" />
+												<c:selectItem itemValue="Gabon" itemLabel="Gabon" />
+												<c:selectItem itemValue="Gambia" itemLabel="Gambia" />
+												<c:selectItem itemValue="Georgia" itemLabel="Georgia" />
+												<c:selectItem itemValue="Germany" itemLabel="Germany" />
+												<c:selectItem itemValue="Ghana" itemLabel="Ghana" />
+												<c:selectItem itemValue="Gibraltar" itemLabel="Gibraltar" />
+												<c:selectItem itemValue="Greece" itemLabel="Greece" />
+												<c:selectItem itemValue="Greenland" itemLabel="Greenland" />
+												<c:selectItem itemValue="Grenada" itemLabel="Grenada" />
+												<c:selectItem itemValue="Guadeloupe" itemLabel="Guadeloupe" />
+												<c:selectItem itemValue="Guam" itemLabel="Guam" />
+												<c:selectItem itemValue="Guatemala" itemLabel="Guatemala" />
+												<c:selectItem itemValue="Guinea" itemLabel="Guinea" />
+												<c:selectItem itemValue="Guinea-bissau" itemLabel="Guinea-bissau" />
+												<c:selectItem itemValue="Guyana" itemLabel="Guyana" />
+												<c:selectItem itemValue="Haiti" itemLabel="Haiti" />
+												<c:selectItem itemValue="Heard Island and Mcdonald Islands" itemLabel="Heard Island and Mcdonald Islands" />
+												<c:selectItem itemValue="Holy See (Vatican City State)" itemLabel="Holy See (Vatican City State)" />
+												<c:selectItem itemValue="Honduras" itemLabel="Honduras" />
+												<c:selectItem itemValue="Hong Kong" itemLabel="Hong Kong" />
+												<c:selectItem itemValue="Hungary" itemLabel="Hungary" />
+												<c:selectItem itemValue="Iceland" itemLabel="Iceland" />
+												<c:selectItem itemValue="India" itemLabel="India" />
+												<c:selectItem itemValue="Indonesia" itemLabel="Indonesia" />
+												<c:selectItem itemValue="Iran, Islamic Republic of" itemLabel="Iran, Islamic Republic of" />
+												<c:selectItem itemValue="Iraq" itemLabel="Iraq" />
+												<c:selectItem itemValue="Ireland" itemLabel="Ireland" />
+												<c:selectItem itemValue="Israel" itemLabel="Israel" />
+												<c:selectItem itemValue="Italy" itemLabel="Italy" />
+												<c:selectItem itemValue="Jamaica" itemLabel="Jamaica" />
+												<c:selectItem itemValue="Japan" itemLabel="Japan" />
+												<c:selectItem itemValue="Jordan" itemLabel="Jordan" />
+												<c:selectItem itemValue="Kazakhstan" itemLabel="Kazakhstan" />
+												<c:selectItem itemValue="Kenya" itemLabel="Kenya" />
+												<c:selectItem itemValue="Kiribati" itemLabel="Kiribati" />
+												<c:selectItem itemValue="Korea, Democratic People's Republic of" itemLabel="Korea, Democratic People's Republic of" />
+												<c:selectItem itemValue="Korea, Republic of" itemLabel="Korea, Republic of" />
+												<c:selectItem itemValue="Kuwait" itemLabel="Kuwait" />
+												<c:selectItem itemValue="Kyrgyzstan" itemLabel="Kyrgyzstan" />
+												<c:selectItem itemValue="Lao People's Democratic Republic" itemLabel="Lao People's Democratic Republic" />
+												<c:selectItem itemValue="Latvia" itemLabel="Latvia" />
+												<c:selectItem itemValue="Lebanon" itemLabel="Lebanon" />
+												<c:selectItem itemValue="Lesotho" itemLabel="Lesotho" />
+												<c:selectItem itemValue="Liberia" itemLabel="Liberia" />
+												<c:selectItem itemValue="Libyan Arab Jamahiriya" itemLabel="Libyan Arab Jamahiriya" />
+												<c:selectItem itemValue="Liechtenstein" itemLabel="Liechtenstein" />
+												<c:selectItem itemValue="Lithuania" itemLabel="Lithuania" />
+												<c:selectItem itemValue="Luxembourg" itemLabel="Luxembourg" />
+												<c:selectItem itemValue="Macao" itemLabel="Macao" />
+												<c:selectItem itemValue="Macedonia, The Former Yugoslav Republic of" itemLabel="Macedonia, The Former Yugoslav Republic of" />
+												<c:selectItem itemValue="Madagascar" itemLabel="Madagascar" />
+												<c:selectItem itemValue="Malawi" itemLabel="Malawi" />
+												<c:selectItem itemValue="Malaysia" itemLabel="Malaysia" />
+												<c:selectItem itemValue="Maldives" itemLabel="Maldives" />
+												<c:selectItem itemValue="Mali" itemLabel="Mali" />
+												<c:selectItem itemValue="Malta" itemLabel="Malta" />
+												<c:selectItem itemValue="Marshall Islands" itemLabel="Marshall Islands" />
+												<c:selectItem itemValue="Martinique" itemLabel="Martinique" />
+												<c:selectItem itemValue="Mauritania" itemLabel="Mauritania" />
+												<c:selectItem itemValue="Mauritius" itemLabel="Mauritius" />
+												<c:selectItem itemValue="Mayotte" itemLabel="Mayotte" />
+												<c:selectItem itemValue="Mexico" itemLabel="Mexico" />
+												<c:selectItem itemValue="Micronesia, Federated States of" itemLabel="Micronesia, Federated States of" />
+												<c:selectItem itemValue="Moldova, Republic of" itemLabel="Moldova, Republic of" />
+												<c:selectItem itemValue="Monaco" itemLabel="Monaco" />
+												<c:selectItem itemValue="Mongolia" itemLabel="Mongolia" />
+												<c:selectItem itemValue="Montserrat" itemLabel="Montserrat" />
+												<c:selectItem itemValue="Morocco" itemLabel="Morocco" />
+												<c:selectItem itemValue="Mozambique" itemLabel="Mozambique" />
+												<c:selectItem itemValue="Myanmar" itemLabel="Myanmar" />
+												<c:selectItem itemValue="Namibia" itemLabel="Namibia" />
+												<c:selectItem itemValue="Nauru" itemLabel="Nauru" />
+												<c:selectItem itemValue="Nepal" itemLabel="Nepal" />
+												<c:selectItem itemValue="Netherlands" itemLabel="Netherlands" />
+												<c:selectItem itemValue="Netherlands Antilles" itemLabel="Netherlands Antilles" />
+												<c:selectItem itemValue="New Caledonia" itemLabel="New Caledonia" />
+												<c:selectItem itemValue="New Zealand" itemLabel="New Zealand" />
+												<c:selectItem itemValue="Nicaragua" itemLabel="Nicaragua" />
+												<c:selectItem itemValue="Niger" itemLabel="Niger" />
+												<c:selectItem itemValue="Nigeria" itemLabel="Nigeria" />
+												<c:selectItem itemValue="Niue" itemLabel="Niue" />
+												<c:selectItem itemValue="Norfolk Island" itemLabel="Norfolk Island" />
+												<c:selectItem itemValue="Northern Mariana Islands" itemLabel="Northern Mariana Islands" />
+												<c:selectItem itemValue="Norway" itemLabel="Norway" />
+												<c:selectItem itemValue="Oman" itemLabel="Oman" />
+												<c:selectItem itemValue="Pakistan" itemLabel="Pakistan" />
+												<c:selectItem itemValue="Palau" itemLabel="Palau" />
+												<c:selectItem itemValue="Palestinian Territory, Occupied" itemLabel="Palestinian Territory, Occupied" />
+												<c:selectItem itemValue="Panama" itemLabel="Panama" />
+												<c:selectItem itemValue="Papua New Guinea" itemLabel="Papua New Guinea" />
+												<c:selectItem itemValue="Paraguay" itemLabel="Paraguay" />
+												<c:selectItem itemValue="Peru" itemLabel="Peru" />
+												<c:selectItem itemValue="Philippines" itemLabel="Philippines" />
+												<c:selectItem itemValue="Pitcairn" itemLabel="Pitcairn" />
+												<c:selectItem itemValue="Poland" itemLabel="Poland" />
+												<c:selectItem itemValue="Portugal" itemLabel="Portugal" />
+												<c:selectItem itemValue="Puerto Rico" itemLabel="Puerto Rico" />
+												<c:selectItem itemValue="Qatar" itemLabel="Qatar" />
+												<c:selectItem itemValue="Reunion" itemLabel="Reunion" />
+												<c:selectItem itemValue="Romania" itemLabel="Romania" />
+												<c:selectItem itemValue="Russian Federation" itemLabel="Russian Federation" />
+												<c:selectItem itemValue="Rwanda" itemLabel="Rwanda" />
+												<c:selectItem itemValue="Saint Helena" itemLabel="Saint Helena" />
+												<c:selectItem itemValue="Saint Kitts and Nevis" itemLabel="Saint Kitts and Nevis" />
+												<c:selectItem itemValue="Saint Lucia" itemLabel="Saint Lucia" />
+												<c:selectItem itemValue="Saint Pierre and Miquelon" itemLabel="Saint Pierre and Miquelon" />
+												<c:selectItem itemValue="Saint Vincent and The Grenadines" itemLabel="Saint Vincent and The Grenadines" />
+												<c:selectItem itemValue="Samoa" itemLabel="Samoa" />
+												<c:selectItem itemValue="San Marino" itemLabel="San Marino" />
+												<c:selectItem itemValue="Sao Tome and Principe" itemLabel="Sao Tome and Principe" />
+												<c:selectItem itemValue="Saudi Arabia" itemLabel="Saudi Arabia" />
+												<c:selectItem itemValue="Senegal" itemLabel="Senegal" />
+												<c:selectItem itemValue="Serbia and Montenegro" itemLabel="Serbia and Montenegro" />
+												<c:selectItem itemValue="Seychelles" itemLabel="Seychelles" />
+												<c:selectItem itemValue="Sierra Leone" itemLabel="Sierra Leone" />
+												<c:selectItem itemValue="Singapore" itemLabel="Singapore" />
+												<c:selectItem itemValue="Slovakia" itemLabel="Slovakia" />
+												<c:selectItem itemValue="Slovenia" itemLabel="Slovenia" />
+												<c:selectItem itemValue="Solomon Islands" itemLabel="Solomon Islands" />
+												<c:selectItem itemValue="Somalia" itemLabel="Somalia" />
+												<c:selectItem itemValue="South Africa" itemLabel="South Africa" />
+												<c:selectItem itemValue="South Georgia and The South Sandwich Islands" itemLabel="South Georgia and The South Sandwich Islands" />
+												<c:selectItem itemValue="Spain" itemLabel="Spain" />
+												<c:selectItem itemValue="Sri Lanka" itemLabel="Sri Lanka" />
+												<c:selectItem itemValue="Sudan" itemLabel="Sudan" />
+												<c:selectItem itemValue="Suriname" itemLabel="Suriname" />
+												<c:selectItem itemValue="Svalbard and Jan Mayen" itemLabel="Svalbard and Jan Mayen" />
+												<c:selectItem itemValue="Swaziland" itemLabel="Swaziland" />
+												<c:selectItem itemValue="Sweden" itemLabel="Sweden" />
+												<c:selectItem itemValue="Switzerland" itemLabel="Switzerland" />
+												<c:selectItem itemValue="Syrian Arab Republic" itemLabel="Syrian Arab Republic" />
+												<c:selectItem itemValue="Taiwan, Province of China" itemLabel="Taiwan, Province of China" />
+												<c:selectItem itemValue="Tajikistan" itemLabel="Tajikistan" />
+												<c:selectItem itemValue="Tanzania, United Republic of" itemLabel="Tanzania, United Republic of" />
+												<c:selectItem itemValue="Thailand" itemLabel="Thailand" />
+												<c:selectItem itemValue="Timor-leste" itemLabel="Timor-leste" />
+												<c:selectItem itemValue="Togo" itemLabel="Togo" />
+												<c:selectItem itemValue="Tokelau" itemLabel="Tokelau" />
+												<c:selectItem itemValue="Tonga" itemLabel="Tonga" />
+												<c:selectItem itemValue="Trinidad and Tobago" itemLabel="Trinidad and Tobago" />
+												<c:selectItem itemValue="Tunisia" itemLabel="Tunisia" />
+												<c:selectItem itemValue="Turkey" itemLabel="Turkey" />
+												<c:selectItem itemValue="Turkmenistan" itemLabel="Turkmenistan" />
+												<c:selectItem itemValue="Turks and Caicos Islands" itemLabel="Turks and Caicos Islands" />
+												<c:selectItem itemValue="Tuvalu" itemLabel="Tuvalu" />
+												<c:selectItem itemValue="Uganda" itemLabel="Uganda" />
+												<c:selectItem itemValue="Ukraine" itemLabel="Ukraine" />
+												<c:selectItem itemValue="United Arab Emirates" itemLabel="United Arab Emirates" />
+												<c:selectItem itemValue="United Kingdom" itemLabel="United Kingdom" />
+												<c:selectItem itemValue="United States" itemLabel="United States" />
+												<c:selectItem itemValue="United States Minor Outlying Islands" itemLabel="United States Minor Outlying Islands" />
+												<c:selectItem itemValue="Uruguay" itemLabel="Uruguay" />
+												<c:selectItem itemValue="Uzbekistan" itemLabel="Uzbekistan" />
+												<c:selectItem itemValue="Vanuatu" itemLabel="Vanuatu" />
+												<c:selectItem itemValue="Venezuela" itemLabel="Venezuela" />
+												<c:selectItem itemValue="Viet Nam" itemLabel="Viet Nam" />
+												<c:selectItem itemValue="Virgin Islands, British" itemLabel="Virgin Islands, British" />
+												<c:selectItem itemValue="Virgin Islands, U.S." itemLabel="Virgin Islands, U.S." />
+												<c:selectItem itemValue="Wallis and Futuna" itemLabel="Wallis and Futuna" />
+												<c:selectItem itemValue="Western Sahara" itemLabel="Western Sahara" />
+												<c:selectItem itemValue="Yemen" itemLabel="Yemen" />
+												<c:selectItem itemValue="Zambia" itemLabel="Zambia" />
+												<c:selectItem itemValue="Zimbabwe" itemLabel="Zimbabwe" />
+										</p:selectOneMenu>
+				<br /><br />		
+						<h:outputLabel value="Gender: " for="gender" />
+						<p:selectOneRadio id="gender"
+							value="#{excelReportBean.gender}">
+							<c:selectItem itemValue="Male" itemLabel="Male" />
+							<c:selectItem itemValue="Female" itemLabel="Female" />
+							<c:selectItem itemValue="" itemLabel="All" />
+						</p:selectOneRadio>	
+				<br /><br />		
+						<h:outputLabel>
+							<p:commandButton styleClass="botao" value="Download"
+								action="#{excelReportBean.download}" ajax="fasle" />
+						</h:outputLabel>
+					</div>
+				</h:form>
+			</div>
+
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+
+</html>

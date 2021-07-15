@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="../resources/css/style.css" media="screen"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+}
+</style>
+
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="login">
+			<div id="formlogin">
+				<table>
+
+
+					<form method="post"
+						action="#{request.contextPath}/j_spring_security_check">
+						<br /> Email<br />
+						<input type="text" name='j_username' id="textfield" /><br />
+						Password<br />
+						<input type="password" name='j_password' id="textfield" /><br />
+						<input type="checkbox" name="_spring_security_remember_me" />Remember
+						me<br /> <input type="submit" value="Login" />
+
+
+
+						<!-- <table>
+		<br/>
+			<tr><td>Email</td></tr>
+				<tr><td><input type='text' name='j_username' size="15" id="textfield"/></td></tr>
+			<tr><td>Password</td></tr>
+				<tr><td><input type='password' name='j_password' size="15" id="textfield"/></td></tr>
+			<tr><td align="left"><input type="checkbox" name="_spring_security_remember_me"/>Remember me
+				<input type="submit" value="Login"/></td>
+			</tr>
+			
+		</table> -->
+						<script>
+							document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
+						</script>
+					</form>
+					<h:form>
+						<h:commandButton action="#{userBean.newUser}" value="Sign Up" />
+
+					</h:form>
+
+				</table>
+			</div>
+		</div>
+		<div id="corpo">
+			<div id="texto">
+				<h1>Search</h1>
+				<h4>
+					<a href="login.jsf">Home</a> >><a href="search.jsf"> Search</a>
+				</h4>
+				<div
+					style="height: 400px; width: 917px; overflow-x: auto; overflow-y: auto">
+					<h:form>
+						<h:messages />
+						<c:view>
+							<h:panelGrid columns="8" rules="rows" bgcolor="#EBEBD6"
+								style="text-align: center" width="900">
+								<c:facet name="header">
+									<h:outputText value="Search" />
+								</c:facet>
+								<h:outputLabel value="Country:" for="country" />
+								<p:inputText value="#{searchBean.gen.country}" id="country" />
+								<h:outputLabel value="State" for="state" />
+								<p:inputText value="#{searchBean.gen.state}" id="state" />
+								<h:outputLabel value="City:" for="city" />
+								<p:inputText value="#{searchBean.gen.city}" id="city" />
+								<h:outputLabel value="Zone" for="zone" />
+								<p:selectOneMenu id="zone" value="#{searchBean.res.zone}">
+									<c:selectItem itemValue="" itemLabel="Select zone" />
+									<c:selectItem itemValue="Urban" itemLabel="Urban" />
+									<c:selectItem itemValue="Rural" itemLabel="Rural" />
+									<c:selectItem itemValue="Peri" itemLabel="Peri" />
+								</p:selectOneMenu>
+								<h:outputLabel />
+							</h:panelGrid>
+							<h:panelGrid columns="6" rules="rows" bgcolor="#EBEBD6"
+								style="text-align: center" width="900">
+								<h:outputLabel value="Ethnic group:" for="ethnicGroup" />
+								<p:selectOneMenu id="ethnicGroup"
+									value="#{searchBean.ind.ethnicGroup}">
+									<c:selectItem itemValue="" itemLabel="Select the ethnic group" />
+									<c:selectItem itemValue="Caucasian" itemLabel="Caucasian" />
+									<c:selectItem itemValue="Mongolian" itemLabel="Mongolian" />
+									<c:selectItem itemValue="Negriod" itemLabel="Negriod" />
+								</p:selectOneMenu>
+								<h:outputLabel value="Gender: " for="gender" />
+								<p:selectOneMenu id="gender" value="#{searchBean.ind.gender}">
+									<c:selectItem itemValue="" itemLabel="Select the gender" />
+									<c:selectItem itemValue="Male" itemLabel="Male" />
+									<c:selectItem itemValue="Female" itemLabel="Female" />
+								</p:selectOneMenu>
+								<h:outputLabel value="Age:" for="age" />
+								<p:inputText value="#{searchBean.ind.age}" id="age" />
+							</h:panelGrid>
+							<h:panelGrid columns="2" rules="rows" bgcolor="#EBEBD6"
+								style="text-align: center" width="900">
+								<h:outputLabel value="Scholarity" for="scholarity" />
+								<p:selectOneMenu id="scholarity"
+									value="#{searchBean.ind.scholarity}">
+									<c:selectItem itemValue="" itemLabel="Select educational level" />
+									<c:selectItem itemValue="Illiterate" itemLabel="Illiterate" />
+									<c:selectItem itemValue="Elementary school"
+										itemLabel="Elementary school" />
+									<c:selectItem itemValue="Middle school"
+										itemLabel="Middle school" />
+									<c:selectItem itemValue="High school" itemLabel="High school" />
+									<c:selectItem itemValue="Post-secondary school"
+										itemLabel="Post-secondary school" />
+									<c:selectItem itemValue="Not applicable"
+										itemLabel="Not applicable" />
+								</p:selectOneMenu>
+							</h:panelGrid>
+							<h:panelGrid columns="4" cellspacing="0" rules="rows"
+								bgcolor="#EBEBD6" style="text-align: center" width="900">
+								<c:facet name="header">
+									<h:outputText value="Clinical information (ainda não funciona a pesquisa por sintomas)" />
+								</c:facet>
+								<h:outputLabel value="Progressive dementia: "
+									for="progressiveDementia" />
+								<h:selectOneRadio id="progressiveDementia"
+									value="#{searchBean.cli.progDementia}">
+									<c:selectItem itemValue="y" itemLabel="Yes" />
+									<c:selectItem itemValue="n" itemLabel="No" />
+									<c:selectItem itemValue="u" itemLabel="Unknown" />
+								</h:selectOneRadio>
+								<h:outputLabel value="Visual disorders: " for="visualDisorders" />
+								<h:selectOneRadio id="visualDisorders"
+									value="#{searchBean.cli.visualDisorder}">
+									<c:selectItem itemValue="y" itemLabel="Yes" />
+									<c:selectItem itemValue="n" itemLabel="No" />
+									<c:selectItem itemValue="u" itemLabel="Unknown" />
+								</h:selectOneRadio>
+								<h:outputLabel value="Myoclonus: " for="myoclonus" />
+								<h:selectOneRadio id="myoclonus"
+									value="#{searchBean.cli.myoclonus}">
+									<c:selectItem itemValue="y" itemLabel="Yes" />
+									<c:selectItem itemValue="n" itemLabel="No" />
+									<c:selectItem itemValue="u" itemLabel="Unknown" />
+								</h:selectOneRadio>
+								<h:outputLabel value="Cerebellar disorders: "
+									for="cerebellarDisorders" />
+								<h:selectOneRadio id="cerebellarDisorders"
+									value="#{searchBean.cli.cerebellarDisorders}">
+									<c:selectItem itemValue="y" itemLabel="Yes" />
+									<c:selectItem itemValue="n" itemLabel="No" />
+									<c:selectItem itemValue="u" itemLabel="Unknown" />
+								</h:selectOneRadio>
+								<h:outputLabel value="Persistent painful dysesthesia: "
+									for="persistentPainfulDysesthesia" />
+								<h:selectOneRadio id="persistentPainfulDysesthesia"
+									value="#{searchBean.cli.persistentPainDys}">
+									<c:selectItem itemValue="y" itemLabel="Yes" />
+									<c:selectItem itemValue="n" itemLabel="No" />
+									<c:selectItem itemValue="u" itemLabel="Unknown" />
+								</h:selectOneRadio>
+								<h:outputLabel value="Ataxy: " for="ataxy" />
+								<h:selectOneRadio id="ataxy" value="#{searchBean.cli.ataxy}">
+									<c:selectItem itemValue="y" itemLabel="Yes" />
+									<c:selectItem itemValue="n" itemLabel="No" />
+									<c:selectItem itemValue="u" itemLabel="Unknown" />
+								</h:selectOneRadio>
+								<h:outputLabel value="Pyramidal signs: " for="pyramidalSigns" />
+								<h:selectOneRadio id="pyramidalSigns"
+									value="#{searchBean.cli.pyramidalSigns}">
+									<c:selectItem itemValue="y" itemLabel="Yes" />
+									<c:selectItem itemValue="n" itemLabel="No" />
+									<c:selectItem itemValue="u" itemLabel="Unknown" />
+								</h:selectOneRadio>
+								<h:outputLabel value="Extrapyramidal signs: "
+									for="extrapyramidalSigns" />
+								<h:selectOneRadio id="extrapyramidalSigns"
+									value="#{searchBean.cli.extrapyramidalSigns}">
+									<c:selectItem itemValue="y" itemLabel="Yes" />
+									<c:selectItem itemValue="n" itemLabel="No" />
+									<c:selectItem itemValue="u" itemLabel="Unknown" />
+								</h:selectOneRadio>
+								<h:outputLabel value="Akinetic mutism:" for="akineticMutism" />
+								<h:selectOneRadio id="akineticMutism"
+									value="#{searchBean.cli.akineticMutism}">
+									<c:selectItem itemValue="y" itemLabel="Yes" />
+									<c:selectItem itemValue="n" itemLabel="No" />
+									<c:selectItem itemValue="u" itemLabel="Unknown" />
+								</h:selectOneRadio>
+								<h:outputLabel value="Psychiatric disorders: "
+									for="psychiatricDisorders" />
+								<h:selectOneRadio id="psychiatricDisorders"
+									value="#{searchBean.cli.psychiatricDisorders}">
+									<c:selectItem itemValue="y" itemLabel="Yes" />
+									<c:selectItem itemValue="n" itemLabel="No" />
+									<c:selectItem itemValue="u" itemLabel="Unknown" />
+								</h:selectOneRadio>
+								<h:outputLabel value="Sleep disorders: " for="sleepDisorders" />
+								<h:selectOneRadio id="sleepDisorders"
+									value="#{searchBean.cli.sleepDisorders}">
+									<c:selectItem itemValue="y" itemLabel="Yes" />
+									<c:selectItem itemValue="n" itemLabel="No" />
+									<c:selectItem itemValue="u" itemLabel="Unknown" />
+								</h:selectOneRadio>
+
+							</h:panelGrid>
+							<p:commandButton value="Search" action="search" ajax="false" />
+
+						</c:view>
+					</h:form>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<ui:include src="footer.xhtml" />
+			<p align="center" style="margin-top: 0px; margin-left: 250px;">
+				<font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font>
+			</p>
+		</div>
+	</div>
+</h:body>
+</html>

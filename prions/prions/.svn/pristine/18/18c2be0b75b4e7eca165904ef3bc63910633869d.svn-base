@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_rest.css" rel="stylesheet"
+	type="text/css" />
+<title>My Notifications</title>
+</head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="mynotifications.jsf"> My Notifications</a>
+				</h4>
+				<br />
+				<h:form id="texto">
+					<h:messages />
+					<div style="width: 774.5px; height: 276px; overflow: auto;">
+						<h:panelGrid width="758" height="30" valign="top" align="left"
+							colspan="2"
+							style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+							<h:outputLabel value="Epidemiological aspects"></h:outputLabel>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="758" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+							<h:outputLabel value="Has traveled abroad after 1984? "
+								for="travel" />
+							<h:selectOneRadio id="travel"
+								value="#{aspectsBean.selected.travel}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Date of last trip : " for="lastTrip" />
+							<h:inputText id="lastTrip"
+								value="#{aspectsBean.selected.lastTrip}" required="false"
+								maxlength="30">
+								<c:convertDateTime dateStyle="medium" />
+							</h:inputText>
+							<h:outputLabel value="Country: " for="country" />
+							<h:inputText id="country" value="#{aspectsBean.selected.country}"
+								required="false" maxlength="30" />
+							<h:outputLabel
+								value="Any relative had similar clinical features: "
+								for="relative" />
+							<h:selectOneRadio id="relative"
+								value="#{aspectsBean.selected.relativeClinFeat}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="The patient eats or ate beef after 1984? "
+								for="beef" />
+							<h:selectOneRadio id="beef" value="#{aspectsBean.selected.beef}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="The patient is vegetarian? "
+								for="vegetarian" />
+							<h:selectOneRadio id="vegetarian"
+								value="#{aspectsBean.selected.vegetarian}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+
+						</h:panelGrid>
+						<h:panelGrid width="758" height="30" valign="top" align="left"
+							colspan="2"
+							style="background-color: #808040; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+							<h:outputLabel value="Iatrogenic exposure"></h:outputLabel>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="758" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+							<h:outputLabel value="Dura mater: " for="duramater" />
+							<h:selectOneRadio id="duramater"
+								value="#{aspectsBean.selected.duramater}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Human growth hormone (HGH): " for="hgh" />
+							<h:selectOneRadio id="hgh" value="#{aspectsBean.selected.hgh}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Cornea Transplant: " for="corneatransp" />
+							<h:selectOneRadio id="corneatransp"
+								value="#{aspectsBean.selected.corneaTransp}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Neurosurgery: " for="neurosurgery" />
+							<h:selectOneRadio id="neurosurgery"
+								value="#{aspectsBean.selected.neurosurgery}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel value="Blood transfusion: " for="bloodTransf" />
+							<h:selectOneRadio id="bloodTransf"
+								value="#{aspectsBean.selected.bloodTransf}">
+								<c:selectItem itemValue="y" itemLabel="Yes" />
+								<c:selectItem itemValue="n" itemLabel="No" />
+								<c:selectItem itemValue="u" itemLabel="Unknown" />
+							</h:selectOneRadio>
+							<h:outputLabel></h:outputLabel>
+							<h:outputLabel>
+								<h:commandButton styleClass="botao" action="#{aspectsBean.edit}" value="Save">
+									<c:param name="id"
+										value="#{aspectsBean.selected.notification.codNotification}" />
+								</h:commandButton>
+								<h:commandButton styleClass="botao" action="editLab" value="Next">
+									<c:param name="id"
+										value="#{aspectsBean.selected.notification.codNotification}" />
+								</h:commandButton>
+							</h:outputLabel>
+							<h:outputLabel></h:outputLabel>
+							<h:outputLabel></h:outputLabel>
+							<h:outputLabel></h:outputLabel>
+							<h:outputLabel>
+								<h:commandButton styleClass="botao" value="Finish"
+									action="imagesCreated" />
+							</h:outputLabel>
+						</h:panelGrid>
+					</div>
+				</h:form>
+
+			</div>
+		</div>
+		<div id="footer"></div>
+	</div>
+</h:body>
+
+</html>

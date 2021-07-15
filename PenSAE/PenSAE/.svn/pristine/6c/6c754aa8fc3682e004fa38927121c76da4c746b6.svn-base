@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:head>
+<h:body>
+	<f:event listener="#{listaEstudo.carregarEstudos(logon.usuarioLogado, principalProfessor.cursoSelecionado)}"
+		type="javax.faces.event.PreRenderComponentEvent" />
+	<f:view>
+		<rich:panel styleClass="panel_invisivel">
+			<h:outputText value="Estudos de Caso Cadastrados"
+				styleClass="titulo_principal_pagina" />
+			<br />
+		</rich:panel>
+		<br />
+		<rich:dataTable style="text-align:left;width:800px;"
+			value="#{listaEstudo.estudos}" var="estudo">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Titulo" />
+				</f:facet>
+				<h:outputText value="#{estudo.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data de Criação" />
+				</f:facet>
+				<h:outputText value="#{estudo.dataCriacao}">
+					<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Grau de Dificuldade" />
+				</f:facet>
+				<h:outputText
+					value="#{listaEstudo.getGrauDificuldadeString(estudo.grauDificuldade)}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Habilitado?" />
+				</f:facet>
+				<h:commandButton id="commandButton_Habilitar" value="H/D"
+					actionListener="#{listaEstudo.mudarHabilitar(estudo)}"
+					style="display:inline-block;"
+					image="#{listaEstudo.imgHabilitar(estudo.habilitado)}">
+					<f:actionListener
+						binding="#{principalProfessor.mostrarListaEstudo()}" />
+				</h:commandButton>
+			</h:column>
+			<h:column>
+				<f:facet name="header" />
+				<h:commandButton id="commandButton_Editar" title="editar"
+					actionListener="#{principalProfessor.mostrarEditarCriarEstudo}"
+					style="display:inline-block;"
+					image="/resources/icones/edit-icon.png">
+					<f:actionListener
+						binding="#{criarEditarEstudo.carregarEstudo(estudo)}" />
+				</h:commandButton>
+			</h:column>
+			<h:column>
+				<f:facet name="header" />
+				<h:commandButton id="commandButton_Excluir" title="excluir"
+					onclick="return confirm('Deseja mesmo apagar esse estudo de caso?')"
+					actionListener="#{listaEstudo.excluirCaso(estudo)}"
+					style="display:inline-block;"
+					image="/resources/icones/remove-icon.png">
+					<f:actionListener
+						binding="#{principalProfessor.mostrarListaEstudo()}" />
+				</h:commandButton>
+			</h:column>
+		</rich:dataTable>
+
+		<rich:panel styleClass="panel_invisivel">
+			<h:commandButton id="commandButton_Incluir" value="Incluir novo caso"
+				style="right:5px;"
+				actionListener="#{principalProfessor.mostrarEditarCriarEstudo}"
+				render="document.getelementbyid(panelGroup_Target)">
+			</h:commandButton>
+			<h:commandButton value="Voltar"
+				actionListener="#{principalProfessor.apagarConteudo}"
+				render="document.getelementbyid(panelGroup_Target)" />
+		</rich:panel>
+	</f:view>
+</h:body>
+</html>

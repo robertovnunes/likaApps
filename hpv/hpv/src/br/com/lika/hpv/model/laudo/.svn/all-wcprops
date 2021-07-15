@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/model/laudo
+END
+LaudoHcv.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/model/laudo/LaudoHcv.java
+END
+TemplateTextosLaudo.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/model/laudo/TemplateTextosLaudo.java
+END
+LaudoViral.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/model/laudo/LaudoViral.java
+END
+LaudoHiv.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/model/laudo/LaudoHiv.java
+END
+LaudoCitopatologico.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/model/laudo/LaudoCitopatologico.java
+END
+LaudoHpv.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/model/laudo/LaudoHpv.java
+END
+LaudoClamidia.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/model/laudo/LaudoClamidia.java
+END
+LaudoSifilis.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/model/laudo/LaudoSifilis.java
+END
+LaudoHbv.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/hpv/!svn/ver/4/trunk/hpv/src/br/com/lika/hpv/model/laudo/LaudoHbv.java
+END

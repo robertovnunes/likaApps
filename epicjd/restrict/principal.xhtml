@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Principal</title>
+</h:head>
+<h:body>
+	<h1>Sistema HPDD</h1>
+	Usuário logado #{request.remoteUser}
+	<br/>
+	Nome do Usuário Logado #{contextoBean.loggedUser.name}
+	<h:form>
+		
+		
+		<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+				Página do administrador<br/>
+				Bem vindo, #{contextoBean.loggedUser.name}
+			<h:commandLink action="/admin/home_admin" title="Administrativo">
+				<h:graphicImage library="imagens" name="admin_icon.jpg" />
+			</h:commandLink>
+		</sec:ifAnyGranted>
+		
+		<sec:ifNotGranted roles="ROLE_ADMINISTRADOR">
+			<h:commandLink action="/restrict/home_restricted" title="Restrito">
+				<!-- <h:commandButton value="General" action="general" /> -->
+				<h:graphicImage library="imagens" name="admin_icon.jpg" />
+			</h:commandLink>
+		</sec:ifNotGranted>
+		
+		<a onclick="document.location='#{request.contextPath}/j_spring_security_logout'" title="Sair">
+			<h:graphicImage library="imagens" name="button-logout.jpg" />
+			</a>
+	</h:form>
+</h:body>
+</html>

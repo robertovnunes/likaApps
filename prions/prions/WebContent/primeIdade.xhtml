@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Gráficos de casos por idade</title>
+	<script type="text/javascript">
+		var estiloGrafico = {
+			padding : 20,
+			legend : {
+				display : "right",
+				spacing : 10
+			}
+		};
+	</script>
+</h:head>
+<h:body>
+	<h3>Gráfico de casos por país</h3>
+	<p:pieChart value="#{casosIdadeBean.modeloIdade}" legendPosition="w"
+                    title="Casos por idade"
+                    style="width:600px;height:400px;" /> 
+</h:body>
+</html>

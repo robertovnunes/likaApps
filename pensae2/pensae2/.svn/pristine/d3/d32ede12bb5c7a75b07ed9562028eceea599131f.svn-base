@@ -1,0 +1,112 @@
+package model.curso.matricula;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import model.curso.Curso;
+import model.curso.matricula.ambulatorio.Ambulatorio;
+import model.usuario.Aluno;
+
+@Entity
+@Table(name="matricula_curso_aluno")
+public class MatriculaCursoAluno implements Serializable{
+	
+	public int id;
+	
+	public Aluno aluno;
+	public Curso curso;
+	
+	public Date dataMatricula;
+	public Ambulatorio ambulatorio;
+	
+	public String opniaoProcessoAprendizagem;
+	public String opniaoExperiencia;
+	
+	public MatriculaCursoAluno(){}
+	
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id", nullable=false)
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Column(name="dataMatricula", nullable=false)
+	public Date getDataMatricula() {
+		return dataMatricula;
+	}
+
+
+	public void setDataMatricula(Date dataMatricula) {
+		this.dataMatricula = dataMatricula;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade={CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinColumn(name="fk_idAmbulatorio",nullable=false)
+	public Ambulatorio getAmbulatorio() {
+		return ambulatorio;
+	}
+
+	public void setAmbulatorio(Ambulatorio ambulatorio) {
+		this.ambulatorio = ambulatorio;
+	}
+	
+	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinColumn(name="fk_idAluno",nullable=false)
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinColumn(name="fk_idCurso",nullable=false)
+	public Curso getCurso() {
+		return curso;
+	}
+
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
+	@Column(name="opniaoProcessoAprendizagem", nullable=true, columnDefinition="TEXT")
+	public String getOpniaoProcessoAprendizagem() {
+		return opniaoProcessoAprendizagem;
+	}
+
+
+	public void setOpniaoProcessoAprendizagem(String opniaoProcessoAprendizagem) {
+		this.opniaoProcessoAprendizagem = opniaoProcessoAprendizagem;
+	}
+
+	@Column(name="opniaoExperiencia", nullable=true, columnDefinition="TEXT")
+	public String getOpniaoExperiencia() {
+		return opniaoExperiencia;
+	}
+
+
+	public void setOpniaoExperiencia(String opniaoExperiencia) {
+		this.opniaoExperiencia = opniaoExperiencia;
+	}
+
+}

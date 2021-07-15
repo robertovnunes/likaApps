@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_rest.css" rel="stylesheet" type="text/css" />
+<title>Home</title>
+</head>
+
+<h:body>
+<div id="header">
+<div id="logo">
+</div>
+<div id="flags">
+<a href="#"><img src="../resources/imagens/bra.gif"/></a>
+<a href="#"><img src="../resources/imagens/eua.gif"/></a>
+</div>
+<div id="welcome">
+<table title="User status" align="center">
+	<b>User logged: #{request.remoteUser}</b>
+	<br/>
+	Welcome, #{contextoBean.loggedUser.name}!
+
+</table>
+</div>
+<ui:include src="menu.xhtml" />
+<div id="corpo">
+<div id="texto">
+<h1>Report case</h1>
+    <h4><a href="home_restricted.jsf">Home</a> >><a href="restricted_notify.html"> Report case</a> >> Residential data</h4><br/>
+    <ul id="nav">
+                                        <!-- CSS Tabs -->
+<li><a  href="restrictednotifygeneral.jsf">General</a></li>
+<li><a href="restrictednotifyindividual.jsf"><span>Individual</span></a></li>
+<li><a class="active" href="restrictednotifyresidential.jsf"><span>Residential</span></a></li>
+<li><a href="restrictednotifysuspicion.jsf"><span>Clinical suspicion</span></a></li>
+<li><a href="restrictednotifydata.jsf"><span>Clinical data</span></a></li>
+<li><a href="restrictednotifyaspects.jsf"><span>Aspects</span></a></li>
+<li><a href="restrictednotifyresults.jsf"><span>Results</span></a></li>
+<li><a href="restrictednotifyconclusion.jsf"><span>Conclusion</span></a></li>
+<li><a href="restrictednotifysource.jsf"><span>Source</span></a></li>
+<li><a href="restrictednotifyresume.jsf"><span>Clinical History</span></a></li>
+<li><a href="restrictednotifyimages.jsf"><span>Images</span></a></li></ul>
+
+<h:form id="texto">
+		<h:messages/>
+		<div style="width: 774.5px; height: 276px; overflow: auto;">
+		<h:panelGrid width="795" height="30" valign="top" align="left" colspan="2" style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+			<h:outputLabel value="Data residence"></h:outputLabel>
+		</h:panelGrid>	
+		<h:panelGrid columns="2" width="795" height="30" valign="top" align="left" bgcolor="#EBEBD6">
+			<h:outputLabel value="Country: " for="country"/>
+			<h:inputText id="country" value="#{residentialBean.selected.country}" required="false" maxlength="509"/>	
+			<h:outputLabel value="State: " for="state"/>
+			<h:inputText id="state" value="#{residentialBean.selected.state}" required="false" maxlength="30"/>
+			<h:outputLabel value="City of residence: " for="cityResidence"/>
+			<h:inputText id="cityResidence" value="#{residentialBean.selected.cityResidence}" required="false" maxlength="50"/>
+			<h:outputLabel value="Code: " for="code"/>
+			<h:inputText id="code" value="#{residentialBean.selected.code}" required="false" maxlength="11"/>
+			<h:outputLabel value="District: " for="district"/>
+			<h:inputText id="district" value="#{residentialBean.selected.district}" required="false" maxlength="50"/>
+			<h:outputLabel value="Neighborhood: " for="neighborhood"/>
+			<h:inputText id="neighborhood" value="#{residentialBean.selected.neighborhood}" required="false" maxlength="50"/>
+			<h:outputLabel value="Sidewalk: " for="sidewalk"/>
+			<h:inputText id="sidewalk" value="#{residentialBean.selected.sidewalk}" required="false" maxlength="50"/>
+			<h:outputLabel value="Number: " for="number"/>
+			<h:inputText id="number" value="#{residentialBean.selected.number}" required="false" maxlength="10"/>
+			<h:outputLabel value="Complement: " for="complement"/>
+			<h:inputText id="complement" value="#{residentialBean.selected.complement}" required="false" maxlength="50"/>
+			<h:outputLabel value="Geographic coordinates: " for="geoCoordinates"/>
+			<h:inputText id="geoCoordinates" value="#{residentialBean.selected.geoCoordinates}" required="false" maxlength="11"/>
+			<h:outputLabel value="Zip code: " for="zip"/>
+			<h:inputText id="zip" value="#{residentialBean.selected.zip}" required="false" maxlength="9"/>	
+			<h:outputLabel value="Phone number: " for="phone"/>
+			<h:inputText id="phone" value="#{residentialBean.selected.phone}" required="false" maxlength="15"/>	
+			<h:outputLabel value="Zone: " for="zone"/>	
+			<h:selectOneMenu id="zone" value="#{residentialBean.selected.zone}">
+				<c:selectItem itemValue="" itemLabel="Select zone"/>
+				<c:selectItem itemValue="Urban" itemLabel="Urban"/>
+				<c:selectItem itemValue="Rural" itemLabel="Rural"/>
+				<c:selectItem itemValue="Peri" itemLabel="Peri"/>
+				<c:selectItem itemValue="Unknown" itemLabel="Unknown"/>
+			</h:selectOneMenu>	
+				
+			<h:outputLabel></h:outputLabel>
+			<h:outputLabel>
+			<!-- <h:commandLink action="/restrict/restrictednotifyindividual" title="Back">
+				<h:commandButton value="Back" action="individual" />
+			</h:commandLink> -->
+			<h:commandButton  styleClass="botao"  value="Save" action="#{residentialBean.save}" />
+			</h:outputLabel>
+			<h:outputLabel></h:outputLabel>
+			<h:outputLabel></h:outputLabel>
+			<h:outputLabel></h:outputLabel>
+			<h:outputLabel><h:commandButton styleClass="botao" value="Finish" action="imagesCreated" /></h:outputLabel>
+		</h:panelGrid>	
+		</div>
+	</h:form>
+
+	<br/>
+	<img src="../resources/imagens/seq_ind.gif"/>
+
+</div>
+</div>
+<div id="footer">
+<ui:include src="footer.xhtml" />
+<p align="center" style="margin-top: 0px; margin-left: 250px;"><font color="#FFFAFA">iDEIAS.© All Rights Reserved 2013</font></p>
+</div>
+</div>
+</h:body>
+</html>

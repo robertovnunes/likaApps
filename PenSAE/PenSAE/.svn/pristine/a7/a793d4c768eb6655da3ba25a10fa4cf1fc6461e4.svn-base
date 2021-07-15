@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Cadastro PenSAE</title>
+	<t:outputStylesheet library="css" name="pensae.css" />
+</h:head>
+<h:body>
+	<f:event listener="#{cadastro.carregarCursos}"
+		type="javax.faces.event.PreRenderComponentEvent" />
+	<h:form id="form_cadastro">
+		<f:view>
+			<rich:panel id="panel_Principal">
+				<h:outputLabel value="Solicitação de Cadastro"
+					styleClass="titulo_principal_pagina" />
+				<br />
+				<h:message for="form_cadastro" style="color:red" />
+				<br />
+				<h:outputLabel value="Informações Básicas"
+					styleClass="subtitulo_fase_arco" />
+				<rich:panel id="panel_Campos" styleClass="panel_invisivel">
+					<h:outputLabel value="Nome completo " styleClass="campo_titulo" />
+					<br />
+					<h:inputText id="inputText_nomeCompleto"
+						value="#{cadastro.usuario.nome}" />
+					<h:message for="inputText_nomeCompleto" style="color:red" />
+					<br />
+					<h:outputLabel value="Login " styleClass="campo_titulo" />
+					<br />
+					<h:inputText id="inputText_Login" value="#{cadastro.usuario.login}">
+					</h:inputText>
+					<h:message for="inputText_Login" style="color:red" />
+					<br />
+					<h:outputLabel value="Senha " styleClass="campo_titulo" />
+					<br />
+					<h:inputSecret id="inputSecret_Pass"
+						value="#{cadastro.usuario.senha}" />
+					<h:message for="inputSecret_Pass" style="color:red" />
+					<br />
+					<h:outputLabel value="Senha novamente " styleClass="campo_titulo" />
+					<br />
+					<h:inputSecret id="inputSecret_PassAgain"
+						value="#{cadastro.senhaNovamente}" />
+					<h:message for="inputSecret_PassAgain" style="color:red" />
+					<br />
+					<h:outputLabel value="Email " styleClass="campo_titulo" />
+					<br />
+					<h:inputText id="inputText_Email" value="#{cadastro.usuario.email}">
+					</h:inputText>
+					<h:message for="inputText_Email" style="color:red" />
+					<br />
+					<h:outputLabel value="Instituição de Origem "
+						styleClass="campo_titulo" />
+					<br />
+					<h:inputText id="inputText_Instituicao"
+						value="#{cadastro.usuario.instituicao}" />
+					<h:message for="inputText_Instituicao" style="color:red" />
+					<br />
+					<h:outputLabel value="Perfil " styleClass="campo_titulo" />
+					<br />
+					<rich:select id="select_Perfil" value="#{cadastro.professor}"
+						valueChangeListener="#{cadastro.setProfessor()}">
+						<a4j:ajax render="panel_ContemCursos" event="selectitem" />
+						<f:selectItem itemLabel="Aluno" itemValue="false" />
+						<f:selectItem itemLabel="Professor" itemValue="true" />
+					</rich:select>
+					<br />
+					<rich:panel id="panel_ContemCursos" styleClass="panel_invisivel">
+						<rich:panel id="panel_Cursos" styleClass="panel_invisivel"
+							rendered="#{cadastro.mostrar}">
+							<h:outputLabel id="outpubLabel_curso" value="Slecionar curso"
+								styleClass="campo_titulo" rendered="#{cadastro.mostrar}" />
+							<br />
+							<h:selectOneMenu id="selectOneMenu_Curso"
+								defaultLabel="Selecione um curso" rendered="#{cadastro.mostrar}"
+								value="#{cadastro.cursoSelecionado}"
+								converter="#{cursoConverterBean}" enableManualInput="true">
+								<f:selectItems value="#{cadastro.cursos}" var="curso"
+									itemLabel="#{curso.nome}" itemValue="#{curso}" />
+							</h:selectOneMenu>
+							<br />
+							<a4j:commandButton id="commandButton_Adicionar"
+								value="Matricular-se"
+								actionListener="#{cadastro.adicionarCurso()}" limitRender="true"
+								render="panel_Cursos" />
+							<rich:dataTable id="dataTable_CursosSelecionados"
+								styleClass="table_comum" value="#{cadastro.cursosSelecionados}"
+								var="curso" rendered="#{cadastro.mostrar}">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Curso" />
+									</f:facet>
+									<h:outputText value="#{curso.nome}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Ementa" />
+									</f:facet>
+									<h:outputText value="#{curso.ementa}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+									</f:facet>
+									<a4j:commandButton id="commandButton_Excluir"
+										image="/resources/icones/remove-icon.png" title="Excluir"
+										action="#{cadastro.excluirCurso(curso)}" limitRender="true"
+										render="panel_ContemCursos" />
+								</h:column>
+							</rich:dataTable>
+						</rich:panel>
+					</rich:panel>
+					<br />
+					<h:commandButton value="Cadastrar" action="#{cadastro.cadastro()}" />
+					<h:commandButton value="Voltar" action="logon" />
+				</rich:panel>
+			</rich:panel>
+		</f:view>
+	</h:form>
+</h:body>
+</html>

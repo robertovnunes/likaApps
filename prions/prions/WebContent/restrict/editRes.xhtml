@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../resources/css/style_rest.css" rel="stylesheet"
+	type="text/css" />
+<title>My Notifications</title>
+</head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="mynotifications.jsf"> My Notifications</a>
+				</h4>
+				<br />
+				<h:form id="texto">
+					<h:messages />
+					<div style="width: 774.5px; height: 276px; overflow: auto;">
+						<h:panelGrid width="758" height="30" valign="top" align="left"
+							colspan="2"
+							style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+							<h:outputLabel value="Data residence"></h:outputLabel>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="758" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+							<h:outputLabel value="Country: " for="country" />
+							<h:inputText id="country"
+								value="#{residentialBean.selected.country}" required="false"
+								maxlength="509" />
+							<h:outputLabel value="State: " for="state" />
+							<h:inputText id="state" value="#{residentialBean.selected.state}"
+								required="false" maxlength="30" />
+							<h:outputLabel value="City of residence: " for="cityResidence" />
+							<h:inputText id="cityResidence"
+								value="#{residentialBean.selected.cityResidence}"
+								required="false" maxlength="50" />
+							<h:outputLabel value="Code: " for="code" />
+							<h:inputText id="code" value="#{residentialBean.selected.code}"
+								required="false" maxlength="11" />
+							<h:outputLabel value="District: " for="district" />
+							<h:inputText id="district"
+								value="#{residentialBean.selected.district}" required="false"
+								maxlength="50" />
+							<h:outputLabel value="Neighborhood: " for="neighborhood" />
+							<h:inputText id="neighborhood"
+								value="#{residentialBean.selected.neighborhood}"
+								required="false" maxlength="50" />
+							<h:outputLabel value="Sidewalk: " for="sidewalk" />
+							<h:inputText id="sidewalk"
+								value="#{residentialBean.selected.sidewalk}" required="false"
+								maxlength="50" />
+							<h:outputLabel value="Number: " for="number" />
+							<h:inputText id="number"
+								value="#{residentialBean.selected.number}" required="false"
+								maxlength="10" />
+							<h:outputLabel value="Complement: " for="complement" />
+							<h:inputText id="complement"
+								value="#{residentialBean.selected.complement}" required="false"
+								maxlength="50" />
+							<h:outputLabel value="Geographic coordinates: "
+								for="geoCoordinates" />
+							<h:inputText id="geoCoordinates"
+								value="#{residentialBean.selected.geoCoordinates}"
+								required="false" maxlength="11" />
+							<h:outputLabel value="Zip code: " for="zip" />
+							<h:inputText id="zip" value="#{residentialBean.selected.zip}"
+								required="false" maxlength="9" />
+							<h:outputLabel value="Phone number: " for="phone" />
+							<h:inputText id="phone" value="#{residentialBean.selected.phone}"
+								required="false" maxlength="15" />
+							<h:outputLabel value="Zone: " for="zone" />
+							<h:selectOneMenu id="zone"
+								value="#{residentialBean.selected.zone}">
+								<c:selectItem itemValue="" itemLabel="Select zone" />
+								<c:selectItem itemValue="Urban" itemLabel="Urban" />
+								<c:selectItem itemValue="Rural" itemLabel="Rural" />
+								<c:selectItem itemValue="Peri" itemLabel="Peri" />
+							</h:selectOneMenu>
+							
+
+							<h:outputLabel></h:outputLabel>
+							<h:outputLabel>
+								<h:commandButton action="#{residentialBean.edit}" value="Save">
+									<c:param name="id"
+										value="#{residentialBean.selected.notification.codNotification}" />
+								</h:commandButton>
+								<h:commandButton action="editSus" value="Next">
+									<c:param name="id"
+										value="#{residentialBean.selected.notification.codNotification}" />
+								</h:commandButton>
+							</h:outputLabel>
+						</h:panelGrid>
+					</div>
+				</h:form>
+
+
+
+			</div>
+		</div>
+		<div id="footer"></div>
+	</div>
+</h:body>
+
+</html>

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/sae_mental/!svn/ver/90/sae_mental/src/dados/hibernate/conteudo
+END
+AtendimentoHibernateDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/sae_mental/!svn/ver/90/sae_mental/src/dados/hibernate/conteudo/AtendimentoHibernateDAO.java
+END
+ProfessorHibernateDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/sae_mental/!svn/ver/46/sae_mental/src/dados/hibernate/conteudo/ProfessorHibernateDAO.java
+END
+UsuarioHibernateDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/sae_mental/!svn/ver/44/sae_mental/src/dados/hibernate/conteudo/UsuarioHibernateDAO.java
+END
+AlunoHibernateDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/sae_mental/!svn/ver/46/sae_mental/src/dados/hibernate/conteudo/AlunoHibernateDAO.java
+END
+EnderecoHibernateDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/sae_mental/!svn/ver/40/sae_mental/src/dados/hibernate/conteudo/EnderecoHibernateDAO.java
+END
+ProntuarioHibernateDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/sae_mental/!svn/ver/40/sae_mental/src/dados/hibernate/conteudo/ProntuarioHibernateDAO.java
+END
+EnfermeiroHibernateDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/sae_mental/!svn/ver/46/sae_mental/src/dados/hibernate/conteudo/EnfermeiroHibernateDAO.java
+END
+PacienteHibernateDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/sae_mental/!svn/ver/69/sae_mental/src/dados/hibernate/conteudo/PacienteHibernateDAO.java
+END

@@ -1,0 +1,67 @@
+10
+
+dir
+8
+http://www.ideias.ufpe.br/svn/hpv/trunk/hpv/WebContent/css/dhtmlxMenu/sources/imgs
+http://www.ideias.ufpe.br/svn/hpv
+
+
+
+2012-03-29T14:16:40.912407Z
+6
+hpv
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5b728482-e907-4580-aaf0-2caa88facc80
+
+dhxmenu_aqua_dark
+dir
+
+dhxmenu_aqua_orange
+dir
+
+dhxmenu_aqua_sky
+dir
+
+dhxmenu_clear_blue
+dir
+
+dhxmenu_clear_green
+dir
+
+dhxmenu_clear_silver
+dir
+
+dhxmenu_dhx_black
+dir
+
+dhxmenu_dhx_blue
+dir
+
+dhxmenu_glassy_blue
+dir
+
+dhxmenu_modern_black
+dir
+
+dhxmenu_modern_blue
+dir
+
+dhxmenu_modern_red
+dir
+
+dhxmenu_standard
+dir
+

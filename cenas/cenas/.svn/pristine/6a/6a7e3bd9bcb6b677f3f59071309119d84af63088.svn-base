@@ -1,0 +1,279 @@
+package org.apache.jsp.admin;
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.jsp.*;
+import model.Usuario;
+import model.Professor;
+import model.Tutor;
+import model.Aluno;
+
+public final class confirmarCadastroAluno_ok_jsp extends org.apache.jasper.runtime.HttpJspBase
+    implements org.apache.jasper.runtime.JspSourceDependent {
+
+  private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
+
+  private static java.util.List _jspx_dependants;
+
+  static {
+    _jspx_dependants = new java.util.ArrayList(4);
+    _jspx_dependants.add("/admin/../cabecalho_disciplinas.jsp");
+    _jspx_dependants.add("/admin/cabecalho_local_admin.jsp");
+    _jspx_dependants.add("/admin/menu_admin.jsp");
+    _jspx_dependants.add("/admin/../rodape.jsp");
+  }
+
+  private javax.el.ExpressionFactory _el_expressionfactory;
+  private org.apache.AnnotationProcessor _jsp_annotationprocessor;
+
+  public Object getDependants() {
+    return _jspx_dependants;
+  }
+
+  public void _jspInit() {
+    _el_expressionfactory = _jspxFactory.getJspApplicationContext(getServletConfig().getServletContext()).getExpressionFactory();
+    _jsp_annotationprocessor = (org.apache.AnnotationProcessor) getServletConfig().getServletContext().getAttribute(org.apache.AnnotationProcessor.class.getName());
+  }
+
+  public void _jspDestroy() {
+  }
+
+  public void _jspService(HttpServletRequest request, HttpServletResponse response)
+        throws java.io.IOException, ServletException {
+
+    PageContext pageContext = null;
+    HttpSession session = null;
+    ServletContext application = null;
+    ServletConfig config = null;
+    JspWriter out = null;
+    Object page = this;
+    JspWriter _jspx_out = null;
+    PageContext _jspx_page_context = null;
+
+
+    try {
+      response.setContentType("text/html;charset=ISO-8859-1");
+      pageContext = _jspxFactory.getPageContext(this, request, response,
+      			null, true, 8192, true);
+      _jspx_page_context = pageContext;
+      application = pageContext.getServletContext();
+      config = pageContext.getServletConfig();
+      session = pageContext.getSession();
+      out = pageContext.getOut();
+      _jspx_out = out;
+
+      out.write("\r\n");
+      out.write("<html>\r\n");
+      out.write("\r\n");
+      out.write("<head>\r\n");
+      out.write("<title>CenAS: Cenários de Aprendizagem</title>\r\n");
+      out.write("<link rel=\"stylesheet\" href=\"internas.css\" />\r\n");
+      out.write("\r\n");
+      out.write("</head>\r\n");
+      out.write("\r\n");
+      out.write("<meta name=\"description\" lang=\"pt-br\"\r\n");
+      out.write("\tcontent=\"Sistema eletrônico de segunda opinião em saúde\" />\r\n");
+      out.write("<meta name=\"keywords\" lang=\"pt-br\"\r\n");
+      out.write("\tcontent=\"saúde, health, segunda opinião, medicina\" />\r\n");
+      out.write("<meta name=\"robots\" content=\"ALL\" />\r\n");
+      out.write("<meta name=\"rating\" content=\"General\" />\r\n");
+      out.write("<meta name=\"author\" lang=\"pt-br\" content=\"José Pirauá\" />\r\n");
+      out.write("<meta name=\"generator\" content=\"AceHTML 5 Freeware\" />\r\n");
+      out.write("<meta name=\"language\" content=\"pt-br\" />\r\n");
+      out.write("<link rel=\"author\" href=\"josepiraua@hotmail.com\" />\r\n");
+      out.write("<link rel=\"stylesheet\" href=\"css/internas.css\" />\r\n");
+      out.write("\r\n");
+      out.write("<body>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<script type=\"text/javascript\">\r\n");
+      out.write("function openHelp(){\r\n");
+      out.write("\twindow.\r\n");
+      out.write("}\r\n");
+      out.write("\r\n");
+      out.write("</script>\r\n");
+      out.write("<div id=\"topo\">\r\n");
+      out.write("\t<img src=\"images/topoFonteRodrigo2BorboletasAlinhadas.png\" width=\"778\" height=\"107\"\r\n");
+      out.write("\talt=\"CenAS: Cenários de Aprendizagem - Curso Médico Online\" style=\"margin: 1px;\" /></div>\r\n");
+      out.write("<div id=\"menu_sup\">\r\n");
+      out.write("\t");
+  Usuario usuario = (Usuario) request.getSession().getAttribute("usuario"); 
+	String alterarSenha = "#";
+	String voltar = "#";
+	String ajuda = "#";
+	if(usuario instanceof Professor) {
+		alterarSenha = "professor.formularioAlterarSenha.logic";
+		voltar = "professor.inicio.logic";
+		ajuda = "professor.ajuda.logic";
+	} else if (usuario instanceof Tutor) { 
+		alterarSenha = "tutor.formularioAlterarSenha.logic";
+		voltar = "tutor.inicio.logic";
+		ajuda = "tutor.ajuda.logic";
+	} else if (usuario instanceof Aluno) {
+		alterarSenha = "aluno.formularioAlterarSenha.logic";
+		voltar = "aluno.inicio.logic";
+		ajuda = "aluno.ajuda.logic";
+	} else if (usuario instanceof Usuario) {
+		alterarSenha = "admin.formularioAlterarSenha.logic";
+		voltar = "admin.inicio.logic";
+		ajuda = "admin.ajuda.logic";
+	}
+	
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\t<input type=\"button\" value=\"Alterar Senha\" class=\"button\" onClick=\"javascript:window.open('");
+      out.print( alterarSenha );
+      out.write("', '_self');\" /> \r\n");
+      out.write("\t<input type=\"button\" value=\"Voltar\" class=\"button\" onClick=\"javascript:window.open('");
+      out.print( voltar );
+      out.write("', '_self');\" /> \r\n");
+      out.write("\t<input type=\"button\" value=\"Ajuda\"  class=\"button\" onClick=\"javascript:window.open('ajuda/ajuda.htm', '_blank');\"/> \r\n");
+      out.write("\t<input type=\"button\" value=\"Sair\" class=\"button\" onclick=\"javascript:window.open('cconhecimento.logout.logic', '_self');\" />\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("&nbsp;</div>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<div id=\"corpo\">");
+      out.write("<div id=\"local\">\r\n");
+      out.write("<p>Modo Administrador</p>\r\n");
+      out.write("</div>\r\n");
+      out.write("<div id=\"aluno\">\r\n");
+      out.write("<p><b>Administrador(a):</b> ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${usuario.nome}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write(' ');
+      out.write('|');
+      out.write(' ');
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${periodo.periodo}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write("</p>\r\n");
+      out.write("</div>");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<div id=\"conteudo\">\r\n");
+      out.write("\r\n");
+      out.write("<div id=\"menu\">");
+      out.write("<div class=\"tit_menu\">\r\n");
+      out.write("\t<h5>Setar per&iacute;odo</h5>\r\n");
+      out.write("</div>\r\n");
+      out.write("\r\n");
+      out.write("<div class=\"itensmenu\">\r\n");
+      out.write("\t<a href=\"admin.setarPeriodo.logic\">Setar</a>\r\n");
+      out.write("</div>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<div class=\"tit_menu\">\r\n");
+      out.write("\t<h5>Configurar disciplina</h5>\r\n");
+      out.write("</div>\r\n");
+      out.write("\r\n");
+      out.write("<div class=\"itensmenu\">\r\n");
+      out.write("\t<a href=\"admin.formularioDisciplina.logic\">Criar</a>\r\n");
+      out.write("\t<a href=\"admin.listarDisciplinas.logic\">Editar/Remover</a>\r\n");
+      out.write("</div>\r\n");
+      out.write("\r\n");
+      out.write("<div class=\"tit_menu\">\r\n");
+      out.write("\t<h5>Configurar professor</h5>\r\n");
+      out.write("</div>\r\n");
+      out.write("\r\n");
+      out.write("<div class=\"itensmenu\">\r\n");
+      out.write("\t<a href=\"admin.formularioProfessor.logic\">Criar</a>\r\n");
+      out.write("\t<a href=\"admin.listarProfessores.logic\">Editar/Remover</a>\r\n");
+      out.write("</div>\r\n");
+      out.write("\r\n");
+      out.write("<div class=\"tit_menu\">\r\n");
+      out.write("\t<h5>Configurar aluno</h5>\r\n");
+      out.write("</div>\r\n");
+      out.write("\r\n");
+      out.write("<div class=\"itensmenu\">\r\n");
+      out.write("\t<a href=\"admin.formularioAluno.logic\">Criar</a>\r\n");
+      out.write("\t<a href=\"admin.inicio.logic\">Editar/Remover</a>\r\n");
+      out.write("</div>");
+      out.write("\r\n");
+      out.write("</div>\r\n");
+      out.write("\r\n");
+      out.write("<div id=\"miolo\">\r\n");
+      out.write("<h1>Novo Aluno</h1>\r\n");
+      out.write("<p style=\"text-align: center;\"><span style=\"font-weight: bold;\">Aluno\r\n");
+      out.write("cadastrado/editado com sucesso!</span> <br>\r\n");
+      out.write("<br>\r\n");
+      out.write("Dados cadastrados:<br>\r\n");
+      out.write("<br>\r\n");
+      out.write("Nome: ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${aluno.nome}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write(" <br>\r\n");
+      out.write("CPF: ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${aluno.CPF}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write(" <br>\r\n");
+      out.write("Login: ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${aluno.login}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write(" <br>\r\n");
+      out.write("Senha: ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${aluno.senha}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write(" (Gerada automaticamente pelo sistema)<br>\r\n");
+      out.write("Per&iacute;odo: ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${aluno.periodo}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write(" <br>\r\n");
+      out.write("Email: ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${aluno.email}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write(" <br>\r\n");
+      out.write("<br>\r\n");
+      out.write("\r\n");
+      out.write("<br>\r\n");
+      out.write("<input class=\"button\" value=\"Voltar\"\r\n");
+      out.write("\tonclick=\"javascript:window.open('admin.inicio.logic', '_self');\"\r\n");
+      out.write("\ttype=\"button\"> <br>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("</p>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("</div>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("</div>\r\n");
+      out.write("<html>\r\n");
+      out.write("\r\n");
+      out.write("<head>\r\n");
+      out.write("<title>Intramed</title>\r\n");
+      out.write("</head>\r\n");
+      out.write("\r\n");
+      out.write("<body>\r\n");
+      out.write("<div id=\"rodape\"><img src=\"images/logo_ufpe.png\" width=\"30\"\r\n");
+      out.write("\theight=\"40\" alt=\"UFPE\" class=\"ufpe\" />&nbsp;&nbsp; &copy; Copyright iDEIAS\r\n");
+      out.write("2009\r\n");
+      out.write("<img src=\"images/iDEIAs---Id-Visual-FINAL.png\" width=\"76\"\r\n");
+      out.write("\theight=\"24\" alt=\"UFPE\" class=\"ufpe\" style=\"margin-bottom: 8px; margin-left: 400px;\" />\r\n");
+      out.write("  <div id=\"fale\" style=\"margin-top:30px; padding-bottom: 0px;\"><a href=\"mailto:rosalie.belian@ufpe.br\"><img\r\n");
+      out.write("\tsrc=\"images/email.gif\" width=\" 13\" height=\"8\" alt=\"\" /> &nbsp;fale\r\n");
+      out.write("conosco</a></div>\r\n");
+      out.write("</div>\r\n");
+      out.write("</body>\r\n");
+      out.write("</html>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("</div>\r\n");
+      out.write("\r\n");
+      out.write("</body>\r\n");
+      out.write("</html>\r\n");
+    } catch (Throwable t) {
+      if (!(t instanceof SkipPageException)){
+        out = _jspx_out;
+        if (out != null && out.getBufferSize() != 0)
+          try { out.clearBuffer(); } catch (java.io.IOException e) {}
+        if (_jspx_page_context != null) _jspx_page_context.handlePageException(t);
+      }
+    } finally {
+      _jspxFactory.releasePageContext(_jspx_page_context);
+    }
+  }
+}

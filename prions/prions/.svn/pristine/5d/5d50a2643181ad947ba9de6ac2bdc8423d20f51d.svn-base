@@ -1,0 +1,18 @@
+package hpdd.individual;
+
+import hpdd.notification.Notification;
+
+import java.util.List;
+
+public interface IndividualDAO {
+	public void save(Individual individual);
+	public void delete(Individual individual);
+	public Individual load(Integer individual);
+	public List<Individual> list(Integer id);
+	public List<Individual> listSearch();
+	public Notification getNotification(Integer iduser);
+	public Notification getNotificationToUPDATE(Integer iduser);
+	public void update(Individual individual);
+	public boolean find(Integer codNotification);
+	
+}

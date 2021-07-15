@@ -1,0 +1,205 @@
+package hpdd.web;
+
+import java.util.List;
+
+import hpdd.paper.Paper;
+import hpdd.paper.PaperRN;
+import hpdd.paper.Symptoms;
+import hpdd.paper.SymptomsRN;
+import hpdd.notification.Notification;
+import hpdd.notification.NotificationRN;
+import hpdd.web.util.ContextoUtil;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+@ManagedBean(name = "paperBean")
+@RequestScoped
+public class PaperBean {
+	private Paper selected = new Paper();
+	private Symptoms selectedSym = new Symptoms();
+	private Notification notif = new Notification();
+	private List<Symptoms> lista = null;
+	private List<Symptoms> listaFirstSym = null;
+	private List<Paper> listaPaper = null;
+	private List<Paper> listaPaperNotif = null;
+	private List<Symptoms> listaSymptomsNotif = null;
+
+	public String save() {
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		this.notif.setUser(contextoBean.getLoggedUser());
+		this.notif.setCodNotification(null);
+		this.notif.setStatus("Em andamento");
+		this.notif.setType("Paper");
+		this.notif.setAtivo(true);
+		NotificationRN notificationRN = new NotificationRN();
+		notificationRN.save(this.notif);
+		this.notif = new Notification();
+		this.selected.setNotification(null);
+		PaperRN paperRN = new PaperRN();
+		this.selected.setNotification(paperRN.getNotification(contextoBean
+				.getLoggedUser().getIduser()));
+		paperRN.save(this.selected);
+		this.selected = new Paper();
+		this.listaPaper = null;
+		this.listaPaperNotif = null;
+		this.lista = null;
+		this.listaSymptomsNotif = null;
+		return "ok";
+
+	}
+
+	public void includeFirstSym() {
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		this.selectedSym.setNotification(null);
+		this.selectedSym.setType("first");
+		SymptomsRN symptomsRN = new SymptomsRN();
+		this.selectedSym.setNotification(symptomsRN
+				.getNotification(contextoBean.getLoggedUser().getIduser()));
+		symptomsRN.save(this.selectedSym);
+		this.selectedSym = new Symptoms();
+		this.lista = null;
+
+	}
+
+	public void edit() {
+
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		this.selected.setNotification(null);
+		PaperRN paperRN = new PaperRN();
+		this.selected.setNotification(paperRN
+				.getNotificationToUPDATE(contextoBean.getLoggedUser()
+						.getIduser()));
+		paperRN.update(this.selected);
+		this.selected = new Paper();
+		this.listaPaper = null;
+
+	}
+
+	public void includeFinalSym() {
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		this.selectedSym.setNotification(null);
+		this.selectedSym.setType("final");
+		SymptomsRN symptomsRN = new SymptomsRN();
+		this.selectedSym.setNotification(symptomsRN
+				.getNotification(contextoBean.getLoggedUser().getIduser()));
+		symptomsRN.save(this.selectedSym);
+		this.selectedSym = new Symptoms();
+		this.listaFirstSym = null;
+
+	}
+
+	public String selectandRestore() {
+		System.out.println("activate!");
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		NotificationRN notificationRN = new NotificationRN();
+		notificationRN.restore(contextoBean.getLoggedUser().getIduser());
+		return "restrictednotifypaper";
+	}
+
+	public Paper getSelected() {
+		return selected;
+	}
+
+	public void setSelected(Paper selected) {
+		this.selected = selected;
+	}
+
+	public Notification getNotif() {
+		return notif;
+	}
+
+	public void setNotif(Notification notif) {
+		this.notif = notif;
+	}
+
+	public Symptoms getSelectedSym() {
+		return selectedSym;
+	}
+
+	public void setSelectedSym(Symptoms selectedSym) {
+		this.selectedSym = selectedSym;
+	}
+
+	public List<Symptoms> getLista() { // final symptoms
+
+		if (this.lista == null) {
+			ContextoBean contextoBean = ContextoUtil.getContextoBean();
+
+			SymptomsRN symptomsRN = new SymptomsRN();
+			System.out.println("id: "
+					+ symptomsRN.getNotification(
+							contextoBean.getLoggedUser().getIduser())
+							.getCodNotification());
+			this.lista = symptomsRN.list(symptomsRN.getNotification(
+					contextoBean.getLoggedUser().getIduser())
+					.getCodNotification());
+			System.out.println("passou!" + this.lista);
+		}
+		return lista;
+	}
+
+	public List<Symptoms> getListaFirstSym() { // first symptoms
+
+		if (this.listaFirstSym == null) {
+			ContextoBean contextoBean = ContextoUtil.getContextoBean();
+
+			SymptomsRN symptomsRN = new SymptomsRN();
+			System.out.println("id: "
+					+ symptomsRN.getNotification(
+							contextoBean.getLoggedUser().getIduser())
+							.getCodNotification());
+			this.listaFirstSym = symptomsRN.listFirstSym(contextoBean
+					.getLoggedUser().getIduser());
+			System.out.println("passou!");
+		}
+		return listaFirstSym;
+	}
+
+	public List<Paper> getListaPaper() {
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+
+		PaperRN paperRN = new PaperRN();
+		System.out.println("id: "
+				+ paperRN.getNotification(
+						contextoBean.getLoggedUser().getIduser())
+						.getCodNotification());
+		this.listaPaper = paperRN.list(paperRN.getNotification(
+				contextoBean.getLoggedUser().getIduser()).getCodNotification());
+		System.out.println("passou!" + this.listaPaper);
+		return this.listaPaper;
+	}
+
+	public List<Paper> getListaPaperNotif() {
+		if (this.listaPaperNotif == null) {
+			ContextoBean contextoBean = ContextoUtil.getContextoBean();
+			PaperRN paperRN = new PaperRN();
+			this.listaPaperNotif = paperRN.listaPaperNotif(contextoBean
+					.getLoggedUser().getIduser());
+		}
+		return this.listaPaperNotif;
+	}
+
+	public List<Symptoms> getListaSymptomsNotif() {
+		if (this.listaSymptomsNotif == null) {
+			ContextoBean contextoBean = ContextoUtil.getContextoBean();
+			SymptomsRN symptomsRN = new SymptomsRN();
+			this.listaSymptomsNotif = symptomsRN
+					.listaSymptomsNotif(contextoBean.getLoggedUser()
+							.getIduser());
+		}
+		return this.listaSymptomsNotif;
+	}
+
+	public void deleteSym() {
+		SymptomsRN symptomsRN = new SymptomsRN();
+		symptomsRN.deleteSym(this.selectedSym);
+		this.selectedSym = new Symptoms();
+		this.selected = new Paper();
+		this.listaPaper = null;
+		this.listaPaperNotif = null;
+		this.lista = null;
+		this.listaSymptomsNotif = null;
+
+	}
+}

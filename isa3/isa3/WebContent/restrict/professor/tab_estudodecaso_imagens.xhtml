@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<body>
+	<ui:composition>
+		<f:facet name="title" >
+               <h:outputText value="Arquivos de Imagens"  />
+            </f:facet>
+		<h:form prependId="false" enctype="multipart/form-data"
+			id="formEstudoDeCasoImagens">
+			<p:panel id="panelArquivosPrincipaisEstudoCaso"
+				style="margin: 0; padding: 0;">
+				<h:outputLabel value="Imagem Principal do Estudo de Caso: *" />
+				<c:forEach
+					items="#{estudoDeCasoPersistirController.estudoDeCaso.imagensCaso}"
+					var="arquivoImp" varStatus="index">
+					<a href="#{request.contextPath}/photos?id=#{arquivoImp.id}"
+						target="_blank"> <img
+						src="#{request.contextPath}/photos?id=#{arquivoImp.id}" width="30"
+						height="30" alt="#{arquivoImp.nomeArqv}" /> <h:outputText
+							value="#{arquivoImp.nomeArqv}"></h:outputText>
+					</a>
+					<p:commandButton
+						actionListener="#{estudoDeCasoPersistirController.excluirArquivoImp(arquivoImp)}"
+						immediate="true" update="panelArquivosPrincipaisEstudoCaso"
+						value=""
+						style="height: 15px; width: 25px; margin-left: 5px; padding: 0 !important; border: 0 none; background: none; left: 0;"
+						icon="ui-icon-trash">
+						<p:confirm header="Confirmação"
+							message="Você deseja realmente remover?" icon="ui-icon-alert" />
+					</p:commandButton>
+					<br />
+				</c:forEach>
+				<p:fileUpload
+					fileUploadListener="#{estudoDeCasoPersistirController.handleFileUploadImp}"
+					fileLimit="1" disabled="#{not empty estudoDeCasoPersistirController.estudoDeCaso.imagensCaso}"
+					fileLimitMessage="Só é permitida uma imagem principal por caso"
+					allowTypes="/(\.|\/)(png|jpg|jpeg|gif)$/" immediate="true"
+					auto="false" mode="advanced"
+					invalidFileMessage="Tipo do Arquivo inválido"
+					update="panelArquivosPrincipaisEstudoCaso"
+					fileSizeMessage="O tamanho do arquivo é muito grande"
+					cancelLabel="Cancelar" label="Selecionar" sizeLimit="10000000" />
+			</p:panel>
+			<br />
+			<br />
+			<p:panel id="panelArquivosEstudoCaso" style="margin: 0; padding: 0;">
+				<h:outputLabel value="Imagens Auxiliares do Estudo de Caso: *" />
+				<c:forEach
+					items="#{estudoDeCasoPersistirController.estudoDeCaso.imagensAuxiliares}"
+					var="arquivo" varStatus="index">
+					<a href="#{request.contextPath}/photos?id=#{arquivo.id}"
+						target="_blank"> <img
+						src="#{request.contextPath}/photos?id=#{arquivo.id}" width="30"
+						height="30" alt="#{arquivo.nomeArqv}" /> <h:outputText
+							value="#{arquivo.nomeArqv}"></h:outputText>
+					</a>
+					<p:commandButton
+						actionListener="#{estudoDeCasoPersistirController.excluirArquivo(arquivo)}"
+						immediate="true" update="panelArquivosEstudoCaso" value=""
+						style="height: 15px; width: 25px; margin-left: 5px; padding: 0 !important; border: 0 none; background: none; left: 0;"
+						icon="ui-icon-trash">
+						<p:confirm header="Confirmação"
+							message="Você deseja realmente remover?" icon="ui-icon-alert" />
+					</p:commandButton>
+					<br />
+				</c:forEach>
+				<p:fileUpload
+					fileUploadListener="#{estudoDeCasoPersistirController.handleFileUpload}"
+					allowTypes="/(\.|\/)(png|jpg|jpeg|gif)$/" immediate="true"
+					mode="advanced" multiple="true"
+					invalidFileMessage="Tipo do Arquivo inválido"
+					update="panelArquivosEstudoCaso"
+					fileSizeMessage="O tamanho do arquivo é muito grande"
+					cancelLabel="Cancelar" label="Selecionar" sizeLimit="10000000" />
+			</p:panel>
+			<br />
+			<br />
+			<br />
+			<c:if test="#{estudoDeCasoPersistirController.estudoDeCaso.id == 0}">
+				<p:commandButton
+					actionListener="#{estudoDeCasoPersistirController.adicionarEstudoDeCaso}"
+					value="Salvar" validateClient="true">
+					<p:confirm header="Confirmação"
+						message="Você deseja realmente salvar?" icon="ui-icon-alert" />
+				</p:commandButton>
+			</c:if>
+			<c:if test="#{estudoDeCasoPersistirController.estudoDeCaso.id != 0}">
+				<p:commandButton
+					actionListener="#{estudoDeCasoPersistirController.alterarEstudoDeCaso}"
+					value="Salvar" validateClient="true">
+					<p:confirm header="Confirmação"
+						message="Você deseja realmente alterar?" icon="ui-icon-alert" />
+				</p:commandButton>
+			</c:if>
+			<br />
+			<p:confirmDialog global="true" styleClass="confirmDialog"
+				showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+			<br />
+		</h:form>
+	</ui:composition>
+</body>
+</html>
+
+

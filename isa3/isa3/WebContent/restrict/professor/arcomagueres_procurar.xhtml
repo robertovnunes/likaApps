@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/META-INF/template/layout_professor.xhtml">
+	
+			<ui:define name="content"> 
+			<div id="container">
+			    <div id="middle">    
+					<div id="middle_align">
+			            <div id="wrapper" class="logado professor">
+			            <h3 class="bread">Procurar Estudo de Caso do Aluno</h3>
+				<div style="padding:30px; padding-top:10px;">
+					<div class='page-header page-header-intro'>
+						<h2>Procurar Estudos de Caso do Aluno</h2>
+					</div>
+				<h:form>
+					    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				</h:form>
+				<br />
+				<div class='panel panel-default'>
+						<div class='panel-heading'>
+							<span class='ico-br-gov-mps'></span>
+							Preencha os espaços em branco para filtrar a busca
+						</div>
+						<div class='panel-body'>
+							<div class='row'>
+								<div class='col-md-10'>
+									 <div class="form-group" >
+											<h:form prependId="false">
+												<p:dataTable emptyMessage="Nenhum Registro Encontrado" id="tabelaArcosMagueres" var="arcoMagueres" rows="15" paginator="true" rowsPerPageTemplate="5,10,15"
+													value="#{arcoMagueresEstudosDeCasoProcurarController.listarArcoMaguerezEstudoDeCaso}">
+													<p:column   filterBy="#{arcoMagueres.id}" style="text-align: center;">
+														<f:facet name="header" >
+															<h:outputText value="ID" />
+														</f:facet>
+														<h:outputText value="#{arcoMagueres.id}" />
+													</p:column>
+													<p:column  filterBy="#{arcoMagueres.matriculaAluno.aluno.nome}"  sortBy="#{arcoMagueres.matriculaAluno.aluno.nome}" style="text-align: center;">
+														<f:facet name="header">
+															<h:outputText value="Aluno" />
+														</f:facet>
+														<h:outputText value="#{arcoMagueres.matriculaAluno.aluno.nome}" />
+													</p:column>
+													<p:column  filterBy="#{arcoMagueres.matriculaAluno.curso.titulo}" sortBy="#{arcoMagueres.matriculaAluno.curso.titulo}" style="text-align: center;">
+														<f:facet name="header">
+															<h:outputText value="Curso" />
+														</f:facet>
+														<h:outputText value="#{arcoMagueres.matriculaAluno.curso.titulo}" id="titulo" />
+														 <p:tooltip id="tooltip#{arcoMagueres.matriculaAluno.curso.id}" for="titulo" value="#{arcoMagueres.matriculaAluno.curso.titulo}" escape="false" >
+			           									 </p:tooltip>
+													</p:column>
+													<p:column  filterBy="#{arcoMagueres.estudoDeCaso.titulo}" sortBy="#{arcoMagueres.estudoDeCaso.titulo}" style="text-align: center;">
+														<f:facet name="header">
+															<h:outputText value="Estudo de Caso" />
+														</f:facet>
+														<h:outputText value="#{arcoMagueres.estudoDeCaso.titulo}" id="tituloEC" />
+														 <p:tooltip id="tooltipEc#{arcoMagueres.estudoDeCaso.id}" for="tituloEC" value="#{arcoMagueres.estudoDeCaso.titulo}" escape="false" >
+			           									 </p:tooltip>
+													</p:column>
+													<p:column style="text-align: center;">
+														<f:facet name="header">
+															<h:outputText value="Ações" />
+														</f:facet>
+														
+														<p:commandButton action="#{arcoMagueresEstudosDeCasoProcurarController.darNotaEstudoDeCaso(arcoMagueres)}" oncomplete="PF('dialog').show();" update="dialog" value="Avaliar" 
+															icon="ui-icon-pencil">
+														</p:commandButton>
+														
+														<p:commandButton action="#{arcoMagueresEstudosDeCasoProcurarController.visualizarArcoEstudoCaso(arcoMagueres)}" oncomplete="PF('dialogEstudo').show();" update="dialogEstudo" value="Abrir" 
+															icon="ui-icon-folder-open">
+														</p:commandButton>
+													</p:column>
+												</p:dataTable>
+											</h:form>
+											
+											<p:dialog header="Estudos de Caso do Aluno" widgetVar="dialog" modal="true" width="800" id="dialog">
+												<h:form prependId="false">
+													<p:outputLabel value="Planejamento:" for="Planejamento" style="font-weight:bold;" />
+													Comentário:<br />
+													<p:inputTextarea rows="5" cols="30" counter="displayPlanejamento"  maxlength="300" counterTemplate="{0} caracteres restantes." id="Planejamento" value="#{arcoMagueresEstudosDeCasoProcurarController.arcoMaguerez.planejamento.avaliacaoProfessor.comentario}" />
+													<br /><h:outputText id="displayPlanejamento" />
+													<br />
+													Nota:<p:inputMask id="PlanejamentoNota" mask="99,99" style="width: 100px;"  value="#{arcoMagueresEstudosDeCasoProcurarController.arcoMaguerez.planejamento.avaliacaoProfessor.nota}" />
+													<br />
+													<br />
+													<p:outputLabel value="Implementação:" for="implementacao" style="font-weight:bold;" />
+													Comentário:<br />
+													<p:inputTextarea rows="5" cols="30" maxlength="300" counterTemplate="{0} caracteres restantes." counter="displayimplementacao" id="implementacao" value="#{arcoMagueresEstudosDeCasoProcurarController.arcoMaguerez.implementacao.avaliacaoProfessor.comentario}" />
+													<br /><h:outputText id="displayimplementacao" />
+													<br />
+													Nota:<p:inputMask id="implementacaoNota" style="width: 100px;" mask="99,99" value="#{arcoMagueresEstudosDeCasoProcurarController.arcoMaguerez.implementacao.avaliacaoProfessor.nota}" />
+													<br />
+													<br />
+													<p:outputLabel value="Resultados Esperados:" for="resultadosesperados" style="font-weight:bold;" />
+													Comentário:<br />
+													<p:inputTextarea rows="5" cols="30"  maxlength="300" counterTemplate="{0} caracteres restantes." autoResize="false" counter="displayresultadosesperados" id="resultadosesperados" value="#{arcoMagueresEstudosDeCasoProcurarController.arcoMaguerez.resultadosEsperados.avaliacaoProfessor.comentario}" />
+													<br /><h:outputText id="displayresultadosesperados" />
+													<br />
+													Nota:<p:inputMask id="resultadosesperadosNota" style="width: 100px;" mask="99,99" value="#{arcoMagueresEstudosDeCasoProcurarController.arcoMaguerez.resultadosEsperados.avaliacaoProfessor.nota}" />
+													<br />
+													<br />
+													<p:commandButton actionListener="#{arcoMagueresEstudosDeCasoProcurarController.salvarNotas}" onsuccess="PF('dialog').hide();" value="Salvar" validateClient="true" >
+														<p:confirm header="Confirmação" message="Você deseja realmente salvar?" icon="ui-icon-alert" />
+													</p:commandButton>
+													
+													<p:confirmDialog global="true" styleClass="confirmDialog" showEffect="fade" hideEffect="fade">
+														        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+														        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+												    </p:confirmDialog>
+												</h:form>
+											</p:dialog>
+											<p:dialog header="Estudos de Caso do Aluno" widgetVar="dialogEstudo" modal="true" width="800" id="dialogEstudo">
+												<style type="text/css">
+												.datalist-noborder .ui-widget-content {
+												border: none;
+												}
+												</style>
+												<h:form id="formEC">
+													<p:outputLabel value="Planejamento:" style="font-weight:bold;" />
+													<div class="datalist-noborder">
+														<p:dataList style="border: 0 none !important;"  emptyMessage="Nenhum registro encontrado" value="#{arcoMagueresEstudosDeCasoProcurarController.arcoMaguerez.planejamento.diagnosticosSelecionadoAluno}" var="diagnosticosSelecionadoAluno" type="ordered">
+													        Etiologia: #{diagnosticosSelecionadoAluno.etiologia}, Sinais e Sintomas: #{diagnosticosSelecionadoAluno.sinaisESintomas}, Nomenclatura: #{diagnosticosSelecionadoAluno.nomenclatura}
+													    </p:dataList>
+												    <p:outputLabel value="Implementação:" style="font-weight:bold;" />
+													<p:dataList style="border: 0 none; color:blue;" emptyMessage="Nenhum registro encontrado" value="#{arcoMagueresEstudosDeCasoProcurarController.arcoMaguerez.implementacao.listaImplementacoesAluno}" var="diagnosticosImplementacoes" type="ordered">
+												        Nanda: #{diagnosticosImplementacoes.nandaProfessor.termo}
+												        <p:dataList style="border: 0 none;" emptyMessage="Nenhum registro encontrado" value="#{diagnosticosImplementacoes.nicsSelecionadosAluno}" var="nic" type="ordered">
+												        	#{nic.codigo}: #{nic.descricao}
+												        </p:dataList>
+												    </p:dataList>
+												    
+												    <p:outputLabel value="Resultados Esperados:" style="font-weight:bold;" />
+													<p:dataList style="border: 0 none; color:blue;" emptyMessage="Nenhum registro encontrado" value="#{arcoMagueresEstudosDeCasoProcurarController.arcoMaguerez.resultadosEsperados.listaResultadosAluno}" var="diagnosticosResultados" type="ordered">
+												        Nanda: #{diagnosticosResultados.nandaProfessor.termo}
+												        <p:dataList style="border: 0 none;" emptyMessage="Nenhum registro encontrado" value="#{diagnosticosResultados.nocsSelecionadosAluno}" var="noc" type="ordered">
+												        	#{noc.codigo}: #{noc.descricao} 
+												        </p:dataList>
+												    </p:dataList>
+													</div>												    
+												    <p:outputLabel value="Avaliação" style="font-weight:bold;" />
+													<p:outputLabel value="#{arcoMagueresEstudosDeCasoProcurarController.arcoMaguerez.avaliacao.texto}" escape="false" />
+													<br />
+													
+												</h:form>
+													
+											</p:dialog>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+			</ui:define> 
+
+	</ui:composition>
+</h:body>
+</html>
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14425014360570" configfile="/isa3/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="4402" id="pf14430125190420" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14430125190421 pf14472593785840 pf14472619522772 pf14477865939804 pf14477865939805 pf14477865939806 pf14477865939807 pf144795486290614 pf144795486290615 pf144795486290616 pf144795486290617 pf14484043320500 pf14484043320501 pf14484043320502 pf14484043320503 pf14484043320504 pf14484043320505 pf14484043320506 pf14484043320507 pf14487497353260 pf14487497353261 pf14487497353262 pf14487497353263" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="338" y="178" id="pf14430125190422" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14430125190421" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/aluno/curso_procurar.xhtml" x="338" y="562" id="pf14472593785851" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf14472593785840" path="/restrict/aluno/curso_procurar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/aluno/estudosdecaso_listar.xhtml" x="338" y="946" id="pf14472619522773" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf14472619522772" path="/restrict/aluno/estudosdecaso_listar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/aluno/curso_detalhes.xhtml" x="338" y="1330" id="pf14477865939808" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14477865939804" path="/restrict/aluno/curso_detalhes.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/aluno/arcomagueres.xhtml" x="338" y="1714" id="pf14477865939809" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" inlinks="pf14477865939805" path="/restrict/aluno/arcomagueres.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="public/cadastrar_aluno.xhtml" x="338" y="2098" id="pf144778659398010" referenceLink="//@navigationRule.0/@navigationCase.6/@toViewId|" inlinks="pf14477865939806" path="/public/cadastrar_aluno.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/aluno/opiniao_curso.xhtml" x="338" y="2482" id="pf144778659398011" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf14477865939807" path="/restrict/aluno/opiniao_curso.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/aluno/feedback_estudosdecaso_listar.xhtml" x="338" y="2866" id="pf144795486290618" referenceLink="//@navigationRule.0/@navigationCase.7/@toViewId|" inlinks="pf144795486290614" path="/restrict/aluno/feedback_estudosdecaso_listar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/usuario_procurar.xhtml" x="338" y="3250" id="pf144795486290619" referenceLink="//@navigationRule.0/@navigationCase.8/@toViewId|" inlinks="pf144795486290615" path="/restrict/professor/usuario_procurar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/usuario_persistir.xhtml" x="338" y="3634" id="pf144795486290620" referenceLink="//@navigationRule.0/@navigationCase.9/@toViewId|" inlinks="pf144795486290616" path="/restrict/professor/usuario_persistir.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/usuario_visualizar.xhtml" x="338" y="4018" id="pf144795486290621" referenceLink="//@navigationRule.0/@navigationCase.10/@toViewId|" inlinks="pf144795486290617" path="/restrict/professor/usuario_visualizar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/curso_procurar.xhtml" x="338" y="4402" id="pf14484043320508" referenceLink="//@navigationRule.0/@navigationCase.11/@toViewId|" inlinks="pf14484043320500" path="/restrict/professor/curso_procurar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/curso_persistir.xhtml" x="338" y="4786" id="pf14484043320509" referenceLink="//@navigationRule.0/@navigationCase.12/@toViewId|" inlinks="pf14484043320501" path="/restrict/professor/curso_persistir.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/curso_visualizar.xhtml" x="338" y="5170" id="pf144840433205010" referenceLink="//@navigationRule.0/@navigationCase.13/@toViewId|" inlinks="pf14484043320502" path="/restrict/professor/curso_visualizar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/opiniaocursos_procurar.xhtml" x="338" y="5554" id="pf144840433205011" referenceLink="//@navigationRule.0/@navigationCase.17/@toViewId|" inlinks="pf14484043320503" path="/restrict/professor/opiniaocursos_procurar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/arcomagueres_procurar.xhtml" x="338" y="5938" id="pf144840433205012" referenceLink="//@navigationRule.0/@navigationCase.18/@toViewId|" inlinks="pf14484043320504" path="/restrict/professor/arcomagueres_procurar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/estudodecaso_procurar.xhtml" x="338" y="6322" id="pf144840433206613" referenceLink="//@navigationRule.0/@navigationCase.14/@toViewId|" inlinks="pf14484043320505" path="/restrict/professor/estudodecaso_procurar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/estudodecaso_persistir.xhtml" x="338" y="6706" id="pf144840433206614" referenceLink="//@navigationRule.0/@navigationCase.15/@toViewId|" inlinks="pf14484043320506" path="/restrict/professor/estudodecaso_persistir.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/estudodecaso_visualizar.xhtml" x="338" y="7090" id="pf144840433206615" referenceLink="//@navigationRule.0/@navigationCase.16/@toViewId|" inlinks="pf14484043320507" path="/restrict/professor/estudodecaso_visualizar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/hyperlink.xhtml" x="338" y="7474" id="pf14487497353274" referenceLink="//@navigationRule.0/@navigationCase.19/@toViewId|" inlinks="pf14487497353260" path="/restrict/hyperlink.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/hyperlink_procurar.xhtml" x="338" y="7858" id="pf14487497353275" referenceLink="//@navigationRule.0/@navigationCase.20/@toViewId|" inlinks="pf14487497353261" path="/restrict/professor/hyperlink_procurar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/hyperlink_persistir.xhtml" x="338" y="8242" id="pf14487497353276" referenceLink="//@navigationRule.0/@navigationCase.21/@toViewId|" inlinks="pf14487497353262" path="/restrict/professor/hyperlink_persistir.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/professor/hyperlink_visualizar.xhtml" x="338" y="8626" id="pf14487497353277" referenceLink="//@navigationRule.0/@navigationCase.22/@toViewId|" inlinks="pf14487497353263" path="/restrict/professor/hyperlink_visualizar.xhtml"/>
+  <links id="pf14430125190421" target="pf14430125190422" source="pf14430125190420" outcome="index" redirect="true"/>
+  <links id="pf14472593785840" target="pf14472593785851" source="pf14430125190420" outcome="cursoAlunoProcurar"/>
+  <links id="pf14472619522772" target="pf14472619522773" source="pf14430125190420" outcome="matriculaEstudosDeCasoAlunoController"/>
+  <links id="pf14477865939804" target="pf14477865939808" source="pf14430125190420" outcome="cursoDetalhesAlunoController"/>
+  <links id="pf14477865939805" target="pf14477865939809" source="pf14430125190420" outcome="arcoMagueresController"/>
+  <links id="pf14477865939806" target="pf144778659398010" source="pf14430125190420" outcome="cadastrarAlunoController"/>
+  <links id="pf14477865939807" target="pf144778659398011" source="pf14430125190420" outcome="opiniaoSobreCursoController"/>
+  <links id="pf144795486290614" target="pf144795486290618" source="pf14430125190420" outcome="feedbackEstudosDeCasoAlunoController"/>
+  <links id="pf144795486290615" target="pf144795486290619" source="pf14430125190420" outcome="usuarioProcurar"/>
+  <links id="pf144795486290616" target="pf144795486290620" source="pf14430125190420" outcome="usuarioPersistir"/>
+  <links id="pf144795486290617" target="pf144795486290621" source="pf14430125190420" outcome="usuarioVisualizar"/>
+  <links id="pf14484043320500" target="pf14484043320508" source="pf14430125190420" outcome="cursoProfessorProcurarController"/>
+  <links id="pf14484043320501" target="pf14484043320509" source="pf14430125190420" outcome="cursoProfessorPersistirController"/>
+  <links id="pf14484043320502" target="pf144840433205010" source="pf14430125190420" outcome="cursoProfessorVisualizarController"/>
+  <links id="pf14484043320503" target="pf144840433205011" source="pf14430125190420" outcome="matriculaEstudosDeCasoProcurar"/>
+  <links id="pf14484043320504" target="pf144840433205012" source="pf14430125190420" outcome="arcoMagueresEstudosDeCasoProcurar"/>
+  <links id="pf14484043320505" target="pf144840433206613" source="pf14430125190420" outcome="estudoDeCasoProcurar"/>
+  <links id="pf14484043320506" target="pf144840433206614" source="pf14430125190420" outcome="estudoDeCasoPersistir"/>
+  <links id="pf14484043320507" target="pf144840433206615" source="pf14430125190420" outcome="estudoDeCasoVisualizar"/>
+  <links id="pf14487497353260" target="pf14487497353274" source="pf14430125190420" outcome="hyperLinkController"/>
+  <links id="pf14487497353261" target="pf14487497353275" source="pf14430125190420" outcome="hyperLinkProcurar"/>
+  <links id="pf14487497353262" target="pf14487497353276" source="pf14430125190420" outcome="hyperLinkPersistir"/>
+  <links id="pf14487497353263" target="pf14487497353277" source="pf14430125190420" outcome="hyperLinkVisualizar"/>
+</pageflow:Pageflow>

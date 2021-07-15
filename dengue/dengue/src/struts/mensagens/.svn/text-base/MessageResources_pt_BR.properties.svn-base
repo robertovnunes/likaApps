@@ -1,0 +1,5 @@
+#Mensagens do sistema
+erro.autenticacao=*Login ou senha inválido.
+erro.sistema=Erro de conexão com banco de dados!
+
+gerar.bd=BD gerado!

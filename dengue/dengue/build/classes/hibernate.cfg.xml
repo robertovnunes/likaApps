@@ -1,0 +1,67 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+ <hibernate-configuration>
+     <session-factory>
+     
+     <!-- 
+	      <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+         <property name="hibernate.connection.url">jdbc:mysql://localhost/saemental</property>
+         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+         <property name="hibernate.connection.username">root</property>
+         <property name="hibernate.connection.password"></property>
+         <property name="show_sql">true</property>
+         
+         
+         
+         -->
+	      
+         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+         <property name="hibernate.connection.url">jdbc:mysql://localhost/dengue2</property>
+         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+         <property name="hibernate.connection.username">dengue2</property>
+         <property name="hibernate.connection.password">CVxaFReHEJcx6AJv</property>
+         <property name="show_sql">true</property>
+
+          
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property> 
+		<property name="hibernate.connection.autocommit">false</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+			
+		<property name="hibernate.c3p0.max_size">10</property>
+		<property name="hibernate.c3p0.min_size">2</property>
+		<property name="hibernate.c3p0.timeout">5000</property>
+		<property name="hibernate.c3p0.max_statements">10</property>
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
+		<property name="hibernate.c3p0.acquire_increment">2</property>
+		<property name="format_sql">true</property>
+		<property name="use_outer_join">true</property>
+		<property name="hibernate.generate_statistics">true</property>
+		<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		
+
+         <!-- Enable Hibernate's automatic session context management -->
+
+         <mapping class="model.endereco.Pais" />
+         <mapping class="model.endereco.UF" />
+         <mapping class="model.endereco.Cidade" />
+         <mapping class="model.endereco.Bairro" />
+         <mapping class="model.endereco.Logradouro" />
+         
+         <mapping class="model.endereco.Residencia" />
+
+         <mapping class="model.usuario.Usuario" />
+	     <mapping class="model.sistema.Erro" />
+
+  		<mapping class="model.sistema.CNES" />
+  		
+  		<mapping class="model.sistema.Arquivo" />
+  		
+  		 <mapping class="model.fichainvestigativa.Conclusao" />
+  		 <mapping class="model.fichainvestigativa.DadosClinicosComplicacoes" />
+  		 <mapping class="model.fichainvestigativa.DadosGerais" />
+  		 <mapping class="model.fichainvestigativa.DadosLaboratoriais" />
+  		 <mapping class="model.fichainvestigativa.Paciente" />
+  		 <mapping class="model.fichainvestigativa.NotificacaoInvestigativa" />
+     </session-factory></hibernate-configuration>

@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="../resources/css/style_rest.css" rel="stylesheet"
+		type="text/css" />
+	<title>Home</title>
+</h:head>
+<style type="text/css">
+.ui-widget {
+	font-size: 12px !important;
+}
+</style>
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="flags">
+			<a href="#"><img src="../resources/imagens/bra.gif" /></a> <a
+				href="#"><img src="../resources/imagens/eua.gif" /></a>
+		</div>
+		<div id="welcome">
+			<table title="User status" align="center">
+				<b>User logged: #{request.remoteUser}</b>
+				<br /> Welcome, #{contextoBean.loggedUser.name}!
+
+			</table>
+		</div>
+		<ui:include src="menu.xhtml" />
+		<div id="corpo">
+			<div id="texto">
+				<h1>Report case</h1>
+				<h4>
+					<a href="home_restricted.jsf">Home</a> >><a
+						href="restricted_notify.html"> Report case </a> >> Images
+				</h4>
+				<br />
+				<ul id="nav">
+					<!-- CSS Tabs -->
+					<li><a href="restrictednotifygeneraledit.jsf">General</a></li>
+					<li><a href="restrictednotifyindividualedit.jsf"><span>Individual</span></a></li>
+					<!--<li><a href="restrictednotifyresidentialedit.jsf"><span>Residential</span></a></li>-->
+					<!-- <li><a href="restrictednotifysuspicionedit.jsf"><span>Primary
+								diagnostic</span></a></li> -->
+					<li><a href="restrictednotifydataedit.jsf"><span>Clinical
+								info</span></a></li>
+					<li><a href="restrictednotifyaspectsedit.jsf"><span>Epidemiological
+								aspects</span></a></li>
+					<li><a href="restrictednotifyresultsedit.jsf"><span>Exams</span></a></li>
+					<li><a href="restrictednotifyconclusionedit.jsf"><span>Conclusion</span></a></li>
+					<li><a href="restrictednotifysourceedit.jsf"><span>Source</span></a></li>
+					<li><a href="restrictednotifyresumeedit.jsf"><span>Clinical
+								History</span></a></li>
+					<li><a class="active" href="restrictednotifyimagesedit.jsf"><span>Images</span></a></li>
+				</ul>
+
+				<h:form id="texto">
+					<h:messages />
+					<div style="width: 810px; height: 350px; overflow: auto;">
+						<h:panelGrid width="793" height="30" valign="top" align="left"
+							colspan="2"
+							style="background-color: #4E4E27; color: #FFFFFF; font-family: Arial; font-size: 10 pt; font-weight: bold">
+							<h:outputLabel value="Images"></h:outputLabel>
+						</h:panelGrid>
+						<h:panelGrid columns="4" width="795" height="30" valign="top"
+							align="left" bgcolor="#EBEBD6">
+							<h:outputText value="Foto: " />
+							<p:fileUpload fileUploadListener="#{picturesBean.fileUpload}"
+								label="Escolher" cancelLabel="Cancelar" sizeLimit="400000"
+								invalidSizeMessage="Imagem muito grande" auto="true"
+								invalidFileMessage="Tipo de imagem não suportado"
+								allowTypes="/(\.|\/)(jpe?g|png)$/" />
+
+							<h:outputText value="Descrição: " />
+							<p:inputText value="#{picturesBean.selected.name}" />
+							<h:outputLabel value="Type:" for="primDiag" />
+							<p:selectOneMenu id="primDiag"
+								value="#{picturesBean.selected.type}">
+								<c:selectItem itemValue="" itemLabel="Select the image type" />
+								<c:selectItem itemValue="EEG" itemLabel="EEG" />
+								<c:selectItem itemValue="MRI" itemLabel="MRI" />
+								<c:selectItem itemValue="Biopsy" itemLabel="Biopsy" />
+								<c:selectItem itemValue="Necropsy" itemLabel="Necropsy" />
+								<c:selectItem itemValue="Immunohistochemestry"
+									itemLabel="Immunohistochemestry" />
+								<c:selectItem itemValue="PRNP" itemLabel="PRNP" />
+							</p:selectOneMenu>
+						</h:panelGrid>
+						<h:outputLabel>
+						<p:commandButton styleClass="botao" value="Save" ajax="false"
+							action="#{picturesBean.savePicture}" />
+						</h:outputLabel>
+						<h:outputLabel>
+							<p:commandButton styleClass="botao" value="Finish" ajax="false"
+								action="imagesCreated" />
+						</h:outputLabel>
+					</div>
+				</h:form>
+
+
+				<br />
+				<!-- <img src="../resources/imagens/seq_clih.gif"/> -->
+
+			</div>
+		</div>
+		<div id="footer"></div>
+	</div>
+</h:body>
+
+</html>

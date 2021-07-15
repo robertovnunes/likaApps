@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13546785121210" configfile="/prions/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="2770" id="pf13546793414501" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13546793414502 pf13546832963578 pf13573464663650 pf13573464663654 pf13573464663655 pf13573464663656 pf13573464663657 pf13573464663668 pf13573464663669 pf13576115910960 pf13596916342700 pf13642402114770 pf13684646362530 pf13684646362541 pf13713520021390 pf13713520021391" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="public/usersucess.xhtml" x="338" y="178" id="pf13546793414514" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" inlinks="pf13546793414502" path="/public/usersucess.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="public/signup.xhtml" x="338" y="562" id="pf13546832963579" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13546832963578" path="/public/signup.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/restrictednotifyindividual.xhtml" x="338" y="946" id="pf135734646636610" referenceLink="//@navigationRule.1/@navigationCase.3/@toViewId|" inlinks="pf13573464663650" path="/restrict/restrictednotifyindividual.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/restrictednotifyresidential.xhtml" x="338" y="1330" id="pf135734646636611" referenceLink="//@navigationRule.1/@navigationCase.5/@toViewId|" inlinks="pf13684646362530" path="/restrict/restrictednotifysuspicion.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/restrictednotifysuspicion.xhtml" x="122" y="4354" id="pf135734646636712" referenceLink="//@navigationRule.1/@navigationCase.5/@toViewId|" path="/restrict/restrictednotifysuspicion.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/restrictednotifyaspects.xhtml" x="338" y="1714" id="pf135734646636713" referenceLink="//@navigationRule.1/@navigationCase.7/@toViewId|" inlinks="pf13573464663654" path="/restrict/restrictednotifyaspects.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/restrictednotifyresults.xhtml" x="338" y="2098" id="pf135734646636714" referenceLink="//@navigationRule.1/@navigationCase.8/@toViewId|" inlinks="pf13573464663655" path="/restrict/restrictednotifyresults.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/restrictednotifyconclusion.xhtml" x="338" y="2482" id="pf135734646636715" referenceLink="//@navigationRule.1/@navigationCase.9/@toViewId|" inlinks="pf13573464663656" path="/restrict/restrictednotifyconclusion.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/restrictednotifyclinicalhist.xhtml" x="338" y="2866" id="pf135734646636716" referenceLink="//@navigationRule.1/@navigationCase.10/@toViewId|" inlinks="pf13573464663657" path="/restrict/restrictednotifysource.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/restrictednotifyimages.xhtml" x="338" y="3250" id="pf135734646636817" referenceLink="//@navigationRule.1/@navigationCase.12/@toViewId|" inlinks="pf13573464663668" path="/restrict/restrictednotifyimages.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/restrictednotifyfinish.xhtml" x="338" y="3634" id="pf135734646636818" referenceLink="//@navigationRule.1/@navigationCase.13/@toViewId|" inlinks="pf13573464663669" path="/restrict/restrictednotifyfinish.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/restrictednotifydata.xhtml" x="338" y="4018" id="pf13576115910972" referenceLink="//@navigationRule.1/@navigationCase.6/@toViewId|" inlinks="pf13576115910960 pf13713520021391" path="/restrict/restrictednotifydata.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="public/showsearch.xhtml" x="338" y="5938" id="pf13591680694501" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13596916342721" path="/public/showsearch.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="buscar" x="122" y="5938" id="pf13596916342722" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13596916342721" path="/public/search.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="public/listNotif.xhtml" x="338" y="4402" id="pf13596916342723" referenceLink="//@navigationRule.1/@navigationCase.2/@toViewId|" inlinks="pf13596916342700" path="/public/listNotif.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/listnotification.xhtml" x="338" y="4786" id="pf13642402114781" referenceLink="//@navigationRule.1/@navigationCase.14/@toViewId|" inlinks="pf13642402114770" path="/restrict/listnotification.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/listNotifPaper.xhtml" x="338" y="5170" id="pf13684646362552" referenceLink="//@navigationRule.1/@navigationCase.15/@toViewId|" inlinks="pf13684646362541" path="/restrict/listNotifPaper.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restrict/restrictednotifyresume.xhtml" x="338" y="5554" id="pf13713520021412" referenceLink="//@navigationRule.1/@navigationCase.11/@toViewId|" inlinks="pf13713520021390" path="/restrict/restrictednotifyresume.xhtml"/>
+  <links id="pf13546793414502" target="pf13546793414514" source="pf13546793414501"/>
+  <links id="pf13546832963578" target="pf13546832963579" source="pf13546793414501"/>
+  <links id="pf13573464663650" target="pf135734646636610" source="pf13546793414501"/>
+  <links id="pf13573464663654" target="pf135734646636713" source="pf13546793414501"/>
+  <links id="pf13573464663655" target="pf135734646636714" source="pf13546793414501"/>
+  <links id="pf13573464663656" target="pf135734646636715" source="pf13546793414501"/>
+  <links id="pf13573464663657" target="pf135734646636716" source="pf13546793414501"/>
+  <links id="pf13573464663668" target="pf135734646636817" source="pf13546793414501"/>
+  <links id="pf13573464663669" target="pf135734646636818" source="pf13546793414501"/>
+  <links id="pf13576115910960" target="pf13576115910972" source="pf13546793414501"/>
+  <links id="pf13596916342721" target="pf13591680694501" source="pf13596916342722"/>
+  <links id="pf13596916342700" target="pf13596916342723" source="pf13546793414501"/>
+  <links id="pf13642402114770" target="pf13642402114781" source="pf13546793414501"/>
+  <links id="pf13684646362530" target="pf135734646636611" source="pf13546793414501"/>
+  <links id="pf13684646362541" target="pf13684646362552" source="pf13546793414501"/>
+  <links id="pf13713520021390" target="pf13713520021412" source="pf13546793414501"/>
+  <links id="pf13713520021391" target="pf13576115910972" source="pf13546793414501"/>
+</pageflow:Pageflow>

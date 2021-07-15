@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>ISA</title>
+	<meta name="title" content="ISA" />
+	<meta name="description" content="Integração de conteúdos para Sistematização da Assistência de Enfermagem em Adaptações cardiorrespiratórias no recém-nascido" />
+	<meta name="keywords" content="Enfermagem, Educação" />
+	<meta name="language" content="pt-BR" />
+	<meta name="robots" content="All" />
+	<meta name="revisit" content="7 days" />
+	<meta name="author" content="" />
+	
+	
+	
+   <link href="#{request.contextPath}/resources/icones/favicon.png" rel="shortcut icon"/>
+<link href="#{request.contextPath}/resources/css/screen.css" type="text/css" rel="stylesheet" media="screen" />
+	
+	
+	<script>  
+            PrimeFaces.locales['pt'] = {  
+                closeText: 'Fechar',  
+                prevText: 'Anterior',  
+                nextText: 'Próximo',  
+                currentText: 'Começo',  
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],  
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],  
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],  
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],  
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],  
+                weekHeader: 'Semana',  
+                firstDay: 0,  
+                isRTL: false,  
+                showMonthAfterYear: false,  
+                yearSuffix: '',  
+                timeOnlyTitle: 'Só Horas',  
+                timeText: 'Tempo',  
+                hourText: 'Hora',  
+                minuteText: 'Minuto',  
+                secondText: 'Segundo',  
+                ampm: false,  
+                month: 'Mês',  
+                week: 'Semana',  
+                day: 'Dia',  
+                allDayText: 'Todo o Dia'  
+            };  
+      </script> 
+</h:head>
+<h:body>
+	<div id="page">
+		<div id="header">
+			<ui:insert name="header">
+				<ui:include src="/META-INF/template/inc_cabecalho_professor.xhtml" />
+			</ui:insert>
+		</div>
+		<div id="content">
+			<ui:include src="barraprogresso.xhtml" />  
+			<h:form>
+				<p:growl id="messages" showDetail="true" sticky="true" autoUpdate="true" closable="true"  />  
+			</h:form>
+			<ui:insert name="content">
+				<ui:include src="/META-INF/template/conteudo_padrao.xhtml" />
+			</ui:insert>
+		</div>
+		<div id="footer">
+			<ui:insert name="footer">
+				<ui:include src="/META-INF/template/inc_rodape.xhtml" />
+			</ui:insert>
+		</div>
+	</div>
+</h:body>
+</html>
+

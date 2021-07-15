@@ -1,0 +1,82 @@
+@charset "utf-8";
+#logo {
+	height: 91px;
+	width: 179px;
+	padding: 0px;
+	float:left;
+}
+#menu {
+	width: 179px;
+	height: 382px;
+	/*padding:0px;*/
+	margin-top:91px;
+	margin-left:-179px;
+	float:left;
+	background-image:url(../../testedprion/img/barra_login.png);
+}
+
+#conteudo {
+	width: 844px;
+	height: 450px;
+	margin-left: 340px;
+	margin-bottom: auto;
+	padding-left: 20px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-seriff;
+	font-size: 14px;
+}
+
+#flags {
+	width: 50px;
+	height: 15px;
+	padding-left: 1150px;
+	padding-top: 8px;
+	
+}
+
+/* rounded */
+
+#nav {
+        margin: 0;
+        padding: 0 0 20px 10px;
+        border-bottom: 1px solid #9FB1BC;
+}
+
+#nav li {
+        margin: 0;
+        padding: 0;
+        display: inline;
+        list-style-type: none;
+}
+
+#nav a:link, #nav a:visited {
+        float: left;
+        font-size: 10px;
+        line-height: 14px;
+        font-weight: bold;
+        padding: 0 4px 6px 4px;
+        text-decoration: none;
+        color: #708491;
+}
+
+#nav a:link.active, #nav a:visited.active, #nav a:hover {
+        color: #000;
+        /*background: url(rounded.gif) bottom center;*/
+		background-image:url(../../testedprion/img/rounded.gif);
+		background-repeat:no-repeat;
+		background-position:bottom;
+}
+
+#lateral_esq {
+	height: 565px;
+	width: 161px;
+	float:left;
+}
+#lateral_dir {
+	float: right;
+	height: 565px;
+	width: 161px;
+}
+
+.centered {
+    margin: 0px auto;
+}

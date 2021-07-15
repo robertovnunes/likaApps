@@ -1,0 +1,187 @@
+package logic;
+
+import interceptor.DaoInterceptor;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
+import model.Aluno;
+import model.MaterialGrafico;
+import model.Problema;
+import model.Professor;
+import model.Tutor;
+import model.Usuario;
+
+import org.vraptor.annotations.Component;
+import org.vraptor.annotations.In;
+import org.vraptor.annotations.InterceptedBy;
+import org.vraptor.annotations.Out;
+import org.vraptor.annotations.Viewless;
+import org.vraptor.interceptor.MultipartRequestInterceptor;
+import org.vraptor.interceptor.UploadedFileInformation;
+import org.vraptor.scope.ScopeType;
+
+import dao.DaoFactory;
+
+@Component("cconhecimento")
+@InterceptedBy({DaoInterceptor.class, MultipartRequestInterceptor.class})
+public class CconhecimentoLogic {
+	
+	private final DaoFactory factory;
+	
+	@Out(scope = ScopeType.SESSION)
+	private Usuario usuario;
+	
+	private List<Problema> problemas;
+	
+	private Problema problema;
+	
+	@In(required = false)
+	private UploadedFileInformation fileInfo;
+
+	@In
+    private HttpServletResponse response;
+	
+	public CconhecimentoLogic(DaoFactory factory) {
+		this.factory = factory;
+	}
+	
+	public String login(Usuario usuario) {
+		
+		String retorno = "invalid";
+		if(usuario != null) {
+			if(!usuario.getLogin().equals("") && !usuario.getSenha().equals("")) {
+				this.usuario = this.factory.getDaoUsuario().existeUnico(usuario);
+				
+				if(this.usuario instanceof Aluno) {
+					retorno = "aluno";
+				} else if(this.usuario instanceof Professor) {
+					retorno = "professor";
+				} else if(this.usuario instanceof Tutor) {
+					retorno = "tutor";
+				} else if(this.usuario instanceof Usuario) {
+					retorno = "admin";
+				}
+			}
+		}
+		
+		return retorno;
+	}
+	
+	public void acessoLivre() {
+		this.problemas = this.factory.getDaoProblema().listaTudo();
+	}
+	
+	public void relatorio(Problema problema) {
+		this.problema = this.factory.getDaoProblema().procura(problema.getIdProblema());
+	}
+	
+	@Viewless
+	public void mostraImagem(MaterialGrafico materialGrafico)
+			throws IOException {
+
+		byte[] imagem = null;
+
+		MaterialGrafico material = this.factory.getDaoMaterialGrafico()
+				.procura(materialGrafico.getIdMaterialGrafico());
+
+		imagem = material.getImagem();
+
+		response.setContentType("image/bmp");
+		response.setHeader("Content-Disposition", "filename=xxx.jpg");
+		response.setContentLength(imagem.length);
+		ServletOutputStream ouputStream = response.getOutputStream();
+		ouputStream.write(imagem, 0, imagem.length);
+		ouputStream.flush();
+		ouputStream.close();
+	} 
+	
+	public void logout() {
+		this.usuario = null;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public DaoFactory getFactory() {
+		return factory;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public List<Problema> getProblemas() {
+		return problemas;
+	}
+
+	public void setProblemas(List<Problema> problemas) {
+		this.problemas = problemas;
+	}
+
+	public Problema getProblema() {
+		return problema;
+	}
+
+	public void setProblema(Problema problema) {
+		this.problema = problema;
+	}
+
+	public UploadedFileInformation getFileInfo() {
+		return fileInfo;
+	}
+
+	public void setFileInfo(UploadedFileInformation fileInfo) {
+		this.fileInfo = fileInfo;
+	}
+
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+
+	public void setResponse(HttpServletResponse response) {
+		this.response = response;
+	}
+
+	static byte[] getBytesFromFile(File file) throws IOException {
+        InputStream is = new FileInputStream(file);
+        // Get the size of the file
+        long length = file.length();
+       
+        /*
+         * You cannot create an array using a long type. It needs to be an int
+         * type. Before converting to an int type, check to ensure that file is
+         * not loarger than Integer.MAX_VALUE;
+         */
+        if (length > Integer.MAX_VALUE) {
+            return null;
+        }
+
+        // Create the byte array to hold the data
+        byte[] bytes = new byte[(int) length];
+
+        // Read in the bytes
+        int offset = 0;
+        int numRead = 0;
+        while ((offset < bytes.length)&& ((numRead = is.read(bytes, offset, bytes.length - offset)) >= 0)) {
+            offset += numRead;
+        }
+
+        // Ensure all the bytes have been read in
+        if (offset < bytes.length) {
+            throw new IOException("Could not completely read file "
+                    + file.getName());
+        }
+
+        is.close();
+        return bytes;
+    }
+	
+}

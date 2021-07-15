@@ -1,0 +1,319 @@
+body {
+	font: 73% Tahoma, "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #666;
+	background: white ;
+}
+
+/*WRAP*/
+#container {
+	width: 950px;
+	margin: 0 auto;
+	padding: 0;
+	line-height: 1.7em;
+	background: white;;
+	color: #666;
+}
+
+/*TOP BANNER*/
+#top {
+	margin: 0;
+	padding: 0;
+	height: 120px;
+	background: white url(../images/orb.png) no-repeat left;
+	border-bottom: 2px solid rgb(82,9,52);
+}
+
+#top h1 {
+	padding: 10px 10px 0 568px;
+	margin: 0;
+	font: 175% georgia, Helvetica, "Trebuchet MS", Tahoma, sans-serif;
+	letter-spacing: 5px;
+	color: #fff;
+	background: transparent;
+}
+
+#top p {
+	padding: 5px 0 0 10px;
+	margin: 0;
+	font-size: 14pt;
+	color: silver;
+	float: left;
+}
+
+
+
+#top span {
+	color: silver;
+	float: right;
+	padding-right: 120px;
+}
+
+#top a:link {
+	text-decoration: none;
+	color: #eee;
+	background: inherit;
+}
+
+#top a:hover {
+	text-decoration: underline;
+	color: #fff;
+	background: inherit;
+}
+
+/*TOP MENU*/
+#menu {
+	margin: 0;
+	padding: 0;
+	height: 30px;
+	border: 2px solid rgb(82,9,52);
+}
+
+/*LEFT MENU*/
+#leftnav {
+	float: left;
+	width: 160px;
+	margin: 0;
+	padding: 0;
+	border-right: 2px solid #fff;
+	color: #333;
+	background: rgb(245,245,245);
+}
+
+/*MAIN CONTENT*/
+#content {
+	margin: 0 0 0 170px;
+	padding: 0;
+	min-height: 450px;
+}
+
+#contentListar {
+	margin: 0;
+	border-top: 2px solid #fff;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding: 0;
+	min-height: 650px;
+}
+
+/*FOOTER*/
+#footer {
+	clear: both;
+	margin: 0;
+	padding: 0em;
+	border-top: 5px solid #cb274c;
+	color: #fff;
+	background: #CB274C;
+	border: 1px solid rgb(82,9,52);
+}
+
+
+*>html #footer img {
+	margin: 0;
+}
+
+#footer a:link,#footer a:visited {
+	text-decoration: none;
+	color: #eee;
+	background: transparent;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	text-decoration: none;
+	color: #90b905;
+	background: inherit;
+}
+
+#footer a:active {
+	text-decoration: none;
+	background: inherit;
+	color: #aaa;
+}
+
+h2 {
+	margin: 0;
+	padding: 0 0 0 5px;
+	font: 130% georgia, Helvetica, "Trebuchet MS", Tahoma, sans-serif;
+	color: #520934;
+	letter-spacing: 5px;
+	border-bottom: 1px solid #eee;
+	background: inherit;
+}
+
+h3 {
+	margin: 0;
+	padding: 5px 0 5px 10px;
+	font: 130% georgia, Helvetica, "Trebuchet MS", Tahoma, sans-serif;
+	text-transform: uppercase;
+	text-decoration: underline;
+	text-align:right;
+	font-size: small;
+	color: #520934;
+	background: inherit;
+}
+
+p {
+	padding: 10px;
+}
+
+blockquote {
+	font-weight: bold;
+	font-style: italic;
+	color: #b29b35;
+}
+
+legend{
+	font: georgia, Helvetica, "Trebuchet MS", Tahoma, sans-serif;
+	color: #520934;
+}
+
+a:link,a:visited {
+	text-decoration: none;
+	color: #cb274c;
+	background: transparent;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #520934;
+	background: inherit;
+}
+
+a:active {
+	text-decoration: none;
+	background: inherit;
+	color: #aaa;
+}
+
+a img {
+	border: none;
+}
+
+#navlist li {
+	list-style-type: square;
+	margin: 0 15px 0 0;
+	padding: 0;
+	background: inherit;
+	color: #520934;
+}
+
+
+.imgright {
+	float: right;
+	margin: 0 10px 10px 10px;
+	padding: 10px;
+}
+
+.imgleft {
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+
+.happy {
+	border-top: 1px solid #808080;
+	padding: 10px;
+}
+
+.clear {
+	clear: both;
+	overflow: hidden;
+	width: 0;
+	height: 1px;
+	width: 100%;
+	top:30px;
+	margin-top:20px;
+}
+
+.quote {
+	margin: 10px;
+	border: 1px solid #cb274c;
+	padding: 15px;
+	color: #cb274c;
+	background: transparent;
+}
+
+/* conteudo add  */
+.block {
+	border: 1px solid #C3D6EE;
+	background-color: #FFFFFF;
+	border-width: 1px 2px 2px 1px;
+	z-index: 100;
+	padding: 2px 5px 2px 5px;
+}
+
+#block {
+	border: 1px solid #C3D6EE;
+	background-color: #FFFFFF;
+	border-width: 1px 2px 2px 1px;
+	z-index: 100;
+	padding: 2px 5px 2px 5px;
+}
+
+#tabelaFormulario {
+	border: 1px solid #C3D6EE;
+	background-color: #FFFFFF;
+	border-width: 1px 2px 2px 1px;
+	z-index: 100;
+	padding: 2px 5px 2px 5px;
+	width: 100%;
+}
+
+.textfieldLongo {
+	width: 95%;
+}
+
+.data {
+	width: 80px;
+}
+
+.pequeno {
+	width: 30px;
+}
+
+.observacao {
+	font-size: 7pt;
+}
+
+.erro {
+	color: red;
+}
+
+.sucesso {
+	color: green;
+}
+.tabelaLaudoCitopatologico{
+	border: 1px solid #C3D6EE;
+	background-color: #FFFFFF;
+	border-width: 1px 2px 2px 1px;
+	z-index: 100;
+	padding: 2px 5px 2px 5px;
+	width: 100%;
+}
+
+.tabelaLaudoCitopatologico td{
+	text-align: left;
+	margin-top: 0; 
+}
+
+.tabelaLaudoCitopatologico .esq{
+	font-weight: bold;
+	width: 100px;
+	
+}
+
+.resultadoListarUsuarios{
+	position:absolute;
+	left:0;
+	width: 100%;
+}
+/*campos de textfield padrões*/
+.data{
+	width: 80px;
+}
+.nome{
+	width: 400px;
+}
+

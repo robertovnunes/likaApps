@@ -1,0 +1,26 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    <!--<h2>Include page</h2>
+    <p>Include page blah blah lorem ipsum</p>-->
+    <div id="menu">
+<ul>
+<a href="home_restricted.jsf"><li><br /> Home</li></a>
+<a href="restricted_update.jsf"><li><br />My profile</li></a>
+<a href="reportcases.jsf"><li><br />Report case</li></a>
+<a href="mynotifications.jsf"><li><br />My notifications</li></a>
+<a href="searchNotif.jsf"><li><br />Search</li></a>
+<a href="restricted_news.jsf"><li><br />News</li></a>
+<a href="restricted_publications.jsf"><li><br />Publications</li></a>
+<a href="restricted_excelimport.jsf"><li><br />Excel Import</li></a>
+<a href="restricted_excelreport.jsf"><li><br />Excel Export</li></a>
+<a href="restricted_faq.jsf"><li><br />FAQ</li></a>
+<a href="restricted_contact.jsf"><li><br />Contact</li></a>
+<a onclick="document.location='#{request.contextPath}/j_spring_security_logout'"><li><br />Logout</li></a>
+</ul> 
+</div>
+</ui:composition>
+
+<!-- <ui:include src="menu.xhtml" /> -->

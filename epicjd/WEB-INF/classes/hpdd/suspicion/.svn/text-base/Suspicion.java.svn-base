@@ -1,0 +1,92 @@
+package hpdd.suspicion;
+
+import hpdd.notification.Notification;
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name = "suspicion")
+public class Suspicion implements Serializable {
+	@Id
+	@OneToOne(fetch=FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE) //se um paciente for excluido seus caso(general) será excluido.
+	@JoinColumn(name = "cod_suspicion", nullable = false)
+	private Notification notification;
+	private String suspect;
+	private String criteria;
+
+	public Notification getNotification() {
+		return notification;
+	}
+
+	public void setNotification(Notification notification) {
+		this.notification = notification;
+	}
+
+	public String getSuspect() {
+		return suspect;
+	}
+
+	public void setSuspect(String suspect) {
+		this.suspect = suspect;
+	}
+	
+
+	public String getCriteria() {
+		return criteria;
+	}
+
+	public void setCriteria(String criteria) {
+		this.criteria = criteria;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((criteria == null) ? 0 : criteria.hashCode());
+		result = prime * result
+				+ ((notification == null) ? 0 : notification.hashCode());
+		result = prime * result + ((suspect == null) ? 0 : suspect.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Suspicion other = (Suspicion) obj;
+		if (criteria == null) {
+			if (other.criteria != null)
+				return false;
+		} else if (!criteria.equals(other.criteria))
+			return false;
+		if (notification == null) {
+			if (other.notification != null)
+				return false;
+		} else if (!notification.equals(other.notification))
+			return false;
+		if (suspect == null) {
+			if (other.suspect != null)
+				return false;
+		} else if (!suspect.equals(other.suspect))
+			return false;
+		return true;
+	}
+	
+}
