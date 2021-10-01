@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}" xml:lang="{S_USER_LANG}">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset={S_CONTENT_ENCODING}" />
+<meta http-equiv="content-language" content="{S_USER_LANG}" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="copyright" content="2000, 2002, 2005, 2007 phpBB Group" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+{META}
+<title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE}</title>
+<!-- IF S_ENABLE_FEEDS -->
+	<link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{U_FEED}" />
+	<!-- IF S_ENABLE_FEEDS_NEWS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_NEWS}" href="{U_FEED}?mode=news" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_FORUMS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_FORUMS}" href="{U_FEED}?mode=forums" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPICS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_TOPICS}" href="{U_FEED}?mode=topics" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_FORUM and S_FORUM_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FORUM} - {FORUM_NAME}" href="{U_FEED}?f={S_FORUM_ID}" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPIC and S_TOPIC_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_TOPIC} - {TOPIC_TITLE}" href="{U_FEED}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}" /><!-- ENDIF -->
+<!-- ENDIF -->
+
+<link rel="stylesheet" href="{T_STYLESHEET_LINK}" type="text/css" />
+
+<script type="text/javascript">
+// <![CDATA[
+	function hide(id) { document.getElementById(id).style.display="none"; }
+    function show(id) { document.getElementById(id).style.display="block"; }
+    function layerTest(id) {
+      if ( document.getElementById(id).style.display == 'none' ) {
+          show(id);
+          } else {
+          hide(id);
+        }
+      }
+
+<!-- IF S_USER_PM_POPUP -->
+	if ({S_NEW_PM})
+	{
+		popup('{UA_POPUP_PM}', 480, 180, '_phpbbprivmsg');
+	}
+<!-- ENDIF -->
+
+function popup(url, width, height, name)
+{
+	if (!name)
+	{
+		name = '_popup';
+	}
+
+	window.open(url.replace(/&amp;/g, '&'), name, 'height=' + height + ',resizable=yes,scrollbars=yes,width=' + width);
+	return false;
+}
+
+function jumpto()
+{
+	var page = prompt('{LA_JUMP_PAGE}:', '{ON_PAGE}');
+	var per_page = '{PER_PAGE}';
+	var base_url = '{A_BASE_URL}';
+
+	if (page !== null && !isNaN(page) && page == Math.floor(page) && page > 0)
+	{
+		if (base_url.indexOf('?') == -1)
+		{
+			document.location.href = base_url + '?start=' + ((page - 1) * per_page);
+		}
+		else
+		{
+			document.location.href = base_url.replace(/&amp;/g, '&') + '&start=' + ((page - 1) * per_page);
+		}
+	}
+}
+
+/**
+* Find a member
+*/
+function find_username(url)
+{
+	popup(url, 870, 570, '_usersearch');
+	return false;
+}
+
+/**
+* Mark/unmark checklist
+* id = ID of parent container, name = name prefix, state = state [true/false]
+*/
+function marklist(id, name, state)
+{
+	var parent = document.getElementById(id);
+	if (!parent)
+	{
+		eval('parent = document.' + id);
+	}
+
+	if (!parent)
+	{
+		return;
+	}
+
+	var rb = parent.getElementsByTagName('input');
+	
+	for (var r = 0; r < rb.length; r++)
+	{
+		if (rb[r].name.substr(0, name.length) == name)
+		{
+			rb[r].checked = state;
+		}
+	}
+}
+
+<!-- IF ._file -->
+
+	/**
+	* Play quicktime file by determining it's width/height
+	* from the displayed rectangle area
+	*
+	* Only defined if there is a file block present.
+	*/
+	function play_qt_file(obj)
+	{
+		var rectangle = obj.GetRectangle();
+
+		if (rectangle)
+		{
+			rectangle = rectangle.split(',')
+			var x1 = parseInt(rectangle[0]);
+			var x2 = parseInt(rectangle[2]);
+			var y1 = parseInt(rectangle[1]);
+			var y2 = parseInt(rectangle[3]);
+
+			var width = (x1 < 0) ? (x1 * -1) + x2 : x2 - x1;
+			var height = (y1 < 0) ? (y1 * -1) + y2 : y2 - y1;
+		}
+		else
+		{
+			var width = 200;
+			var height = 0;
+		}
+
+		obj.width = width;
+		obj.height = height + 16;
+
+		obj.SetControllerVisible(true);
+
+		obj.Play();
+	}
+<!-- ENDIF -->
+
+function selectCode(a)
+{
+   // Get ID of code block
+   var e = a.parentNode.parentNode.getElementsByTagName('CODE')[0];
+
+   // Not IE
+   if (window.getSelection)
+   {
+      var s = window.getSelection();
+      // Safari
+      if (s.setBaseAndExtent)
+      {
+         s.setBaseAndExtent(e, 0, e, e.innerText.length - 1);
+      }
+      // Firefox and Opera
+      else
+      {
+         var r = document.createRange();
+         r.selectNodeContents(e);
+         s.removeAllRanges();
+         s.addRange(r);
+      }
+   }
+   // Some older browsers
+   else if (document.getSelection)
+   {
+      var s = document.getSelection();
+      var r = document.createRange();
+      r.selectNodeContents(e);
+      s.removeAllRanges();
+      s.addRange(r);
+   }
+   // IE
+   else if (document.selection)
+   {
+      var r = document.body.createTextRange();
+      r.moveToElementText(e);
+      r.select();
+   }
+}
+
+// ]]>
+</script>
+</head>
+<body class="{S_CONTENT_DIRECTION}">
+
+<a name="top"></a>
+
+<table class="wrap" width="100%" cellpadding="0" cellspacing="0">
+<tr><td>
+
+<div id="wrapheader">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="18" height="18"><img src="{T_THEME_PATH}/images/tl.png" width="18" height="18" alt="" /></td>
+    <td height="18" style="background:url('{T_THEME_PATH}/images/tm.png');"></td>
+    <td width="18" height="18"><img src="{T_THEME_PATH}/images/tr.png" width="18" height="18" alt="" /></td>
+  </tr>
+  <tr>
+    <td width="18" style="background:url('{T_THEME_PATH}/images/ml.png');"></td>
+    <td>
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="303" height="80" style="background:url('{T_THEME_PATH}/images/midl.png');"><div class="logo"><a class="headw" href="{U_INDEX}">{SITENAME}</a><br /><span class="genmedw">{SITE_DESCRIPTION}</span></div></td>
+<td height="80" style="background:url('{T_THEME_PATH}/images/midm.png');">&nbsp;</td>
+<td width="470" height="80" align="right" valign="top" style="background:url('{T_THEME_PATH}/images/midr.png');">
+<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
+<div class="midlink">
+<div id="search-box">
+<form action="{U_SEARCH}" method="post" id="search">
+            <fieldset class="nb">
+               <input name="keywords" style="opacity:0.8;filter:alpha(opacity=80)" onmouseover="this.style.opacity=1;this.filters.alpha.opacity=100" onmouseout="this.style.opacity=0.8;this.filters.alpha.opacity=80" type="text" class="inputbox search" id="keywords" title="{L_SEARCH_KEYWORDS}" onblur="if(this.value=='')this.value='{LA_SEARCH_MINI}';" onclick="if(this.value=='{LA_SEARCH_MINI}')this.value='';" value="<!-- IF SEARCH_WORDS-->{SEARCH_WORDS}<!-- ELSE -->{L_SEARCH_MINI}<!-- ENDIF -->" maxlength="50" />
+               <input class="nb" name="submit" type="image" src="{T_THEME_PATH}/images/search.png" align="absmiddle" /><br />
+<a class="genmedw" href="{U_SEARCH}" title="{L_SEARCH_ADV_EXPLAIN}">{L_SEARCH_ADV}</a> {S_SEARCH_HIDDEN_FIELDS}
+            </fieldset>
+</form>
+</div>
+</div>
+<!-- ENDIF -->
+      </td>
+  </tr>
+  </table>
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+<td height="24" align="left" style="background:url('{T_THEME_PATH}/images/bottomm.png');">
+
+<div class="buttonwrapper">
+<div class="navspacel"></div>
+<!-- IF S_USER_LOGGED_IN -->
+<!-- ELSEIF S_REGISTER_ENABLED and not (S_SHOW_COPPA or S_REGISTRATION) -->
+<a class="squarebuttonl" href="{U_REGISTER}"><span>{L_REGISTER}</span></a><div class="navspacel"></div>
+<!-- ENDIF -->
+<!-- IF S_USER_LOGGED_IN -->
+<a class="squarebuttonl" href="{U_PROFILE}"><span>{L_PROFILE}</span></a><div class="navspacel"></div>
+<!-- IF S_DISPLAY_PM -->
+<a class="squarebuttonl" href="{U_PRIVATEMSGS}"><span>{PRIVATE_MESSAGE_INFO}</span></a><div class="navspacel"></div>
+<!-- ENDIF -->
+<!-- ENDIF -->
+<!-- IF U_RESTORE_PERMISSIONS -->
+<a class="squarebuttonl" href="{U_RESTORE_PERMISSIONS}"><span>{L_RESTORE_PERMISSIONS}</span></a>
+<!-- ENDIF -->
+</div>
+
+</td>
+<td width="431" height="24" align="right" style="background:url('{T_THEME_PATH}/images/bottomr.png');">
+
+<div class="buttonwrapper">
+<div class="navspacer"></div>
+<!-- IF not S_IS_BOT -->
+<a class="squarebuttonr" href="{U_LOGIN_LOGOUT}"><span>{L_LOGIN_LOGOUT}</span></a><div class="navspacer"></div>
+<!-- IF S_DISPLAY_MEMBERLIST -->
+<a class="squarebuttonr" href="{U_MEMBERLIST}"><span>{L_MEMBERLIST}</span></a><div class="navspacer"></div>
+<!-- ENDIF -->
+<!-- ENDIF -->
+<a class="squarebuttonr" href="{U_FAQ}"><span>{L_FAQ}</span></a>
+</div>
+
+</td>
+    </tr>
+  </table>
+</td>
+    <td width="18" style="background:url('{T_THEME_PATH}/images/mr.png');"></td>
+  </tr>
+  <tr>
+    <td width="18" height="18"><img src="{T_THEME_PATH}/images/bl.png" width="18" height="18" alt="" /></td>
+    <td height="18" style="background:url('{T_THEME_PATH}/images/bm.png');"></td>
+    <td width="18" height="18"><img src="{T_THEME_PATH}/images/br.png" width="18" height="18" alt="" /></td>
+  </tr>
+</table>
+</div>
+
+	<div id="datebar">
+		<table width="100%" cellspacing="0">
+			<!-- IF S_BOARD_DISABLED -->
+            <tr><td class="gensmall">
+			<span class="error">{L_BOARD_DISABLED}</span>
+            </td></tr>
+            <!-- ENDIF -->
+            <tr>
+			<td class="gensmall"><!-- IF S_USER_LOGGED_IN -->{LAST_VISIT_DATE}<!-- ENDIF --></td>
+			<td class="gensmall" align="{S_CONTENT_FLOW_END}">{CURRENT_TIME}<br /></td>
+		</tr>
+		</table>
+	</div>
+
+	<!-- IF S_DISPLAY_SEARCH -->
+	<p class="searchbar">
+		<span style="float: {S_CONTENT_FLOW_BEGIN};"><a href="{U_SEARCH_UNANSWERED}">{L_SEARCH_UNANSWERED}</a> | <a href="{U_SEARCH_ACTIVE_TOPICS}">{L_SEARCH_ACTIVE_TOPICS}</a></span>
+		<!-- IF S_USER_LOGGED_IN -->
+		<span style="float: {S_CONTENT_FLOW_END};"><a href="{U_SEARCH_UNREAD}">{L_SEARCH_UNREAD}</a> | <a href="{U_SEARCH_NEW}">{L_SEARCH_NEW}</a> | <a href="{U_SEARCH_SELF}">{L_SEARCH_SELF}</a></span>
+		<!-- ENDIF -->
+	</p>
+	<!-- ENDIF -->
+
+	<br style="clear: both;" />
+	
+	<!-- INCLUDE breadcrumbs.html -->
+
+	<br />

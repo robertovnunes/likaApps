@@ -1,0 +1,13 @@
+Subject: Notificação de Novo Tópico - {FORUM_NAME}
+
+Olá {USERNAME},
+
+Você recebeu este email porque se está "Observando" o fórum, "{FORUM_NAME}" em {SITENAME}. Este fórum recebeu um novo tópico desde a sua última visita, "{TOPIC_TITLE}". Você pode usar o endereço que segue para ler o novo tópico. Não serão enviadas mais notificações enquanto não visitar esse fórum.
+
+{U_FORUM}
+
+Caso não pretenda continuar a verificar este fórum, tanto poderá clicar em "Parar de observar este fórum" no fórum mencionado, ou clicar no atalho que se segue:
+
+{U_STOP_WATCHING_FORUM}
+
+{EMAIL_SIG}

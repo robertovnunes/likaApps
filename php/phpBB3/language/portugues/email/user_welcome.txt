@@ -1,0 +1,17 @@
+Subject: Boas vindas ao "{SITENAME}"
+
+{WELCOME_MSG}
+
+Por favor, guarde este email para posteriores consultas. A informação da sua conta é a seguinte:
+
+----------------------------
+Usuário: 	{USERNAME}
+
+URL do Fórum:   {U_BOARD}
+----------------------------
+
+Sua senha foi armazenada com segurança em nosso banco de dados e não poderá ser recuperada. Caso tenha esquecido a mesma, você poderá definir uma nova usando este endereço de email associado a esta conta no login da comunidade.
+
+Obrigado por registrar-se.
+
+{EMAIL_SIG}

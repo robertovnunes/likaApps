@@ -1,0 +1,1326 @@
+/* Ordem margin e padding: superior, direita, inferior e esquerda. */
+
+#formCep{
+	position:absolute;
+	left:260px;
+	width:760px;
+	top:180px;
+	background:#FFFFFF;
+	font-family:"Trebuchet MS";
+
+
+
+}
+#cidade{
+	width:140px;
+}
+
+.suggestionsBox {
+		position: relative;
+		left: 30px;
+		margin: 10px 0px 0px 0px;
+		width: 450px;
+
+		-moz-border-radius: 7px;
+		-webkit-border-radius: 7px;
+		border: 1px solid #000;
+
+	}
+
+	.suggestionList {
+		margin: 0px;
+		padding: 0px;
+	}
+
+	.suggestionList li {
+
+		margin: 0px 0px 3px 0px;
+		padding: 3px;
+		cursor: pointer;
+	}
+
+	.suggestionList li:hover {
+		background-color: #659CD8;
+	}
+	#autoCid{
+		color:#000;
+		list-style:none;
+	}
+
+
+
+#formFale{
+
+	left:40px;
+	top:30px;
+
+}
+
+#barButtEdit{
+	position:relative;
+	left:315px;
+	}
+
+#formEditar{
+	font-size:13px;
+	padding-left:20px;
+}
+
+#tabelaContentLogado{
+
+	left:0px;
+	width:400px;
+	top:50px;
+	background:#FFFFFF;
+	font-family:"Trebuchet MS";
+	font-size:14px;
+
+}
+#tabelaContentLogado h2{
+
+	left:0px;
+	width:400px;
+	top:50px;
+	background:#FFFFFF;
+	font-family:"Trebuchet MS";
+	font-size:18px;
+
+}
+
+#tabelaContent2{
+	position:absolute;
+	left:260px;
+	width:400px;
+	top:180px;
+	background:#FFFFFF;
+	font-family:"Trebuchet MS";
+
+}
+#barButton{
+       position:relative;
+	   left:144px;
+
+}
+
+#barButton2{
+	position:relative;
+	left:235px;
+}
+
+
+#middle{
+width:740px;
+top:90px;
+
+}
+#tbForm{
+	position:relative;
+left:15px;
+color:#333333;
+}
+
+#npaginas{
+	position:relative;
+	left:480px;
+	top:7px;
+}
+#rmContato{
+	z-index:20;
+	left:480px;
+	top:100px;
+	position:relative;
+	z-index:20;
+}
+
+
+#tbpacientes,  a:visited{
+	position:relative;
+	font-size:12px;
+	font-weight:bold;
+	color:#666666;
+	text-shadow:#CC0000;
+	text-decoration:none;
+}
+
+#logoUFPE{
+	position:absolute;
+	left:270px;
+	top:160px;
+}
+#logoiDEIAS{
+	position:absolute;
+	left:880px;
+	top:158px;
+
+
+}
+#recomenda{
+	position:absolute;
+	left:420px;
+	top:220px;
+	width:500px;
+	font-size:11px;
+}
+#logoLIKA{
+	position:absolute;
+	left:950px;
+	top:177px;
+
+}
+#logoHC{
+	position:absolute;
+	left:320px;
+	top:170px;
+
+}
+#dataHora{
+	position:absolute;
+	top:-41px;
+	font-weight:normal;
+	left:542px;
+	z-index:50;
+}
+#teste{
+	position:absolute;
+	z-index:50;
+	top:100px;
+}
+
+#botaoLogin{
+	position:relative;
+	top:-3px;
+	left:155px;
+
+}
+
+#nomePaciente{
+	position:relative;
+	margin-top:20px;
+	height:0px;
+	left:3px;
+
+
+}
+#copyr{
+	position:absolute;
+	left:490px;
+	top:20px;
+	width:800px;
+	font-family:Trebuchet MS;
+	font-size:11;
+}
+#webDesign{
+	position:absolute;
+	left:360px;
+	top:180px;
+	width:300px;
+	font-family:Trebuchet MS;
+	font-size:11px;
+}
+#sairr2c2 {
+	position:absolute;
+	left:821px;
+	top:24px;
+	width:195px;
+	height:57px;
+	z-index:50;
+	visibility:visible;
+}
+#sairr3c2 {
+	position:absolute;
+	left:821px;
+	top:81px;
+	width:20px;
+	height:30px;
+	z-index:50;
+	visibility:visible;
+}
+#sairr3c3 {
+	position:absolute;
+	left:841px;
+	top:81px;
+	width:12px;
+	height:14px;
+	z-index:51;
+	visibility:visible;
+}
+#sairr3c4 {
+	position:absolute;
+	left:853px;
+	top:81px;
+	width:43px;
+	height:30px;
+	z-index:50;
+	visibility:visible;
+}
+#sairr3c5 {
+	position:absolute;
+	left:896px;
+	top:81px;
+	width:13px;
+	height:14px;
+	z-index:51;
+	visibility:visible;
+}
+#sairr3c6 {
+	position:absolute;
+	left:909px;
+	top:81px;
+	width:107px;
+	height:30px;
+	z-index:50;
+	visibility:visible;
+}
+#sairr4c3 {
+	position:absolute;
+	left:841px;
+	top:95px;
+	width:12px;
+	height:16px;
+	z-index:50;
+	visibility:visible;
+}
+#sairr4c5 {
+	position:absolute;
+	left:896px;
+	top:95px;
+	width:13px;
+	height:16px;
+	z-index:50;
+	visibility:visible;
+}
+
+
+
+#textoSair
+{
+
+	position:absolute;
+	left:862px;
+	top:81px;
+	width:50px;
+	height:16px;
+	z-index:52;
+	visibility:visible;
+	font-family:Trebuchet MS;
+	font-size:11;
+
+}
+#textoEditarPerfil{
+
+	position:absolute;
+	left:920px;
+	top:81px;
+	width:100px;
+	height:16px;
+	z-index:51;
+	visibility:visible;
+	font-family:Trebuchet MS;
+	font-size:11;
+}
+#textoAluno{
+	position:absolute;
+	left:845px;
+	top:30px;
+	width:150px;
+	height:16px;
+	z-index:50;
+	visibility:visible;
+	font-family:Trebuchet MS;
+	font-size:11;
+
+}
+
+
+
+#apDiv1 {
+	position:absolute;
+	width:256px;
+	height:115px;
+	z-index:50;
+	left: 50px;
+	top:205px;
+	visibility:visible;
+}
+
+a:link {text-decoration: none;color:#666666;}
+a:visited {text-decoration: none}
+a:hover {text-decoration: underline;
+color: #C8C8C8;}
+
+
+#tabelaContent{
+	position:absolute;
+	left:260px;
+	width:1030px;
+	top:60px;
+	background:#E3E9A3;
+}
+
+#tabelaContent h2{
+	left:0px;
+	width:400px;
+	top:50px;
+	background:#FFFFFF;
+	font-family:"Trebuchet MS";
+	font-size:18px;
+}
+
+#contentAluno{
+	position:absolute;
+	left:260px;
+	top:180px;
+	width:800px;
+
+
+}
+
+#contentAlunoNovoPaciente{
+	background-color:#FFFFFF;
+	width:820;
+	left:260px;
+	top:180px;
+}
+
+#formsAluno{
+	position:relative;
+	width:650px;
+}
+
+#buscaPaciente{
+	position:relative;
+	top:40px;
+	left:76px;
+}
+
+
+#contentAlunoListaPaciente{
+	background-color:#E3E9A3;
+	left:260px;
+	width:1024;
+	top:190px;
+}
+#divpedt{
+	position:absolute;
+	width:1280px;
+	left:0px;
+
+
+
+}
+#divpedh{
+	position:absolute;
+	width:1280px;
+	left:0px;
+    background:#E3E9A3;
+	height:400px;
+
+
+
+}
+
+
+#menuEconteudo
+{	position:absolute;
+	top:150px;
+	left:-20px;
+	background:#E3E9A3;
+}
+
+
+#pedr1c1 {
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:260px;
+	height:150px;
+	z-index:1;
+	visibility:visible;
+}
+#pedr1c2 {
+	position:absolute;
+	left:260px;
+	top:0px;
+	width:306px;
+	height:150px;
+	z-index:2;
+	visibility:visible;
+}
+#pedr1c3 {
+	position:absolute;
+	left:566px;
+	top:0px;
+	width:210px;
+	height:150px;
+	z-index:3;
+	visibility:visible;
+}
+#pedr1c4 {
+	position:absolute;
+	left:776px;
+	top:0px;
+	width:241px;
+	height:150px;
+	z-index:4;
+	visibility:visible;
+}
+#pedr1c5 {
+	position:absolute;
+	left:1017px;
+	top:0px;
+	width:263px;
+	height:150px;
+	z-index:5;
+	visibility:visible;
+}
+#pedr3c2 {
+	position:absolute;
+	left:260px;
+	top:163px;
+	width:757px;
+	height:215px;
+	z-index:6;
+	visibility:visible;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+
+font-family: "Trebuchet MS";
+background:#E3E9A3;
+
+}
+
+option {margin-left:10px; font-family:"Trebuchet MS"}
+input, select{ padding:1; font-family:"Trebuchet MS"}
+textarea { overflow:auto; height:80px;  }
+/*.style2 {font-size: 16px; font-weight: bold;}*/
+
+.msgerro {
+    padding-top: 10px;
+    text-align:center;
+	font-weight:bold;
+	font-family:Trebuchet MS;
+	font-size:14px;
+    color: #CE0909;
+}
+
+.erro {
+	font-weight:bold;
+	font-family:Trebuchet MS;
+    color: #CE0909;
+}
+
+.msgTelaALuno {
+    padding-top: 10px;
+    text-align:center;
+	font-weight:bold;
+	font-family:Trebuchet MS;
+	font-size:14px;
+    color:#263A5A;
+}
+/* D9E5F1 */
+.style4 { font-weight:bold; font-family:Trebuchet MS; font-size:12px; color:#263A5A;}
+.style5 { ;font-family:Trebuchet MS; font-size:12px; color:#666666;}
+.style7 { ;font-family:Trebuchet MS; font-size:13px; color:#333333; font-weight:bold}
+.style6 {color: #629BD2; font-weight: bold;}
+
+.style9 {font-size: 16px; font-weight: bold; color:#629BD2; }
+
+
+
+fieldset {
+	width:auto;
+	margin-left:5px;
+    margin-right: 10px;
+	line-height: 1.5em;
+	padding: 4;
+	color:#666666;
+	font-size:13px;
+	font-family:"Trebuchet MS";
+}
+
+
+fieldset.fieldconsulta{
+	width:580px;
+	margin-left:10px;
+	font-weight:bold;
+	background-color:#F0F0F0;
+}
+
+legend{
+    padding: 0 0 0 0;
+}
+
+.infoass{
+	margin-left:10px;
+	font-weight:bold;
+}
+
+#logoped{
+	margin-left:50%;
+	margin-top:-80px;
+	left:-150px;
+	z-index:5;
+	position:absolute;
+	width:334px;
+	font-style:italic;
+	color:#FFFFFF;
+}
+
+#login {
+	margin-left:40px;
+	z-index:5;
+	position:absolute;
+	top:160px;
+	width:500px;
+}
+
+#loginerro {
+	margin-left:40px;
+	z-index:5;
+	position:absolute;
+	top:140px;
+	width:500px;
+	color: #990000;
+	font-weight:bold;
+}
+#linhaLogado{
+background-color:#629BD2;
+position:relative;
+height:30px;
+top:150px;
+left:261px;
+width:759px;
+z-index:50;
+}
+
+#textoLogado{
+position:absolute;
+top:6px;
+left:4px;
+font-family:Trebuchet MS;
+font-size:smaller;
+
+}
+
+#rodape {
+	position:relative;
+	width:800px;
+
+	clear:both;
+	text-align:left;
+	z-index:1;
+	left:-260;
+}
+
+#rodapeimg{
+position:absolute;
+	left:0px;
+
+}
+
+.fale {
+	float:right;
+	position:relative;
+	top:-32px;
+	margin-bottom:-40px;
+	margin-right:10px;
+}
+
+img.ufpe {
+	vertical-align:-13px;
+	margin-left:10px;
+}
+
+img {
+	border:none;
+}
+
+#texto{
+	z-index:2;
+	position:absolute;
+	top:260px;
+	left:53%;
+	margin-left:-390px;
+	width:750px;
+}
+
+
+/*
+.menup, .menuh, .abais, .menu-hv { font-weight:normal; font-size:12px; position:relative; margin: 0; padding: 0; display: block; zoom: 1; color:#F0F0F0; font-family:"Trebuchet MS";}
+.menup *, .menuh *, .abais *, .menu-hv * { margin: 0; padding: 0 ; list-style: none;  font-family:"Trebuchet MS";}
+.menup li, .menuh li, .abais li, .menu-hv li { position: relative; line-height: 2em; vertical-align: top; font-family:"Trebuchet MS";}
+.menup a{ display: block; zoom: 1; line-height: 2.2em;}
+.menup li ul { left: 100%; top: 0; }
+
+.menuh a, .abais a { display: block; zoom: 1; }
+.menuh:after, .menuh.after, .abais.after, .menu-hv:after, .menu-hv.after
+{ content: "."; line-height: 0px; clear: both; display: block; visibility: hidden; font-family:"Trebuchet MS"; }
+.menuh li, .abais li, .menu-hv li{ float: left; cursor:pointer;   text-align:center; font-size:12px;
+	font-family:"Trebuchet MS" }
+.menuh li { width: 90px; margin-right:3px; }
+.abais li { width: 114px; margin-right:1px; margin-bottom:1px }
+
+/*.menuh li, .abais li { width: 90px; cursor:pointer; font-weight:bold; color:#FFFFFF; margin-right:3px;} */
+/*.menuh .msel a, .abais .msel a{ background-color: #E8E8E8; color:#666666 }
+.menu-hv .msel {background-color:#C0C0C0; font-family:"Trebuchet MS";}
+.menuh a, .abais a { background-color: #C0C0C0;}
+
+.menup li, .menu-hv li { width: 145px; background-color: #E8E8E8;  color:#666666}
+.menu-hv li { width: 150px; font-family:"Trebuchet MS";}
+.menup a { background-color: #D9E5F1; margin:2px;}
+.menup li a:hover { background-color: #629BD2; } /*98-155-194*/
+/*.menuhv li:hover, .menu-hv li.hover { color:#000000;}
+
+.menu-hv li { float: left; }
+.menu-hv li ul li { float: none; }
+.menu-hv li ul li ul { position: absolute; left: 100%; top: 0; }
+.menu-hv li ul, .menu-hv li:hover ul ul, .menu-hv li.hover ul ul{ position: absolute; visibility: hidden; }
+.menu-hv li:hover ul,  .menu-hv li.hover ul, .menu-hv li li:hover ul, .menu-hv li li.hover ul { visibility: visible }
+
+
+li font{
+	color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:bold;
+}
+
+li a:link, li a:visited, li a:active, li a:hover {
+	color: #000000;
+	font-weight:bold;
+	text-decoration: none;
+}
+
+/* Micox Pseudo-class-css2 to IE (MXPC). Activate .hover and .first-child in IE 6
+   http://elmicox.blogspot.com/2008/03/ativando-hover-e-first-child-no-ie-6-um.html */
+/** html * { color: expression( (function(who){ if(!who.MXPC){
+ who.MXPC = '1';
+ if(who.nodeName != 'A'){
+  who.onmouseenter=function(){ who.className += ' hover'};
+  who.onmouseleave=function(){ who.className = who.className.replace(' hover','')}; }
+ (who==who.parentNode.firstChild) ? who.className += ' first-child' : '' ;
+} } )(this) , 'auto') }*/
+
+
+#textoListaPaciente{
+    position:absolute;
+    left:355px;
+	top:218px;
+	font-family:"Trebuchet MS";
+	font-size:11px;
+	cursor:pointer;
+}
+#textoCadastrarPaciente{
+	position:absolute;
+	left:185px;
+	top:18px;
+	font-family:"Trebuchet MS";
+	font-size:11px;
+	cursor:pointer;
+}
+
+#textoCadastrarPacienteBaixo{
+	position:absolute;
+	left:185px;
+	top:80px;
+	font-family:"Trebuchet MS";
+	font-size:11px;
+	cursor:pointer;
+}
+.menuPront * {
+ background-color:#E8E8E8;
+ width:100px;
+
+ list-style: none;
+
+}
+legend{
+	font-size:13px;
+	font-weight:normal;
+	font-family:"Trebuchet MS";
+}
+
+font.campObg{
+	font-size:13px;
+	font-weight:normal;
+    font-weight: bold;
+	font-family:"Trebuchet MS";
+}
+
+
+
+#telaAluno{
+    background-color: #FFFFFF;
+    background-attachment: scroll;
+    background-repeat: no-repeat-x;
+    width: 760px;
+}
+
+#abasTelaAluno{
+    top:100px;
+    padding: 0;
+    margin: 0;
+    padding-left:5%;
+    padding-top: 2%;
+}
+
+#abasTelaAluno1{
+    width: 148px;
+    height: 41px;
+}
+
+#abasTelaAluno2{
+	position:absolute;
+    width: 149px;
+    height: 41px;
+	left: 185px;
+	top: 15px;
+}
+
+#textoCadastrarPaciente{
+	position: absolute;
+    width: 149px;
+    height: 41px;
+	left: 30px;
+	top: 15px;
+}
+
+#textoListaPaciente{
+	position: absolute;
+    width: 149px;
+    height: 41px;
+	left: 80px;
+	top: 30px;
+}
+
+#listaPacientes{
+    left:10%;
+}
+
+#consultaPaciente{
+    width: 500px;
+}
+
+#de{
+   width: 350px;
+   float:left;
+}
+
+#tableConsultaPaciente{
+    width: 625px;
+    margin: 2px;
+}
+
+.styleTabelaConsultaPaciente {
+    background-color: #EEEEEE;/*#C0C0C0;*/
+    font-family:Trebuchet MS;
+    font-size:13px;
+    color:#263A5A;
+    height: 22px;
+    text-align: center;
+}
+
+.styleOpcoesConsultaPaciente{
+    width: 115px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+
+#imgListaPaciente{
+    width: 16px;
+    height: 16px;
+}
+
+.stylebold{
+    font-weight: bold;
+}
+
+.bgFormPaciente{
+    background-color: #FFFFFF;
+}
+
+.bgFormPaciente1{
+    background-color: #E8E8E8;
+}
+
+#formListaPaciente{
+    top:100px;
+    padding: 0;
+    margin: 0;
+    padding-left:10%;
+    padding-top: 2%;
+}
+
+.fonttitulo{
+    font-family:Trebuchet MS;
+    font-size:13px;
+    color:#666666;
+}
+
+.widthLinhaCadastro{
+    width:500px;
+    background-color: #000000;
+}
+
+input.tam50{
+    margin:4px 0 4px 0;
+    width: 400px;
+    float:left;
+}
+
+input.inpSexo{
+    margin:4px 0 4px 0;
+    float:left;
+}
+
+.lbRadioCad{
+    margin:4px 0 4px 0;
+    width: 70px;
+    text-align: left;
+}
+
+#lbdtt{
+    margin:4px 0 4px 10px;
+    float:left;
+    width:auto;
+    text-align: left;
+}
+
+input{
+    margin:4px 0 4px 0;
+    float:left;
+
+}
+
+input.tam30{
+    width: 236px;
+}
+
+input.tam20{
+    width: 120px;
+}
+
+input.tam15{
+    width: 100px;
+}
+
+input.tam10{
+    width: 80px;
+}
+
+input.tam5{
+    width: 40px;
+}
+
+/*label span{
+    margin:4px 4px 4px 0;
+    float:left;
+    width: 120px;
+    text-align: right;
+}*/
+
+label font.nLogin{
+    margin:4px 4px 4px 0;
+    float:left;
+    text-align: left;
+}
+
+label.titHist{
+    width: 600px;
+    padding-bottom: 10px;
+}
+
+.styleListaAtendimentos {
+    width:600px;
+    font-family:Trebuchet MS;
+    font-size:13px;
+    color:#666666;
+    text-align: center;
+}
+
+#cEsq{
+  	position:relative;
+	top:35px;
+	left:90px;
+}
+
+#cCen{
+  	position:relative;
+	top:4px;
+    left: 20px;
+}
+
+#cDir{
+  	position:relative;
+	float:right;
+    right: 30px;
+    bottom: 2px;
+}
+
+.nautorizado{
+    padding-left: 40px;
+    font-weight: bold;
+}
+
+#menuBarr{
+    width: 120px;
+    float: left;
+}
+
+#formCadastro1{
+    width: 765px;
+}
+
+.salvar{
+    margin-left:410px;
+    float: right;
+}
+
+/*-----------------------------------------------------------------------------------------------------------*/
+
+#formCadastro{
+    width: 650px;
+    top:100px;
+    padding: 0;
+    margin: 0;
+    padding-left:10%;
+    padding-top: 2%;
+}
+
+#formCadastro label, #formCadastro input, #formCadastro select{
+    float:left;
+    display: block;
+}
+
+#formCadastro input.opcoes{
+    width: 100px;
+    margin-left: 50px;
+
+}
+
+#formCadastro label.rad {
+    text-align: left;
+	width:30%;
+}
+
+#formCadastro label span {
+    margin:0px 0 5px 5px;
+    padding-top:5px;
+    float:left;
+    width: 110px;
+}
+
+#formCadastro label span.sSelect {
+    text-align: right;
+}
+
+#formCadastro label span.tNormal {
+    text-align: left;
+    width: 100%;
+}
+
+#formCadastro label.radult {
+	width:45%;
+    display:block;
+}
+
+#formCadastro label input {
+    margin-left:5px;
+	/*border:1px solid #000;*/
+}
+
+#formCadastro label span.lab {
+    float: right;
+    width:150px;
+    clear:both;
+}
+
+/*------------------------------------------ Histórico ------------------------------------------------------*/
+.conteudo2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000033;
+	background-color: #E8E8E8;
+	width: 100%; /*623px*/
+	/*cursor: hand;*/
+}
+
+#dadosPessoaisPac{
+    width: 650px;
+    top:100px;
+    padding: 0;
+    margin: 0;
+    padding-left:10%;
+    padding-top: 2%;
+}
+
+.infoPac{
+	font-family:"Trebuchet MS";
+	color:#263A5A;
+	margin-left:2px;
+	margin-top:15px;
+    width: 595px;
+}
+.infoPac label span{
+    margin-right: 60px;
+    width: 200px;
+}
+
+.fieldTam1{
+    width: 179px;
+    float: left;
+}
+
+.fieldTam2{
+    width: 385px;
+    float: left;
+}
+
+.fieldTam3{
+    width: 283px;
+    float: left;
+}
+
+.fieldTam4{
+    width: 593px;
+    float: left;
+}
+
+.fieldTam5{
+    width: 170px;
+    float: left;
+}
+
+.fieldTam6{
+    width: 72px;
+    float: left;
+}
+
+/*.lbRadioHst{
+    margin:0px 0 5px 5px;
+    width: 80px;
+    text-align: left;
+} */
+
+.lbHrParto{
+    padding-left:5px;
+    width: 80px;
+    text-align: left;
+}
+
+#lbLMed{
+    text-align:left;
+    width:40px;
+}
+
+#lbNCons{
+    text-align:left;
+    width:100px;
+}
+
+
+#tPront label {
+	float:left;
+}
+
+#tPront fieldset {
+	float:left;
+}
+
+#tPront label.rad {
+    text-align: left;
+	width:20%;
+}
+
+#tPront label span {
+    margin:0px 0 5px 5px;
+    padding-top:5px;
+    float:left;
+}
+
+#tPront label span.sSelect {
+    text-align: right;
+}
+
+#tPront label span.tNormal {
+    text-align: left;
+    width: 100%;
+}
+
+#tPront label.radult {
+	display:block;
+	width:60%;
+}
+
+#tPront label.labmensagem {
+	width:470px;
+}
+
+#tPront fieldset textarea.txta1 {
+	width:595px;
+}
+
+#tPront fieldset textarea.txta2 {
+	width:560px;
+}
+
+#tPront label input, #tPront label select{
+    margin-left:5px;
+	/*border:1px solid #FFF;
+	padding:3px;*/
+}
+
+#tPront label span.lab {
+    float: right;
+    width:150px;
+    clear:both;
+}
+
+#tPront label select{
+    margin-top:5px;
+    padding-bottom:4px;
+}
+
+
+.style51 { ;font-family:Trebuchet MS; font-size:12px; color:#666666; text-align:center;}
+
+/*------------------------------------ Tabelas ----------------------------------------------------------------------------*/
+
+.table {
+ width: 100%;
+ border: 1px solid #f00;
+}
+.table .th {
+ background-color: #f00;
+ color: #fff;
+ font-weight: bold;
+ border-bottom: 1px dotted #f00;
+}
+.table .tr:nth-child(odd) {
+ background-color: #eee;
+}
+.table .td {
+ float: left;
+ width: 23%;
+ padding-left: 2%;
+}
+
+/*----------------------------------------- Index -----------------------------------------------------------------*/
+
+#telainicialContent{
+    background-color: #FFFFFF;/*#E3E9A3;*/
+    height: 250px;
+    width: 759px;
+}
+
+#telaLogin {
+	position:absolute;
+	left:25px;
+	top:160px;
+	width:368px;
+	height:184px;
+	z-index:3;
+	visibility:visible;
+    display:block;
+    background-image: url(../images/caixaLogin.jpg);
+    font-family:Trebuchet MS;
+}
+
+#telaLogin label{
+    display:block;
+    float:left;
+	position:absolute;
+	visibility:visible;
+}
+
+#telaLogin label span, #telaLogin label input{
+	position:relative;
+}
+
+
+#telaLogin label span.textoAcesso{
+	top:5px;
+	left:40px;
+    font-size:16px;
+    color:#FFFFFF;
+    font-weight:bold;
+}
+
+#telaLogin label span.txtLog{
+	top:15px;
+	left:20px;
+    font-size:13px;
+}
+
+#telaLogin label span.txtPass{
+	top:65px;
+	left:83px;
+    font-size:13px;
+}
+
+#telaLogin label input.inpLog{
+	top:10px;
+	left:125px;
+}
+
+#telaLogin label input.inpPass{
+	top:60px;
+	left:125px;
+}
+
+#telaLogin label input.labImage{
+	top:57px;
+	left:280px;
+    background-color:#C0C0C0;
+}
+
+#telaLogin label span.labEsq{
+	top:100px;
+	left:20px;
+    font-size:14px;
+}
+
+#telaLogin label span.labFale{
+	top:100px;
+	left:200px;
+    font-size:14px;
+}
+
+#cadesqueceu{
+	position:relative;
+	left:20px;
+	top:150px;
+	width:300px;
+	clear:both;
+	font-size:12px;
+	text-align:justify;
+}
+
+#loginerro {
+	color: #990000;
+	font-weight:bold;
+}
+
+#formLogin {
+	margin-top: 5%;
+}
+
+#sobreoped {
+	position:absolute;
+	left:412px;
+	top:160px;
+	width:300px;
+	height:28px;
+	z-index:2;
+	visibility:visible;
+	font-size:11px;
+	text-align:justify;
+	font-family:Trebuchet MS;
+}

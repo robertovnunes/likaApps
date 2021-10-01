@@ -1,0 +1,52 @@
+<?php
+	$lme = getValuesTableAt('sistmusculoesqueletico',$atend);
+?>
+<table width="570">
+	<tr>
+    	<td width="274"><fieldset style="width:274px;">
+        	<legend>Deformidades</legend>
+         	<input name="deform" type="radio" value="P" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("deform", "P", $lme->deform); ?> onchange="savCampo('9')"/>Sim
+           	<input name="deform" type="radio" value="A" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("deform", "A", $lme->deform); ?> onchange="savCampo('9')"/>N&atilde;o
+           	<input name="deform" type="radio" value="NA" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("deform", "NA", $lme->deform); ?> onchange="savCampo('9')"/>N&atilde;o Avaliado
+    	</fieldset></td>
+        <td width="284"><fieldset>
+        	<legend>Tumefa&ccedil;&otilde;es</legend>
+            <input name="tumefacoes" type="radio" value="P" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("tumefacoes", "P", $lme->tumef); ?> onchange="savCampo('9')"/>Presente
+            <input name="tumefacoes" type="radio" value="A" <?php echo checkAssinado($linha->ass);
+			  	echo checkPOST("tumefacoes", "A", $lme->tumef); ?> onchange="savCampo('9')"/>Ausente
+            <input name="tumefacoes" type="radio" value="NA" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("tumefacoes", "NA", $lme->tumef); ?> onchange="savCampo('9')"/>N&atilde;o Avaliado
+   	  </fieldset></td>
+	</tr>
+    <tr>
+         <td><fieldset>
+      		<legend>Fraqueza Muscular</legend>
+           	<input name="fraqmusc" type="radio" value="S" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("fraqmusc", "S", $lme->fraqmusc); ?> onchange="savCampo('9')"/>Sim
+          	<input name="fraqmusc" type="radio" value="N" id="fraqmusc" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("fraqmusc", "N", $lme->fraqmusc); ?> onchange="savCampo('9')"/>N&atilde;o
+  			<input name="fraqmusc" type="radio" value="NA" id="fraqmusc" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("fraqmusc", "NA", $lme->fraqmusc); ?> onchange="savCampo('9')"/>N&atilde;o Avaliado
+       	</fieldset></td>
+        <td><fieldset>
+ 			<legend>Dores &Oacute;sseas e Articulares</legend>
+           	<input name="dorossea" type="radio" value="P" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("dorossea", "P", $lme->doross); ?> onchange="savCampo('9')"/>Sim
+          	<input name="dorossea" type="radio" value="A" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("dorossea", "A", $lme->doross); ?> onchange="savCampo('9')"/>N&atilde;o
+        	<input name="dorossea" type="radio" value="NA" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("dorossea", "NA", $lme->doross); ?> onchange="savCampo('9')"/>N&atilde;o Avaliado
+   		</fieldset></td>
+	</tr>
+    <tr>
+    	<td colspan="2"><fieldset>
+			<legend>Observa&ccedil;&otilde;es</legend>
+			<textarea name="obsmuscesq" cols="80" onkeyup="savCampo('9')" <?php echo checkAssinado($linha->ass);?>
+				><?php echo printOBS($lme->obs, $_POST['obsmuscesq']); ?></textarea>
+        </fieldset></td>
+  	</tr>
+</table>

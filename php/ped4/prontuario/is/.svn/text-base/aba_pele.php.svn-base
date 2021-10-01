@@ -1,0 +1,43 @@
+<?php
+	$lpele = getValuesTableAt('pele',$atend);
+?>
+<table width="570">
+	<tr>
+   		<td width="165"><fieldset>
+			<legend>Rash</legend>
+			<select name="rash" <?php echo checkAssinado($linha->ass); ?> onchange="savCampo('2')">
+				<option value="E" <?php echo checkOption("rash", "E", $lpele->rash); ?>>Escarlatiniforme</option>
+				<option value="M" <?php echo checkOption("rash", "M", $lpele->rash); ?>>Morbiliforme</option>
+				<option value="A" <?php echo checkOption("rash", "A", $lpele->rash); ?>>Ausente</option>
+				<option value="NA" <?php echo checkOption("rash", "NA", $lpele->rash); ?>>Não Avaliado</option>
+			</select>
+	  </fieldset></td>
+   		<td width="163"><fieldset>
+       		<legend>Icter&iacute;cia</legend>
+          	<select name="ictericia" <?php echo checkAssinado($linha->ass); ?> onchange="savCampo('2')">
+			<?php for ($i=1;$i<=5;$i++){
+			$s = checkOption("ictericia", $i, $lpele->icter); ?> 
+				<option value="<? echo $i; ?>" <?php echo $s; ?>>Zona <?php echo $i; ?> de Kramer</option>
+			<?php $s = ""; } ?>
+            	<option value="A" <?php echo checkOption("ictericia", "A", $lpele->icter); ?>>Ausente</option>
+            	<option value="NA" <?php echo checkOption("ictericia", "NA", $lpele->icter); ?>>Não Avaliado</option>
+       		</select>
+	  </fieldset></td>
+   		<td width="226"><fieldset>
+			<legend>Infec&ccedil;&otilde;es de Repeti&ccedil;&atilde;o</legend>
+			<input name="infecrep" type="radio" value="S" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("infecrep", "S", $lpele->infecrep); ?> onchange="savCampo('2')"/>Sim
+			<input name="infecrep" type="radio" value="N" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("infecrep", "N", $lpele->infecrep); ?> onchange="savCampo('2')"/>N&atilde;o
+			<input name="infecrep" type="radio" value="NA" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("infecrep", "NA", $lpele->infecrep); ?> onchange="savCampo('2')"/>N&atilde;o Avaliado
+	  </fieldset></td>
+  	</tr>
+	<tr>
+  		<td colspan="3"><fieldset>
+			<legend>Observa&ccedil;&otilde;es</legend>
+        	<textarea name="obspele" cols="80" onkeyup="savCampo('2')" <?php echo checkAssinado($linha->ass); ?>
+				><?php echo printOBS($lpele->obs, $_POST['obspele']); ?></textarea>
+   		</fieldset></td>
+  	</tr>
+</table>

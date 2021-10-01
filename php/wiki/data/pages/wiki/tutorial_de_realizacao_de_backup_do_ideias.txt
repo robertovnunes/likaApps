@@ -1,0 +1,24 @@
+=Introdução=
+
+Uma rotina de backup é importante para recuperar o estado do sistema após eventuais “crashes”, uma rotina eficiente deve prover o armazenamento final do backup em uma máquina diferente daquela “backupeada” de modo a tornar possível à recuperação do sistema independente de uma perda total.
+
+Atualmente o script de backup do sistema [Shell script] possibilita o armazenamento do backup em outra maquina da rede (via sftp) ou em uma pasta no dropbox (através do cliente).
+
+Download [[http://www.ideias.ufpe.br/wiki/lib/exe/fetch.php?media=wiki:script_backup.sh|script de backup]]
+=Rodando o Script=
+O script pode ser encontrado em: /home/scripts/script_backup.sh e recebe como parametros de execução: (ssh/dropbox) tempodebackup compact? full?
+
+ex:
+
+* script_backup.sh dropbox 1 compact full
+* script_backup.sh dropbox 3
+* script_backup.sh ssh 2 compact
+
+Para que o script funcione corretamente é necessário:
+# Arquivo [[http://www.ideias.ufpe.br/wiki/lib/exe/fetch.php?media=wiki:sftp.sh|sftp.sh]] esteja presente na pasta /home/scripts/
+# Liberação de acesso sem autenticação do usuario root da maquina em questão para a maquina destino do backup [[Tutorial para liberação de acesso sem autenticação de usuario via ssh em maquina ubuntu|(veja aqui como fazer)]]
+# Existencia e permissão de escrita da pasta para armazenamento do backup /home/bak/
+
+
+
+

@@ -1,0 +1,90 @@
+
+
+
+<h1 class="sectionedit1"><a name="introducao" id="introducao">Introdução</a></h1>
+<div class="level1">
+
+<p>
+Este tutorial destina-se a mostrar o passo-a-passo, necessário para levantar uma nova máquina que será responsável por abrigar o sistema ideias, bem como todos os subsistemas nele contidos. OBS: na data de redação deste tutorial o sistemas em produção são <a href="/wiki/doku.php?id=wiki:clin" class="wikilink2" title="wiki:clin" rel="nofollow">Clin</a>, <a href="/wiki/doku.php?id=wiki:cenas" class="wikilink2" title="wiki:cenas" rel="nofollow">Cenas</a>, <a href="/wiki/doku.php?id=wiki:sae" class="wikilink2" title="wiki:sae" rel="nofollow">Sae</a>, <a href="/wiki/doku.php?id=wiki:saemental" class="wikilink2" title="wiki:saemental" rel="nofollow">Saemental</a> e <a href="/wiki/doku.php?id=wiki:ped" class="wikilink2" title="wiki:ped" rel="nofollow">Ped</a>
+</p>
+
+</div>
+
+
+<!-- EDIT1 SECTION "Introdução" [1-337] -->
+<h1 class="sectionedit2"><a name="pre-requisitos" id="pre-requisitos">Pre-Requisitos</a></h1>
+<div class="level1">
+
+<p>
+Para o completo entendimento deste tutorial é necessário que o usuário tenha conhecimentos mínimos sobre sistemas linux via linha de comando e ubuntu server. O sistema instalado neste servidor NÃO UTILIZARÁ INTERFACE GRÁFICA, então qualquer imprevisto necessitará de intervenção direto no terminal.
+</p>
+
+</div>
+
+
+<!-- EDIT2 SECTION "Pre-Requisitos" [338-668] -->
+<h1 class="sectionedit3"><a name="procedimento" id="procedimento">Procedimento</a></h1>
+<div class="level1">
+<ol>
+<li class="level1"><div class="li"><a href="/wiki/doku.php?id=wiki:tutorial_de_realizacao_de_backup_do_ideias" class="wikilink1" title="wiki:tutorial_de_realizacao_de_backup_do_ideias">Realize o backup do sistema antigo</a> e salve-o em um local seguro.</div>
+</li>
+<li class="level0"><div class="li">Formate a nova máquina para a instalação do Ubuntu Server (atualmente na versão 10.04 LTS)</div>
+</li>
+<li class="level0"><div class="li">Remova o usuario criado durante a instalação do Ubuntu e ative o usuário root<pre class="code">sudo su [password]
+userdel -f -r [usuario]
+passwd [novo password de root]</pre>
+
+
+</div>
+</li>
+<li class="level0"><div class="li">Atualize os dados do repositório<pre class="code">apt-get update
+apt-get upgrade</pre>
+
+
+</div>
+</li>
+<li class="level0"><div class="li">Instale os pacotes necessários para o funcionamento dos sistemas <acronym title="Hypertext Preprocessor">PHP</acronym><pre class="code">apt-get install apache2 php5 libapache2-mod-php5 php-db php-http php-file php-log php-mail php-mail-mime php-mail-mimedecode php5-cgi php5-cli php5-common php5-gd php5-imagick php5-json php5-mysql php5-svn</pre>
+
+
+</div>
+</li>
+<li class="level0"><div class="li">Instale as bibliotecas para uso do MySQL - será necessário criar a senha de root para o mysql<pre class="code">apt-get install mysql-server mysql-admin libapache2-mod-auth-mysql libapache2-mod-log-sql-mysql mysql-query-browser</pre>
+
+
+</div>
+</li>
+<li class="level0"><div class="li">Instale as bibliotecas para os sistemas java, verifique a versão mais recente do <acronym title="Java Development Kit">JDK</acronym> na hora de copiar o comando abaixo, atualmente o container utilizado é o Tomcat 6.<pre class="code">apt-get install default-jdk tomcat6 tomcat6-admin tomcat6-common tomcat6-docs tomcat6-examples libtomcat6-java libapache2-mod-jk libmysql-java</pre>
+
+
+</div>
+<ol>
+<li class="level1"><div class="li">Faça as <a href="/wiki/doku.php?id=wiki:tutorial_configuracoes_iniciais_tomcat_6_maquina_ubuntu" class="wikilink2" title="wiki:tutorial_configuracoes_iniciais_tomcat_6_maquina_ubuntu" rel="nofollow">configurações iniciais do tomcat 6</a> </div>
+</li>
+</ol>
+</li>
+<li class="level0"><div class="li">Instale o suporte a SVN via apache<pre class="code">apt-get install subversion libapache2-svn</pre>
+
+
+</div>
+<ol>
+<li class="level1"><div class="li">Faça as <a href="/wiki/doku.php?id=wiki:tutorial_configuracoes_iniciais_svb_em_maquina_ubuntu" class="wikilink2" title="wiki:tutorial_configuracoes_iniciais_svb_em_maquina_ubuntu" rel="nofollow">configurações iniciais do SVN</a></div>
+</li>
+</ol>
+</li>
+<li class="level0"><div class="li">Instale os aplicativos de proposito geral - será necessario fornecer a senha de root do MYSQL, para instalação do phpmyadmin, e criar uma senha de root para o mesmo.<pre class="code">apt-get install rar unrar zip unzip openssh-server webmin phpmyadmin vim</pre>
+
+
+</div>
+</li>
+<li class="level0"><div class="li">Defina o ip fixo nesta máquina</div>
+</li>
+<li class="level0"><div class="li"><a href="/wiki/doku.php?id=wiki:tutorial_de_restauracao_de_backup_do_ideias" class="wikilink2" title="wiki:tutorial_de_restauracao_de_backup_do_ideias" rel="nofollow">Restaure o backup</a> da versão anterior do ideias</div>
+</li>
+</ol>
+
+<p>
+Fim—–
+</p>
+
+</div>
+<!-- EDIT3 SECTION "Procedimento" [669-] -->

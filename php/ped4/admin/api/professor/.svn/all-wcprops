@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/lika_ped/!svn/ver/2/ped/admin/api/professor
+END
+editar.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/lika_ped/!svn/ver/2/ped/admin/api/professor/editar.php
+END
+remover.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/lika_ped/!svn/ver/2/ped/admin/api/professor/remover.php
+END
+listar.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/lika_ped/!svn/ver/2/ped/admin/api/professor/listar.php
+END
+buscar.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/lika_ped/!svn/ver/2/ped/admin/api/professor/buscar.php
+END
+inserir.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/lika_ped/!svn/ver/2/ped/admin/api/professor/inserir.php
+END

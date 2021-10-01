@@ -1,0 +1,7 @@
+base   countdown
+author Ron Peters, Ekkart Kleinod, Luis Machuca Bezzaza
+email  luis [at] machuca [at] gulix [dot] cl
+date   2011-03-11
+name   Countdown Plugin
+desc   Countdown to a specific date
+url    http://dokuwiki.org/plugin:countdown

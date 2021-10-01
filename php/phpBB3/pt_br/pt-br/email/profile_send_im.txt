@@ -1,0 +1,13 @@
+
+Olá {TO_USERNAME},
+
+A mensagem seguinte foi enviada à Você por {FROM_USERNAME} através de seu registro em "{SITENAME}". Se esta mensagem contém Material Abusivo, Spam, ou Comentários que você ache Ofensivos, por favor, contate o "Webmaster" do Forum pelo seguinte endereço:
+
+{BOARD_CONTACT}
+
+Inclua este email completo (particularmente os cabeçalhos). Note que o endereço de resposta para este email é do Registro de IM do forum.
+
+A mensagem enviada para Você é a seguinte:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+{MESSAGE}

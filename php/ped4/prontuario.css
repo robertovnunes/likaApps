@@ -1,0 +1,44 @@
+.style10 {color: #FFFFFF}
+
+.menu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #629BD2;
+	cursor: pointer;
+}
+
+.menu-sel {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #000000;
+	background-color: #E8E8E8;
+	cursor: pointer;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.conteudo {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000033;
+	background-color: #E8E8E8;
+	width: 620px;
+	cursor: pointer;
+}
+
+.conteudo2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000033;
+	background-color: #E8E8E8;
+	width: 704px;
+	cursor: pointer;
+}

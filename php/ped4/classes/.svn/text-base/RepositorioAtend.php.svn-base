@@ -1,0 +1,125 @@
+<?php
+
+include ("dbconfig.php");
+
+class RepositorioAtend {
+	
+
+	
+	function novoAtendimento($idAluno, $idPront, $sexo){
+		$query1 = mysql_query("SHOW TABLE STATUS LIKE 'atendimento'");
+		$data1 = mysql_fetch_array($query1);
+		$idAtendimento = $data1['Auto_increment'];
+		$data = date(Y)."-".date(m)."-".date(d)." ".date("H:i:s");
+		mysql_query("insert into atendimento values ('".$idAtendimento."','".$idPront."','".$idAluno."','".$data."','".$data."')");
+		generateRows('informante', 13, $idAtendimento);
+		generateRows('qpdhda', 5, $idAtendimento);
+		generateRows('interrogsintomatologico', 3, $idAtendimento);
+		generateRows('geral', 5, $idAtendimento);
+		generateRows('pele', 4, $idAtendimento);
+		generateRows('olhos', 7, $idAtendimento);
+		generateRows('ouvidos', 5, $idAtendimento);
+		generateRows('aprespiratorio', 12, $idAtendimento);
+		generateRows('apgastrointestinal', 8, $idAtendimento);
+		generateRows('apgenitourinario', 12, $idAtendimento);
+		if ($sexo == "M")
+			generateRows('genmasc', 5, $idAtendimento);
+		else if ($sexo == "F")
+			generateRows('genfem', 10, $idAtendimento);
+		generateRows('apcardiovascular', 5, $idAtendimento);
+		generateRows('sistmusculoesqueletico', 5, $idAtendimento);
+		generateRows('sistnervoso', 11, $idAtendimento);
+
+		generateRows('examefisico', 3, $idAtendimento);
+		generateRows('antroestpuberal', 4, $idAtendimento);
+		generateRows('examegastint', 19, $idAtendimento);
+		generateRows('exameresp', 21, $idAtendimento);
+		generateRows('examecardvasc', 8, $idAtendimento);
+		generateRows('examecranio', 8, $idAtendimento);
+
+		generateRows('exameganglinf', 2, $idAtendimento);
+		generateRows('desenvneuropsicomotor', 38, $idAtendimento);
+		generateRows('examegenurin', 7, $idAtendimento);
+		if ($sexo == "M")
+			generateRows('examegenmasc', 5, $idAtendimento);
+		else if ($sexo == "F")
+			generateRows('examegenmasc', 3, $idAtendimento);
+		generateRows('inspecao', 9, $idAtendimento);
+		generateRows('examemuscesq', 16, $idAtendimento);
+		generateRows('examenervoso', 4, $idAtendimento);
+		generateRows('exameolhos', 11, $idAtendimento);
+		generateRows('examepele', 15, $idAtendimento);
+		generateRows('examepescoco', 9, $idAtendimento);
+		generateRows('examesistotorrin', 29, $idAtendimento);
+	
+		generateRows('conduta', 4, $idAtendimento);
+		generateRows('hipotdiagnost', 4, $idAtendimento);
+		
+		//tabelas para verificar se as abas já foram salvas.
+		
+		inserirAbasExame($idAtendimento);
+		inserirAbasIS($idAtendimento);
+		$i = 1;
+		for($i ; $i<131 ; $i++){
+			mysql_query("UPDATE abasis SET geral = 1 where (idAtend = ".$i.") and 
+			(
+				((select febre from geral where idAtend = ".$i." ) <> "")
+			     or ((select ativ from geral where idAtend = ".$i." ) <> "") 
+			     or ((select apet from geral where idAtend = ".$i."  ) <> "") 
+			     or ((select avpeso from geral where idAtend =".$i." ) <> "") 
+			     or ((select obs from geral where idAtend = ".$i.")  <> ""))");
+			mysql_query("UPDATE abasis SET pele = 1 where (idAtend = ".$i.") and 
+			(
+				
+			     ((select infecrep from pele where idAtend = ".$i." ) <> "") 
+			     or ((select rash from pele where idAtend = ".$i."  ) <> "") 
+			     or ((select icter from pele where idAtend =".$i." ) <> "") 
+			     or ((select obs from pele where idAtend = ".$i.")  <> ""))");
+
+			mysql_query("UPDATE abasis SET olhos = 1 where (idAtend = ".$i.") and 
+			(
+				((select secr from geral where idAtend = ".$i." ) <> "")
+			     or ((select edpalp from olhos where idAtend = ".$i." ) <> "") 
+			     or ((select lacrim from olhos where idAtend = ".$i."  ) <> "") 
+			     or ((select fotof from olhos where idAtend =".$i." ) <> "") 
+			     or ((select dorol from olhos where idAtend =".$i." ) <> "") 
+			     or ((select acvis from olhos where idAtend =".$i." ) <> "") 
+			     or ((select obs from olhos where idAtend = ".$i.")  <> ""))");
+			
+			mysql_query("UPDATE abasis SET ouvidos = 1 where (idAtend = ".$i.") and 
+			(
+				((select infecfreq from ouvidos where idAtend = ".$i." ) <> "")
+			     or ((select secr from ouvidos where idAtend = ".$i." ) <> "") 
+			     or ((select acuid from ouvidos where idAtend = ".$i."  ) <> "") 
+			     or ((select dorouv from ouvidos where idAtend =".$i." ) <> "") 
+			     or ((select obs from ouvidos where idAtend = ".$i.")  <> ""))");
+			
+			mysql_query("UPDATE abasis SET respiratorio = 1 where (idAtend = ".$i.") and 
+			(
+				((select epist from respiratorio where idAtend = ".$i." ) <> "")
+			     or ((select resf from respiratorio where idAtend = ".$i." ) <> "") 
+			     or ((select dortor from respiratorio where idAtend = ".$i."  ) <> "") 
+			     or ((select difresp from respiratorio where idAtend =".$i." ) <> "") 
+			     or ((select hemop from respiratorio where idAtend =".$i." ) <> "") 
+			     or ((select sufoc from respiratorio where idAtend =".$i." ) <> "") 
+			     or ((select corrnas from respiratorio where idAtend =".$i." ) <> "") 
+			     or ((select tosse from respiratorio where idAtend =".$i." ) <> "") 
+			     or ((select durtosse from respiratorio where idAtend =".$i." ) <> "") 
+			     or ((select tipotosse from respiratorio where idAtend =".$i." ) <> "") 
+			     or ((select pertosse from respiratorio where idAtend =".$i." ) <> "") 
+			     or ((select obs from respiratorio where idAtend = ".$i.")  <> ""))");
+		}
+ 
+		}   
+		
+		
+		
+		
+		header('Location:prontuario_paciente.php?at='.$idAtendimento);
+	}
+	
+    public function __destruct() {
+    }
+
+}
+?>

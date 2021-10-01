@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/lika_ped/!svn/ver/2/ped/admin/api/equipe
+END
+editar.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/lika_ped/!svn/ver/2/ped/admin/api/equipe/editar.php
+END
+remover.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/lika_ped/!svn/ver/2/ped/admin/api/equipe/remover.php
+END
+listar.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/lika_ped/!svn/ver/2/ped/admin/api/equipe/listar.php
+END
+buscar.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/lika_ped/!svn/ver/2/ped/admin/api/equipe/buscar.php
+END
+inserir.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/lika_ped/!svn/ver/2/ped/admin/api/equipe/inserir.php
+END

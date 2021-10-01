@@ -1,0 +1,1 @@
+put /home/temp/* /home/bak/

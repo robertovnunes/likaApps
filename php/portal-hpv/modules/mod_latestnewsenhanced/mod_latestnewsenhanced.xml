@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5">
+	<name>Latest News Enhanced</name>
+	<author>Olivier Buisard</author>
+	<creationDate>November 2011</creationDate>
+	<copyright>Copyright (C) 2011 Simplify Your Web. All rights reserved.</copyright>
+	<license>GNU General Public License version 3 or later</license>
+	<authorEmail>olivier.buisard@simplifyyourweb.com</authorEmail>
+	<authorUrl>www.simplifyyourweb.com</authorUrl>
+	<version>1.0.5</version>
+	<description>MOD_LATESTNEWSENHANCED_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_latestnewsenhanced">mod_latestnewsenhanced.php</filename>
+		<filename>helper.php</filename>
+		<filename>image.php</filename>
+		<filename>index.html</filename>
+		<filename>license.txt</filename>
+		<filename>style.css.php</filename>
+		<filename>style_msie_7.css.php</filename>
+		<filename>elements/index.html</filename>
+		<filename>elements/gdtest.php</filename>
+		<filename>images/index.html</filename>
+		<filename>images/preview.png</filename>
+		<filename>tmpl/index.html</filename>
+		<filename>tmpl/default.php</filename>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB.mod_latestnewsenhanced.ini</language>
+		<language tag="en-GB">en-GB.mod_latestnewsenhanced.sys.ini</language>
+	</languages>
+	<params addPath="/modules/mod_latestnewsenhanced/elements">
+		<param name="secid" type="text" default="" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_SECTION_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_SECTION_DESC" />
+		<param name="catid" type="text" default="" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_CATEGORY_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_CATEGORY_DESC" />
+		<param name="count" type="text" default="5" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_COUNT_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_COUNT_DESC" />			
+		<param name="ordering" type="list" default="c_dsc" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_ORDERING_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_ORDERING_DESC">
+			<option value="o_dsc">MOD_LATESTNEWSENHANCED_VALUE_ORDERDESC</option>
+			<option value="o_asc">MOD_LATESTNEWSENHANCED_VALUE_ORDERASC</option>
+			<option value="c_dsc">MOD_LATESTNEWSENHANCED_VALUE_CREATEDDESC</option>
+			<option value="c_asc">MOD_LATESTNEWSENHANCED_VALUE_CREATEDASC</option>
+			<option value="m_dsc">MOD_LATESTNEWSENHANCED_VALUE_MODIFIEDDESC</option>
+			<option value="m_asc">MOD_LATESTNEWSENHANCED_VALUE_MODIFIEDASC</option>
+			<option value="p_dsc">MOD_LATESTNEWSENHANCED_VALUE_PUBLISHEDDESC</option>
+			<option value="p_asc">MOD_LATESTNEWSENHANCED_VALUE_PUBLISHEDASC</option>
+	  	</param>
+		<param name="show_front" type="radio" default="1" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_SHOWFRONT_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_SHOWFRONT_DESC">
+			<option value="1">MOD_LATESTNEWSENHANCED_VALUE_SHOW</option>
+			<option value="0">MOD_LATESTNEWSENHANCED_VALUE_HIDE</option>
+		</param>			
+		
+		<param type="spacer" />	
+		
+		<param name="text" type="radio" default="1" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_TEXT_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_TEXT_DESC">
+			<option value="1">MOD_LATESTNEWSENHANCED_VALUE_INTROTEXT</option>
+			<option value="0">MOD_LATESTNEWSENHANCED_VALUE_METADESC</option>
+		</param>
+		<param name="letter_count" type="text" default="" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_LETTERCOUNT_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_LETTERCOUNT_DESC" />
+		<param name="strip_tags" type="radio" default="1" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_STRIPTAGS_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_STRIPTAGS_DESC">
+			<option value="1">MOD_LATESTNEWSENHANCED_VALUE_YES</option>
+			<option value="0">MOD_LATESTNEWSENHANCED_VALUE_NO</option>
+		</param>
+		<param name="keep_tags" type="text" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_KEEPTAGS_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_KEEPTAGS_DESC" />		
+		
+		<param type="spacer" />	
+		
+		<param name="user_id" type="list" default="0" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_AUTHORS_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_AUTHORS_DESC">
+			<option value="0">MOD_LATESTNEWSENHANCED_VALUE_ANYONE</option>
+			<option value="by_me">MOD_LATESTNEWSENHANCED_VALUE_BYME</option>
+			<option value="not_me">MOD_LATESTNEWSENHANCED_VALUE_NOTBYME</option>
+	  	</param>
+	  	<param name="show_author" type="radio" default="1" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_SHOWAUTHOR_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_SHOWAUTHOR_DESC">
+			<option value="1">MOD_LATESTNEWSENHANCED_VALUE_YES</option>
+			<option value="0">MOD_LATESTNEWSENHANCED_VALUE_NO</option>
+		</param>
+		<param name="author_name" type="list" default="none" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_AUTHORNAME_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_AUTHORNAME_DESC">
+			<option value="full">MOD_LATESTNEWSENHANCED_VALUE_FULL</option>
+			<option value="alias">MOD_LATESTNEWSENHANCED_VALUE_ALIAS</option>
+			<option value="user">MOD_LATESTNEWSENHANCED_VALUE_USER</option>
+		</param>
+		
+		<param type="spacer" />
+		
+		<param name="post_date" type="list" default="published" 
+           	label="MOD_LATESTNEWSENHANCED_FIELD_POSTDATE_LABEL" 
+           	description="MOD_LATESTNEWSENHANCED_FIELD_POSTDATE_DESC">
+			<option value="created">MOD_LATESTNEWSENHANCED_VALUE_CREATED</option>
+			<option value="published">MOD_LATESTNEWSENHANCED_VALUE_PUBLISHED</option>
+			<option value="modified">MOD_LATESTNEWSENHANCED_VALUE_MODIFIED</option>
+		</param>
+		<param name="show_date" type="list" default="none" 
+           	label="MOD_LATESTNEWSENHANCED_FIELD_SHOWDATE_LABEL" 
+           	description="MOD_LATESTNEWSENHANCED_FIELD_SHOWDATE_DESC">
+			<option value="none">MOD_LATESTNEWSENHANCED_VALUE_NONE</option>
+			<option value="date">MOD_LATESTNEWSENHANCED_VALUE_DATE</option>
+			<option value="ago">MOD_LATESTNEWSENHANCED_VALUE_AGO</option>
+		</param>
+				
+		<param type="spacer" />
+		
+		<param name="author_place" type="list" default="1" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_AUTHORPLACE_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_AUTHORPLACE_DESC">
+			<option value="0">MOD_LATESTNEWSENHANCED_VALUE_BEFORETITLE</option>
+			<option value="1">MOD_LATESTNEWSENHANCED_VALUE_AFTERTITLE</option>
+			<option value="2">MOD_LATESTNEWSENHANCED_VALUE_AFTERTEXT</option>
+		</param>
+			
+		<param type="spacer" />
+		
+		<param name="head_type" type="list" default="none" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_HEADTYPE_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_HEADTYPE_DESC">
+			<option value="none">MOD_LATESTNEWSENHANCED_VALUE_NONE</option>
+			<option value="image">MOD_LATESTNEWSENHANCED_VALUE_IMAGE</option>
+			<option value="calendar">MOD_LATESTNEWSENHANCED_VALUE_CALENDAR</option>
+		</param>
+		<param name="head_align" type="list" default="left" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_ALIGNMENT_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_ALIGNMENT_DESC">
+			<option value="left">MOD_LATESTNEWSENHANCED_VALUE_ALIGNLEFT</option>
+			<option value="right">MOD_LATESTNEWSENHANCED_VALUE_ALIGNRIGHT</option>
+			<option value="alternate">MOD_LATESTNEWSENHANCED_VALUE_ALTERNATE</option>
+		</param>
+		<param name="head_w" type="text" default="64" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_HEAD_WIDTH_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_HEAD_WIDTH_DESC" />
+		<param name="head_h" type="text" default="64" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_HEAD_HEIGHT_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_HEAD_HEIGHT_DESC" />			
+		<param name="default_picture" type="text" default=""
+			label="MOD_LATESTNEWSENHANCED_FIELD_PICTURE_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_PICTURE_DESC" />
+			
+		<param type="spacer" />
+				
+		<param name="gd_test" type="gdtest" label="MOD_LATESTNEWSENHANCED_FIELD_GDTEST_LABEL" />
+		<param name="crop_picture" type="radio" default="0" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_CROPPICTURE_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_CROPPICTURE_DESC">
+			<option value="1">MOD_LATESTNEWSENHANCED_VALUE_YES</option>
+			<option value="0">MOD_LATESTNEWSENHANCED_VALUE_NO</option>
+		</param>
+		<param name="thumb_path" type="text" default="tmp/" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_THUMBPATH_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_THUMBPATH_DESC" />
+		<param name="clear_cache" type="radio" default="0" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_CLEARCACHE_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_CLEARCACHE_DESC">
+			<option value="1">MOD_LATESTNEWSENHANCED_VALUE_YES</option>
+			<option value="0">MOD_LATESTNEWSENHANCED_VALUE_NO</option>
+		</param>
+			
+		<param type="spacer" />
+		
+		<param name="show_weekday" type="radio" default="1" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_WEEKDAY_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_WEEKDAY_DESC">
+			<option value="1">MOD_LATESTNEWSENHANCED_VALUE_YES</option>
+			<option value="0">MOD_LATESTNEWSENHANCED_VALUE_NO</option>
+		</param>		
+		<param name="show_year" type="radio" default="1" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_YEAR_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_YEAR_DESC">
+			<option value="1">MOD_LATESTNEWSENHANCED_VALUE_YES</option>
+			<option value="0">MOD_LATESTNEWSENHANCED_VALUE_NO</option>
+		</param>
+		
+		<param type="spacer" />
+		
+		<param name="link_to_article" type="radio" default="1" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_LINKTONEWS_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_LINKTONEWS_DESC">
+			<option value="1">MOD_LATESTNEWSENHANCED_VALUE_YES</option>
+			<option value="0">MOD_LATESTNEWSENHANCED_VALUE_NO</option>
+		</param>		
+		<param name="link" type="text" default="" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_LINK_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_LINK_DESC" />
+		<param name="cat_link" type="text" default="" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_CATLINK_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_CATLINK_DESC" />
+	</params>
+	<params group="advanced">
+		<param name="moduleclass_sfx" type="text" default=""
+			label="MOD_LATESTNEWSENHANCED_FIELD_MODULECLASS_SFX_LABEL"
+			description="MOD_LATESTNEWSENHANCED_FIELD_MODULECLASS_SFX_DESC" />
+		<param name="cache" type="list" default="0" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_CACHING_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_CACHING_DESC">
+			<option value="1">MOD_LATESTNEWSENHANCED_VALUE_USEGLOBAL</option>
+			<option value="0">MOD_LATESTNEWSENHANCED_VALUE_NOCACHING</option>
+		</param>
+		<param name="cache_time" type="text" default="900" 
+			label="MOD_LATESTNEWSENHANCED_FIELD_CACHETIME_LABEL" 
+			description="MOD_LATESTNEWSENHANCED_FIELD_CACHETIME_DESC" />
+	</params>
+</install>

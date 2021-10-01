@@ -1,0 +1,50 @@
+9
+
+dir
+2
+http://my-svn.assembla.com/svn/lika_ped/ped/admin/api
+http://my-svn.assembla.com/svn/lika_ped
+
+
+
+2009-05-22T20:29:34.449810Z
+2
+ncs
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+e0e46c49-be69-4f5a-ad62-21024a331aea
+
+
+
+
+
+
+0
+
+aluno
+dir
+
+equipe
+dir
+
+modulo
+dir
+
+professor
+dir
+
+turma
+dir
+

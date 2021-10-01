@@ -1,0 +1,19 @@
+Subject: Reative sua conta em "{SITENAME}" - {U_BOARD}
+
+O administrador ordena que reative sua conta. Sua conta está atualmente inativa.
+Por favor siga os seguintes passos para reativar a sua conta.
+
+Por favor continue com este e-mail. As informações da sua conta são as seguintes:
+
+----------------------------
+Username: {USERNAME}
+----------------------------
+
+Sua senha foi codificada em nosso banco de dados. Se você esquecer sua senha você pode solicitar uma nova que será ativada desta mesma maneira.
+
+Por favor visita o seguinte endereço para reativar a sua conta:
+
+{U_ACTIVATE}
+
+
+{EMAIL_SIG} 

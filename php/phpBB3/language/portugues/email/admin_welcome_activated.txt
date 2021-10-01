@@ -1,0 +1,10 @@
+Subject: Conta ativada
+
+Olá {USERNAME},
+
+Sua conta em "{SITENAME}" está ativada agora, você poderá acessá-la pelo seu nome de usuário que você recebeu no email anterior.
+
+Sua senha foi armazenada com segurança em nosso banco de dados e não poderá ser recuperada. Caso tenha esquecido a mesma, você poderá definir uma nova usando este endereço de email associado a esta conta no login da comunidade.
+
+{EMAIL_SIG}
+

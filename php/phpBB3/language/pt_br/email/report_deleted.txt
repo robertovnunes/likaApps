@@ -1,0 +1,8 @@
+Subject: Denúncia Excluída - "{POST_SUBJECT}"
+
+Olá {USERNAME},
+
+Você recebeu este aviso porque a sua Denúncia enviada sobre a mensagem "{POST_SUBJECT}" no tópico "{TOPIC_TITLE}" em "{SITENAME}" foi excluída por um moderador ou um administrador.
+
+
+{EMAIL_SIG}

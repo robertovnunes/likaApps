@@ -1,0 +1,368 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="1.2" 
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+
+
+
+
+
+
+    <application>
+        <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+    </application>
+
+    <managed-bean>
+        <managed-bean-name>submenuPaciente</managed-bean-name>
+        <managed-bean-class>clin.handler.SubmenuPaciente</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+
+
+
+
+    <managed-bean>
+        <managed-bean-name>atendimentoHandler</managed-bean-name>
+        <managed-bean-class>clin.handler.AtendimentoHandler</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>atendimentoDao</property-name>
+            <value>#{atendimentoDao}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>usuario</property-name>
+            <value>#{usuarioHandler.usuario}</value>
+        </managed-property>
+
+
+        <managed-property>
+            <property-name>menu</property-name>
+            <value>#{submenuPaciente}</value>
+        </managed-property>
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>fichaHandler</managed-bean-name>
+        <managed-bean-class>clin.handler.FichaHandler</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>fichaDao</property-name>
+            <value>#{fichaDao}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>usuario</property-name>
+            <value>#{usuarioHandler.usuario}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>menu</property-name>
+            <value>#{submenuPaciente}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>atendimentoDao</property-name>
+            <value>#{atendimentoDao}</value>
+        </managed-property>
+    </managed-bean>
+
+
+        <managed-bean>
+        <managed-bean-name>atendimentoAteriorHandler</managed-bean-name>
+        <managed-bean-class>clin.handler.AtendimentoAteriorHandler</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>fichaDao</property-name>
+            <value>#{fichaDao}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>adendoDao</property-name>
+            <value>#{adendoDao}</value>
+        </managed-property>
+
+          <managed-property>
+            <property-name>atendimentoDao</property-name>
+            <value>#{atendimentoDao}</value>
+        </managed-property>
+
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>exameHandler</managed-bean-name>
+        <managed-bean-class>clin.handler.ExameHandler</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>exameDao</property-name>
+            <value>#{exameDao}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>usuario</property-name>
+            <value>#{usuarioHandler.usuario}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>menu</property-name>
+            <value>#{submenuPaciente}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>menuFichas</property-name>
+            <value>#{fichaHandler.menuFichas}</value>
+        </managed-property>
+        
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>usuarioHandler</managed-bean-name>
+        <managed-bean-class>clin.handler.UsuarioHandler</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>usuarioDao</property-name>
+            <value>#{usuarioDao}</value>
+        </managed-property>
+    </managed-bean>
+
+
+    <managed-bean>
+        <managed-bean-name>cidHandler</managed-bean-name>
+        <managed-bean-class>clin.handler.CidHandler</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>cidDao</property-name>
+            <value>#{cidDao}</value>
+        </managed-property>
+    </managed-bean>
+
+
+
+    <managed-bean>
+        <managed-bean-name>adendoHandler</managed-bean-name>
+        <managed-bean-class>clin.handler.AdendoHandler</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>adendoDao</property-name>
+            <value>#{adendoDao}</value>
+        </managed-property>
+    </managed-bean>
+
+    
+
+
+    <managed-bean>
+        <managed-bean-name>pacienteHandler</managed-bean-name>
+        <managed-bean-class>clin.handler.PacienteHandler</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>pacienteDao</property-name>
+            <value>#{pacienteDao}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>usuario</property-name>
+            <value>#{usuarioHandler.usuario}</value>
+        </managed-property>
+
+        <managed-property>
+            <property-name>menu</property-name>
+            <value>#{submenuPaciente}</value>
+        </managed-property>
+       
+    </managed-bean>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <display-name>login</display-name>
+        <from-view-id>/login.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/inicioPaciente.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>esqueceuSenha</from-outcome>
+            <to-view-id>/esqueceuSenha.jsp</to-view-id>
+        </navigation-case>
+
+    </navigation-rule>
+
+    <navigation-rule>
+        <display-name>controleMenu</display-name>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>pacientes</from-outcome>
+            <to-view-id>/inicioPaciente.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>usuarioAdministrador</from-outcome>
+            <to-view-id>/inicioUsuario.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>usuarioComum</from-outcome>
+            <to-view-id>/editarUsuario.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>buscarPaciente</from-outcome>
+            <to-view-id>/inicioPaciente.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cadastrar</from-outcome>
+            <to-view-id>/cadastroPaciente.jsp</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>editarPaciente</from-outcome>
+            <to-view-id>/editarPaciente.jsp</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>buscarUsuario</from-outcome>
+            <to-view-id>/inicioUsuario.jsp</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>cadastrarUsuario</from-outcome>
+            <to-view-id>/cadastroUsuario.jsp</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>editarUsuario</from-outcome>
+            <to-view-id>/editarUsuario.jsp</to-view-id>
+        </navigation-case>
+
+
+
+
+    </navigation-rule>
+
+    <navigation-rule>
+        <display-name>atendimentoPaciente</display-name>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>atendimentos</from-outcome>
+            <to-view-id>/atendimentosPaciente.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <display-name>novoAtendimento</display-name>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>novoAtendimento</from-outcome>
+            <to-view-id>/qpd.jsp</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>visualizarAtendimento</from-outcome>
+            <to-view-id>/qpd.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>visualizarAtendimentoAssinado</from-outcome>
+            <to-view-id>/visualizarQPD.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <display-name>fichas</display-name>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>qpd</from-outcome>
+            <to-view-id>/qpd.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>hda</from-outcome>
+            <to-view-id>/hda.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>is</from-outcome>
+            <to-view-id>/is.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>antecedentes</from-outcome>
+            <to-view-id>/antecedentes.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>exameFisico</from-outcome>
+            <to-view-id>/exameFisico.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>exames</from-outcome>
+            <to-view-id>/exames.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>problemasCondutas</from-outcome>
+            <to-view-id>/problemasCondutas.jsp</to-view-id>
+        </navigation-case>
+
+    </navigation-rule>
+
+    <navigation-rule>
+        <display-name>solicitar</display-name>
+        <from-view-id>/exames.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>solicitarExame</from-outcome>
+            <to-view-id>/solicitarExame.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+     <navigation-rule>
+        <display-name>resultadoExame</display-name>
+        <from-view-id>/exames.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>resultadoExame</from-outcome>
+            <to-view-id>/resultadoExame.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <display-name>fichasAssinadas</display-name>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>qpdAssinado</from-outcome>
+            <to-view-id>/visualizarQPD.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>hdaAssinado</from-outcome>
+            <to-view-id>/visualizarHDA.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+     <navigation-rule>
+        <display-name>atendimentosAnteriores</display-name>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>atendimentosAnteriores</from-outcome>
+            <to-view-id>/atendimentosAnteriores</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+    <application>
+        <locale-config>
+            <default-locale>pt_BR</default-locale>
+        </locale-config>
+
+    </application>
+
+
+
+
+</faces-config>

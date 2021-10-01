@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/lika_ped/!svn/ver/2/ped/admin/utils
+END
+utils.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/lika_ped/!svn/ver/2/ped/admin/utils/utils.php
+END
+validar_sessao_admin.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/lika_ped/!svn/ver/2/ped/admin/utils/validar_sessao_admin.php
+END
+db_config.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/lika_ped/!svn/ver/2/ped/admin/utils/db_config.php
+END
+deslogar.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/lika_ped/!svn/ver/2/ped/admin/utils/deslogar.php
+END

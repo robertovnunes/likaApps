@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/lika_ped/!svn/ver/2/ped/admin/classes
+END
+usuario.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/lika_ped/!svn/ver/2/ped/admin/classes/usuario.class.php
+END
+professor.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/lika_ped/!svn/ver/2/ped/admin/classes/professor.class.php
+END
+equipe.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/lika_ped/!svn/ver/2/ped/admin/classes/equipe.class.php
+END
+turma.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/lika_ped/!svn/ver/2/ped/admin/classes/turma.class.php
+END
+modulo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/lika_ped/!svn/ver/2/ped/admin/classes/modulo.class.php
+END
+aluno.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/lika_ped/!svn/ver/2/ped/admin/classes/aluno.class.php
+END

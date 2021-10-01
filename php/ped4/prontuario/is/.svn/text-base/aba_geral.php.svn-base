@@ -1,0 +1,52 @@
+<?php
+	$lger = getValuesTableAt('geral',$atend);
+?>
+
+<table width="570">
+	<tr>
+    	<td width="205"><fieldset style="width:205px">
+			<legend>Altera&ccedil;&atilde;o de Peso</legend>
+			<select name="altpeso" onchange="savCampo('1')" <?php echo checkAssinado($linha->ass); ?>>
+				<option value="GP" <?php echo checkOption("altpeso", "GP", $lger->avpeso); ?>>Ganho de Peso</option>
+				<option value="PP" <?php echo checkOption("altpeso", "PP", $lger->avpeso); ?>>Perda de Peso</option>
+				<option value="NE" <?php echo checkOption("altpeso", "NE", $lger->avpeso); ?>>Nenhuma Alteração</option>
+				<option value="NA" <?php echo checkOption("altpeso", "NA", $lger->avpeso); ?>>Não Avaliado</option>
+			</select>
+   	  </fieldset></td>
+    	<td width="174"><fieldset>
+       		<legend>Apetite</legend>
+            <select name="apetite" onchange="savCampo('1')" <?php echo checkAssinado($linha->ass); ?>>
+            	<option value="F" <?php echo checkOption("apetite", "F", $lger->apet); ?>>Falta</option>
+            	<option value="E" <?php echo checkOption("apetite", "E", $lger->apet); ?>>Em excesso</option>
+            	<option value="N" <?php echo checkOption("apetite", "N", $lger->apet); ?>>Normal</option>
+            	<option value="NA" <?php echo checkOption("apetite", "NA", $lger->apet); ?>>Não Avaliado</option>
+        	</select>
+  	  </fieldset></td>
+	   	<td width="175"><fieldset>
+        	<legend>Atividade</legend>
+			<select name="atividade" onchange="savCampo('1')" <?php echo checkAssinado($linha->ass); ?>>
+            	<option value="A" <?php echo checkOption("atividade", "A", $lger->ativ); ?>>Ativo</option>
+                <option value="Q" <?php echo checkOption("atividade", "Q", $lger->ativ); ?>>Quieto</option>
+                <option value="NA" <?php echo checkOption("atividade", "NA", $lger->ativ); ?>>Não Avaliado</option>
+        	</select>
+	  </fieldset></td>
+    </tr>
+    <tr>
+   		<td colspan="3"><fieldset style="width:205px">
+			<legend>Febre</legend>
+			<input name="febre" type="radio" value="S" onchange="savCampo('1')" <?php echo checkAssinado($linha->ass); 
+				echo checkPOST("febre", "S", $lger->febre); ?>/>Sim
+			<input name="febre" type="radio" value="N" onchange="savCampo('1')" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("febre", "N", $lger->febre); ?>/>N&atilde;o
+			<input name="febre" type="radio" value="NA" onchange="savCampo('1')" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("febre", "NA", $lger->febre); ?>/>N&atilde;o Avaliado
+   	  </fieldset></td>
+  	</tr>
+    <tr>
+    	<td colspan="3"><fieldset>
+        	<legend>Observa&ccedil;&otilde;es</legend>
+        	<textarea name="obsgeral" cols="80" onkeyup="savCampo('1')" <?php echo checkAssinado($linha->ass); ?>
+				><?php echo printOBS($lger->obs, $_POST['obsgeral']); ?></textarea>
+        </fieldset></td>
+ 	</tr>
+</table>

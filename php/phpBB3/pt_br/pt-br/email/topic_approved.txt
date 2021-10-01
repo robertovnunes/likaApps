@@ -1,0 +1,11 @@
+Subject: Tópico Aprovado - {TOPIC_TITLE}
+
+Olá {USERNAME},
+
+Você recebeu este email porque seu tópico "{TOPIC_TITLE}" em {SITENAME} foi aprovado por um moderador ou administrador.
+
+Se você quiser ver o tópico, clique no link abaixo:
+{U_VIEW_TOPIC}
+
+
+{EMAIL_SIG}

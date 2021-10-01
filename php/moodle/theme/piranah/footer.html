@@ -1,0 +1,33 @@
+
+<?php    
+    print_container_end(); // content container
+
+    print_container_start(true, '', 'footer');
+
+    echo '<a class="logo" title="Moodle '.$CFG->release.'" href="http://moodle.org/">';
+    echo '<img height="20" alt="Moodle" src="'.$CFG->httpsthemewww .'/'. current_theme().'/pix/moodle-logo-1.gif"/>';
+    echo '</a>';
+
+    echo '<p class="helplink">';
+    echo page_doc_link(get_string('moodledocslink'));
+    echo '</p>';
+
+    echo $loggedinas;
+    // echo $homelink;
+
+    $useridarray = array(2, 3 // MD
+                          );
+    
+    if (!empty($performanceinfo) && isloggedin() && in_array($USER->id, $useridarray)) {
+        echo $performanceinfo;
+    }
+    
+    echo '<div id="bottomleft">&nbsp;</div>';
+    echo '<div id="bottomright">&nbsp;</div>';
+?>
+    
+    <?php print_container_end(); ?>
+</div>
+
+</body>
+</html>

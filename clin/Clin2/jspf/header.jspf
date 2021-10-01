@@ -1,0 +1,83 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Clínica Médica</title>
+
+<!--<meta name="title" content="Título da Página" />
+<meta name="description" content="Descrição da Página" />
+<meta name="keywords" content="keywords,separadas,por,virgula,e,endereco.com.br" />-->
+<meta name="language" content="pt-BR" />
+<meta name="robots" content="All" />
+<meta name="revisit" content="7 days" />
+<script src="js/flash.js" type="text/javascript" language="javascript"><!-- --></script>
+<script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+<link href="css/screen.css" type="text/css" rel="stylesheet" media="screen" />
+
+</head>
+
+<body>
+
+    <div id="msg" class="alert dnone"> <!-- alterar apenas a classe .erro .confirm .alert -->
+        <ul>
+        	<li><img src="img/transparent.gif" class="icon_erro" />Mensagem de erro</li> <!-- colocar a classe da imagem também -->
+            <li><img src="img/transparent.gif" class="icon_alert" />Mensagem de alerta</li>
+            <li><img src="img/transparent.gif" class="icon_confirm" />Mensagem de confirmação</li>
+        </ul>
+    </div>
+
+<div id="container">
+
+	<div id="header">
+    	<div id="header_l">
+    		<h1>CLÍNICA MÉDICA</h1>
+    		<p class="h1_sub">Protuário do Paciente</p>
+    	</div>
+    	<div id="header_r">
+            <div id="member">
+                <img src="img/member_pic.jpg" alt="iR4 Consultoria Web" />
+                <p>Olá <strong>iR4 Consultoria Web</strong></p>
+                <p><a href="#">Editar meu perfil</a> | <a href="#">Sair</a></p>
+            </div>
+        </div>
+
+        <div id="nav">
+
+                <ul>
+                    <li><a href="#" class="pacientes">PACIENTES</a></li>
+                    <li><a href="#" class="usuarios">USUÁRIOS</a></li>
+                    <li><a href="#" class="contato">CONTATO</a></li>
+                </ul>
+
+        </div>
+
+        <DIV id="search">
+        	<form>
+            	<input type="text" name="text" value="Pesquisa"/>
+                <input type="button" name="ok" id="more_options" class="bt_plus" value="Mais Opções" />
+
+
+                <div id="search_options" class="dnone">
+                	<p>Pesquise pelo:</p>
+
+                	<input type="radio" name="nome" id="nome" class="rd" /><label for="nome">Nome</label>
+                    <input type="radio" name="prontuario" id="prontuario" class="rd" /><label for="prontuario">Prontuário</label>
+                    <input type="radio" name="mae" id="mae"  class="rd"/><label for="mae">Mãe</label>
+                    <input type="radio" name="sexo" id="sexo" class="rd" /><label for="sexo">Sexo</label>
+                    <input type="radio" name="cpf" id="cpf" class="rd" /><label for="cpf">CPF</label>
+                    <input type="radio" name="data" id="data" class="rd" /><label for="data">Data</label>
+
+                </div>
+            </form>
+
+        </DIV>
+
+        <div id="location">
+        	<p><a href="#">Pacientes</a> > <a href="#">Exame Físico</a> > Geral</p>
+        </div>
+
+    </div><!-- /#header -->
+

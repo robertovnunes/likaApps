@@ -1,0 +1,22 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+<div id="footer">
+
+    	<p>iDEIAS.© All Rights Reserved 2009</p>
+
+        <div id="apoio">
+        	<h2>Apoio:</h2>
+            <p><a href="#"><img src="img/ideias.jpg" alt="IDEIAS" /></a>
+            <a href="#"><img src="img/ufpe.jpg" alt="UFPE" /></a>
+            <a href="#"><img src="img/lika.jpg" alt="LIKA" /></a>
+            </p>
+
+        </div>
+
+    </div><!-- /#footer -->
+
+</div><!-- /#container -->
+
+</body>
+</html>

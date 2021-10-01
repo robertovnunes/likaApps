@@ -1,0 +1,8 @@
+UPDATE abasis SET (geral = 'true') 
+where (idAtend='1')
+ and (
+ 		((select febre from geral where idAtend = '1') <> '0') 
+ or ((select ativ from geral where idAtend = '1') <> '0')
+  or ((select apet from geral where idAtend = '1') <> '0') 
+  or ((select avpeso from geral where idAtend = '1') <> '0')
+   or ((select obs from geral where idAtend = '1') <>NULL))

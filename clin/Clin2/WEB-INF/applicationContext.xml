@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <bean id="mySQLDataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass">
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+        <property name="jdbcUrl">
+          <!--<value>jdbc:mysql://192.168.0.127/clin</value>-->
+          <value>jdbc:mysql://localhost/clin</value>
+          <!--<value>jdbc:mysql://150.161.67.2/clin</value>-->
+        </property>
+        <property name="user">
+                 <!--value>clin</value-->
+                 <value>root</value>
+        </property>
+        <property name="password">
+            <!--value>p039d9Y7wo19nh</value-->
+            <value>12345</value>
+        </property>
+        <property name="initialPoolSize">
+            <value>2</value>
+        </property>
+
+        <property name="minPoolSize">
+            <value>2</value>
+        </property>
+
+        <property name="maxPoolSize">
+            <value>100</value>
+        </property>
+
+        <property name="acquireIncrement">
+            <value>1</value>
+        </property>
+
+        <property name="acquireRetryAttempts">
+            <value>5</value>
+        </property>
+
+        <property name="maxStatements">
+            <value>50</value>
+        </property>
+
+        <property name="maxIdleTime">
+            <value>180</value>
+        </property>
+
+        <property name="maxConnectionAge">
+            <value>600</value>
+        </property>
+
+        <property name="idleConnectionTestPeriod">
+            <value>100</value>
+        </property>
+
+        <property name="testConnectionOnCheckin">
+            <value>true</value>
+        </property>
+
+        <property name="testConnectionOnCheckout">
+            <value>true</value>
+        </property>
+
+    </bean>
+    <bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="mySQLDataSource" />
+        <property name="configLocations" value="classpath*:hibernate.cfg.xml" />
+        <property name="schemaUpdate" value="true" />
+    </bean>
+
+	<!-- Transaction -->
+    <bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory">
+            <ref local="sessionFactory" />
+        </property>
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" />
+        </tx:attributes>
+    </tx:advice>
+
+	<!-- End transaction -->
+	<!-- DAO beans -->
+
+    <bean id="atendimentoDao" class="clin.dao.AtendimentoDaoImpl" autowire="byName">
+        <property name="sessionFactory">
+            <ref local="sessionFactory" />
+        </property>
+    </bean>
+
+
+
+    <bean id="pacienteDao" class="clin.dao.PacienteDaoImpl" autowire="byName">
+        <property name="sessionFactory">
+            <ref local="sessionFactory" />
+        </property>
+
+    </bean>
+
+
+    <bean id="cidDao" class="clin.dao.CidDaoImpl" autowire="byName">
+        <property name="sessionFactory">
+            <ref local="sessionFactory" />
+        </property>
+
+    </bean>
+
+
+    <bean id="usuarioDao" class="clin.dao.UsuarioDaoImpl" autowire="byName">
+        <property name="sessionFactory">
+            <ref local="sessionFactory" />
+        </property>
+    </bean>
+
+    <bean id="fichaDao" class="clin.dao.FichaDaoImpl" autowire="byName">
+        <property name="sessionFactory">
+            <ref local="sessionFactory" />
+        </property>
+    </bean>
+
+    <bean id="adendoDao" class="clin.dao.AdendoDaoImpl" autowire="byName">
+        <property name="sessionFactory">
+            <ref local="sessionFactory" />
+        </property>
+    </bean>
+
+    <bean id="exameDao" class="clin.dao.ExameDaoImpl" autowire="byName">
+        <property name="sessionFactory">
+            <ref local="sessionFactory" />
+        </property>
+    </bean>
+
+
+
+
+</beans>

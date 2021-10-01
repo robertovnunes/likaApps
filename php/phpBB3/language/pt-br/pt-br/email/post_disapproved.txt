@@ -1,0 +1,12 @@
+Subject: Mensagem Reprovada - {POST_SUBJECT}
+
+Olá {USERNAME},
+
+Você está recebendo este email porque sua mensagem "{POST_SUBJECT}" em {SITENAME} foi reprovada por um moderador ou administrador.
+
+A seguinte razão foi dada pela reprovação:
+
+{REASON}
+
+
+{EMAIL_SIG}

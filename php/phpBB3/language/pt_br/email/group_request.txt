@@ -1,0 +1,10 @@
+Subject: Foi feito um pedido para se juntar ao seu Grupo
+
+Estimado {USERNAME},
+
+Um usuário apresentou um pedido para entrar no grupo "{GROUP_NAME}" no qual você é moderador em {SITENAME}.
+Para aprovar ou recusar o pedido para membro do grupo por favor visitar o seguinte endereço:
+
+{U_PENDING}
+
+{EMAIL_SIG}

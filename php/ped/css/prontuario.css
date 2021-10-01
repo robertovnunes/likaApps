@@ -1,0 +1,80 @@
+#formProntuario{
+    position:relative;
+    float:right;
+    width:81%;
+    margin-right:1%;
+}
+
+#formProntuario fieldset {
+    margin-left:1%;
+
+}
+
+#formProntuario label, #formProntuario input, #formProntuario select{
+    float:left;
+    display: block;
+}
+
+#formProntuario input.opcoes{
+    width: 100px;
+    margin-left: 50px;
+
+}
+
+#formProntuario label.rad {
+    text-align: left;
+	width:25%;
+}
+
+#formProntuario label.rad1 span{
+    text-align: left;
+	width:30px;
+}
+
+#formProntuario label.radult1 span{
+    text-align: left;
+	width:90px;
+}
+
+
+#formProntuario label span {
+    margin:0px 0 5px 5px;
+    padding-top:5px;
+    float:left;
+}
+
+#formProntuario label.sSelect span{
+    text-align: right;
+    width: 100px;
+}
+
+#formProntuario label span.sSelect1 {
+    text-align: right;
+    width: 80px;
+}
+
+#formProntuario label span.tNormal {
+    text-align: left;
+    width: 100%;
+}
+
+#formProntuario label.radult {
+	width:50%;
+    display:block;
+}
+
+#formProntuario label input, #formProntuario label textarea {
+    margin-left:5px;
+	/*border:1px solid #000;*/
+}
+
+#formProntuario label span.lab {
+    float: right;
+    width:150px;
+    clear:both;
+}
+
+#formProntuario fieldset label.salvar{
+    position: relative;
+    float: right;
+}

@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="clin">
+    <output-path>$PROJECT_DIR$/out/artifacts/clin</output-path>
+    <root id="archive" name="clin.war" />
+  </artifact>
+</component>

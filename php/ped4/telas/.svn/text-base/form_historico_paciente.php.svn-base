@@ -1,0 +1,84 @@
+<?php
+	function nomeAba($valor) {
+		if ($valor == "" || $valor != "historico")
+			return "antpessoais";
+		else return "historico";
+	}
+	
+	function mSel($valor, $aba){
+		if ($valor == $aba)
+			return "class='msel'";
+	}
+	
+	$data = substr($paciente->dtnasc,8,2)."/".substr($paciente->dtnasc,5,2)."/".substr($paciente->dtnasc,0,4);
+	$aba = nomeAba($_GET['n']);
+	
+	$nome = "";
+	if(strlen($paciente->nome)>30){
+		
+		$array = explode(" ", $paciente->nome);
+		$tamanho = 0;
+		
+		while(($tamanho + strlen(current($array))) < 30){
+			$nome .= current($array).' ';
+			$tamanho = $tamanho + strlen(current($array));
+			next($array);
+		}
+
+	}else{
+		$nome = $paciente->nome;
+	}
+	
+	
+	
+?>
+<table width="620" bgcolor='#629BD2'>
+	<tr>
+    	<td width="300" class="style4">Nome: <?php echo $nome; ?></td>
+        <td width="75" class="style4">Sexo: <?php echo $paciente->sexo; ?></td>
+        <td width="180" class="style4">Natural de: <?php echo $paciente->cidade."/".$paciente->estado; ?></td>
+        <td width="158" class="style4">Data Nasc: <?php echo $data; ?></td>
+  	</tr>
+    <tr>
+    	<td colspan="2" class="style4">Alergia a Medicamentos: <?php if ($paciente->alergmed == "" || $paciente->alergmed == "NA" || 
+			$paciente->alergmed == "N") echo "N&atilde;o"; else echo "Sim"; ?></td>
+	    <td colspan="2" class="style4">Alergia Alimentar: <?php if ($paciente->alergalim == "" || $paciente->alergalim == "NA" || 
+			$paciente->alergalim == "N") echo "N&atilde;o"; else echo "Sim"; ?></td>
+    </tr>
+</table>
+<br />
+<form action="historico_paciente.php?pr=<?php echo $pront; ?>&n=<?php echo $aba; ?>" method="post" name="historico" id="form_historico">
+<ul class='menuh'>
+	<li <?php echo mSel('antpessoais', $aba); ?>><a onclick="muda(<?php echo $pront; ?>,'antpessoais','h')">Pessoal</a></li>
+ 	<li <?php echo mSel('historico', $aba); ?>><a onclick="muda(<?php echo $pront; ?>,'historico','h')">Familiar</a></li>
+</ul>
+<table width="620" height="200" cellspacing="0" cellpadding="0"	border="0">
+	<tr>
+		<td height="285" class="tb-conteudo" colspan="8"><?php $n = $_GET['n'];
+		if ($n == "historico"){
+			echo'<div id="div_historico" class="conteudo" height:500px">';
+			include("prontuario/aba_histfam.php");
+		} else {
+			echo'<div id="div_antpessoais" class="conteudo" height:500px">';
+			include("prontuario/aba_antpes.php");
+		} ?>
+        <br />
+		<?php if ($aba == "historico" || $aba == "antpessoais"){ ?>
+		<fieldset style="width:590px">
+			<legend>Op&ccedil;&otilde;es</legend>
+			<table width="493">
+				<tr align="right">
+					<td width="300" ><input name="limpar" type="reset" value="Limpar" /></td>
+					<td width="93"><input name="voltar" type="submit" onclick="this.form.action='acesso_aluno.php'" value="Voltar"/></td>
+					<td width="92"><input name="salvar" type="submit" id="salvar" value="Salvar" /></td>
+				</tr>
+				<input type="hidden" value="0" id="ctrl"/>
+			</table>
+   		  </fieldset>
+			<?php } ?>
+        	<br />
+			<?php echo "</div>"; ?>
+			</td>
+  		</tr>
+	</table>
+</form>

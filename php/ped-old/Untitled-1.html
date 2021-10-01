@@ -1,0 +1,166 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="shortcut icon" href="images/logo2.jpg" />
+    <title>PED - Prontu&aacute;rio de Semiologia Pedi&aacute;trica.</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="language" content="pt-br" />
+
+	<link rel='stylesheet' href='js/SpryAssets/SpryMenuBarVertical.css' type='text/css' />
+	<link rel="stylesheet" href="css/ped.css" />
+	<link rel="stylesheet" href="css/default.css" type="text/css"/>
+
+</head>
+
+<body onLoad="hora1(); renderDate();">
+
+<div id="divpedt">
+
+    <div id="divpedh" >
+        <div id="pedr1c1"><img name="ped_r1_c1" src="images/ped_r1_c1.jpg" width="260" height="150" border="0"></div>
+        <a href="javascript:void(0);" onclick="muda('','','a')"><div id="pedr1c2"><img name="ped_r1_c2" src="images/ped_r1_c2.jpg" width="306" height="150" border="0"></div></a>
+        <div id="pedr1c3"><img name="ped_r1_c3" src="images/ped_r1_c3.jpg" width="210" height="150" border="0"></div>
+        <div id="pedr1c4"><img name="ped_r1_c4" src="images/ped_r1_c4.jpg" width="241" height="150" border="0"></div>
+        <div id="pedr1c5"><img name="ped_r1_c5" src="images/ped_r1_c5.jpg" width="263" height="150" border="0"></div>
+    </div>
+
+<!-- Se o usuário estiver logado, então o painel aparece. -->
+    <div id='sairr2c2'>
+        <img name='sair_r2_c2' src='images/sair_r2_c2.gif' width='195' height='57' border='0'>
+    </div>
+    <div id='sairr3c2'>
+        <img name='sair_r3_c2' src='images/sair_r3_c2.gif' width='20' height='30' border='0'>
+    </div>
+    <div id='sairr3c3'>
+        <img name='sair_r3_c3' src='images/sair_r3_c3.gif' width='12' height='14' border='0'>
+    </div>
+    <div id='sairr3c4'>
+        <img name='sair_r3_c4' src='images/sair_r3_c4.gif' width='43' height='30' border='0'>
+    </div>
+    <div id='sairr3c5'>
+        <img name='sair_r3_c5' src='images/sair_r3_c5.gif' width='13' height='14' border='0'>
+    </div>
+    <div id='sairr3c6'>
+        <img name='sair_r3_c6' src='images/sair_r3_c6.gif' width='107' height='30' border='0'>
+    </div>
+    <div id='sairr4c3'>
+        <img name='sair_r4_c3' src='images/sair_r4_c3.gif' width='12' height='16' border='0'>
+    </div>
+    <div id='sairr4c5'>
+        <img name='sair_r4_c5' src='images/sair_r4_c5.gif' width='13' height='16' border='0'>
+    </div>
+    <div id='textoSair'>
+        <a href='logout.php'><span class='style4' style="font-size:14px">Sair</span></a>
+    </div>
+    <div id='textoEditarPerfil'>
+        <a onclick="muda('615','','e');"><span class='style4' style="cursor:pointer;font-size:14px">Editar Perfil</span></a>
+    </div>
+
+    <div id='textoAluno'><b>Aluno:  </b>teste1<br><b>Equipe:</b>  Equipe2009.2</div>
+    <div id="linhaLogado">
+       <div id="textoLogado" class="style4">
+                    </div>
+    </div><div id="abasTelaAluno">
+		<div id="abasTelaAluno1" style="background-image: url('images/Tela_01_r4_c3.gif');">
+			<ul><a id="textoListaPaciente" onclick="muda('','','a')">Lista de Pacientes</a></ul></div>
+		<div id="abasTelaAluno2" style="background-image: url('images/Tela_01_r4_c6.gif');">
+			<ul><a id="textoCadastrarPaciente" onclick="muda('','','n');">Cadastrar Paciente</a></ul></div>
+			</div><div id="formCadastro">
+    <form action="alterar_paciente.php?pr=242" method="post" name="cadpaciente">
+    <fieldset class="bgFormPaciente">
+    	<legend>Alterar Dados do Paciente</legend>
+        <table bgcolor="#E8E8E8" width="600"><tr><td>
+			<br />
+		            <fieldset class="full">
+                <legend>Dados Pessoais</legend>
+				<div style="clear:both">
+					<label id="lbNome" class="labdir2">Nome*:</label>
+					<input class="tam50" name="nome" maxlength="50" onkeyup="savCampo()" onfocus="mudaLb(lbNome)" value="Rj teste 2" />
+                </div>
+				<div style="clear:both">
+					<label id="lbSexo" class="labdir2">Sexo*:</label>
+					<span>
+						<input name="sexo" type="radio" value="M"  checked="checked"  onfocus="mudaLb(lbSexo)" onchange="savCampo()"/><label>Masculino</label>
+						<input name="sexo" type="radio" value="F"  onfocus="mudaLb(lbSexo)" onchange="savCampo()"/><label>Feminino</label>
+					</span>
+				</div>
+				<div style="clear:both">
+					<label id="lbDT" class="labdir2">Nascimento*:</label>
+					<input class="tam15" name="data" maxlength="10" onkeypress="mascara(this,2)" value="20/02/1989" onkeyup="savCampo()" onfocus="mudaLb(lbDT)"/>
+					<label id="lbdtt">(dd/mm/aaaa)</label>
+
+						<a href="#" onClick="cal19.select(document.forms[0].data,'anchor19','dd/MM/yyyy'); mudaLb(lbDT); return false;" title="cal19.select(document.forms[0].data,'anchor19','MM/dd/yyyy'); return false;" name="anchor19" id="anchor19">
+						<img style="margin:5 0 0 5" src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+				</div>
+				<div style="clear:both">
+					<label id="lbCPF" class="labdir2">CPF:</label>
+					<input class="tam15" name="cpf" maxlength="14" OnKeyPress="mascara(this,1)" value="089.584.344-73" onkeyup="savCampo()"/>
+					<label id="lbCNS" class="labdir2">CNS:</label>
+					<input class="tam20" name="cns" maxlength="15" value="abc" onkeyup="savCampo()"/>
+                </div>
+				<div style="clear:both">
+					<label id="lbMae" class="labdir2">Nome da M&atilde;e*:</label>
+					<input class="tam50" name="mae" maxlength="50" value="teste 1 ae  ae" onfocus="mudaLb(lbMae)" onkeyup="savCampo()"/>
+                </div>
+				<div style="clear:both">
+					<label id="lbPai" class="labdir2">Nome do Pai:</label>
+					<input class="tam50" name="pai" maxlength="50" value="Teste 3" onkeyup="savCampo()"/>
+				</div>
+            </fieldset>
+            <br />
+            <fieldset class="full">
+                <legend>Endere&ccedil;o (Caso voc&ecirc; saiba o CEP, o sistema preencher&aacute; automaticamente)</legend>
+				<div style="clear:both">
+					<label id="lbCEP" class="labdir2">CEP*:</label>
+					<input id="inpCEP" class="tam10" name="cep" maxlength="9" value="51020-000" onfocus="mudaLb(lbCEP)" onkeyup="savCampo()" OnKeyPress="mascara(this,3)" /><a href="#cepResidencial" onclick="getCEP()"><img src="images/lupa.jpg" style="position:relative; padding-left:5px;padding-top:5px;" alt="Pesquisar Cep/PE"></a>			</div>
+				</div>
+				<div style="clear:both">
+					<label id="lbEnd" class="labdir2">Logradouro*:</label>
+					<input id="inpEnd" class="tam50" name="ende" onkeyup="savCampo()" onfocus="mudaLb(lbEnd)" value="Avenida Boa Viagem" maxlength="50" />			</div>
+				</div>
+				<div style="clear:both">
+					<label class="labdir2">N&uacute;mero:</label>
+					<input class="tam5" name="num" onkeyup="savCampo()" value="797" maxlength="4" />
+					<label class="labdir2">Complemento:</label>
+					<input class="tam30" name="comp" onkeyup="savCampo()" value="complemento" maxlength="30" />
+				</div>
+				<div style="clear:both">
+					<label id="lbBair" class="labdir2">Bairro*:</label>
+					<input id="inpBair" class="tam50" name="bair" value="Boa Viagem" onkeyup="savCampo()" onfocus="mudaLb(lbBair)" maxlength="50"/>
+				</div>
+				<div style="clear:both">
+					<label id="lbCid" class="labdir2">Cidade*:</label>
+					<input id="inpCid" class="tam30" name="cidade" value="Recife" onkeyup="savCampo()" onfocus="mudaLb(lbCid)" maxlength="30"/>
+					<label id="lbUF" class="labdir2">UF*:</label>
+					<input id="inpUF" class="tam5" name="uf" value="PE" onkeyup="savCampo()" onfocus="mudaLb(lbUF)" maxlength="2"/>
+				</div>            
+     	    </fieldset>
+			<br />
+            <fieldset class="full">
+                <legend>Op&ccedil;&otilde;es</legend>
+                <input name="limpar" type="reset" value="Limpar" />
+                <input name="voltar" type="submit" value="Voltar" onclick="this.form.action='aluno.php'" />
+                <div class="salvar">
+                    <input name="salvar" type="submit" value="Salvar" />
+                    <input type="hidden" value="0" id="ctrl" />
+                </div>
+        	</fieldset>
+        </td></tr></table>
+    </fieldset>
+    </form>
+</div>	<div id="rodape" style="z-index:-1">
+		<div id="rodapeimg">
+		<img src="images/rodape2.png" width="1290">
+		</div>
+		<div id="logoUFPE"> <img src="images/logo_r2_c2.jpg">
+			<div id="copyr"> © Copyright iDEIAS 2009
+			  </div>
+	     	</div>
+			<div id="webDesign">iR4 Consultoria Web</div>
+			<div id="logoiDEIAS"> <img src="images/iDEIAs - reduzido.gif"></div>
+			<div id="logoLIKA"> <img src="images/lika_marca_reduzido.gif" ></div>
+			<div id="logoHC"> <img src="images/logoHC.jpg"> </div>
+			<div id="recomenda">Site melhor visualizado no Mozilla Firefox 3+ ou Google Chrome, em resolução 1280 x 1024 pixels. </div>
+	</div>
+</div>  
+</body>
+</html>

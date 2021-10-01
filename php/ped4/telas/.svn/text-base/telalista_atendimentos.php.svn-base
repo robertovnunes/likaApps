@@ -1,0 +1,38 @@
+<form action="lista_atendimentos.php?pr=<?php echo $pront; ?>" method="post" name="cadpaciente" id="cadpaciente">
+<table width="520">
+	<tr>
+    	<td width="566" bgcolor="#D9E5F1"><fieldset style="width:500px;">
+        	<legend>Atendimentos - <?php echo $pac->nome;?></legend>
+            <table width="490">
+            	<tr align="center">
+                	<td width="235" class="style6">Hist&oacute;rico: <img src="images/icons/list_users.gif"
+						onmouseover="javascript:this.style.cursor='pointer'" width="16" height="16"
+						onclick="javascript:location.href='historico_paciente.php?pr=<?php echo $pront; ?>'"/></td>
+              	    <td width="243"><input name="novoatend" type="submit" value="Criar Novo Atendimento" /></td>
+            	</tr>
+          	</table>
+			<br />
+			<table width="490">
+            	<tr bgcolor="#629BD2" align="center">
+               		<td width="147" class="style4">Criado Por</td>
+                    <td width="127" class="style4">Data de Cria&ccedil;&atilde;o</td>
+                    <td width="131" class="style4">&Uacute;ltima Altera&ccedil;&atilde;o</td>
+                    <td width="80" class="style4">Consulta:</td>
+              	</tr>
+			<?php while ($arrayatend = mysql_fetch_array($listaatend)){ ?>
+               	<tr align="center">
+                	<td class="style6"><?php echo $arrayatend['nome']; ?></span></div></td>
+                    <td class="style6"><?php echo printData($arrayatend['dthr'],0,10)." ".printHora($arrayatend['dthr'],10);?></td>
+                    <td class="style6"><?php echo printData($arrayatend['dthralt'],0,10)." ".printHora($arrayatend['dthralt'],10);?>
+					</td>
+                    <td><img src="images/icons/page_edit.gif" onclick="javascript:location.href='prontuario_paciente.php?at=<?php
+						echo $arrayatend['idAtend']; ?>'" onmouseover="javascript:this.style.cursor='pointer'" width="16" 
+						height="16" /></td>
+             	</tr>
+			<?php } ?>
+            </table>
+	        <br />
+  		</fieldset>
+  	</td></tr>
+</table>
+</form>

@@ -1,0 +1,48 @@
+/* orange */
+a:link, a:visited {
+	color: #006699;
+}
+
+a:hover {
+	color: #069;
+}
+
+.sf-menu li{ background:#06C;}
+
+.sf-menu a:link, a:visited{ color:#fff;}
+.sf-menu a, .sf-menu a:visited{ color: #fff;}
+
+.bg_gray{ background: #CCC;}
+
+#pillmenu a:hover {
+  color: #cd6620;
+}
+
+#pillmenu a#active_menu-nav {
+  background: url(../images/orange/mw_menu_active_bg.png) 0 0 repeat-x;
+  color: #fff;
+}
+
+#pillmenu a#active_menu-nav:hover {
+  color: #fff;
+}
+
+h3, .componentheading, table.moduletable th {
+  color: #cd6620;
+}
+
+div.module_menu {
+	background: url(../images/orange/mw_box_br.png) 100% 100% no-repeat;
+}
+
+div.module_menu div {
+	background: url(../images/orange/mw_box_bl.png) 0 100% no-repeat;
+}
+
+div.module_menu div div {
+	background: url(../images/orange/mw_box_tr.png) 100% 0 no-repeat;
+}
+
+div.module_menu div div div {
+	background: url(../images/orange/mw_box_tl.png) 0 0 no-repeat;
+}

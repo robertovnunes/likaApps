@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/lika_ped/!svn/ver/2/ped/telas
+END
+acesso_aluno.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/lika_ped/!svn/ver/2/ped/telas/acesso_aluno.php
+END
+form_historico_paciente.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/lika_ped/!svn/ver/2/ped/telas/form_historico_paciente.php
+END
+tela_naoautorizado.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/lika_ped/!svn/ver/2/ped/telas/tela_naoautorizado.php
+END
+form_cadastro_paciente.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/lika_ped/!svn/ver/2/ped/telas/form_cadastro_paciente.php
+END
+form_prontuario_paciente.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/lika_ped/!svn/ver/5/ped/telas/form_prontuario_paciente.php
+END
+lista_atendimentos.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/lika_ped/!svn/ver/2/ped/telas/lista_atendimentos.php
+END
+tela_sucesso.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/lika_ped/!svn/ver/2/ped/telas/tela_sucesso.php
+END
+form_acesso_aluno.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/lika_ped/!svn/ver/2/ped/telas/form_acesso_aluno.php
+END
+form_alterar_paciente.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/lika_ped/!svn/ver/2/ped/telas/form_alterar_paciente.php
+END
+telalista_atendimentos.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/lika_ped/!svn/ver/2/ped/telas/telalista_atendimentos.php
+END

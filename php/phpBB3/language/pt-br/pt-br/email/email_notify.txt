@@ -1,0 +1,17 @@
+Subject: "{SITENAME}" - Email de um amigo
+
+Olá {TO_USERNAME},
+
+Este email foi enviado de "{SITENAME}" por {FROM_USERNAME} que se mostrou interessado no seguinte tópico:
+
+{TOPIC_NAME}
+
+Você pode encontrá-lo em:
+
+{U_TOPIC}
+
+A mensagem do {FROM_USERNAME} está incluída abaixo. Por favor note que esta mensagem não foi vista nem aprovada pelos administradores. Se você desejar se queixar sobre a recepção deste email por favor contate o administrador em {BOARD_CONTACT}. Por favor cite o cabeçalho desta mensagem caso contate este endereço.
+
+----------
+
+{MESSAGE}

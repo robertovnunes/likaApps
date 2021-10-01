@@ -1,0 +1,3 @@
+= Bem vindo ao Wiki do Lika UFPE = 
+
+Este portal contem informações sobre os sistemas e a infra-estrutura de TI do LIKA

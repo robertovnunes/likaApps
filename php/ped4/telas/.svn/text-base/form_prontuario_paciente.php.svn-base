@@ -1,0 +1,284 @@
+<?php
+
+function nomeAba($valor) {
+	if ($valor == "" || ($valor != "qpdhda" && $valor != "is" && $valor != "exame" && $valor != "hd" && $valor != "conduta"))
+	return "informante";
+	else return $valor;
+}
+
+function mSel($valor, $aba){
+	if ($valor == $aba)
+	return "class='msel'";
+}
+
+$paciente = getDadosPaciente($atend);
+$data = substr($paciente->dtnasc,8,2)."/".substr($paciente->dtnasc,5,2)."/".substr($paciente->dtnasc,0,4);
+$aba = nomeAba($_GET['n']);
+
+$nome = "";
+if(strlen($paciente->nome)>30){
+
+	$array = explode(" ", $paciente->nome);
+	$tamanho = 0;
+
+	while(($tamanho + strlen(current($array))) < 30){
+		$nome .= current($array).' ';
+		$tamanho = $tamanho + strlen(current($array));
+		next($array);
+	}
+
+}else{
+	$nome = $paciente->nome;
+}
+?>
+<table width="620" bgcolor='#629BD2'>
+	<tr>
+		<td width="300" class="style4">Nome: <?php echo $nome; ?></td>
+		<td width="75" class="style4">Sexo: <?php echo $paciente->sexo; ?></td>
+		<td width="180" class="style4">Natural de: <?php echo $paciente->cidade."/".$paciente->estado; ?></td>
+		<td width="158" class="style4">Data Nasc: <?php echo $data; ?></td>
+	</tr>
+	<tr>
+		<td colspan="2" class="style4">Alergia a Medicamentos: <?php if ($paciente->alergmed == "S") echo "Sim"; else echo "N&atilde;o"; ?></td>
+		<td colspan="2" class="style4">Alergia Alimentar: <?php if ($paciente->alergalim == "S") echo "Sim"; else echo "N&atilde;o"; ?></td>
+	</tr>
+</table>
+<br />
+
+
+
+<form
+	action="prontuario_paciente.php?at=<?php echo $atend; ?>&n=<?php echo $aba; ?>"
+	method="post" name="<?php echo $aba; ?>" id="pront">
+<ul class='menuh'>
+	<li <?php echo mSel('informante', $aba); ?>><a
+		onclick="muda(<?php echo $atend; ?>,'informante','p')">Informante</a></li>
+	<li <?php echo mSel('qpdhda', $aba); ?>><a
+		onclick="muda(<?php echo $atend; ?>,'qpdhda','p')">QPD/HDA</a></li>
+	<li <?php echo mSel('is', $aba); ?>><a
+		onclick="muda(<?php echo $atend; ?>,'is','p')">IS</a></li>
+	<li <?php echo mSel('exame', $aba); ?>><a
+		onclick="muda(<?php echo $atend; ?>,'exame','p')">Ex. F&iacute;sico</a></li>
+	<li <?php echo mSel('hd', $aba); ?>><a
+		onclick="muda(<?php echo $atend; ?>,'hd','p')">Hip. Diag.</a></li>
+	<li <?php echo mSel('conduta', $aba); ?>><a
+		onclick="muda(<?php echo $atend; ?>,'conduta','p')">Conduta</a></li>
+</ul>
+<table width="620" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td colspan="8" valign="top" class="tb-conteudo"><?php $n = $_GET['n'];
+		if ($n == "qpdhda"){
+			echo'<div id="div_qpdhda" class="conteudo" height:500px">';
+			include("prontuario/aba_qpdhda.php");
+		} else if ($n == "is"){
+			echo'<div id="div_is" class="conteudo" height:500px">';
+			include("prontuario/aba_is.php");
+		} else if ($n == "exame"){
+			echo'<div id="div_exame" class="conteudo" height:500px">';
+			include("prontuario/aba_exame.php");
+		} else if ($n == "conduta"){
+			echo'<div id="div_conduta" class="conteudo" height:500px">';
+			include("prontuario/aba_condutas.php");
+		} else if ($n == "hd"){
+			echo'<div id="div_hd" class="conteudo" height:500px">';
+			include("prontuario/aba_hd.php");
+		} else {
+			echo'<div id="div_paciente" class="conteudo" height:500px">';
+			include("prontuario/aba_informante.php");
+		} ?> <br />
+		<?php if ($n == "is" || $n == "hd" || $n == "exame" || $n == "conduta" || $n == "qpdhda"){ ?>
+		<div id="myDiv"></div>
+		<fieldset style="width: 590px"><legend>Op&ccedil;&otilde;es</legend>
+		<table width="493">
+			<tr align="right">
+				<td width="300"><input name="adendo" type="button" value="Adendo"
+				<?php if (!$linha->ass){ echo
+						"disabled=true"; } ?>
+					onclick="addAdendo();disabled=true;salvar.disabled=false;" /></td>
+				<td width="93"><input name="voltar" type="submit"
+					onclick="action='acesso_aluno.php'" value="Voltar" /></td>
+				<td width="92"><input name="salvar" type="submit" id="salvar"
+					value="Salvar" <?php echo checkAssinado($linha->ass); ?> /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right"><input name="limpar" type="reset"
+					value="Limpar" /></td>
+				<td align="right"><input type="hidden" name="gamb" value="false"
+					id="gamb" /> <?php   if ($n == "exame"){
+						$abas = getSalvosAbasExame($atend);
+						
+						$inspecao = $abas->inspecao;
+						$pele = $abas->pele;
+						$ganglios =  $abas->ganglios;
+						$estadpuberal = $abas->estadpuberal;
+						$desenvneuropsicomotor = $abas->desenvneuropsicomotor;
+						$cranio = $abas->cranio;
+						$olhos = $abas->olhos;
+						$sistotorrino = $abas->sistotorrino;
+						$pescoco = $abas->pescoco;
+						$aprespiratorio = $abas->aprespiratorio ;
+						$apcardiovascular = $abas->apcardiovascular;
+						$apgastroint = $abas->apgastroint;
+						$apgenitourinario = $abas->apgenitourinario;
+						$apmuscesqueletico = $abas->apmuscesqueletico;
+						$sistnervoso = $abas->sistnervoso;
+						?> <input type="button" name="assinar" value="Assinar"
+						<?php echo checkAssinado($linha->ass);?>
+					onclick="verificarExame(
+						<?php echo $inspecao." ,  ".$pele." ,  ".$ganglios." ,  ".$estadpuberal." ,  ".$desenvneuropsicomotor." ,  ".$cranio." ,  ".$olhos." ,  ".$sistotorrino." ,  ".$pescoco." ,  ".$aprespiratorio ." ,  ".$apcardiovascular." ,  ".$apgastroint ." ,  ".$apgenitourinario." ,  ".$apmuscesqueletico." ,  ".$sistnervoso; ?>
+						); " /></td>
+
+
+						<?php
+					} else if($n == "is"){
+							
+						$abas = getSalvosAbasIs($atend);
+						$geral = $abas->geral;
+						$pele = $abas->pele;
+						$olhos = $abas->olhos;
+						$ouvidos = $abas->ouvidos;
+						$respiratorio = $abas->respiratorio ;
+						$cardiovascular = $abas->cardiovascular;
+						$gastroint = $abas->gastrointestinal;
+						$genitourinario = $abas->genitourinario;
+						$muscesqueletico = $abas->muscesqueletico;
+						$nervoso = $abas->nervoso;
+							
+						?>
+
+				<input type="button" name="assinar" value="Assinar"
+				<?php echo checkAssinado($linha->ass);?>
+					onclick="verificarIs(
+						<?php echo $geral." ,  ".$pele." ,  ".$olhos." ,  ".$ouvidos." ,  ".$respiratorio ." ,  ".$cardiovascular." ,  ".$gastroint ." ,  ".$genitourinario." ,  ".$muscesqueletico." ,  ".$nervoso; ?>
+						); " />
+				</td>
+
+
+				<?php
+					
+					}elseif($n == "qpdhda" || $n== "conduta" || $n == "hd"){
+						?>
+				<input type="button" name="assinar" value="Assinar"
+				<?php echo checkAssinado($linha->ass);?>
+					onclick="verificar(); " />
+				</td>
+				<?php
+					}
+					?>
+			</tr>
+
+			<input type="hidden" value="0" id="ctrl" />
+		</table>
+		</fieldset>
+		<?php } ?> <br />
+		<script type="text/javascript">
+		function verificar(){
+			document.getElementById("gamb").value = "true";
+			document.getElementById("pront").submit();
+		}
+		function concatenar(msg1, msg2){
+			
+			if (msg1 == "") msg1 = msg2;
+			else msg1 = msg1 + ", "+ msg2;
+			
+			return msg1;
+		}
+		
+		function verificarExame(inspecao, pele, ganglios,estadpuberal,desenvneuropsicomotor, cranio, olhos, sistotorrino, pescoco, aprespiratorio , apcardiovascular, apgastroint , apgenitourinario, apmuscesqueletico, sistnervoso ){
+		
+			var erroJanela = "";
+				if( inspecao == 0)
+					erroJanela = concatenar(erroJanela, "Inspeção");
+				if( pele == 0)
+					erroJanela = concatenar(erroJanela, "Pele e Mucosas");
+				if( ganglios == 0)
+					erroJanela = concatenar(erroJanela, "Ganglios Linfáticos");
+				if( estadpuberal == 0)
+					erroJanela = concatenar(erroJanela, "Estadiamento Puberal");
+				if( desenvneuropsicomotor == 0)
+					erroJanela = concatenar(erroJanela, "Desenvolvimento Neuropsicomotor");
+				if( cranio == 0)
+					erroJanela = concatenar(erroJanela, "Crânio");
+				if( olhos == 0)
+					erroJanela = concatenar(erroJanela, "Olhos");
+				if( sistotorrino == 0)
+					erroJanela = concatenar(erroJanela, "Sistema Otorrinolaringológico");
+				if( pescoco == 0)
+					erroJanela = concatenar(erroJanela, "Pescoço");
+				if( aprespiratorio == 0)
+					erroJanela = concatenar(erroJanela, "Ap. Respiratório");
+				if( apcardiovascular == 0)
+					erroJanela = concatenar(erroJanela, "Ap. Cardiovascular");
+				if( apgastroint == 0)
+					erroJanela = concatenar(erroJanela, "Ap. Gastro Intestinal");
+				if( apgenitourinario == 0)
+					erroJanela = concatenar(erroJanela, "Ap. Genito-Urinário");
+				if( apmuscesqueletico == 0)
+					erroJanela = concatenar(erroJanela, "Ap. Músculo Esquelético");
+				if( sistnervoso == 0)
+					erroJanela = concatenar(erroJanela, "Sistema Nervoso");
+
+				
+				if(erroJanela == "" ){
+					document.getElementById("gamb").value = "true";
+					document.getElementById("pront").submit();	
+				}else{
+
+
+				
+					if (confirm('Voce não salvou os seguintes itens: '+erroJanela+'. Deseja assinar?')) { 
+						document.getElementById("gamb").value = "true";
+						document.getElementById("pront").submit();
+	      		  } 
+	     		   else { 
+	            		return void(''); 
+	      	 	 } 
+				}
+		}		
+
+		function verificarIs(geral, pele, olhos,ouvidos,respiratorio , cardiovascular, gastroint , genitourinario, muscesqueletico, nervoso ){
+			var erroJanela = "";
+			if( geral == 0)
+				erroJanela = concatenar(erroJanela, "Geral");
+			if( pele == 0)
+				erroJanela = concatenar(erroJanela, "Pele");
+			if( olhos == 0)
+				erroJanela = concatenar(erroJanela, "Olhos");
+			if( ouvidos == 0)
+				erroJanela = concatenar(erroJanela, "Ouvidos");
+			if( respiratorio == 0)
+				erroJanela = concatenar(erroJanela, "Respiratório");
+			if( cardiovascular == 0)
+				erroJanela = concatenar(erroJanela, "Cardiovascular");
+			if( gastroint == 0)
+				erroJanela = concatenar(erroJanela, "Gastro Intestinal");
+			if( genitourinario == 0)
+				erroJanela = concatenar(erroJanela, "Genito-Urinário");
+			if( muscesqueletico == 0)
+				erroJanela = concatenar(erroJanela, "Músculo Esquelético");
+			if( nervoso == 0)
+				erroJanela = concatenar(erroJanela, "Nervoso");
+
+			
+			if(erroJanela == "" ){
+				document.getElementById("gamb").value = "true";
+				document.getElementById("pront").submit();	
+			}else{
+
+
+			
+				if (confirm('Voce não salvou os seguintes itens: '+erroJanela+'. Deseja assinar?')) { 
+					document.getElementById("gamb").value = "true";
+					document.getElementById("pront").submit();
+      		  } 
+     		   else { 
+            		return void(''); 
+      	 	 } 
+			}
+		}	
+
+</script> <?php echo "</div>"; ?></td>
+	</tr>
+</table>
+
+</form>

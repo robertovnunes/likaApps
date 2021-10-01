@@ -1,0 +1,42 @@
+ <!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.isolation">2
+        </property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">false</property>
+
+
+        <mapping class="clin.model.Medico"/>
+        <mapping class="clin.model.Usuario"/>
+        <mapping class="clin.model.Paciente"/>
+        <mapping class="clin.model.Telefone"/>
+        <mapping class="clin.model.Atendimento"/>
+        <mapping class="clin.model.FichaAntecedentes"/>
+        <mapping class="clin.model.FichaExameFisico"/>
+        <mapping class="clin.model.FichaHDA"/>
+        <mapping class="clin.model.FichaIS"/>
+        <mapping class="clin.model.ProblemasCondutas"/>
+        <mapping class="clin.model.FichaProblemasCondutas"/>
+        <mapping class="clin.model.FichaQPD"/>
+        <mapping class="clin.model.Ficha"/>
+        <mapping class="clin.model.Adendo"/>
+        <mapping class="clin.model.Aluno"/>
+        <mapping class="clin.model.Enfermeiro"/>
+        <mapping class="clin.model.Exame"/>
+        <mapping class="clin.model.ResultadoExame"/>
+        <mapping class="clin.model.ResultadoEritograma"/>
+        <mapping class="clin.model.ResultadoGenerico"/>
+        <mapping class="clin.model.ResultadoLeucograma"/>
+        <mapping class="clin.model.ResultadoLonograma"/>
+        <mapping class="clin.model.ResultadoHemograma"/>
+        <mapping class="clin.model.Cid"/>
+
+
+    </session-factory>
+</hibernate-configuration>

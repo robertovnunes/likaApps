@@ -1,0 +1,36 @@
+= LIS 5 =
+<pre>
+Distributor ID: Ubuntu
+Description:    Ubuntu 10.04.2 LTS
+Release:        10.04
+Codename:       lucid
+Admin: [[Rafael Lima]]
+</pre>
+
+[[http://www.ideias.ufpe.br/wiki/lib/exe/fetch.php?media=wiki:lis5_configuration.txt|Configuração Completa]]
+
+== Sistemas Implantados ==
+
+=== Mantidos Pelo LIKA ===
+* [[Cenas]]
+* [[Clin]]
+* [[Ideias]]
+* [[Ped]]
+* <del>[[PBL]]</del>
+* [[Sae Mental]]
+
+=== Infra-Estrutura de Apoio ===
+
+* [[Apache 2]]
+* [[Tomcat 6]]
+* [[MySQL 5]]
+* [[PHPMyAdmin]]
+* [[Dokuwiki]]
+
+=== Acesso ===
+
+* [[OpenSSH]]
+
+== Credenciais ==
+
+[[http://www.ideias.ufpe.br/wiki/lib/exe/fetch.php?media=wiki:cred:credenciaislis5.txt|Credencias]]

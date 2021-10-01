@@ -1,0 +1,52 @@
+<?php
+	$lapcv = getValuesTableAt('apcardiovascular',$atend);
+?>
+<table width="570" class="style5">
+	<tr>
+    	<td width="274"><fieldset style="width:274px;">
+        	<legend>Dispn&eacute;ia</legend>
+       		<input name="dispneia" type="radio" value="S" onchange="savCampo('6')" <?php echo checkAssinado($linha->ass); 
+				echo checkPOST("dispneia", "S", $lapcv->disp); ?> />Sim
+           	<input name="dispneia" type="radio" value="N" onchange="savCampo('6')" <?php echo checkAssinado($linha->ass); 
+				echo checkPOST("dispneia", "N", $lapcv->disp); ?> />N&atilde;o
+ 	    	<input name="dispneia" type="radio" value="NA" onchange="savCampo('6')"<?php echo checkAssinado($linha->ass); 
+				echo checkPOST("dispneia", "NA", $lapcv->disp); ?>/>N&atilde;o Avaliado
+	  </fieldset></td>
+      <td width="294"><fieldset>
+      	<legend>Cianose</legend>
+        	<select name="cianose" <?php echo checkAssinado($linha->ass);?> onchange="savCampo('6')">
+            	<option value="L" <?php echo checkOption("cianose", "L", $lapcv->cian); ?>>Labial</option>
+                <option value="G" <?php echo checkOption("cianose", "G", $lapcv->cian); ?>>Generalizada</option>
+                <option value="A" <?php echo checkOption("cianose", "A", $lapcv->cian); ?>>Ausente</option>
+                <option value="NA" <?php echo checkOption("cianose", "NA", $lapcv->cian); ?>>N&atilde;o Avaliado</option>
+        	</select>
+      </fieldset></td>
+	</tr>
+	<tr>
+    	<td><fieldset>
+        	<legend>Palpita&ccedil;&atilde;o</legend>
+            <input name="palpitacao" type="radio" value="S" onchange="savCampo('6')" <?php echo checkAssinado($linha->ass); 
+				echo checkPOST("palpitacao", "S", $lapcv->palp); ?> />Sim
+           	<input name="palpitacao" type="radio" value="N" onchange="savCampo('6')" <?php echo checkAssinado($linha->ass);
+				echo checkPOST("palpitacao", "N", $lapcv->palp); ?> />N&atilde;o
+           	<input name="palpitacao" type="radio" value="NA" onchange="savCampo('6')" <?php echo checkAssinado($linha->ass); 
+				echo checkPOST("palpitacao", "NA", $lapcv->palp); ?> />N&atilde;o Avaliado
+     	</fieldset></td>
+      	<td><fieldset>
+     		<legend>Taquicardia</legend>
+            <input name="taquicardia" type="radio" value="S" onchange="savCampo('6')" <?php echo checkAssinado($linha->ass); 
+				echo checkPOST("taquicardia", "S", $lapcv->taq); ?> />Sim
+			<input name="taquicardia" type="radio" value="N" onchange="savCampo('6')" <?php echo checkAssinado($linha->ass); 
+				echo checkPOST("taquicardia", "N", $lapcv->taq); ?> />N&atilde;o
+	       	<input name="taquicardia" type="radio" value="NA" onchange="savCampo('6')" <?php echo checkAssinado($linha->ass); 
+				echo checkPOST("taquicardia", "NA", $lapcv->taq); ?> />N&atilde;o Avaliado
+	    </fieldset></td>
+  	</tr>
+	<tr>
+		<td colspan="2"><fieldset>
+	  		<legend>Observa&ccedil;&otilde;es</legend>
+    		<textarea name="obscardvasc" cols="80" onkeyup="savCampo('6')" <?php echo checkAssinado($linha->ass); ?>><?php 
+				echo printOBS($lapcv->obs, $_POST['obscardvasc']); ?></textarea>
+		</fieldset></td>
+	</tr>
+</table>

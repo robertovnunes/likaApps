@@ -1,0 +1,19 @@
+Subject: Reative sua conta em "{SITENAME}"
+
+O administrador do fórum pediu que sua conta seja reativada, pois sua conta encontra-se atualmente inativa.
+Por favor, veja os passos seguintes para reativar sua conta.
+
+Por favor, guarde este Email. Suas informações sobre a conta são as seguintes:
+
+----------------------------
+Usuário: {USERNAME}
+----------------------------
+
+Sua senha foi armazenada com segurança em nosso banco de dados e não poderá ser recuperada. Caso tenha esquecido a mesma, você poderá definir uma nova usando este endereço de email associado a esta conta no login da comunidade.
+
+Por favor, clique no link a seguir para reativar sua conta:
+
+{U_ACTIVATE}
+
+
+{EMAIL_SIG}

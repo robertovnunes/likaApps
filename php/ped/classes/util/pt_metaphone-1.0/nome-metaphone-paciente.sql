@@ -1,0 +1,1 @@
+alter table paciente add column nome_metaphone varchar(100) not null

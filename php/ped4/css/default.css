@@ -1,0 +1,95 @@
+.overlay {
+    background: #E8E8E8;
+    -moz-border-radius: 10px 10px;
+    -webkit-border-radius: 10px 10px;
+    padding: 5px;
+    text-align: center;
+    position: relative;
+    width:360px;
+}
+
+* html .overlay {
+	width: 300px;
+}
+
+.overlay h1 {
+    background: url(../images/skins/images/bg_heading_centro.png) repeat-x;
+    font-size: 10pt;
+    height: 16px;
+    padding: 6px 10px;
+    text-align: center;
+    position: relative;
+    color: #FFF;
+}
+
+.overlay h1 span.left, .overlay h1 span.right {
+    width: 6px;
+    height: 28px;
+    position: absolute;
+    top: 0;
+}
+
+.overlay h1 span.left {
+    left: 0;
+    background: url(../images/skins/images/bg_heading_ce.png) no-repeat;
+}
+
+.overlay h1 span.right {
+    right: 0;
+    background: url(../images/skins/images/bg_heading_cd.png) no-repeat;
+}
+
+.overlay .msg {
+	font-size: 10pt;
+    min-width: 200px;
+    margin: 10px 5px;
+    font-weight: bold;
+}
+
+* html .overlay .msg {
+	width: auto;
+}
+
+.overlay .button {
+    width: 40px;
+    height: 22px;
+    text-align: center;
+    font-size: 9pt;
+    font-weight: bold;
+    background: url(../images/skins/images/bg_buttons.png) no-repeat;
+    border: none;
+	cursor: pointer;
+	float: right;
+    margin-right: 3px;
+}
+
+.overlay .button:hover {
+    background-position: center;
+}
+
+.overlay .button:active {
+    background-position: bottom;
+}
+
+.overlay .button {
+    
+}
+
+.overlay .myOverlayBtClose {
+    width: 20px;
+    height: 20px;
+	position: absolute;
+    top: 9px;
+    right: 10px;
+	border: none;
+    background: url(../images/skins/images/bg_close.png) no-repeat;
+	cursor: pointer;
+}
+
+.overlay .myOverlayBtClose:hover {
+	background-position: center;
+}
+
+.overlay .myOverlayBtClose:active {
+	background-position: bottom;
+}

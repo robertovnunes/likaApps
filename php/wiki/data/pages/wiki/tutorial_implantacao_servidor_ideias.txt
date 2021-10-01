@@ -1,0 +1,33 @@
+= Introdução =
+Este tutorial destina-se a mostrar o passo-a-passo, necessário para levantar uma nova máquina que será responsável por abrigar o sistema ideias, bem como todos os subsistemas nele contidos. OBS: na data de redação deste tutorial o sistemas em produção são [[Clin]], [[Cenas]], [[Sae]], [[Saemental]] e [[Ped]]
+
+= Pre-Requisitos =
+Para o completo entendimento deste tutorial é necessário que o usuário tenha conhecimentos mínimos sobre sistemas linux via linha de comando e ubuntu server. O sistema instalado neste servidor NÃO UTILIZARÁ INTERFACE GRÁFICA, então qualquer imprevisto necessitará de intervenção direto no terminal.
+
+
+= Procedimento = 
+
+# [[Tutorial de realização de backup do ideias|Realize o backup do sistema antigo]] e salve-o em um local seguro.
+# Formate a nova máquina para a instalação do Ubuntu Server (atualmente na versão 10.04 LTS)
+# Remova o usuario criado durante a instalação do Ubuntu e ative o usuário root
+ sudo su [password]
+ userdel -f -r [usuario]
+ passwd [novo password de root]
+# Atualize os dados do repositório
+ apt-get update
+ apt-get upgrade
+# Instale os pacotes necessários para o funcionamento dos sistemas PHP
+ apt-get install apache2 php5 libapache2-mod-php5 php-db php-http php-file php-log php-mail php-mail-mime php-mail-mimedecode php5-cgi php5-cli php5-common php5-gd php5-imagick php5-json php5-mysql php5-svn
+# Instale as bibliotecas para uso do MySQL - será necessário criar a senha de root para o mysql
+ apt-get install mysql-server mysql-admin libapache2-mod-auth-mysql libapache2-mod-log-sql-mysql mysql-query-browser
+# Instale as bibliotecas para os sistemas java, verifique a versão mais recente do JDK na hora de copiar o comando abaixo, atualmente o container utilizado é o Tomcat 6.
+ apt-get install default-jdk tomcat6 tomcat6-admin tomcat6-common tomcat6-docs tomcat6-examples libtomcat6-java libapache2-mod-jk libmysql-java
+## Faça as [[Tutorial configurações iniciais tomcat 6 maquina ubuntu|configurações iniciais do tomcat 6]] 
+# Instale o suporte a SVN via apache
+ apt-get install subversion libapache2-svn
+## Faça as [[Tutorial configurações iniciais svb em maquina ubuntu|configurações iniciais do SVN]]
+# Instale os aplicativos de proposito geral - será necessario fornecer a senha de root do MYSQL, para instalação do phpmyadmin, e criar uma senha de root para o mesmo.
+ apt-get install rar unrar zip unzip openssh-server webmin phpmyadmin vim
+# Defina o ip fixo nesta máquina
+# [[Tutorial de restauração de backup do ideias|Restaure o backup]] da versão anterior do ideias
+Fim-----

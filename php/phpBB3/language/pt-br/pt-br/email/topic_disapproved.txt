@@ -1,0 +1,12 @@
+Subject: Tópico Reprovado - {TOPIC_TITLE}
+
+Olá {USERNAME},
+
+Você recebeu este email porque o seu tópico "{TOPIC_TITLE}" em {SITENAME} foi reprovado por um moderador ou administrador.
+
+A seguinte razão foi dada pela reprovação:
+
+{REASON}
+
+
+{EMAIL_SIG}

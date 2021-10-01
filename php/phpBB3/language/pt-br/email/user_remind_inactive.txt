@@ -1,0 +1,11 @@
+Subject: Lembrete de conta inativa
+
+Olá {USERNAME},
+
+Em {REGISTER_DATE} você registrou uma nova conta em "{SITENAME}". Mas você não ativou esta conta, você deve fazer isto antes de possa efetuar login. Para sua conveniência o link da ativação é repetido abaixo.
+ 
+{U_ACTIVATE}
+
+Obrigado por se registrar no "{SITENAME}", Nós aguardamos a sua participação.
+
+{EMAIL_SIG}

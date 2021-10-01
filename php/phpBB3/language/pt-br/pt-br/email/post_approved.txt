@@ -1,0 +1,14 @@
+Subject: Mensagem Aprovada - {POST_SUBJECT}
+
+Olá {USERNAME},
+
+Você recebeu este email porque sua mensagem "{POST_SUBJECT}" em {SITENAME} foi aprovada pelo moderador ou administrador.
+
+Se você quiser ver a mensagem, clique no link abaixo:
+{U_VIEW_POST}
+
+Se você quer ver o tópico, clique no link abaixo:
+{U_VIEW_TOPIC}
+
+
+{EMAIL_SIG}

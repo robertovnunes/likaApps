@@ -1,0 +1,55 @@
+
+
+
+<h1 class="sectionedit1"><a name="introducao" id="introducao">Introdução</a></h1>
+<div class="level1">
+
+<p>
+Uma rotina de backup é importante para recuperar o estado do sistema após eventuais “crashes”, uma rotina eficiente deve prover o armazenamento final do backup em uma máquina diferente daquela “backupeada” de modo a tornar possível à recuperação do sistema independente de uma perda total.
+</p>
+
+<p>
+Atualmente o script de backup do sistema [Shell script] possibilita o armazenamento do backup em outra maquina da rede (via sftp) ou em uma pasta no dropbox (através do cliente).
+</p>
+
+<p>
+Download <a href="http://www.ideias.ufpe.br/wiki/lib/exe/fetch.php?media=wiki:script_backup.sh" class="urlextern" title="http://www.ideias.ufpe.br/wiki/lib/exe/fetch.php?media=wiki:script_backup.sh"  rel="nofollow">script de backup</a>
+</p>
+
+</div>
+
+
+<!-- EDIT1 SECTION "Introdução" [1-610] -->
+<h1 class="sectionedit2"><a name="rodando_o_script" id="rodando_o_script">Rodando o Script</a></h1>
+<div class="level1">
+
+<p>
+O script pode ser encontrado em: /home/scripts/script_backup.sh e recebe como parametros de execução: (ssh/dropbox) tempodebackup compact? full?
+</p>
+
+<p>
+ex:
+</p>
+<ul>
+<li class="level1"><div class="li">script_backup.sh dropbox 1 compact full</div>
+</li>
+<li class="level0"><div class="li">script_backup.sh dropbox 3</div>
+</li>
+<li class="level0"><div class="li">script_backup.sh ssh 2 compact</div>
+</li>
+</ul>
+
+<p>
+Para que o script funcione corretamente é necessário:
+</p>
+<ol>
+<li class="level1"><div class="li">Arquivo <a href="http://www.ideias.ufpe.br/wiki/lib/exe/fetch.php?media=wiki:sftp.sh" class="urlextern" title="http://www.ideias.ufpe.br/wiki/lib/exe/fetch.php?media=wiki:sftp.sh"  rel="nofollow">sftp.sh</a> esteja presente na pasta /home/scripts/</div>
+</li>
+<li class="level0"><div class="li">Liberação de acesso sem autenticação do usuario root da maquina em questão para a maquina destino do backup <a href="/wiki/doku.php?id=wiki:tutorial_para_liberacao_de_acesso_sem_autenticacao_de_usuario_via_ssh_em_maquina_ubuntu" class="wikilink2" title="wiki:tutorial_para_liberacao_de_acesso_sem_autenticacao_de_usuario_via_ssh_em_maquina_ubuntu" rel="nofollow">(veja aqui como fazer)</a></div>
+</li>
+<li class="level0"><div class="li">Existencia e permissão de escrita da pasta para armazenamento do backup /home/bak/</div>
+</li>
+</ol>
+
+</div>
+<!-- EDIT2 SECTION "Rodando o Script" [611-] -->

@@ -1,0 +1,5 @@
+<html>
+<meta http-equiv="refresh" content="0; url=http://www.ideias.ufpe.br:8180/sae"><body><!--
+Você está sendo redirecionado, caso a página não carregue automaticamente <a href="moodle/index.php">clique aqui</a>
+--></body>
+</html>

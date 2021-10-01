@@ -1,0 +1,31 @@
+<?php
+	$linha = verHD($atend);
+	if ($flag){
+		echo '<br /><table width="620" bgcolor="#629BD2"><tr>';
+		if ($error){
+			echo "<td class='erro'>";
+			if($_POST['hipdiag'] == "" && !$linha->ass) echo "Nenhum dado foi alterado.";
+			if($_POST['adendoNovo'] == "" && $linha->ass) echo "Preencha o adendo.";
+		} else {
+			echo '<td class="style4">';
+			if($insert) echo "Novo Adendo Inserido.";
+			else echo "Dados inseridos com sucesso.";
+		}	
+		echo "</td></tr></table><br />";
+	}
+
+?>
+<br />
+<fieldset style="width:590px;">
+	<legend id="lblhd" >
+		Hip&oacute;tese de Diagn&oacute;tico</legend>
+	<textarea name="hipdiag" cols="70" <?php echo checkAssinado($linha->ass); ?> onFocus="mudaLb(lblhd)" onkeyup="savCampo()"
+		><?php echo printOBS($linha->hip, $_POST['hipdiag']); ?></textarea>
+</fieldset>
+<?php
+if ($linha->ass)
+	echo "<br /><table class='infoass'><tr><td>Assinatura: ".getNomeAluno($linha->idAlun)." - ".printData($linha->dthr)." - ".
+		printHora($linha->dthr)."</td></tr></table><br />";?>
+<?php
+include("functions/funcoesimpressoes.php");
+printAdendoHD($atend); ?>

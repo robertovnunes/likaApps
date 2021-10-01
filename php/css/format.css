@@ -1,0 +1,138 @@
+@charset "utf-8";
+/************************************
+* Produzido por iR4 Consultoria Web *
+*         www.ir4.com.br            *
+*             @LFAO                 *
+************************************/
+
+* html img { /* código para usar PNG com fundo transparente. */
+
+	filter:expression(
+		this.alphaxLoaded ? "" :(this.src.substr(this.src.length-4)==".png"?((!this.complete)? "" :
+		this.runtimeStyle.filter=("progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+this.src+"')")+
+		(this.onbeforeprint="this.runtimeStyle.filter='';this.src='"+this.src+"'").substr(0,0)+
+		String(this.alphaxLoaded=true).substr(0,0)+
+		(this.src="img/blank.gif").substr(0,0)):this.runtimeStyle.filter="")); 
+} 
+
+/* Aplicando a transparncia apenas no IE 6 */
+* html body .alpha {
+	 background-color:#FFF;
+     filter: alpha(opacity=80); /* J q o FF no recebe, no vamos declarar o moz-opacity */
+     }
+	 
+/* Aplicando a background-image para os outros navegadores */
+html > body .alpha {
+     background-image:url(../imagens/alpha_80.png);
+     }
+
+html {	overflow-y: scroll; 
+		overflow-x: hidden;}
+
+body {
+	font-family: "Lucida Sans", "Trebuchet Ms", Verdana, Arial, Helvetica, sans-serif;
+	background-color: #FFF;
+	background-image: url(../img/background.jpg);
+	background-repeat: repeat-x;
+	overflow-x: hidden;
+	height: auto;
+}
+
+p,h1,h2,h3,h4,h5,h6,h7,input,ul,li,dd,select,textarea,label,address {
+	font-size: 10px;
+	color: #000;
+	font-family: "Lucida Sans", "Trebuchet Ms", Verdana, Arial, Helvetica, sans-serif;
+
+}
+
+a {	color: #999999;	}
+a:hover {	color:#000; text-decoration: underline;	}
+
+#container{
+	width: 762px; 
+	height: auto;
+	margin: 0 auto;
+}
+#container h1 a{ text-indent: -4000px; width: 218px; height: 60px; padding: 27px 0 0 14px; float: left; overflow: hidden; background: url(../img/logo_ideias.jpg) bottom right no-repeat; display: block;}
+
+#header{
+	width: 762px;
+	height: 160px;
+	float: left;
+}
+
+#search{ width: 234px; height: 30px; float: right; padding: 42px 0 0 0; overflow: hidden; background:url(../img/bg_busca.jpg) bottom no-repeat; }
+#search label{ display: none;}
+#search #word{ padding: 10px 5px 6px 0px; width: 199px; border: none; background: none; float: right; font-size: 12px;}
+#search #submit{ float: right; width: 30px; height: 30px; border: none; background: none; display: block; text-indent: -4000px; font-size: 0px; display: block; line-height: 0px; }
+
+#nav{ width: 762px; height: 46px; float: left; background:url(../img/bg_nav.jpg) bottom left no-repeat; padding: 25px 0 0 0;}
+#nav ul{padding:7px 6px 0 6px; position: relative;}
+#nav ul li{ display: inline; height:34px; float: left; border-left: 1px solid #CDEBEB; position: relative; }
+#nav ul li a{ color:#41A4A4; padding: 10px 20px 10px 19px; float: left; text-decoration: none; font-size:11px; overflow: hidden; background: url(../img/bg_nav_dark.jpg) 0 34px repeat-x;}
+#nav ul li a:hover{ color: #fff;  }
+
+#nav ul li ul{ position: absolute; z-index: 200; display: none; top: 34px; padding: 0 0 8px 0; left: 0; }
+#nav ul li ul li{ z-index: 200; width: 138px; height: auto; *margin: 0 0 -2px 0; display: block; float: none; overflow: hidden; background: url(../img/bg_nav2_clear.jpg) !important;}
+#nav ul li ul li a{ z-index: 200; width: 138px; padding: 6px 0; font-size: 11px; text-indent: 0; text-align:center; background: none;  color: #41A4A4 !important;}
+#nav ul li ul li a:hover{ text-decoration: none; background: none; color: #000 !important;  }
+#nav ul li ul .nav_bottom{ background:url(../img/bg_nav2_bottom.jpg) no-repeat; display: block; width: 139px; height: 8px;}
+
+#middle{ width: 762px; height: auto; position: relative; float: left;}
+#middle h2{ width: 741px; height: 39px; display: block; background: #ECF6F6 url(../img/bg_h2_border_top.jpg) no-repeat; font-size: 24px; color: #797979; padding: 20px 0 0 20px; }
+#middle h3{ font-size:14px; color: #797979; font-weight: bold; padding: 10px 0 10px 0;}
+#middle h4{ padding: 5px 0; line-height: 18px; position: relative; color: #797979; font-weight: bold;}
+
+#middle .large_box{ width: 502px; height: 225px; padding: 0 4px; float: left; overflow: hidden; }
+#middle .large_box h2{ padding: 2px 0 0 36px; height: 32px;  font-size:20px; color: #666;}
+#middle .large_box .title{ color: #666 !important; font-size: 14px; font-weight:bold; padding: 10px 0 10px 8px; width: 248px; float: left; }
+#middle .large_box .text{ color: #666 !important; font-size: 11px; line-height: 18px; padding: 10px 0 10px 8px; width: 248px; float: left; }
+#middle .large_box .more{ text-align: right; padding: 0 18px 0 0; background: url(../img/icon_seta.jpg) bottom right no-repeat; color: #006699; float: right;}
+
+#middle .large_box_grupo{ width: 502px; height: 225px; padding: 0 4px; float: left; overflow: hidden; }
+#middle .large_box_grupo h2{ padding: 12px 0 0 36px; height: 300px;  font-size:20px; color: #666;}
+#middle .large_box_grupo .title{ color: #666 !important; font-size: 14px; font-weight:bold; padding: 10px 0 10px 8px; width: 248px; float: left; }
+#middle .large_box_grupo .text{ color: #666 !important; font-size: 11px; line-height: 18px; padding: 10px 0 10px 8px; width: 248px; float: left; }
+#middle .large_box_grupo .more{ text-align: right; padding: 0 18px 0 0; background: url(../img/icon_seta.jpg) bottom right no-repeat; color: #006699; float: right;}
+#middle .border_large_clear{ width:506px; height: 11px;  background: url(../img/bg_home_cima_claro_largo.jpg) no-repeat; float: left;}
+#middle .large_box_content{ background:url(../img/bg_degrade_azul_branco.jpg) repeat-x; width: 487px; padding: 9px 4px 0 15px; float:left;}
+
+#middle .soft_box{ width: 244px; height: 225px; padding: 0 4px; float: left; overflow: hidden; }
+#middle .soft_box h2{ padding: 2px 0 0 36px; height: 32px; width: 100%; font-size:20px; color: #666;}
+#middle .soft_box er{ padding: 2px 0 0 36px; height: 32px; width: 100%; font-size:20px; color: #666;}
+#middle .soft_box li{ color: #666 !important; font-size: 11px; line-height: 18px; padding: 10px 0 10px 0px; float: left; }
+#middle .soft_box li a{border-left: 2px solid #D8F0F0; display: block; padding: 0 0 0 8px; }
+#middle .soft_box .title{ color: #666 !important; font-size: 14px; font-weight:bold; padding: 10px 0 10px 8px; float: left; }
+#middle .soft_box .text{ color: #666 !important; font-size: 11px; line-height: 18px; padding: 10px 0 10px 8px; float: left; }
+#middle .soft_box .more{ text-align: right; padding: 0 18px 0 0; background: url(../img/icon_seta.jpg) bottom right no-repeat; color: #006699; float: right;}
+#middle .soft_box label{color: #666 !important; font-size: 11px; line-height: 18px; padding: 10px 0 0px 8px; float: left;}
+#middle .soft_box .campo{border: none; background: url(../img/bg_input_text.jpg) no-repeat; width: 211px; height: 20px; padding: 8px 5px 0 5px; font-size: 12px;}
+#middle .soft_box .acessar{ border: none; background:url(../img/bg_input_submit.jpg) no-repeat; float: right; width: 87px; height: 28px; text-indent:-4000px; margin: 10px 8px 0 0; font-size: 0px; display: block; line-height: 0px; }
+
+#middle .border_soft_clear{ width:248px; height: 11px;  background: url(../img/bg_home_cima_claro_curto.jpg) no-repeat; float: left;}
+#middle .border_soft_dark{ width:248px; height: 11px;  background: url(../img/bg_home_cima_escuro_curto.jpg) no-repeat; float: left;}
+#middle .soft_box_content{ background:url(../img/bg_degrade_azul_branco.jpg) repeat-x; width: 228px; padding: 9px 10px 0 10px; float:left;}
+
+
+
+#middle #box_destaque h2{ background: url(../img/icon_balao.jpg) no-repeat; }
+#middle #box_destaque img{ width: 226px; height: 155px; float: left; }
+#middle #area_aluno h2{ background: url(../img/icon_cadeado.jpg) no-repeat; }
+#middle #o_grupo h2{ background: url(../img/icon_prancheta.jpg) no-repeat; }
+#middle #novidades h2{ background: url(../img/icon_livro.jpg) no-repeat; }
+#middle #publicacoes h2{ background: url(../img/icon_globo.jpg) no-repeat; }
+
+#content{ width: 721px; height: auto; position: relative; float: left; background:url(../img/bg_degrade_azul_branco.jpg) 0 4px repeat-x; padding: 20px;}
+#content p{ padding: 0 0 2px 0; line-height: 18px; position: relative; color: #797979;}
+/*#content a{ width:auto; height:auto; display: block; background:url(../img/icon_lupa.gif) bottom right no-repeat; }*/
+#content ul{ padding: 5px 10px 5px 10px;}
+#content ul li{  color: #797979; background: url(../img/img_li.gif) 0 5px no-repeat; padding: 0 0 0 18px; line-height: 20px;}
+
+
+#footer{ margin: 62px 0 0 0; height: 112px;	width: 100%; float: left; overflow: hidden;	padding: 45px 0 0 0; background: #DFF2F2; }
+	
+#footer p, #footer a, #footer address{ font-size: 11px; color: #666; }
+#footer a{text-decoration: underline;}
+#footer_center{ width: 762px; margin: 0 auto;}
+#footerContentLeft{	width: 440px; float:left; }
+#footerContentRight{ width: 322px; text-align: right; float: left; margin-top: -10px;}
